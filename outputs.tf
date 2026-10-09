@@ -3,6 +3,11 @@ output "sla_domain_ids" {
   value       = { for key, domain in module.rubrik_sla_domains : key => domain.id }
 }
 
+output "rubrik_cluster_ids" {
+  description = "Map of configured Rubrik cluster names to their discovered UUIDs."
+  value       = local.rubrik_cluster_ids
+}
+
 output "object_inventory_role_ids" {
   description = "Map of configured object inventory role keys to Rubrik role IDs."
   value       = { for key, role in module.object_inventory_role : key => role.role_id }

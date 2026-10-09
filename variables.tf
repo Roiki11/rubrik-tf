@@ -117,10 +117,18 @@ variable "nas_existing_shares" {
   }
 }
 
-variable "linux_fileset_cluster_uuid" {
-  description = "Rubrik CDM cluster UUID used for Linux fileset template and fileset operations."
+variable "linux_fileset_cluster_name" {
+  description = "Exact Rubrik CDM cluster name used for Linux fileset template and fileset operations."
   type        = string
   default     = ""
+
+  validation {
+    condition = (
+      length(var.linux_fileset_templates) == 0 &&
+      length(var.linux_fileset_assignments) == 0
+    ) || length(trimspace(var.linux_fileset_cluster_name)) > 0
+    error_message = "linux_fileset_cluster_name is required when Linux fileset templates or assignments are configured."
+  }
 }
 
 variable "linux_fileset_templates" {
@@ -216,7 +224,7 @@ variable "proxmox_objects" {
 variable "nas_servers" {
   description = "Generic NAS and PowerScale (Isilon) servers to register, keyed by stable Terraform names."
   type = map(object({
-    cluster_uuid = string
+    cluster_name = string
     hostname     = string
     vendor_type  = string
     generic_parameters = optional(object({
@@ -245,10 +253,10 @@ variable "nas_servers" {
   validation {
     condition = alltrue([
       for server in values(var.nas_servers) :
-      can(regex("^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$", server.cluster_uuid)) &&
+      length(trimspace(server.cluster_name)) > 0 &&
       length(trimspace(server.hostname)) > 0
     ])
-    error_message = "Every NAS server requires a UUID cluster_uuid and non-empty hostname."
+    error_message = "Every NAS server requires a non-empty cluster_name and hostname."
   }
 
   validation {
@@ -326,7 +334,7 @@ variable "nas_shares" {
 variable "nas_cloud_direct_systems" {
   description = "NAS Cloud Direct systems to register, keyed by stable Terraform names. system_type must be a Rubrik CloudDirectNasVendorType value; certificate_type, when set, must be PEM or PKCS12."
   type = map(object({
-    cluster_id                          = string
+    cluster_name                        = string
     host                                = string
     system_type                         = string
     skip_service_account_creation       = bool
@@ -352,7 +360,7 @@ variable "nas_cloud_direct_systems" {
   validation {
     condition = alltrue([
       for system in values(var.nas_cloud_direct_systems) :
-      can(regex("^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$", system.cluster_id)) &&
+      length(trimspace(system.cluster_name)) > 0 &&
       length(trimspace(system.host)) > 0 &&
       (system.certificate_type == null || contains(["PEM", "PKCS12"], system.certificate_type)) &&
       (system.username_credential == null || length(trimspace(system.username_credential)) > 0) &&
@@ -366,7 +374,7 @@ variable "nas_cloud_direct_systems" {
         length(trimspace(credential.password_credential)) > 0
       ])
     ])
-    error_message = "NAS Cloud Direct systems require a UUID cluster_id, non-empty host and named credential fields, and certificate_type null, PEM, or PKCS12."
+    error_message = "NAS Cloud Direct systems require a non-empty cluster_name, host and named credential fields, and certificate_type null, PEM, or PKCS12."
   }
 }
 
@@ -535,7 +543,7 @@ variable "sensitive_data_summary_input" {
 variable "vsphere_servers" {
   description = "vCenter Servers and standalone ESXi hosts to register, keyed by stable Terraform names."
   type = map(object({
-    cluster_uuid                          = string
+    cluster_name                          = string
     hostname                              = string
     username_credential                   = string
     password_credential                   = string
@@ -551,7 +559,7 @@ variable "vsphere_servers" {
   validation {
     condition = alltrue([
       for server in values(var.vsphere_servers) :
-      can(regex("^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$", server.cluster_uuid)) &&
+      length(trimspace(server.cluster_name)) > 0 &&
       length(trimspace(server.hostname)) > 0 &&
       length(trimspace(server.username_credential)) > 0 &&
       length(trimspace(server.password_credential)) > 0 &&
@@ -560,7 +568,7 @@ variable "vsphere_servers" {
         "VCENTER_CONFIG_V2_CONFLICT_RESOLUTION_AUTHZ_NO_CONFLICT_RESOLUTION",
       ], server.conflict_resolution_authz)
     ])
-    error_message = "Each vSphere registration requires a UUID cluster_uuid, non-empty hostname and credential aliases, and a supported conflict_resolution_authz value."
+    error_message = "Each vSphere registration requires a non-empty cluster_name, hostname and credential aliases, and a supported conflict_resolution_authz value."
   }
 }
 
@@ -588,7 +596,7 @@ variable "proxmox_hosts" {
 variable "tape_archival_targets" {
   description = "Tape archival targets to create, keyed by stable Terraform names."
   type = map(object({
-    cluster_uuid                   = string
+    cluster_name                   = string
     destination_folder_name        = string
     encryption_password_credential = string
     host_name                      = string
@@ -603,7 +611,7 @@ variable "tape_archival_targets" {
   validation {
     condition = alltrue([
       for target in values(var.tape_archival_targets) :
-      can(regex("^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$", target.cluster_uuid)) &&
+      length(trimspace(target.cluster_name)) > 0 &&
       target.host_port >= 1 && target.host_port <= 65535 && target.host_port == floor(target.host_port) &&
       length(trimspace(target.destination_folder_name)) > 0 &&
       length(trimspace(target.host_name)) > 0 &&
@@ -613,7 +621,7 @@ variable "tape_archival_targets" {
       length(trimspace(target.password_credential)) > 0 &&
       length(trimspace(target.username_credential)) > 0
     ])
-    error_message = "Each tape target requires a UUID cluster_uuid, host_port from 1 to 65535, non-empty names, and non-empty credential aliases."
+    error_message = "Each tape target requires a non-empty cluster_name, host_port from 1 to 65535, non-empty names, and non-empty credential aliases."
   }
 }
 
@@ -621,7 +629,7 @@ variable "tape_reader_targets" {
   description = "Tape reader archival targets to create, keyed by stable Terraform names. reader_retrieval_method must be OBJECT_LIST_AND_DETAILS, OBJECT_LIST_ONLY, or SPECIFIC_OBJECT_LIST_AND_DETAILS."
   type = map(object({
     archival_data_source_ids       = optional(set(string), [])
-    cluster_uuid                   = string
+    cluster_name                   = string
     destination_folder_name        = string
     encryption_password_credential = string
     host_name                      = string
@@ -649,7 +657,7 @@ variable "tape_reader_targets" {
   validation {
     condition = alltrue([
       for target in values(var.tape_reader_targets) :
-      can(regex("^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$", target.cluster_uuid)) &&
+      length(trimspace(target.cluster_name)) > 0 &&
       target.host_port >= 1 && target.host_port <= 65535 &&
       target.host_port == floor(target.host_port) &&
       length(trimspace(target.destination_folder_name)) > 0 &&
@@ -660,7 +668,7 @@ variable "tape_reader_targets" {
       length(trimspace(target.password_credential)) > 0 &&
       length(trimspace(target.username_credential)) > 0
     ])
-    error_message = "Each tape reader target requires a UUID cluster_uuid, host_port from 1 to 65535, non-empty names, and non-empty credential aliases."
+    error_message = "Each tape reader target requires a non-empty cluster_name, host_port from 1 to 65535, non-empty names, and non-empty credential aliases."
   }
 
   validation {

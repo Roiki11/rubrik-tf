@@ -13,7 +13,7 @@ locals {
 
   resolved_nas_servers = {
     for key, server in var.nas_servers : key => {
-      cluster_uuid = server.cluster_uuid
+      cluster_uuid = local.rubrik_cluster_ids[server.cluster_name]
       hostname     = server.hostname
       vendor_type  = server.vendor_type
       generic_parameters = server.generic_parameters == null ? null : {
@@ -53,7 +53,11 @@ locals {
   }
 
   resolved_nas_cloud_direct_systems = {
-    for key, system in var.nas_cloud_direct_systems : key => merge(system, {
+    for key, system in var.nas_cloud_direct_systems : key => merge({
+      for name, value in system : name => value
+      if name != "cluster_name"
+      }, {
+      cluster_id = local.rubrik_cluster_ids[system.cluster_name]
       certificate_data = try(system.certificate_data_credential, null) == null ? null : local.vault_credentials[
         system.certificate_data_credential
       ]
@@ -77,9 +81,13 @@ locals {
   }
 
   resolved_vsphere_servers = {
-    for key, server in var.vsphere_servers : key => merge(server, {
-      username = local.vault_credentials[server.username_credential]
-      password = local.vault_credentials[server.password_credential]
+    for key, server in var.vsphere_servers : key => merge({
+      for name, value in server : name => value
+      if name != "cluster_name"
+      }, {
+      cluster_uuid = local.rubrik_cluster_ids[server.cluster_name]
+      username     = local.vault_credentials[server.username_credential]
+      password     = local.vault_credentials[server.password_credential]
       ca_certs = try(server.ca_certs_credential, null) == null ? null : local.vault_credentials[
         server.ca_certs_credential
       ]
@@ -99,7 +107,11 @@ locals {
   }
 
   resolved_tape_archival_targets = {
-    for key, target in var.tape_archival_targets : key => merge(target, {
+    for key, target in var.tape_archival_targets : key => merge({
+      for name, value in target : name => value
+      if name != "cluster_name"
+      }, {
+      cluster_uuid        = local.rubrik_cluster_ids[target.cluster_name]
       encryption_password = local.vault_credentials[target.encryption_password_credential]
       password            = local.vault_credentials[target.password_credential]
       username            = local.vault_credentials[target.username_credential]
@@ -107,7 +119,11 @@ locals {
   }
 
   resolved_tape_reader_targets = {
-    for key, target in var.tape_reader_targets : key => merge(target, {
+    for key, target in var.tape_reader_targets : key => merge({
+      for name, value in target : name => value
+      if name != "cluster_name"
+      }, {
+      cluster_uuid        = local.rubrik_cluster_ids[target.cluster_name]
       encryption_password = local.vault_credentials[target.encryption_password_credential]
       password            = local.vault_credentials[target.password_credential]
       username            = local.vault_credentials[target.username_credential]

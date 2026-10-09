@@ -83,7 +83,7 @@ module "postgresql_protection" {
 module "linux_fileset_protection" {
   source = "./modules/linux-fileset-protection"
 
-  cluster_uuid        = var.linux_fileset_cluster_uuid
+  cluster_uuid        = try(local.rubrik_cluster_ids[var.linux_fileset_cluster_name], "")
   fileset_templates   = var.linux_fileset_templates
   fileset_assignments = var.linux_fileset_assignments
   sla_ids             = local.linux_fileset_sla_ids

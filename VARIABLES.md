@@ -46,15 +46,15 @@ protect them accordingly.
 | `vsphere_folders` | `map(string)` | `{}` | Exact Rubrik folder names mapped directly to their SLA Domain keys. Each name must resolve to one folder. |
 | `vsphere_tags` | `map(string)` | `{}` | Rubrik tag UUIDs mapped directly to their SLA Domain keys; keys must be UUIDs. |
 | `postgresql_clusters` | `map(string)` | `{}` | Exact Rubrik PostgreSQL cluster names mapped directly to their SLA Domain keys. |
-| `linux_fileset_cluster_uuid` | `string` | `""` | Rubrik CDM cluster UUID used for Linux fileset template and fileset operations; required when Linux templates are configured. |
+| `linux_fileset_cluster_name` | `string` | `""` | Exact Rubrik CDM cluster name used for Linux fileset operations; required when Linux templates or assignments are configured. Its UUID is discovered through GraphQL. |
 | `linux_fileset_templates` | `map(object)` | `{}` | Linux template definitions keyed by template name, including include paths and optional excludes, exceptions, scripts, and fileset options. |
 | `linux_fileset_assignments` | `map(object)` | `{}` | Linux host/template pairs keyed by stable Terraform identifiers; each object includes its `sla_domain_key`. See the [Linux fileset module README](./modules/linux-fileset-protection/README.md). |
 | `kubernetes` | `object` | `{}` | Groups Kubernetes `clusters` and `protection_sets` (exact names mapped to SLA keys) and `namespaces` (stable keys mapped to `cluster_name`, `namespace_name`, and `sla_domain_key`). |
 | `proxmox_objects` | `map(object)` | `{}` | Proxmox objects keyed by stable Terraform keys. Each object specifies `name`, `object_type`, and `sla_domain_key`; types include `PROXMOX_ENVIRONMENT`, `PROXMOX_CLUSTER`, `PROXMOX_NODE`, and `PROXMOX_VIRTUAL_MACHINE`. |
 | `nas_existing_shares` | `map(string)` | `{}` | Exact names of existing NAS shares mapped directly to their SLA Domain keys. |
-| `nas_servers` | `map(object)`; see below | `{}` | NAS server registrations keyed by stable Terraform names. Vendor-specific fields are described in [NAS server inputs](#nas-server-inputs). |
+| `nas_servers` | `map(object)`; see below | `{}` | NAS server registrations keyed by stable Terraform names. Set `cluster_name`; Terraform discovers its UUID. Vendor-specific fields are described in [NAS server inputs](#nas-server-inputs). |
 | `nas_shares` | `map(object)`; see below | `{}` | Manually configured NAS shares keyed by stable Terraform names; each specifies `nas_server_key`, `sla_domain_key`, and an allowed `share_type`. See [NAS share inputs](#nas-share-inputs). |
-| `nas_cloud_direct_systems` | `map(object)` | `{}` | NAS Cloud Direct systems to register. Registration is asynchronous and returns a job ID. See [NAS Cloud Direct systems](#nas-cloud-direct-systems). |
+| `nas_cloud_direct_systems` | `map(object)` | `{}` | NAS Cloud Direct systems to register. Set `cluster_name`; Terraform discovers its UUID. Registration is asynchronous and returns a job ID. See [NAS Cloud Direct systems](#nas-cloud-direct-systems). |
 | `nas_cloud_direct_shares` | `map(object)` | `{}` | Existing Cloud Direct shares keyed by Terraform name; each specifies exact share/system names and `sla_domain_key`. |
 | `sla_domains` | `map(object)` | Required | SLA Domain definitions keyed by stable Terraform names; each contains a name, object types, snapshot schedule, and optional description/archive specs. See [SLA object types](#sla-object-types). |
 | `object_inventory_roles` | `map(object)` | `{}` | Inventory-read roles keyed by stable Terraform names. |
@@ -63,10 +63,10 @@ protect them accordingly.
 | `classification_policies` | `map(object)` | `{}` | Classification policies keyed by stable names, including analyzer IDs/keys and target hierarchy/object/root/cluster IDs. `mode` accepts `DISCOVERY` or `COMPLIANCE`. |
 | `sensitive_data_discovery_enabled` | `bool` | `false` | Enable read-only queries for sensitive-data summary and discovery object counts. |
 | `sensitive_data_summary_input` | `any` | `{ includeBreakdown = true }` | `SensitiveDataSummaryInput` passed to Rubrik, including optional `filter` and `includeBreakdown`. |
-| `vsphere_servers` | `map(object)` | `{}` | vCenter/standalone ESXi registration definitions. See [vSphere server registration](#vsphere-server-registration). |
+| `vsphere_servers` | `map(object)` | `{}` | vCenter/standalone ESXi registration definitions. Set `cluster_name`; Terraform discovers its UUID. See [vSphere server registration](#vsphere-server-registration). |
 | `proxmox_hosts` | `map(object)` | `{}` | Existing Proxmox environment IDs and API token/CA configuration. See [Proxmox hosts](#proxmox-hosts). |
-| `tape_archival_targets` | `map(object)` | `{}` | Tape target connection, credential, volume, and encryption settings. See [tape archival targets](#tape-archival-targets). |
-| `tape_reader_targets` | `map(object)` | `{}` | Tape reader target settings, including retrieval method. See [tape archival targets](#tape-archival-targets). |
+| `tape_archival_targets` | `map(object)` | `{}` | Tape target connection, credential, volume, and encryption settings. Set `cluster_name`; Terraform discovers its UUID. See [tape archival targets](#tape-archival-targets). |
+| `tape_reader_targets` | `map(object)` | `{}` | Tape reader target settings, including retrieval method. Set `cluster_name`; Terraform discovers its UUID. See [tape archival targets](#tape-archival-targets). |
 
 ### Root input example
 
@@ -75,7 +75,11 @@ The complete multi-resource example is in
 resource is colocated with its SLA Domain key: simple inventory-name maps use
 the exact name as the map key and the SLA key as the value, while structured
 resource maps include an `sla_domain_key` field. SLA keys must match keys in
-`sla_domains`.
+`sla_domains`. For Linux filesets, NAS registrations, Cloud Direct systems,
+vSphere registrations, and tape targets, provide the exact Rubrik cluster
+name instead of a UUID. Terraform looks up each distinct name through
+`clusterConnection`; each name must match exactly one cluster. The
+`rubrik_cluster_ids` output shows the discovered name-to-UUID mapping.
 
 NAS servers, object inventory roles, and service accounts are also keyed maps,
 so multiple instances of each can be managed. Manually added NAS shares set
@@ -326,7 +330,7 @@ Each value in `nas_servers` is a server object with the following fields:
 
 | Field | Type | Requiredness and allowed values |
 |---|---|---|
-| `cluster_uuid` | `string` | Required Rubrik cluster UUID. |
+| `cluster_name` | `string` | Required exact Rubrik cluster name; Terraform resolves it to the UUID. |
 | `hostname` | `string` | Required NAS server hostname/address. |
 | `vendor_type` | `string` | Required. Exactly `NAS_VENDOR_TYPE_GENERIC` or `NAS_VENDOR_TYPE_ISILON` (PowerScale). |
 | `generic_parameters` | Object or `null` | Required for Generic NAS; not the vendor configuration for PowerScale. Fields: `has_nfs_support` and `has_smb_support` (`bool`), optional `nfs_pseudo_fs_prefix` (`string`), optional `smb_credentials` object (`username_credential`, `password_credential`). |
@@ -339,7 +343,7 @@ Example PowerScale server:
 ```hcl
 nas_servers = {
   powerscale = {
-    cluster_uuid = "88888888-8888-8888-8888-888888888888"
+    cluster_name = "rubrik-cluster-01"
     hostname     = "powerscale.example.com"
     vendor_type  = "NAS_VENDOR_TYPE_ISILON"
     api_credentials = {
@@ -655,6 +659,7 @@ The root configuration exports:
 
 | Output | Description |
 |---|---|
+| `rubrik_cluster_ids` | Map of configured exact Rubrik cluster names to their discovered UUIDs. |
 | `sla_domain_ids` | Map of SLA Domain keys to Rubrik IDs. |
 | `object_inventory_role_ids` | Map of managed inventory-reader role keys to Rubrik IDs. |
 | `vsphere_vm_ids` | Map of configured vSphere VM names to Rubrik inventory IDs. |

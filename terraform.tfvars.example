@@ -46,7 +46,7 @@ postgresql_clusters = {
   postgres-production = "standard"
   postgres-analytics  = "critical"
 }
-linux_fileset_cluster_uuid = "00000000-0000-0000-0000-000000000001"
+linux_fileset_cluster_name = "rubrik-cluster-01"
 linux_fileset_templates = {
   application = {
     includes                     = ["/opt/application", "/var/lib/application"]
@@ -128,7 +128,7 @@ nas_existing_shares = {
 }
 nas_servers = {
   default = {
-    cluster_uuid = "88888888-8888-8888-8888-888888888888"
+    cluster_name = "rubrik-cluster-01"
     hostname     = "nas.example.com"
     vendor_type  = "NAS_VENDOR_TYPE_GENERIC"
     generic_parameters = {
@@ -142,7 +142,7 @@ nas_servers = {
     }
   }
   powerscale = {
-    cluster_uuid = "00000000-0000-0000-0000-000000000001"
+    cluster_name = "rubrik-cluster-01"
     hostname     = "powerscale.example.invalid"
     vendor_type  = "NAS_VENDOR_TYPE_ISILON"
     api_credentials = {
@@ -178,7 +178,7 @@ nas_shares = {
 }
 nas_cloud_direct_systems = {
   generic_nfs_production = {
-    cluster_id                    = "00000000-0000-0000-0000-000000000001"
+    cluster_name                  = "rubrik-cluster-01"
     host                          = "nas-cloud-direct.example.invalid"
     system_type                   = "GENERIC_NFS"
     skip_service_account_creation = false
@@ -194,7 +194,7 @@ nas_cloud_direct_systems = {
     region = null
   }
   s3_tenant = {
-    cluster_id                    = "00000000-0000-0000-0000-000000000001"
+    cluster_name                  = "rubrik-cluster-01"
     host                          = "s3.example.invalid"
     system_type                   = "GENERIC_S3"
     skip_service_account_creation = true
@@ -371,7 +371,7 @@ sensitive_data_summary_input = {
 }
 vsphere_servers = {
   vcenter = {
-    cluster_uuid                          = "00000000-0000-0000-0000-000000000001"
+    cluster_name                          = "rubrik-cluster-01"
     hostname                              = "vcenter.example.invalid"
     username_credential                  = "vcenter_username"
     password_credential                  = "vcenter_password"
@@ -383,7 +383,7 @@ vsphere_servers = {
     is_compute_visibility_filter_disabled = false
   }
   standalone_esxi = {
-    cluster_uuid                       = "00000000-0000-0000-0000-000000000001"
+    cluster_name                       = "rubrik-cluster-01"
     hostname                           = "esxi-01.example.invalid"
     username_credential               = "esxi_username"
     password_credential               = "esxi_password"
@@ -401,7 +401,7 @@ proxmox_hosts = {
 }
 tape_archival_targets = {
   primary = {
-    cluster_uuid            = "00000000-0000-0000-0000-000000000001"
+    cluster_name            = "rubrik-cluster-01"
     destination_folder_name = "RubrikArchive"
     encryption_password_credential = "tape_primary_encryption"
     host_name               = "qstar.example.invalid"
@@ -415,7 +415,7 @@ tape_archival_targets = {
 tape_reader_targets = {
   recovery = {
     archival_data_source_ids = ["00000000-0000-0000-0000-000000000006"]
-    cluster_uuid             = "00000000-0000-0000-0000-000000000001"
+    cluster_name             = "rubrik-cluster-01"
     destination_folder_name  = "RubrikRecovery"
     encryption_password_credential = "tape_recovery_encryption"
     host_name                = "qstar-reader.example.invalid"
