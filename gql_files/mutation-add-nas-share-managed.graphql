@@ -1,0 +1,28 @@
+mutation AddManagedNasShare(
+  $nasSourceId: String!
+  $exportPoint: String!
+  $shareType: CreateNasShareInputShareType!
+  $credentials: NasShareCredentialsInput
+) {
+  bulkAddNasShares(
+    input: {
+      bulkAddNasShareInput: {
+        nasSourceId: $nasSourceId
+        nasShares: [
+          {
+            exportPoint: $exportPoint
+            shareType: $shareType
+            credentials: $credentials
+          }
+        ]
+      }
+    }
+  ) {
+    nasSourceId
+    nasShareDetails {
+      id
+      exportPoint
+      shareType
+    }
+  }
+}

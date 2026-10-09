@@ -41,6 +41,8 @@ module "postgresql_protection" {
 module "nas_share_protection" {
   source = "./modules/nas-share-protection"
 
+  nas_server  = var.nas_server
+  nas_shares  = var.nas_shares
   share_names = var.nas_share_names
   sla_id      = module.rubrik_sla_domain.id
 }
@@ -70,6 +72,11 @@ module "automation_service_account" {
 output "object_inventory_role_id" {
   description = "Rubrik role ID for account-wide object inventory visibility."
   value       = module.object_inventory_role.role_id
+}
+
+output "nas_server_id" {
+  description = "Rubrik ID of the registered NAS server, or null if none was configured."
+  value       = module.nas_share_protection.nas_server_id
 }
 
 output "service_account_client_id" {

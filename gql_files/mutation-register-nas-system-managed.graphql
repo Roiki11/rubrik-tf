@@ -1,0 +1,33 @@
+mutation RegisterManagedNasSystem(
+  $clusterUuid: String!
+  $hostname: String!
+  $nasVendorType: NasVendorType!
+  $genericNasSystemParameters: GenericNasSystemParametersInput
+  $nasApiCredentials: NasApiCredentialsInput
+  $smbCredentials: NasShareCredentialsInput
+  $isIsilonChangelistEnabled: Boolean
+) {
+  registerNasSystem(
+    input: {
+      clusterUuid: $clusterUuid
+      nasSystem: {
+        hostname: $hostname
+        nasVendorType: $nasVendorType
+        genericNasSystemParameters: $genericNasSystemParameters
+        nasApiCredentials: $nasApiCredentials
+        smbCredentials: $smbCredentials
+        isIsilonChangelistEnabled: $isIsilonChangelistEnabled
+      }
+    }
+  ) {
+    nasSystemSummary {
+      id
+      hostname
+      vendorType
+    }
+    nasDiscoverJobStatus {
+      id
+      status
+    }
+  }
+}

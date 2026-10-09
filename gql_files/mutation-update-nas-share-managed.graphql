@@ -1,0 +1,21 @@
+mutation UpdateManagedNasShare(
+  $fid: String!
+  $nasSourceId: String!
+  $exportPoint: String!
+  $credentials: NasShareCredentialsInput
+) {
+  bulkUpdateNasShares(
+    input: {
+      bulkUpdateNasShareInput: {
+        nasShares: [
+          {
+            id: $fid
+            nasSourceId: $nasSourceId
+            exportPoint: $exportPoint
+            credentials: $credentials
+          }
+        ]
+      }
+    }
+  )
+}

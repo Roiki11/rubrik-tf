@@ -42,6 +42,51 @@ variable "nas_share_names" {
   type        = set(string)
 }
 
+variable "nas_server" {
+  description = "Optional Generic NAS or PowerScale (Isilon) server configuration to register in Rubrik."
+  type = object({
+    cluster_uuid = string
+    hostname     = string
+    vendor_type  = string
+    generic_parameters = optional(object({
+      has_nfs_support      = bool
+      has_smb_support      = bool
+      nfs_pseudo_fs_prefix = optional(string)
+      smb_credentials = optional(object({
+        username = string
+        password = string
+      }))
+    }))
+    api_credentials = optional(object({
+      api_username    = string
+      api_password    = string
+      api_certificate = optional(string)
+      certificate_id  = optional(string)
+    }))
+    smb_credentials = optional(object({
+      username = string
+      password = string
+    }))
+    is_isilon_changelist_enabled = optional(bool)
+  })
+  default   = null
+  sensitive = true
+}
+
+variable "nas_shares" {
+  description = "Optional manually added NAS share configuration, keyed by stable Terraform names."
+  type = map(object({
+    export_point = string
+    share_type   = string
+    credentials = optional(object({
+      username = string
+      password = optional(string)
+    }))
+  }))
+  default   = {}
+  sensitive = true
+}
+
 variable "sla_domain_name" {
   description = "Name for the Rubrik SLA Domain managed by this configuration."
   type        = string

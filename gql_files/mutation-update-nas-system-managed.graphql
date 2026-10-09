@@ -1,0 +1,25 @@
+mutation UpdateManagedNasSystem(
+  $fid: String!
+  $hostname: String!
+  $genericNasSystemParameters: GenericNasSystemParametersInput
+  $nasApiCredentials: NasApiCredentialsInput
+  $smbCredentials: NasShareCredentialsInput
+  $isIsilonChangelistEnabled: Boolean
+) {
+  updateNasSystem(
+    input: {
+      id: $fid
+      nasSystemUpdateProperties: {
+        hostname: $hostname
+        genericNasSystemParameters: $genericNasSystemParameters
+        nasApiCredentials: $nasApiCredentials
+        smbCredentials: $smbCredentials
+        isIsilonChangelistEnabled: $isIsilonChangelistEnabled
+      }
+    }
+  ) {
+    id
+    hostname
+    vendorType
+  }
+}

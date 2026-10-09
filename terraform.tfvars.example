@@ -15,6 +15,21 @@ postgresql_db_cluster_names = [
 nas_share_names = [
   "engineering-nfs",
 ]
+nas_server = {
+  cluster_uuid = "88888888-8888-8888-8888-888888888888"
+  hostname     = "nas.example.com"
+  vendor_type  = "NAS_VENDOR_TYPE_GENERIC"
+  generic_parameters = {
+    has_nfs_support = true
+    has_smb_support = false
+  }
+}
+nas_shares = {
+  research = {
+    export_point = "/research"
+    share_type   = "CREATE_NAS_SHARE_INPUT_SHARE_TYPE_NFS"
+  }
+}
 sla_domain_name        = "Terraform PostgreSQL, vSphere, and NAS"
 sla_domain_description = "Managed by Terraform"
 sla_domain_object_types = [
