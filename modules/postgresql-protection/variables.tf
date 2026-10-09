@@ -1,14 +1,6 @@
-variable "database_cluster_ids" {
-  description = "Rubrik IDs of PostgreSQL database clusters to protect."
+variable "database_cluster_names" {
+  description = "Exact Rubrik inventory names of the PostgreSQL database clusters to protect. Each name must resolve to exactly one cluster."
   type        = set(string)
-
-  validation {
-    condition = alltrue([
-      for id in var.database_cluster_ids :
-      can(regex("^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$", id))
-    ])
-    error_message = "Every PostgreSQL database cluster ID must be a UUID."
-  }
 }
 
 variable "sla_id" {

@@ -18,8 +18,8 @@ provider "graphql" {
 module "vsphere_vm_protection" {
   source = "./modules/vsphere-vm-protection"
 
-  vm_ids = var.vsphere_vm_ids
-  sla_id = module.rubrik_sla_domain.id
+  vm_names = var.vsphere_vm_names
+  sla_id   = module.rubrik_sla_domain.id
 }
 
 module "rubrik_sla_domain" {
@@ -34,23 +34,23 @@ module "rubrik_sla_domain" {
 module "postgresql_protection" {
   source = "./modules/postgresql-protection"
 
-  database_cluster_ids = var.postgresql_db_cluster_ids
-  sla_id               = module.rubrik_sla_domain.id
+  database_cluster_names = var.postgresql_db_cluster_names
+  sla_id                 = module.rubrik_sla_domain.id
 }
 
 module "nas_share_protection" {
   source = "./modules/nas-share-protection"
 
-  share_ids = var.nas_share_ids
-  sla_id    = module.rubrik_sla_domain.id
+  share_names = var.nas_share_names
+  sla_id      = module.rubrik_sla_domain.id
 }
 
 module "vsphere_container_sla_assignments" {
   source = "./modules/vsphere-container-sla-assignment"
 
-  folder_ids = var.vsphere_folder_ids
-  tag_ids    = var.vsphere_tag_ids
-  sla_id     = module.rubrik_sla_domain.id
+  folder_names = var.vsphere_folder_names
+  tag_ids      = var.vsphere_tag_ids
+  sla_id       = module.rubrik_sla_domain.id
 }
 
 module "object_inventory_role" {

@@ -1,25 +1,29 @@
 # Rubrik vSphere Folder and Tag SLA Assignments
 
-Assigns an existing SLA Domain to each vSphere folder and tag ID. The calling
-configuration must configure the `sullivtr/graphql` provider.
+Assigns an existing SLA Domain to vSphere folders selected by exact name and
+tags selected by Rubrik UUID. The calling configuration must configure the
+`sullivtr/graphql` provider.
 
 ```hcl
 module "vsphere_container_sla_assignments" {
   source = "./modules/vsphere-container-sla-assignment"
 
-  folder_ids = [
-    "11111111-1111-1111-1111-111111111111",
+  folder_names = [
+    "Production",
   ]
   tag_ids = [
-    "22222222-2222-2222-2222-222222222222",
+    "33333333-3333-3333-3333-333333333333",
   ]
   sla_id = module.rubrik_sla_domain.id
 }
 ```
 
-The module uses `gql_files/assign-sla.graphql` to assign the SLA and
-`gql_files/query-v-sphere-folder.graphql` or
-`gql_files/query-v-sphere-tag.graphql` to read the target after assignment.
+The module resolves each folder name using Rubrik's exact-name folder query and
+uses `gql_files/assign-sla.graphql` to assign the SLA. Rubrik's GraphQL API
+exposes vSphere tag lookup only by Rubrik UUID; a vCenter tag name/URN cannot be
+used as the ID expected by `assignSla`. The module reads targets after
+assignment with `gql_files/query-v-sphere-folder.graphql` or
+`gql_files/query-v-sphere-tag.graphql`.
 Destroying an assignment resource sets it to `doNotProtect`; it does not
 delete the folder, tag, VMs, or snapshots.
 
@@ -31,3 +35,6 @@ the resulting effective SLA.
 Remote state verification is disabled because the GraphQL provider cannot
 reconcile the nested assignment input against the folder or tag query
 response. Changes made outside Terraform are not detected by this module.
+
+Each folder name must match exactly one Rubrik object. Missing or ambiguous
+names fail during planning.

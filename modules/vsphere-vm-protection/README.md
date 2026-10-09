@@ -1,7 +1,8 @@
 # Rubrik vSphere VM Protection
 
-This module assigns an existing Rubrik SLA Domain to each vSphere VM ID in
-`vm_ids`, using the `graphql_mutation` resource from
+This module assigns an existing Rubrik SLA Domain to each vSphere VM name in
+`vm_names`, resolving each exact name to a Rubrik ID before assignment. It uses
+the `graphql_mutation` resource from
 [`sullivtr/graphql`](https://registry.terraform.io/providers/sullivtr/graphql/latest).
 
 The module expects the calling configuration to configure the `graphql`
@@ -9,20 +10,22 @@ provider. It uses the operation files in the repository's `gql_files/`
 directory:
 
 - `assign-sla.graphql` assigns or removes protection.
+- `lookup-vsphere-vm-by-name.graphql` resolves each exact VM name to its
+  Rubrik object ID.
 - `vsphere-vm-by-id.graphql` reads each VM after the mutation.
 
 ## Example
 
 At the repository root, set the Rubrik API endpoint and token in the
-`graphql` provider configuration, then supply the VM and SLA IDs:
+`graphql` provider configuration, then supply the VM names and SLA ID:
 
 ```hcl
 module "vsphere_vm_protection" {
   source = "./modules/vsphere-vm-protection"
 
-  vm_ids = [
-    "11111111-1111-1111-1111-111111111111",
-    "22222222-2222-2222-2222-222222222222",
+  vm_names = [
+    "application-01",
+    "application-02",
   ]
   sla_id = "00000000-0000-0000-0000-000000000000"
 }
@@ -41,6 +44,8 @@ version control.
   Domain, or existing snapshots.
 - The SLA Domain must already exist and be compatible with the selected
   workloads.
+- Each exact VM name must resolve to exactly one object in Rubrik. Missing or
+  ambiguous names fail during planning.
 
 The GraphQL provider's mutation resource cannot reconcile this nested
 assignment input against the VM query response, so remote state verification

@@ -1,21 +1,43 @@
+data "graphql_query" "cluster_by_name" {
+  for_each = var.database_cluster_names
+
+  query = file("${path.module}/../../gql_files/lookup-postgresql-cluster-by-name.graphql")
+  query_variables = {
+    name  = jsonencode(each.value)
+    first = "100"
+    after = ""
+  }
+  paginated = true
+}
+
+locals {
+  clusters_by_name = {
+    for name, query in data.graphql_query.cluster_by_name :
+    name => one(flatten([
+      for page in jsondecode(query.query_response).paginatedResponseData :
+      page.postgreSQLDbClusters.nodes
+    ]))
+  }
+}
+
 resource "graphql_mutation" "postgresql_protection" {
-  for_each = var.database_cluster_ids
+  for_each = local.clusters_by_name
 
   mutation_variables = {
     input = jsonencode({
-      objectIds           = [each.value]
+      objectIds           = [each.value.id]
       slaDomainAssignType = "protectWithSlaId"
       slaOptionalId       = var.sla_id
     })
   }
 
   read_query_variables = {
-    fid = jsonencode(each.value)
+    fid = jsonencode(each.value.id)
   }
 
   delete_mutation_variables = {
     input = jsonencode({
-      objectIds           = [each.value]
+      objectIds           = [each.value.id]
       slaDomainAssignType = "doNotProtect"
     })
   }

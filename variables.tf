@@ -9,30 +9,14 @@ variable "rubrik_api_token" {
   sensitive   = true
 }
 
-variable "vsphere_vm_ids" {
-  description = "Rubrik IDs of the vSphere VMs to protect."
+variable "vsphere_vm_names" {
+  description = "Exact names of the vSphere VMs to protect. Each name must uniquely resolve in Rubrik."
   type        = set(string)
-
-  validation {
-    condition = alltrue([
-      for id in var.vsphere_vm_ids :
-      can(regex("^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$", id))
-    ])
-    error_message = "Every vSphere VM ID must be a UUID."
-  }
 }
 
-variable "vsphere_folder_ids" {
-  description = "Rubrik IDs of vSphere folders to assign to the managed SLA Domain."
+variable "vsphere_folder_names" {
+  description = "Exact names of vSphere folders to assign to the managed SLA Domain. Each name must uniquely resolve in Rubrik."
   type        = set(string)
-
-  validation {
-    condition = alltrue([
-      for id in var.vsphere_folder_ids :
-      can(regex("^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$", id))
-    ])
-    error_message = "Every vSphere folder ID must be a UUID."
-  }
 }
 
 variable "vsphere_tag_ids" {
@@ -48,30 +32,14 @@ variable "vsphere_tag_ids" {
   }
 }
 
-variable "postgresql_db_cluster_ids" {
-  description = "Rubrik IDs of PostgreSQL database clusters to protect."
+variable "postgresql_db_cluster_names" {
+  description = "Exact names of PostgreSQL database clusters to protect. Each name must uniquely resolve in Rubrik."
   type        = set(string)
-
-  validation {
-    condition = alltrue([
-      for id in var.postgresql_db_cluster_ids :
-      can(regex("^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$", id))
-    ])
-    error_message = "Every PostgreSQL database cluster ID must be a UUID."
-  }
 }
 
-variable "nas_share_ids" {
-  description = "Rubrik IDs of existing NAS shares to protect."
+variable "nas_share_names" {
+  description = "Exact names of existing NAS shares to protect. Each name must uniquely resolve in Rubrik."
   type        = set(string)
-
-  validation {
-    condition = alltrue([
-      for id in var.nas_share_ids :
-      can(regex("^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$", id))
-    ])
-    error_message = "Every NAS share ID must be a UUID."
-  }
 }
 
 variable "sla_domain_name" {

@@ -1,19 +1,19 @@
 rubrik_graphql_url = "https://<your-rsc-tenant>/api/graphql"
 rubrik_api_token   = "<your-bearer-token>"
-vsphere_vm_ids = [
-  "11111111-1111-1111-1111-111111111111",
+vsphere_vm_names = [
+  "application-01",
 ]
-vsphere_folder_ids = [
-  "55555555-5555-5555-5555-555555555555",
+vsphere_folder_names = [
+  "Production",
 ]
 vsphere_tag_ids = [
   "66666666-6666-6666-6666-666666666666",
 ]
-postgresql_db_cluster_ids = [
-  "33333333-3333-3333-3333-333333333333",
+postgresql_db_cluster_names = [
+  "postgres-production",
 ]
-nas_share_ids = [
-  "77777777-7777-7777-7777-777777777777",
+nas_share_names = [
+  "engineering-nfs",
 ]
 sla_domain_name        = "Terraform PostgreSQL, vSphere, and NAS"
 sla_domain_description = "Managed by Terraform"

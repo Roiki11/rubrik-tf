@@ -1,14 +1,6 @@
-variable "vm_ids" {
-  description = "Rubrik IDs of the vSphere VMs to protect."
+variable "vm_names" {
+  description = "Exact Rubrik inventory names of the vSphere VMs to protect. Each name must resolve to exactly one VM."
   type        = set(string)
-
-  validation {
-    condition = alltrue([
-      for id in var.vm_ids :
-      can(regex("^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$", id))
-    ])
-    error_message = "Every vSphere VM ID must be a UUID."
-  }
 }
 
 variable "sla_id" {

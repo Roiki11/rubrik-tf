@@ -1,18 +1,33 @@
 locals {
-  targets = merge(
-    {
-      for id in var.folder_ids : "folder:${id}" => {
-        id   = id
-        kind = "folder"
-      }
-    },
-    {
-      for id in var.tag_ids : "tag:${id}" => {
-        id   = id
-        kind = "tag"
-      }
-    },
-  )
+  folders_by_name = {
+    for name, query in data.graphql_query.folder_by_name :
+    "folder:${name}" => {
+      id = one(flatten([
+        for page in jsondecode(query.query_response).paginatedResponseData :
+        page.vSphereFolders.nodes
+      ])).id
+      kind = "folder"
+    }
+  }
+  tags_by_id = {
+    for id in var.tag_ids : "tag:${id}" => {
+      id   = id
+      kind = "tag"
+    }
+  }
+  targets = merge(local.folders_by_name, local.tags_by_id)
+}
+
+data "graphql_query" "folder_by_name" {
+  for_each = var.folder_names
+
+  query = file("${path.module}/../../gql_files/lookup-vsphere-folder-by-name.graphql")
+  query_variables = {
+    name  = jsonencode(each.value)
+    first = "100"
+    after = ""
+  }
+  paginated = true
 }
 
 resource "graphql_mutation" "sla_assignment" {

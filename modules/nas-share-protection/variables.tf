@@ -1,14 +1,6 @@
-variable "share_ids" {
-  description = "Rubrik IDs of existing NAS shares to protect."
+variable "share_names" {
+  description = "Exact Rubrik inventory names of the existing NAS shares to protect. Each name must resolve to exactly one share."
   type        = set(string)
-
-  validation {
-    condition = alltrue([
-      for id in var.share_ids :
-      can(regex("^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$", id))
-    ])
-    error_message = "Every NAS share ID must be a UUID."
-  }
 }
 
 variable "sla_id" {

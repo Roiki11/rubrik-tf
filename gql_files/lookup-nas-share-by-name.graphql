@@ -1,0 +1,16 @@
+query NasSharesByName($name: String!, $first: Int!, $after: String) {
+  nasShares(
+    first: $first
+    after: $after
+    filter: [{ field: NAME_EXACT_MATCH, texts: [$name] }]
+  ) {
+    nodes {
+      id
+      name
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+  }
+}
