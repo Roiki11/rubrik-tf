@@ -95,7 +95,7 @@ resource "graphql_mutation" "cluster_protection" {
     input = jsonencode({
       objectIds           = [each.value.id]
       slaDomainAssignType = "protectWithSlaId"
-      slaOptionalId       = var.sla_id
+      slaOptionalId       = lookup(var.sla_ids, "cluster:${each.key}", "")
     })
   }
 
@@ -117,6 +117,16 @@ resource "graphql_mutation" "cluster_protection" {
   delete_mutation = file("${path.module}/../../gql_files/assign-sla.graphql")
   read_query      = file("${path.module}/../../gql_files/query-k8s-cluster.graphql")
 
+  lifecycle {
+    precondition {
+      condition = can(regex(
+        "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+        lookup(var.sla_ids, "cluster:${each.key}", "")
+      ))
+      error_message = "Each Kubernetes cluster must be assigned a valid SLA Domain UUID in sla_ids."
+    }
+  }
+
   enable_remote_state_verification = false
 }
 
@@ -127,7 +137,7 @@ resource "graphql_mutation" "protection_set_protection" {
     input = jsonencode({
       objectIds           = [each.value.id]
       slaDomainAssignType = "protectWithSlaId"
-      slaOptionalId       = var.sla_id
+      slaOptionalId       = lookup(var.sla_ids, "protection_set:${each.key}", "")
     })
   }
 
@@ -149,6 +159,16 @@ resource "graphql_mutation" "protection_set_protection" {
   delete_mutation = file("${path.module}/../../gql_files/assign-sla.graphql")
   read_query      = file("${path.module}/../../gql_files/query-kubernetes-protection-set.graphql")
 
+  lifecycle {
+    precondition {
+      condition = can(regex(
+        "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+        lookup(var.sla_ids, "protection_set:${each.key}", "")
+      ))
+      error_message = "Each Kubernetes protection set must be assigned a valid SLA Domain UUID in sla_ids."
+    }
+  }
+
   enable_remote_state_verification = false
 }
 
@@ -159,7 +179,7 @@ resource "graphql_mutation" "namespace_protection" {
     input = jsonencode({
       objectIds           = [each.value.id]
       slaDomainAssignType = "protectWithSlaId"
-      slaOptionalId       = var.sla_id
+      slaOptionalId       = lookup(var.sla_ids, "namespace:${each.key}", "")
     })
   }
 
@@ -180,6 +200,16 @@ resource "graphql_mutation" "namespace_protection" {
   update_mutation = file("${path.module}/../../gql_files/assign-sla.graphql")
   delete_mutation = file("${path.module}/../../gql_files/assign-sla.graphql")
   read_query      = file("${path.module}/../../gql_files/query-k8s-namespace.graphql")
+
+  lifecycle {
+    precondition {
+      condition = can(regex(
+        "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+        lookup(var.sla_ids, "namespace:${each.key}", "")
+      ))
+      error_message = "Each Kubernetes namespace must be assigned a valid SLA Domain UUID in sla_ids."
+    }
+  }
 
   enable_remote_state_verification = false
 }

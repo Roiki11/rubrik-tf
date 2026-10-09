@@ -7,12 +7,14 @@ locals {
         page.vSphereFolders.nodes
       ])).id
       kind = "folder"
+      key  = "folder:${name}"
     }
   }
   tags_by_id = {
     for id in var.tag_ids : "tag:${id}" => {
       id   = id
       kind = "tag"
+      key  = "tag:${id}"
     }
   }
   targets = merge(local.folders_by_name, local.tags_by_id)
@@ -37,7 +39,7 @@ resource "graphql_mutation" "sla_assignment" {
     input = jsonencode({
       objectIds           = [each.value.id]
       slaDomainAssignType = "protectWithSlaId"
-      slaOptionalId       = var.sla_id
+      slaOptionalId       = lookup(var.sla_ids, each.value.key, "")
     })
   }
 
@@ -62,6 +64,16 @@ resource "graphql_mutation" "sla_assignment" {
     ) : (
     file("${path.module}/../../gql_files/query-v-sphere-tag.graphql")
   )
+
+  lifecycle {
+    precondition {
+      condition = can(regex(
+        "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+        lookup(var.sla_ids, each.value.key, "")
+      ))
+      error_message = "Each vSphere folder or tag must be assigned a valid SLA Domain UUID in sla_ids."
+    }
+  }
 
   enable_remote_state_verification = false
 }

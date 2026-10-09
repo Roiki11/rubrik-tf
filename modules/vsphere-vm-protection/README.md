@@ -17,7 +17,7 @@ directory:
 ## Example
 
 At the repository root, set the Rubrik API endpoint and token in the
-`graphql` provider configuration, then supply the VM names and SLA ID:
+`graphql` provider configuration, then supply the VM names and an SLA ID for each VM:
 
 ```hcl
 module "vsphere_vm_protection" {
@@ -27,7 +27,10 @@ module "vsphere_vm_protection" {
     "application-01",
     "application-02",
   ]
-  sla_id = "00000000-0000-0000-0000-000000000000"
+  sla_ids = {
+    application-01 = "00000000-0000-0000-0000-000000000000"
+    application-02 = "11111111-1111-1111-1111-111111111111"
+  }
 }
 ```
 

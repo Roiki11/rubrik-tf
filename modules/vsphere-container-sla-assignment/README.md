@@ -14,7 +14,10 @@ module "vsphere_container_sla_assignments" {
   tag_ids = [
     "33333333-3333-3333-3333-333333333333",
   ]
-  sla_id = module.rubrik_sla_domain.id
+  sla_ids = {
+    "folder:Production" = "00000000-0000-0000-0000-000000000000"
+    "tag:33333333-3333-3333-3333-333333333333" = "11111111-1111-1111-1111-111111111111"
+  }
 }
 ```
 
@@ -37,4 +40,5 @@ reconcile the nested assignment input against the folder or tag query
 response. Changes made outside Terraform are not detected by this module.
 
 Each folder name must match exactly one Rubrik object. Missing or ambiguous
-names fail during planning.
+names fail during planning. `sla_ids` is keyed by `folder:<exact name>` and
+`tag:<Rubrik UUID>` so each container can use a different SLA.

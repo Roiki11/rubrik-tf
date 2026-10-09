@@ -17,7 +17,11 @@ module "kubernetes_protection" {
       namespace_name = "default"
     }
   }
-  sla_id               = "00000000-0000-0000-0000-000000000000"
+  sla_ids = {
+    "cluster:production-k8s" = "00000000-0000-0000-0000-000000000000"
+    "protection_set:production-apps" = "00000000-0000-0000-0000-000000000000"
+    "namespace:production_default" = "00000000-0000-0000-0000-000000000000"
+  }
 }
 ```
 
@@ -30,3 +34,5 @@ protection set, or snapshots. A cluster referenced only by a namespace entry
 is used to scope the namespace lookup and is not itself assigned an SLA.
 Because the GraphQL provider cannot compare the assignment mutation with
 Rubrik's nested SLA read result, remote state verification is disabled.
+The `sla_ids` map uses `cluster:<name>`, `protection_set:<name>`, and
+`namespace:<Terraform key>` entries, allowing each object to use its own SLA.

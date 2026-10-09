@@ -1,0 +1,5 @@
+mutation AddManagedCloudDirectSystem($input: AddCloudDirectSystemInput!) {
+  addCloudDirectSystem(input: $input) {
+    jobId
+  }
+}

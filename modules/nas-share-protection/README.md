@@ -1,31 +1,37 @@
 # Rubrik NAS Share Protection
 
-Registers one Generic NAS or PowerScale server, optionally adds manually
-configured shares to it, and assigns an existing Rubrik SLA Domain to those
-shares. It can also protect already-discovered shares by exact name. The
-calling configuration must configure the `sullivtr/graphql` provider.
+Registers multiple Generic NAS or PowerScale servers, optionally adds
+manually configured shares to their selected server, and assigns SLA Domains
+to those shares. It can also protect already-discovered shares by exact name.
+The calling configuration must configure the `sullivtr/graphql` provider.
 
 ```hcl
 module "nas_share_protection" {
   source = "./modules/nas-share-protection"
 
-  nas_server = {
-    cluster_uuid = "00000000-0000-0000-0000-000000000000"
-    hostname     = "nas.example.com"
-    vendor_type  = "NAS_VENDOR_TYPE_GENERIC"
-    generic_parameters = {
-      has_nfs_support = true
-      has_smb_support = false
+  nas_servers = {
+    generic = {
+      cluster_uuid = "00000000-0000-0000-0000-000000000000"
+      hostname     = "nas.example.com"
+      vendor_type  = "NAS_VENDOR_TYPE_GENERIC"
+      generic_parameters = {
+        has_nfs_support = true
+        has_smb_support = false
+      }
     }
   }
   nas_shares = {
     engineering = {
-      export_point = "/engineering"
-      share_type   = "CREATE_NAS_SHARE_INPUT_SHARE_TYPE_NFS"
+      export_point   = "/engineering"
+      share_type     = "CREATE_NAS_SHARE_INPUT_SHARE_TYPE_NFS"
+      nas_server_key = "generic"
     }
   }
   share_names = ["already-discovered-share"]
-  sla_id = "00000000-0000-0000-0000-000000000000"
+  sla_ids = {
+    "configured:engineering" = "00000000-0000-0000-0000-000000000000"
+    "existing:already-discovered-share" = "11111111-1111-1111-1111-111111111111"
+  }
 }
 ```
 
@@ -35,17 +41,22 @@ For a PowerScale (Isilon) server, set `vendor_type` to
 `smb_credentials`, and shares.
 
 ```hcl
-nas_server = {
-  cluster_uuid = "00000000-0000-0000-0000-000000000000"
-  hostname     = "powerscale.example.com"
-  vendor_type  = "NAS_VENDOR_TYPE_ISILON"
-  api_credentials = {
-    api_username = "rubrik-api-user"
-    api_password = var.powerscale_api_password
+nas_servers = {
+  powerscale = {
+    cluster_uuid = "00000000-0000-0000-0000-000000000000"
+    hostname     = "powerscale.example.com"
+    vendor_type  = "NAS_VENDOR_TYPE_ISILON"
+    api_credentials = {
+      api_username = "rubrik-api-user"
+      api_password = var.powerscale_api_password
+    }
+    is_isilon_changelist_enabled = true
   }
-  is_isilon_changelist_enabled = true
 }
 ```
+
+`sla_ids` keys use `existing:<share name>` for discovered shares and
+`configured:<share key>` for manually added shares.
 
 The module uses `gql_files/mutation-register-nas-system-managed.graphql` to
 register the server, `gql_files/mutation-add-nas-share-managed.graphql` to add

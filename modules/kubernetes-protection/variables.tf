@@ -19,12 +19,8 @@ variable "namespaces" {
   default = {}
 }
 
-variable "sla_id" {
-  description = "Rubrik ID of the existing SLA Domain to assign to the Kubernetes objects."
-  type        = string
-
-  validation {
-    condition     = can(regex("^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$", var.sla_id))
-    error_message = "The SLA Domain ID must be a UUID."
-  }
+variable "sla_ids" {
+  description = "SLA Domain IDs keyed as cluster:<name>, protection_set:<name>, or namespace:<key>."
+  type        = map(string)
+  default     = {}
 }

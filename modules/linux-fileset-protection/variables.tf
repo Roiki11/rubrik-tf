@@ -59,16 +59,8 @@ variable "fileset_assignments" {
   }
 }
 
-variable "sla_id" {
-  description = "Rubrik ID of the existing SLA Domain to assign to each created Linux fileset."
-  type        = string
-  default     = ""
-
-  validation {
-    condition = var.sla_id == "" || can(regex(
-      "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
-      var.sla_id
-    ))
-    error_message = "The SLA Domain ID must be a UUID when fileset assignments are configured."
-  }
+variable "sla_ids" {
+  description = "SLA Domain IDs keyed as assignment:<Terraform assignment key>."
+  type        = map(string)
+  default     = {}
 }

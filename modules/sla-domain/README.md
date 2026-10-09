@@ -8,8 +8,9 @@ description, object types, all snapshot schedule cadences accepted by Rubrik's
 
 `object_types` accepts Rubrik `SlaObjectType` enum values. Kubernetes and
 Proxmox values include `K8S_OBJECT_TYPE`, `KUPR_OBJECT_TYPE`, and
-`PROXMOX_OBJECT_TYPE`; only include values supported by the target Rubrik
-schema and compatible with workloads assigned to the SLA.
+`PROXMOX_OBJECT_TYPE`; NAS Cloud Direct protection uses `NCD_OBJECT_TYPE`.
+Only include values supported by the target Rubrik schema and compatible with
+workloads assigned to the SLA.
 
 ```hcl
 module "postgresql_sla" {
@@ -22,6 +23,7 @@ module "postgresql_sla" {
     "K8S_OBJECT_TYPE",
     "KUPR_OBJECT_TYPE",
     "PROXMOX_OBJECT_TYPE",
+    "NCD_OBJECT_TYPE",
   ]
   snapshot_schedule = {
     daily = {

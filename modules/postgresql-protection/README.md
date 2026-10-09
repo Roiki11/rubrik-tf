@@ -12,7 +12,9 @@ module "postgresql_protection" {
   database_cluster_names = [
     "postgres-production",
   ]
-  sla_id = "00000000-0000-0000-0000-000000000000"
+  sla_ids = {
+    postgres-production = "00000000-0000-0000-0000-000000000000"
+  }
 }
 ```
 

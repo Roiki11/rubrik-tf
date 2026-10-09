@@ -27,7 +27,7 @@ resource "graphql_mutation" "postgresql_protection" {
     input = jsonencode({
       objectIds           = [each.value.id]
       slaDomainAssignType = "protectWithSlaId"
-      slaOptionalId       = var.sla_id
+      slaOptionalId       = lookup(var.sla_ids, each.key, "")
     })
   }
 
@@ -48,6 +48,16 @@ resource "graphql_mutation" "postgresql_protection" {
   update_mutation = file("${path.module}/../../gql_files/assign-sla.graphql")
   delete_mutation = file("${path.module}/../../gql_files/assign-sla.graphql")
   read_query      = file("${path.module}/../../gql_files/postgresql-db-cluster-by-id.graphql")
+
+  lifecycle {
+    precondition {
+      condition = can(regex(
+        "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+        lookup(var.sla_ids, each.key, "")
+      ))
+      error_message = "Each PostgreSQL cluster must be assigned a valid SLA Domain UUID in sla_ids."
+    }
+  }
 
   enable_remote_state_verification = false
 }

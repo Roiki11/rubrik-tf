@@ -1,0 +1,25 @@
+query CloudDirectSharesByName(
+  $name: String!
+  $systemName: String!
+  $first: Int!
+  $after: String
+) {
+  cloudDirectNasShares(
+    first: $first
+    after: $after
+    filter: [
+      { field: NAME_EXACT_MATCH, texts: [$name] }
+      { field: CLOUDDIRECT_NAS_SHARE_SYSTEM_NAME, texts: [$systemName] }
+    ]
+  ) {
+    nodes {
+      id
+      name
+      clusterUuid
+      exportPath
+      protocol
+      systemId
+      slaAssignment
+    }
+  }
+}

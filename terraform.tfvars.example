@@ -1,19 +1,69 @@
 # Replace every example name, ID, endpoint, and credential with values from
-# your Rubrik environment before using this file.
+# your Rubrik environment before using this file. Store each referenced field
+# at the configured KV v2 mount/path; authenticate to Vault using its standard
+# VAULT_ADDR and VAULT_TOKEN (or another supported Vault auth method).
 rubrik_graphql_url = "https://<your-rsc-tenant>/api/graphql"
-rubrik_api_token   = "<your-bearer-token>"
+vault_credential_refs = {
+  rubrik_api_token              = { mount = "secret", path = "rubrik/terraform", key = "rubrik_api_token" }
+  nas_generic_smb_username      = { mount = "secret", path = "rubrik/terraform", key = "nas_generic_smb_username" }
+  nas_generic_smb_password      = { mount = "secret", path = "rubrik/terraform", key = "nas_generic_smb_password" }
+  powerscale_api_username       = { mount = "secret", path = "rubrik/terraform", key = "powerscale_api_username" }
+  powerscale_api_password       = { mount = "secret", path = "rubrik/terraform", key = "powerscale_api_password" }
+  powerscale_api_certificate    = { mount = "secret", path = "rubrik/terraform", key = "powerscale_api_certificate" }
+  powerscale_smb_username       = { mount = "secret", path = "rubrik/terraform", key = "powerscale_smb_username" }
+  powerscale_smb_password       = { mount = "secret", path = "rubrik/terraform", key = "powerscale_smb_password" }
+  finance_share_username        = { mount = "secret", path = "rubrik/terraform", key = "finance_share_username" }
+  finance_share_password        = { mount = "secret", path = "rubrik/terraform", key = "finance_share_password" }
+  netapp_username               = { mount = "secret", path = "rubrik/terraform", key = "netapp_username" }
+  netapp_password               = { mount = "secret", path = "rubrik/terraform", key = "netapp_password" }
+  s3_access_key                 = { mount = "secret", path = "rubrik/terraform", key = "s3_access_key" }
+  s3_secret_key                 = { mount = "secret", path = "rubrik/terraform", key = "s3_secret_key" }
+  vcenter_username              = { mount = "secret", path = "rubrik/terraform", key = "vcenter_username" }
+  vcenter_password              = { mount = "secret", path = "rubrik/terraform", key = "vcenter_password" }
+  vcenter_ca_certificate        = { mount = "secret", path = "rubrik/terraform", key = "vcenter_ca_certificate" }
+  esxi_username                 = { mount = "secret", path = "rubrik/terraform", key = "esxi_username" }
+  esxi_password                 = { mount = "secret", path = "rubrik/terraform", key = "esxi_password" }
+  proxmox_api_token              = { mount = "secret", path = "rubrik/terraform", key = "proxmox_api_token" }
+  proxmox_ca_certificate         = { mount = "secret", path = "rubrik/terraform", key = "proxmox_ca_certificate" }
+  tape_primary_encryption        = { mount = "secret", path = "rubrik/terraform", key = "tape_primary_encryption" }
+  tape_primary_password          = { mount = "secret", path = "rubrik/terraform", key = "tape_primary_password" }
+  tape_primary_username          = { mount = "secret", path = "rubrik/terraform", key = "tape_primary_username" }
+  tape_recovery_encryption       = { mount = "secret", path = "rubrik/terraform", key = "tape_recovery_encryption" }
+  tape_recovery_password         = { mount = "secret", path = "rubrik/terraform", key = "tape_recovery_password" }
+  tape_recovery_username         = { mount = "secret", path = "rubrik/terraform", key = "tape_recovery_username" }
+}
 vsphere_vm_names = [
   "application-01",
+  "application-02",
 ]
+vsphere_vm_sla_domain_keys = {
+  application-01 = "standard"
+  application-02 = "critical"
+}
 vsphere_folder_names = [
   "Production",
+  "Development",
 ]
+vsphere_folder_sla_domain_keys = {
+  Production  = "standard"
+  Development = "critical"
+}
 vsphere_tag_ids = [
   "66666666-6666-6666-6666-666666666666",
+  "77777777-7777-7777-7777-777777777777",
 ]
+vsphere_tag_sla_domain_keys = {
+  "66666666-6666-6666-6666-666666666666" = "standard"
+  "77777777-7777-7777-7777-777777777777" = "critical"
+}
 postgresql_db_cluster_names = [
   "postgres-production",
+  "postgres-analytics",
 ]
+postgresql_sla_domain_keys = {
+  postgres-production = "standard"
+  postgres-analytics  = "critical"
+}
 linux_fileset_cluster_uuid = "00000000-0000-0000-0000-000000000001"
 linux_fileset_templates = {
   application = {
@@ -37,18 +87,46 @@ linux_fileset_assignments = {
     enable_hardlink_support   = true
     enable_symlink_resolution = false
   }
+  batch_server = {
+    host_name                 = "batch-server-01.example.invalid"
+    template_name             = "application"
+    enable_hardlink_support   = false
+    enable_symlink_resolution = true
+  }
+}
+linux_fileset_sla_domain_keys = {
+  application_server = "standard"
+  batch_server       = "critical"
 }
 kubernetes_cluster_names = [
   "production-k8s",
+  "staging-k8s",
 ]
+kubernetes_cluster_sla_domain_keys = {
+  production-k8s = "standard"
+  staging-k8s    = "critical"
+}
 kubernetes_protection_set_names = [
   "production-apps",
+  "staging-apps",
 ]
+kubernetes_protection_set_sla_domain_keys = {
+  production-apps = "standard"
+  staging-apps    = "critical"
+}
 kubernetes_namespaces = {
   production_default = {
     cluster_name   = "production-k8s"
     namespace_name = "default"
   }
+  staging_apps = {
+    cluster_name   = "staging-k8s"
+    namespace_name = "apps"
+  }
+}
+kubernetes_namespace_sla_domain_keys = {
+  production_default = "standard"
+  staging_apps       = "critical"
 }
 proxmox_objects = {
   environment = {
@@ -68,102 +146,202 @@ proxmox_objects = {
     object_type = "PROXMOX_VIRTUAL_MACHINE"
   }
 }
+proxmox_object_sla_domain_keys = {
+  environment     = "standard"
+  cluster         = "standard"
+  node            = "standard"
+  virtual_machine = "critical"
+}
 nas_share_names = [
   "engineering-nfs",
+  "finance-smb",
 ]
-nas_server = {
-  cluster_uuid = "88888888-8888-8888-8888-888888888888"
-  hostname     = "nas.example.com"
-  vendor_type  = "NAS_VENDOR_TYPE_GENERIC"
-  generic_parameters = {
-    has_nfs_support      = true
-    has_smb_support      = true
-    nfs_pseudo_fs_prefix = "/exports"
-    smb_credentials = {
-      username = "REPLACE_WITH_NAS_SMB_USER"
-      password = "REPLACE_WITH_NAS_SMB_PASSWORD"
+nas_share_sla_domain_keys = {
+  engineering-nfs = "standard"
+  finance-smb     = "critical"
+}
+nas_servers = {
+  default = {
+    cluster_uuid = "88888888-8888-8888-8888-888888888888"
+    hostname     = "nas.example.com"
+    vendor_type  = "NAS_VENDOR_TYPE_GENERIC"
+    generic_parameters = {
+      has_nfs_support      = true
+      has_smb_support      = true
+      nfs_pseudo_fs_prefix = "/exports"
+      smb_credentials = {
+        username_credential = "nas_generic_smb_username"
+        password_credential = "nas_generic_smb_password"
+      }
     }
   }
+  powerscale = {
+    cluster_uuid = "00000000-0000-0000-0000-000000000001"
+    hostname     = "powerscale.example.invalid"
+    vendor_type  = "NAS_VENDOR_TYPE_ISILON"
+    api_credentials = {
+      api_username_credential    = "powerscale_api_username"
+      api_password_credential    = "powerscale_api_password"
+      api_certificate_credential = "powerscale_api_certificate"
+      certificate_id             = "00000000-0000-0000-0000-000000000010"
+    }
+    smb_credentials = {
+      username_credential = "powerscale_smb_username"
+      password_credential = "powerscale_smb_password"
+    }
+    is_isilon_changelist_enabled = true
+  }
 }
-# Alternative PowerScale/Isilon server shape; use this instead of the Generic
-# NAS block above, and replace the example credentials and certificate.
-# nas_server = {
-#   cluster_uuid = "00000000-0000-0000-0000-000000000001"
-#   hostname     = "powerscale.example.invalid"
-#   vendor_type  = "NAS_VENDOR_TYPE_ISILON"
-#   api_credentials = {
-#     api_username    = "REPLACE_WITH_POWERSCALE_API_USER"
-#     api_password    = "REPLACE_WITH_POWERSCALE_API_PASSWORD"
-#     api_certificate = "REPLACE_WITH_BASE64_DER_CERTIFICATE"
-#     certificate_id  = "00000000-0000-0000-0000-000000000010"
-#   }
-#   smb_credentials = {
-#     username = "REPLACE_WITH_POWERSCALE_SMB_USER"
-#     password = "REPLACE_WITH_POWERSCALE_SMB_PASSWORD"
-#   }
-#   is_isilon_changelist_enabled = true
-# }
 nas_shares = {
   engineering_nfs = {
-    export_point = "/engineering"
-    share_type   = "CREATE_NAS_SHARE_INPUT_SHARE_TYPE_NFS"
+    export_point   = "/engineering"
+    share_type     = "CREATE_NAS_SHARE_INPUT_SHARE_TYPE_NFS"
+    nas_server_key = "default"
   }
   finance_smb = {
-    export_point = "finance"
-    share_type   = "CREATE_NAS_SHARE_INPUT_SHARE_TYPE_SMB"
+    export_point   = "finance"
+    share_type     = "CREATE_NAS_SHARE_INPUT_SHARE_TYPE_SMB"
+    nas_server_key = "powerscale"
     credentials = {
-      username = "REPLACE_WITH_SHARE_USER"
-      password = "REPLACE_WITH_SHARE_PASSWORD"
+      username_credential = "finance_share_username"
+      password_credential = "finance_share_password"
     }
   }
 }
-sla_domain_name        = "Terraform workload protection"
-sla_domain_description = "Managed by Terraform"
-sla_domain_object_types = [
-  "POSTGRES_DB_CLUSTER_OBJECT_TYPE",
-  "VSPHERE_OBJECT_TYPE",
-  "NAS_OBJECT_TYPE",
-  "FILESET_OBJECT_TYPE",
-  "K8S_OBJECT_TYPE",
-  "KUPR_OBJECT_TYPE",
-  "PROXMOX_OBJECT_TYPE",
-]
-sla_domain_snapshot_schedule = {
-  daily = {
-    basicSchedule = {
-      frequency     = 1
-      retention     = 30
-      retentionUnit = "DAYS"
-    }
-  }
+nas_configured_share_sla_domain_keys = {
+  engineering_nfs = "standard"
+  finance_smb      = "critical"
 }
-sla_domain_archival_specs = [
-  {
-    archivalGroupId = "00000000-0000-0000-0000-000000000002"
-    threshold       = 30
-    thresholdUnit   = "DAYS"
-    frequencies     = ["DAYS"]
-    archivalTieringSpecInput = {
-      isInstantTieringEnabled        = false
-      minAccessibleDurationInSeconds = 2592000
-      coldStorageClass               = "AWS_GLACIER"
-      shouldTierExistingSnapshots    = false
+nas_cloud_direct_systems = {
+  netapp_production = {
+    cluster_id                    = "00000000-0000-0000-0000-000000000001"
+    host                          = "netapp.example.invalid"
+    system_type                   = "NETAPP_CLUSTER_MODE"
+    username_credential           = "netapp_username"
+    password_credential           = "netapp_password"
+    skip_service_account_creation = false
+    verify_ssl                    = true
+    certificate_data_credential         = null
+    certificate_key_password_credential = null
+    certificate_type              = null
+    creds                         = []
+    management_info = {
+      file_system_id   = null
+      private_endpoint = null
     }
-    archivalLocationToClusterMapping = [
+    region = null
+  }
+  s3_tenant = {
+    cluster_id                    = "00000000-0000-0000-0000-000000000001"
+    host                          = "s3.example.invalid"
+    system_type                   = "GENERIC_S3"
+    skip_service_account_creation = true
+    verify_ssl                    = true
+    region                        = "us-east-1"
+    creds = [
       {
-        clusterUuid = "00000000-0000-0000-0000-000000000001"
-        locationId  = "00000000-0000-0000-0000-000000000003"
+        name               = "example-tenant"
+        username_credential = "s3_access_key"
+        password_credential = "s3_secret_key"
       }
     ]
-    isComplianceImmutabilityEnabled = false
   }
-]
-service_account_name        = "Terraform automation"
-service_account_description = "Managed by Terraform"
-object_inventory_role_name  = "Terraform object inventory reader"
-service_account_role_ids = [
-  "44444444-4444-4444-4444-444444444444",
-]
+}
+nas_cloud_direct_shares = {
+  production_exports = {
+    name        = "/production"
+    system_name = "netapp.example.invalid"
+  }
+  analytics_exports = {
+    name        = "/analytics"
+    system_name = "netapp.example.invalid"
+  }
+}
+nas_cloud_direct_share_sla_domain_keys = {
+  production_exports = "standard"
+  analytics_exports  = "critical"
+}
+sla_domains = {
+  standard = {
+    name        = "Terraform standard protection"
+    description = "Standard workload protection managed by Terraform"
+    object_types = [
+      "POSTGRES_DB_CLUSTER_OBJECT_TYPE",
+      "VSPHERE_OBJECT_TYPE",
+      "NAS_OBJECT_TYPE",
+      "FILESET_OBJECT_TYPE",
+      "K8S_OBJECT_TYPE",
+      "KUPR_OBJECT_TYPE",
+      "PROXMOX_OBJECT_TYPE",
+      "NCD_OBJECT_TYPE",
+    ]
+    snapshot_schedule = {
+      daily = {
+        basicSchedule = {
+          frequency     = 1
+          retention     = 30
+          retentionUnit = "DAYS"
+        }
+      }
+    }
+    archival_specs = [
+      {
+        archivalGroupId = "00000000-0000-0000-0000-000000000002"
+        threshold       = 30
+        thresholdUnit   = "DAYS"
+        frequencies     = ["DAYS"]
+        archivalTieringSpecInput = {
+          isInstantTieringEnabled        = false
+          minAccessibleDurationInSeconds = 2592000
+          coldStorageClass               = "AWS_GLACIER"
+          shouldTierExistingSnapshots    = false
+        }
+        archivalLocationToClusterMapping = [
+          {
+            clusterUuid = "00000000-0000-0000-0000-000000000001"
+            locationId  = "00000000-0000-0000-0000-000000000003"
+          }
+        ]
+        isComplianceImmutabilityEnabled = false
+      }
+    ]
+  }
+  critical = {
+    name         = "Terraform critical protection"
+    description  = "Short-retention protection managed by Terraform"
+    object_types = ["POSTGRES_DB_CLUSTER_OBJECT_TYPE", "VSPHERE_OBJECT_TYPE", "FILESET_OBJECT_TYPE", "K8S_OBJECT_TYPE", "KUPR_OBJECT_TYPE", "PROXMOX_OBJECT_TYPE", "NCD_OBJECT_TYPE"]
+    archival_specs = []
+    snapshot_schedule = {
+      daily = {
+        basicSchedule = {
+          frequency     = 1
+          retention     = 14
+          retentionUnit = "DAYS"
+        }
+      }
+    }
+  }
+}
+object_inventory_roles = {
+  default = {
+    name        = "Terraform object inventory reader"
+    description = "Account-wide read-only visibility for Terraform."
+  }
+}
+service_accounts = {
+  default = {
+    name                = "Terraform automation"
+    description         = "Managed by Terraform"
+    role_ids            = ["44444444-4444-4444-4444-444444444444"]
+    inventory_role_keys = ["default"]
+  }
+  reporting = {
+    name                = "Terraform reporting"
+    description         = "Read-only discovery automation"
+    role_ids            = []
+    inventory_role_keys = ["default"]
+  }
+}
 classification_analyzers = {
   internal_reference = {
     name                          = "Example internal reference"
@@ -235,9 +413,9 @@ vsphere_servers = {
   vcenter = {
     cluster_uuid                          = "00000000-0000-0000-0000-000000000001"
     hostname                              = "vcenter.example.invalid"
-    username                              = "REPLACE_WITH_VCENTER_USER"
-    password                              = "REPLACE_WITH_VCENTER_PASSWORD"
-    ca_certs                              = "REPLACE_WITH_BASE64_DER_CERTIFICATE"
+    username_credential                  = "vcenter_username"
+    password_credential                  = "vcenter_password"
+    ca_certs_credential                  = "vcenter_ca_certificate"
     is_standalone_host                    = false
     should_enable_hot_add_proxy_onprem    = true
     conflict_resolution_authz             = "VCENTER_CONFIG_V2_CONFLICT_RESOLUTION_AUTHZ_NO_CONFLICT_RESOLUTION"
@@ -247,8 +425,8 @@ vsphere_servers = {
   standalone_esxi = {
     cluster_uuid                       = "00000000-0000-0000-0000-000000000001"
     hostname                           = "esxi-01.example.invalid"
-    username                           = "root"
-    password                           = "REPLACE_WITH_ESXI_PASSWORD"
+    username_credential               = "esxi_username"
+    password_credential               = "esxi_password"
     is_standalone_host                 = true
     should_enable_hot_add_proxy_onprem = false
     conflict_resolution_authz          = "VCENTER_CONFIG_V2_CONFLICT_RESOLUTION_AUTHZ_ALLOW_AUTO_CONFLICT_RESOLUTION"
@@ -257,21 +435,21 @@ vsphere_servers = {
 proxmox_hosts = {
   production = {
     environment_id = "00000000-0000-0000-0000-000000000009"
-    api_token      = "REPLACE_WITH_PROXMOX_API_TOKEN"
-    ca_certs       = "REPLACE_WITH_BASE64_DER_CERTIFICATE"
+    api_token_credential = "proxmox_api_token"
+    ca_certs_credential  = "proxmox_ca_certificate"
   }
 }
 tape_archival_targets = {
   primary = {
     cluster_uuid            = "00000000-0000-0000-0000-000000000001"
     destination_folder_name = "RubrikArchive"
-    encryption_password     = "REPLACE_WITH_TAPE_ENCRYPTION_PASSWORD"
+    encryption_password_credential = "tape_primary_encryption"
     host_name               = "qstar.example.invalid"
     host_port               = 111
     integral_volume_name    = "TAPE01"
     name                    = "Example primary tape"
-    password                = "REPLACE_WITH_QSTAR_PASSWORD"
-    username                = "REPLACE_WITH_QSTAR_USER"
+    password_credential     = "tape_primary_password"
+    username_credential     = "tape_primary_username"
   }
 }
 tape_reader_targets = {
@@ -279,13 +457,13 @@ tape_reader_targets = {
     archival_data_source_ids = ["00000000-0000-0000-0000-000000000006"]
     cluster_uuid             = "00000000-0000-0000-0000-000000000001"
     destination_folder_name  = "RubrikRecovery"
-    encryption_password      = "REPLACE_WITH_READER_ENCRYPTION_PASSWORD"
+    encryption_password_credential = "tape_recovery_encryption"
     host_name                = "qstar-reader.example.invalid"
     host_port                = 111
     integral_volume_name     = "TAPE02"
     name                     = "Example tape reader"
-    password                 = "REPLACE_WITH_READER_PASSWORD"
+    password_credential      = "tape_recovery_password"
     reader_retrieval_method  = "OBJECT_LIST_AND_DETAILS"
-    username                 = "REPLACE_WITH_READER_USER"
+    username_credential      = "tape_recovery_username"
   }
 }

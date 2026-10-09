@@ -6,8 +6,13 @@ by the reusable modules under `modules/`. Root inputs are declared in
 configuring the `sullivtr/graphql` provider in the calling configuration.
 
 Use [`terraform.tfvars.example`](./terraform.tfvars.example) as a starting
-point for the root configuration. Supply credentials through a secure input
-mechanism rather than committing them to a tfvars file.
+point for the root configuration. Configure the Vault provider using its
+standard environment variables or another supported Vault authentication
+method. The root `vault_credential_refs` map maps logical credential names to
+HashiCorp Vault KV v2 mount, path, and field names; resource inputs reference
+those logical names instead of containing secret values. Fetched values are
+marked sensitive, but Terraform state and plans can still contain secrets, so
+protect them accordingly.
 
 ## Module index
 
@@ -19,6 +24,8 @@ mechanism rather than committing them to a tfvars file.
 | [`kubernetes-protection`](#kubernetes-protection) | Protect Kubernetes clusters, namespaces, and protection sets. |
 | [`proxmox-protection`](#proxmox-protection) | Protect Proxmox environments, clusters, nodes, and VMs. |
 | [`nas-share-protection`](#nas-share-protection) | Register NAS servers and shares, and assign SLA protection. |
+| [`nas-cloud-direct-systems`](#nas-cloud-direct-systems) | Register NAS Cloud Direct systems. |
+| [`nas-cloud-direct-protection`](#nas-cloud-direct-protection) | Resolve NAS Cloud Direct shares and assign SLA protection. |
 | [`linux-fileset-protection`](#linux-fileset-protection) | Configure Linux fileset templates and protect filesets. |
 | [`sla-domain`](#sla-domain) | Create and manage SLA Domains, schedules, and archive settings. |
 | [`service-account`](#service-account) | Manage a Rubrik service account and its assigned roles. |
@@ -34,30 +41,38 @@ mechanism rather than committing them to a tfvars file.
 | Variable | Type | Required/default | Values and notes |
 |---|---|---|---|
 | `rubrik_graphql_url` | `string` | Required | Rubrik Security Cloud GraphQL endpoint URL, for example `https://<tenant>/api/graphql`. |
-| `rubrik_api_token` | `string` (sensitive) | Required | Bearer token used by the GraphQL provider. Keep it out of source control and protect Terraform state. |
+| `vault_credential_refs` | `map(object)` | Required | Central mapping of logical credential names to Vault KV v2 `mount`, `path`, and `key` fields. Must include the `rubrik_api_token` alias and every credential alias referenced by configured resources. |
 | `vsphere_vm_names` | `set(string)` | Required | Exact Rubrik inventory names of vSphere VMs. Each name must resolve to one VM. Use `[]` when unused. |
+| `vsphere_vm_sla_domain_keys` | `map(string)` | `{}` | SLA Domain key for each protected VM, keyed by exact VM name. |
 | `vsphere_folder_names` | `set(string)` | Required | Exact Rubrik inventory names of vSphere folders. Each name must resolve to one folder. Use `[]` when unused. |
+| `vsphere_folder_sla_domain_keys` | `map(string)` | `{}` | SLA Domain key for each folder, keyed by exact folder name. |
 | `vsphere_tag_ids` | `set(string)` | Required | Rubrik tag UUIDs; each value must match the UUID format. Use `[]` when unused. Tag names are not resolved. |
-| `postgresql_db_cluster_names` | `set(string)` | Required | Exact Rubrik inventory names of PostgreSQL database clusters. Each name must resolve to one cluster. Use `[]` when unused. |
+| `vsphere_tag_sla_domain_keys` | `map(string)` | `{}` | SLA Domain key for each tag, keyed by tag UUID. |
+| `postgresql_db_cluster_names` | `set(string)` | Required | Exact Rubrik inventory names of PostgreSQL database clusters. Each name must resolve to one cluster. |
+| `postgresql_sla_domain_keys` | `map(string)` | `{}` | SLA Domain key for each PostgreSQL cluster, keyed by exact cluster name. |
 | `linux_fileset_cluster_uuid` | `string` | `""` | Rubrik CDM cluster UUID used for Linux fileset template and fileset operations; required when Linux templates are configured. |
 | `linux_fileset_templates` | `map(object)` | `{}` | Linux template definitions keyed by template name, including include paths and optional excludes, exceptions, scripts, and fileset options. |
 | `linux_fileset_assignments` | `map(object)` | `{}` | Linux host/template pairs keyed by stable Terraform identifiers. See the [Linux fileset module README](./modules/linux-fileset-protection/README.md). |
+| `linux_fileset_sla_domain_keys` | `map(string)` | `{}` | SLA Domain key for each Linux fileset assignment, keyed by Terraform assignment key. |
 | `kubernetes_cluster_names` | `set(string)` | `[]` | Exact Rubrik inventory names of Kubernetes clusters to protect. Each name must resolve to exactly one cluster. |
+| `kubernetes_cluster_sla_domain_keys` | `map(string)` | `{}` | SLA Domain key for each Kubernetes cluster, keyed by exact cluster name. |
 | `kubernetes_protection_set_names` | `set(string)` | `[]` | Exact Rubrik inventory names of Kubernetes protection sets to protect. Each name must resolve to exactly one protection set. |
+| `kubernetes_protection_set_sla_domain_keys` | `map(string)` | `{}` | SLA Domain key for each Kubernetes protection set, keyed by exact protection-set name. |
 | `kubernetes_namespaces` | `map(object)` | `{}` | Kubernetes namespaces keyed by stable Terraform keys, each specifying exact `cluster_name` and `namespace_name` values. |
+| `kubernetes_namespace_sla_domain_keys` | `map(string)` | `{}` | SLA Domain key for each Kubernetes namespace, keyed by Terraform namespace key. |
 | `proxmox_objects` | `map(object)` | `{}` | Proxmox objects keyed by stable Terraform keys. Each object specifies an exact `name` and `object_type`: `PROXMOX_ENVIRONMENT`, `PROXMOX_CLUSTER`, `PROXMOX_NODE`, or `PROXMOX_VIRTUAL_MACHINE`. |
+| `proxmox_object_sla_domain_keys` | `map(string)` | `{}` | SLA Domain key for each Proxmox object, keyed by Terraform object key. |
 | `nas_share_names` | `set(string)` | Required | Exact names of existing/discovered NAS shares. Each name must resolve to one share. Use `[]` when unused. |
-| `nas_server` | Object; see below | `null` | Optional NAS server registration. Vendor-specific fields are described in [NAS server inputs](#nas-server-inputs). |
-| `nas_shares` | `map(object)`; see below | `{}` | Optional manually configured NAS shares, keyed by stable Terraform names. See [NAS share inputs](#nas-share-inputs). |
-| `sla_domain_name` | `string` | Required | Name for the SLA Domain created by the root configuration. |
-| `sla_domain_description` | `string` | `null` | Optional SLA Domain description. |
-| `sla_domain_object_types` | `set(string)` | Required | At least one Rubrik SLA object-type enum value is required. Values must be supported by the Rubrik API and compatible with the objects assigned to this SLA. See [SLA object types](#sla-object-types). |
-| `sla_domain_snapshot_schedule` | `any` | Required | Object matching Rubrik's `GlobalSnapshotScheduleInput`; supports minute, hourly, daily, weekly, monthly, quarterly, and yearly schedules. |
-| `sla_domain_archival_specs` | `list(any)` | `[]` | Optional list of Rubrik archival specifications, including archival group, threshold, frequencies, and tiering options. See the [sla-domain module README](./modules/sla-domain/README.md#archive-configuration). |
-| `service_account_name` | `string` | Required | Name for the automation service account. |
-| `service_account_description` | `string` | `""` | Optional service-account description. |
-| `service_account_role_ids` | `set(string)` | `[]` | Additional Rubrik role IDs to grant. The root configuration also grants the managed object-inventory role. |
-| `object_inventory_role_name` | `string` | `"Terraform object inventory reader"` | Name for the account-wide inventory-read role managed by the root configuration. |
+| `nas_share_sla_domain_keys` | `map(string)` | `{}` | SLA Domain key for each existing NAS share, keyed by exact share name. |
+| `nas_servers` | `map(object)`; see below | `{}` | NAS server registrations keyed by stable Terraform names. Vendor-specific fields are described in [NAS server inputs](#nas-server-inputs). |
+| `nas_shares` | `map(object)`; see below | `{}` | Manually configured NAS shares keyed by stable Terraform names; each specifies `nas_server_key`. See [NAS share inputs](#nas-share-inputs). |
+| `nas_configured_share_sla_domain_keys` | `map(string)` | `{}` | SLA Domain key for each manually configured NAS share, keyed by Terraform share key. |
+| `nas_cloud_direct_systems` | `map(object)` | `{}` | NAS Cloud Direct systems to register. Registration is asynchronous and returns a job ID. See [NAS Cloud Direct systems](#nas-cloud-direct-systems). |
+| `nas_cloud_direct_shares` | `map(object)` | `{}` | Existing Cloud Direct shares keyed by Terraform name and identified by exact share/system names. |
+| `nas_cloud_direct_share_sla_domain_keys` | `map(string)` | `{}` | SLA Domain key for each Cloud Direct share, keyed by Terraform share key. |
+| `sla_domains` | `map(object)` | Required | SLA Domain definitions keyed by stable Terraform names; each contains a name, object types, snapshot schedule, and optional description/archive specs. See [SLA object types](#sla-object-types). |
+| `object_inventory_roles` | `map(object)` | `{}` | Inventory-read roles keyed by stable Terraform names. |
+| `service_accounts` | `map(object)` | `{}` | Service accounts keyed by stable Terraform names; each may reference `role_ids` and/or `inventory_role_keys`. |
 | `classification_analyzers` | `map(object)` | `{}` | Custom analyzers keyed by stable names. Supports analyzer type, risk, structured/unstructured rules, dictionaries, regexes, exclusions, and optional tagging. |
 | `classification_policies` | `map(object)` | `{}` | Classification policies keyed by stable names, including analyzer IDs/keys and target hierarchy/object/root/cluster IDs. `mode` accepts `DISCOVERY` or `COMPLIANCE`. |
 | `sensitive_data_discovery_enabled` | `bool` | `false` | Enable read-only queries for sensitive-data summary and discovery object counts. |
@@ -69,101 +84,33 @@ mechanism rather than committing them to a tfvars file.
 
 ### Root input example
 
-```hcl
-rubrik_graphql_url = "https://<your-rsc-tenant>/api/graphql"
-rubrik_api_token   = "<supply securely; do not commit this value>"
+The complete, validated multi-resource example is in
+[`terraform.tfvars.example`](./terraform.tfvars.example). Each protected
+object is assigned an SLA Domain by a keyed `*_sla_domain_keys` map. The map
+keys are the corresponding exact inventory name or stable Terraform key; its
+values must match keys in `sla_domains`.
 
-vsphere_vm_names            = ["application-01"]
-vsphere_folder_names        = ["Production"]
-vsphere_tag_ids             = ["66666666-6666-6666-6666-666666666666"]
-postgresql_db_cluster_names = ["postgres-production"]
-linux_fileset_cluster_uuid = ""
-linux_fileset_templates    = {}
-linux_fileset_assignments  = {}
-kubernetes_cluster_names        = ["production-k8s"]
-kubernetes_protection_set_names = ["production-apps"]
-kubernetes_namespaces = {
-  production_default = {
-    cluster_name   = "production-k8s"
-    namespace_name = "default"
-  }
-}
-proxmox_objects = {
-  application_vm = {
-    name        = "application-01"
-    object_type = "PROXMOX_VIRTUAL_MACHINE"
-  }
-}
-nas_share_names             = ["engineering-nfs"]
+NAS servers, object inventory roles, and service accounts are also keyed maps,
+so multiple instances of each can be managed. Manually added NAS shares set
+`nas_server_key` to the key of the NAS server they belong to.
 
-sla_domain_name        = "Terraform protection"
-sla_domain_description = "Managed by Terraform"
-sla_domain_object_types = [
-  "VSPHERE_OBJECT_TYPE",
-  "POSTGRES_DB_CLUSTER_OBJECT_TYPE",
-  "NAS_OBJECT_TYPE",
-  "FILESET_OBJECT_TYPE",
-  "K8S_OBJECT_TYPE",
-  "KUPR_OBJECT_TYPE",
-  "PROXMOX_OBJECT_TYPE",
-]
-sla_domain_snapshot_schedule = {
-  daily = {
-    basicSchedule = {
-      frequency     = 1
-      retention     = 30
-      retentionUnit = "DAYS"
-    }
-  }
-}
-sla_domain_archival_specs = [
-  {
-    archivalGroupId = "00000000-0000-0000-0000-000000000000"
-    threshold       = 30
-    thresholdUnit   = "DAYS"
-  }
-]
+Credential fields in these root maps are logical names from
+`vault_credential_refs`, not secret values. This applies to NAS and Cloud
+Direct registrations, vSphere and Proxmox registrations, and tape targets.
+The direct reusable modules continue to accept their canonical credential
+fields as sensitive inputs.
 
-service_account_name        = "Terraform automation"
-service_account_description = "Managed by Terraform"
-service_account_role_ids    = []
-classification_analyzers = {
-  internal_reference = {
-    name          = "Internal reference"
-    analyzer_type = "REGEX"
-    risk          = "HIGH_RISK"
-    rule_types    = ["STRUCTURED", "UNSTRUCTURED"]
-    regex         = "REF-[0-9]{8}"
-  }
-}
-classification_policies = {
-  finance_discovery = {
-    name          = "Finance discovery"
-    mode          = "DISCOVERY"
-    analyzer_keys = ["internal_reference"]
-    object_ids    = ["00000000-0000-0000-0000-000000000000"]
-  }
-}
-sensitive_data_discovery_enabled = false
-sensitive_data_summary_input = {
-  includeBreakdown = true
-}
-vsphere_servers       = {}
-proxmox_hosts         = {}
-tape_archival_targets = {}
-tape_reader_targets   = {}
-```
-
-For NAS configurations, add `nas_server` and/or `nas_shares` as described
-below. Inputs for workloads not in use can be empty sets; `nas_server` can be
-`null` and `nas_shares` can be `{}`.
+To retain the prior singleton resources during state migration, use the
+`standard` SLA key and `default` keys for the original inventory role, service
+account, and NAS server. The root and NAS module include moved blocks for
+those addresses.
 
 ## Reusable module inputs
 
 All names used for inventory lookups are exact names, not partial or
 case-insensitive matches. Where a module resolves an inventory name, that name
-must match exactly one Rubrik object. The `sla_id` inputs expect the Rubrik SLA
-Domain UUID.
+must match exactly one Rubrik object. Protection modules take SLA UUIDs in a
+keyed `sla_ids` map so each target can use a different SLA.
 
 ### `vsphere-vm-protection`
 
@@ -172,14 +119,17 @@ Source: `./modules/vsphere-vm-protection`
 | Variable | Type | Required/default | Values and notes |
 |---|---|---|---|
 | `vm_names` | `set(string)` | Required | Exact names of vSphere VMs; each must resolve to one VM. |
-| `sla_id` | `string` | Required | UUID of an existing SLA Domain. |
+| `sla_ids` | `map(string)` | `{}` | SLA UUIDs keyed by exact VM name. Every VM in `vm_names` must have an entry. |
 
 ```hcl
 module "vsphere_vm_protection" {
   source = "./modules/vsphere-vm-protection"
 
   vm_names = ["application-01", "application-02"]
-  sla_id   = "00000000-0000-0000-0000-000000000000"
+  sla_ids = {
+    application-01 = "00000000-0000-0000-0000-000000000000"
+    application-02 = "11111111-1111-1111-1111-111111111111"
+  }
 }
 ```
 
@@ -191,7 +141,7 @@ Source: `./modules/vsphere-container-sla-assignment`
 |---|---|---|---|
 | `folder_names` | `set(string)` | Required | Exact names of vSphere folders; each must resolve to one folder. Use `[]` if no folders are assigned. |
 | `tag_ids` | `set(string)` | Required | Rubrik tag UUIDs. Tag names cannot be resolved by this module. Use `[]` if no tags are assigned. |
-| `sla_id` | `string` | Required | UUID of the SLA Domain to assign. |
+| `sla_ids` | `map(string)` | `{}` | SLA UUIDs keyed as `folder:<name>` or `tag:<UUID>`. |
 
 ```hcl
 module "vsphere_container_sla_assignments" {
@@ -199,7 +149,10 @@ module "vsphere_container_sla_assignments" {
 
   folder_names = ["Production"]
   tag_ids      = ["66666666-6666-6666-6666-666666666666"]
-  sla_id       = "00000000-0000-0000-0000-000000000000"
+  sla_ids = {
+    "folder:Production" = "00000000-0000-0000-0000-000000000000"
+    "tag:66666666-6666-6666-6666-666666666666" = "11111111-1111-1111-1111-111111111111"
+  }
 }
 ```
 
@@ -210,14 +163,16 @@ Source: `./modules/postgresql-protection`
 | Variable | Type | Required/default | Values and notes |
 |---|---|---|---|
 | `database_cluster_names` | `set(string)` | Required | Exact names of PostgreSQL database clusters; each must resolve to one cluster. |
-| `sla_id` | `string` | Required | UUID of the SLA Domain to assign. |
+| `sla_ids` | `map(string)` | `{}` | SLA UUIDs keyed by exact PostgreSQL cluster name. |
 
 ```hcl
 module "postgresql_protection" {
   source = "./modules/postgresql-protection"
 
   database_cluster_names = ["postgres-production"]
-  sla_id                 = "00000000-0000-0000-0000-000000000000"
+  sla_ids = {
+    postgres-production = "00000000-0000-0000-0000-000000000000"
+  }
 }
 ```
 
@@ -230,7 +185,7 @@ Source: `./modules/kubernetes-protection`
 | `cluster_names` | `set(string)` | `[]` | Exact Kubernetes cluster names; each must resolve to one cluster. |
 | `protection_set_names` | `set(string)` | `[]` | Exact Kubernetes protection-set names; each must resolve to one protection set. |
 | `namespaces` | `map(object)` | `{}` | Namespaces keyed by stable Terraform keys, each with exact `cluster_name` and `namespace_name` values. Namespaces are looked up within the named cluster. |
-| `sla_id` | `string` | Required | UUID of the SLA Domain to assign. |
+| `sla_ids` | `map(string)` | `{}` | SLA UUIDs keyed as `cluster:<name>`, `protection_set:<name>`, or `namespace:<key>`. |
 
 ```hcl
 module "kubernetes_protection" {
@@ -244,7 +199,11 @@ module "kubernetes_protection" {
       namespace_name = "default"
     }
   }
-  sla_id               = "00000000-0000-0000-0000-000000000000"
+  sla_ids = {
+    "cluster:production-k8s" = "00000000-0000-0000-0000-000000000000"
+    "protection_set:production-apps" = "00000000-0000-0000-0000-000000000000"
+    "namespace:production_default" = "00000000-0000-0000-0000-000000000000"
+  }
 }
 ```
 
@@ -261,7 +220,7 @@ Source: `./modules/proxmox-protection`
 | Variable | Type | Required/default | Values and notes |
 |---|---|---|---|
 | `objects` | `map(object)` | `{}` | Objects keyed by stable Terraform keys, each with exact `name` and `object_type`. Types: `PROXMOX_ENVIRONMENT`, `PROXMOX_CLUSTER`, `PROXMOX_NODE`, or `PROXMOX_VIRTUAL_MACHINE`. The name must resolve to exactly one object of that type. |
-| `sla_id` | `string` | Required | UUID of the SLA Domain to assign. |
+| `sla_ids` | `map(string)` | `{}` | SLA UUIDs keyed as `object:<Terraform object key>`. |
 
 ```hcl
 module "proxmox_protection" {
@@ -277,7 +236,10 @@ module "proxmox_protection" {
       object_type = "PROXMOX_CLUSTER"
     }
   }
-  sla_id = "00000000-0000-0000-0000-000000000000"
+  sla_ids = {
+    "object:application_vm" = "00000000-0000-0000-0000-000000000000"
+    "object:cluster" = "11111111-1111-1111-1111-111111111111"
+  }
 }
 ```
 
@@ -292,31 +254,37 @@ Source: `./modules/nas-share-protection`
 | Variable | Type | Required/default | Values and notes |
 |---|---|---|---|
 | `share_names` | `set(string)` | `[]` | Exact names of existing/discovered shares; each must resolve to one share. |
-| `nas_server` | Object; see [NAS server inputs](#nas-server-inputs) | `null` | Optional server registration. |
-| `nas_shares` | `map(object)`; see [NAS share inputs](#nas-share-inputs) | `{}` | Optional manually added shares on the configured server. |
-| `sla_id` | `string` | Required | UUID of the SLA Domain to assign to each managed share. |
+| `nas_servers` | `map(object)`; see [NAS server inputs](#nas-server-inputs) | `{}` | NAS registrations keyed by stable Terraform names. |
+| `nas_shares` | `map(object)`; see [NAS share inputs](#nas-share-inputs) | `{}` | Manually added shares; each includes its `nas_server_key`. |
+| `sla_ids` | `map(string)` | `{}` | SLA UUIDs keyed as `existing:<share name>` or `configured:<share key>`. |
 
 ```hcl
 module "nas_share_protection" {
   source = "./modules/nas-share-protection"
 
-  nas_server = {
-    cluster_uuid = "88888888-8888-8888-8888-888888888888"
-    hostname     = "nas.example.com"
-    vendor_type  = "NAS_VENDOR_TYPE_GENERIC"
-    generic_parameters = {
-      has_nfs_support = true
-      has_smb_support = false
+  nas_servers = {
+    generic = {
+      cluster_uuid = "88888888-8888-8888-8888-888888888888"
+      hostname     = "nas.example.com"
+      vendor_type  = "NAS_VENDOR_TYPE_GENERIC"
+      generic_parameters = {
+        has_nfs_support = true
+        has_smb_support = false
+      }
     }
   }
   nas_shares = {
     research = {
-      export_point = "/research"
-      share_type   = "CREATE_NAS_SHARE_INPUT_SHARE_TYPE_NFS"
+      export_point   = "/research"
+      share_type     = "CREATE_NAS_SHARE_INPUT_SHARE_TYPE_NFS"
+      nas_server_key = "generic"
     }
   }
   share_names = ["already-discovered-share"]
-  sla_id      = "00000000-0000-0000-0000-000000000000"
+  sla_ids = {
+    "configured:research" = "00000000-0000-0000-0000-000000000000"
+    "existing:already-discovered-share" = "11111111-1111-1111-1111-111111111111"
+  }
 }
 ```
 
@@ -329,14 +297,16 @@ Source: `./modules/linux-fileset-protection`
 | `cluster_uuid` | `string` | `""` | Rubrik CDM cluster UUID; required when templates or assignments are configured. |
 | `fileset_templates` | `map(object)` | `{}` | Template definitions keyed by unique name. Each must include at least one `includes` path. Optional `excludes`, `exceptions`, pre/post scripts, script error handling (`abort` or `continue`), timeout in seconds, and network mount options are supported. |
 | `fileset_assignments` | `map(object)` | `{}` | Assignments keyed by stable Terraform name. Each requires exact `host_name` and `template_name`; optional hardlink support and symlink resolution default to `false`. |
-| `sla_id` | `string` | `""` | UUID of the SLA Domain to assign to filesets. Required when assignments are configured. |
+| `sla_ids` | `map(string)` | `{}` | SLA UUIDs keyed as `assignment:<fileset assignment key>`. Required for every configured assignment. |
 
 ```hcl
 module "linux_fileset_protection" {
   source = "./modules/linux-fileset-protection"
 
   cluster_uuid = "88888888-8888-8888-8888-888888888888"
-  sla_id       = "00000000-0000-0000-0000-000000000000"
+  sla_ids = {
+    "assignment:app_server_01" = "00000000-0000-0000-0000-000000000000"
+  }
 
   fileset_templates = {
     application = {
@@ -361,30 +331,32 @@ for configuration details and lifecycle behavior.
 
 #### NAS server inputs
 
-`nas_server` is an object with the following fields:
+Each value in `nas_servers` is a server object with the following fields:
 
 | Field | Type | Requiredness and allowed values |
 |---|---|---|
 | `cluster_uuid` | `string` | Required Rubrik cluster UUID. |
 | `hostname` | `string` | Required NAS server hostname/address. |
 | `vendor_type` | `string` | Required. Exactly `NAS_VENDOR_TYPE_GENERIC` or `NAS_VENDOR_TYPE_ISILON` (PowerScale). |
-| `generic_parameters` | Object or `null` | Required for Generic NAS; not the vendor configuration for PowerScale. Fields: `has_nfs_support` and `has_smb_support` (`bool`), optional `nfs_pseudo_fs_prefix` (`string`), optional `smb_credentials` object (`username`, `password`). |
-| `api_credentials` | Object or `null` | Required for PowerScale. Required fields: `api_username`, `api_password`; optional `api_certificate`, `certificate_id` strings. |
-| `smb_credentials` | Object or `null` | Optional SMB credentials (`username`, `password`), where applicable. |
+| `generic_parameters` | Object or `null` | Required for Generic NAS; not the vendor configuration for PowerScale. Fields: `has_nfs_support` and `has_smb_support` (`bool`), optional `nfs_pseudo_fs_prefix` (`string`), optional `smb_credentials` object (`username_credential`, `password_credential`). |
+| `api_credentials` | Object or `null` | Required for PowerScale. Required fields: `api_username_credential`, `api_password_credential`; optional `api_certificate_credential`, `certificate_id` strings. |
+| `smb_credentials` | Object or `null` | Optional SMB credential aliases (`username_credential`, `password_credential`), where applicable. |
 | `is_isilon_changelist_enabled` | `bool` or `null` | Optional PowerScale changelist setting. |
 
 Example PowerScale server:
 
 ```hcl
-nas_server = {
-  cluster_uuid = "88888888-8888-8888-8888-888888888888"
-  hostname     = "powerscale.example.com"
-  vendor_type  = "NAS_VENDOR_TYPE_ISILON"
-  api_credentials = {
-    api_username = "rubrik-api-user"
-    api_password = var.powerscale_api_password
+nas_servers = {
+  powerscale = {
+    cluster_uuid = "88888888-8888-8888-8888-888888888888"
+    hostname     = "powerscale.example.com"
+    vendor_type  = "NAS_VENDOR_TYPE_ISILON"
+    api_credentials = {
+      api_username_credential = "powerscale_api_username"
+      api_password_credential = "powerscale_api_password"
+    }
+    is_isilon_changelist_enabled = true
   }
-  is_isilon_changelist_enabled = true
 }
 ```
 
@@ -396,20 +368,23 @@ nas_server = {
 |---|---|---|
 | `export_point` | `string` | Required NAS export path/share point. |
 | `share_type` | `string` | Required. Exactly `CREATE_NAS_SHARE_INPUT_SHARE_TYPE_NFS` or `CREATE_NAS_SHARE_INPUT_SHARE_TYPE_SMB`. |
-| `credentials` | Object or `null` | Optional; `username` is required when the object is supplied, and `password` is optional. |
+| `nas_server_key` | `string` | Required key from `nas_servers` identifying the owning server. |
+| `credentials` | Object or `null` | Optional; `username_credential` is required when supplied, and `password_credential` is optional. Both name keys must exist in `vault_credential_refs`. |
 
 ```hcl
 nas_shares = {
   engineering = {
-    export_point = "/engineering"
-    share_type   = "CREATE_NAS_SHARE_INPUT_SHARE_TYPE_NFS"
+    export_point   = "/engineering"
+    share_type     = "CREATE_NAS_SHARE_INPUT_SHARE_TYPE_NFS"
+    nas_server_key = "generic"
   }
   team_smb = {
-    export_point = "team"
-    share_type   = "CREATE_NAS_SHARE_INPUT_SHARE_TYPE_SMB"
+    export_point   = "team"
+    share_type     = "CREATE_NAS_SHARE_INPUT_SHARE_TYPE_SMB"
+    nas_server_key = "powerscale"
     credentials = {
-      username = "rubrik-smb-user"
-      password = var.nas_smb_password
+      username_credential = "finance_share_username"
+      password_credential = "finance_share_password"
     }
   }
 }
@@ -472,6 +447,7 @@ The module passes `object_types` to Rubrik as values of the GraphQL
 | `K8S_OBJECT_TYPE` | CDM-native Kubernetes objects |
 | `KUPR_OBJECT_TYPE` | Kubernetes objects |
 | `PROXMOX_OBJECT_TYPE` | Proxmox objects |
+| `NCD_OBJECT_TYPE` | NAS Cloud Direct objects |
 
 The Rubrik API schema for the target cluster is authoritative. Enum members
 can vary with API version and available features; use only values accepted by
@@ -647,13 +623,46 @@ port, username, and password; it cannot change volume, folder, encryption, or
 reader retrieval configuration. See the
 [module README](./modules/tape-archival-targets/README.md).
 
+### `nas-cloud-direct-systems`
+
+Source: `./modules/nas-cloud-direct-systems`
+
+| Variable | Type | Required/default | Values and notes |
+|---|---|---|---|
+| `systems` | `map(object)` | `{}` | Cloud Direct systems keyed by stable Terraform names. Required: `cluster_id`, `host`, `system_type`, `skip_service_account_creation`, and `verify_ssl`. Optional: `username`, `password`, `region`, client certificate fields, named S3 `creds`, and vendor-specific `management_info`. |
+
+`system_type` accepts Rubrik `CloudDirectNasVendorType` values, including
+`AZURE_FILES`, `AZURE_NETAPP`, `FLASHARRAY`, `FLASHBLADE`, `FSXN`,
+`GENERIC_NFS`, `GENERIC_NFS4`, `GENERIC_S3`, `GENERIC_SMB`, `ISILON`,
+`NETAPP_CLUSTER_MODE`, `NUTANIX`, `QUMULO`, and `VAST_DATA`. Registration is
+asynchronous and returns a job ID. Rubrik exposes no update or delete mutation;
+removing a Terraform entry leaves the system registered, and changing a
+registration attempts the add mutation again. Credentials are stored in state.
+See the [module README](./modules/nas-cloud-direct-systems/README.md).
+
+### `nas-cloud-direct-protection`
+
+Source: `./modules/nas-cloud-direct-protection`
+
+| Variable | Type | Required/default | Values and notes |
+|---|---|---|---|
+| `shares` | `map(object)` | `{}` | Existing Cloud Direct shares keyed by stable Terraform names, each identified by exact `name` and `system_name`. The pair must resolve to exactly one share. |
+| `sla_ids` | `map(string)` | `{}` | IDs of existing SLA Domains keyed by Cloud Direct share Terraform key. |
+
+The module assigns the SLA to existing shares and unassigns them on destroy. It
+does not add shares to systems; wait for the system registration/import to
+complete and the shares to appear in Rubrik first. The SLA object types must
+include `NCD_OBJECT_TYPE`. See the
+[module README](./modules/nas-cloud-direct-protection/README.md).
+
 ## Root outputs
 
 The root configuration exports:
 
 | Output | Description |
 |---|---|
-| `object_inventory_role_id` | Rubrik ID of the managed inventory-reader role. |
+| `sla_domain_ids` | Map of SLA Domain keys to Rubrik IDs. |
+| `object_inventory_role_ids` | Map of managed inventory-reader role keys to Rubrik IDs. |
 | `vsphere_vm_ids` | Map of configured vSphere VM names to Rubrik inventory IDs. |
 | `vsphere_folder_ids` | Map of configured vSphere folder names to Rubrik inventory IDs. |
 | `postgresql_db_cluster_ids` | Map of configured PostgreSQL cluster names to Rubrik inventory IDs. |
@@ -667,10 +676,12 @@ The root configuration exports:
 | `classification_policy_ids` | Map of configured classification policy names to Rubrik IDs. |
 | `sensitive_data_summary` | Rubrik sensitive-data summary, or `null` when reporting is disabled. |
 | `data_discovery_object_counts` | Rubrik counts for assigned, unassigned, and unsupported discovery objects, or `null` when reporting is disabled. |
-| `nas_server_id` | Registered NAS server ID, or `null` when no server was configured. |
-| `service_account_client_id` | OAuth client ID for the service account. |
-| `service_account_client_secret` | Sensitive OAuth client secret. |
-| `service_account_access_token_uri` | OAuth endpoint used to exchange service-account credentials. |
+| `nas_server_ids` | Map of registered NAS server keys to Rubrik IDs. |
+| `nas_cloud_direct_registration_job_ids` | Map of NAS Cloud Direct system keys to asynchronous registration job IDs. |
+| `nas_cloud_direct_share_ids` | Map of configured NAS Cloud Direct share keys to Rubrik inventory IDs. |
+| `service_account_client_id` | Map of service account keys to OAuth client IDs. |
+| `service_account_client_secret` | Sensitive map of service account keys to OAuth client secrets. |
+| `service_account_access_token_uri` | Map of service account keys to OAuth endpoints. |
 | `vsphere_server_ids` | Map of registered vSphere server keys to Rubrik IDs. |
 | `proxmox_environment_ids` | Map of configured Proxmox host keys to Rubrik environment IDs. |
 | `tape_archival_target_ids` | Map of tape archival target keys to Rubrik IDs. |

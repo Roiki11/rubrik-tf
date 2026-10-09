@@ -9,7 +9,10 @@ module "linux_fileset_protection" {
   source = "./modules/linux-fileset-protection"
 
   cluster_uuid = "00000000-0000-0000-0000-000000000000"
-  sla_id       = "11111111-1111-1111-1111-111111111111"
+  sla_ids = {
+    "assignment:app_server_01" = "11111111-1111-1111-1111-111111111111"
+    "assignment:app_server_02" = "22222222-2222-2222-2222-222222222222"
+  }
 
   fileset_templates = {
     application = {
@@ -41,7 +44,7 @@ module "linux_fileset_protection" {
 
 - `cluster_uuid`: UUID of the Rubrik CDM cluster where templates/filesets are
   created.
-- `sla_id`: UUID of an existing SLA Domain compatible with filesets.
+- `sla_ids`: SLA Domain UUIDs keyed as `assignment:<fileset assignment key>`.
 - `fileset_templates`: map keyed by unique Rubrik template name. `includes`
   must contain at least one path; `excludes` and `exceptions` are optional.
   Optional pre/post backup scripts, script error handling (`abort` or

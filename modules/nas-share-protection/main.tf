@@ -1,75 +1,34 @@
-locals {
-  nas_system_mutation_variables = var.nas_server == null ? {} : {
-    clusterUuid   = jsonencode(var.nas_server.cluster_uuid)
-    hostname      = jsonencode(var.nas_server.hostname)
-    nasVendorType = jsonencode(var.nas_server.vendor_type)
-    genericNasSystemParameters = jsonencode(var.nas_server.generic_parameters == null ? null : {
-      hasNfsSupport = var.nas_server.generic_parameters.has_nfs_support
-      hasSmbSupport = var.nas_server.generic_parameters.has_smb_support
+resource "graphql_mutation" "nas_system" {
+  for_each = nonsensitive(toset(keys(var.nas_servers)))
+
+  mutation_variables = {
+    clusterUuid   = jsonencode(var.nas_servers[each.value].cluster_uuid)
+    hostname      = jsonencode(var.nas_servers[each.value].hostname)
+    nasVendorType = jsonencode(var.nas_servers[each.value].vendor_type)
+    genericNasSystemParameters = jsonencode(var.nas_servers[each.value].generic_parameters == null ? null : {
+      hasNfsSupport = var.nas_servers[each.value].generic_parameters.has_nfs_support
+      hasSmbSupport = var.nas_servers[each.value].generic_parameters.has_smb_support
       nfsPseudoFsPrefix = try(
-        var.nas_server.generic_parameters.nfs_pseudo_fs_prefix,
+        var.nas_servers[each.value].generic_parameters.nfs_pseudo_fs_prefix,
         null
       )
-      smbCredentials = try(var.nas_server.generic_parameters.smb_credentials, null) == null ? null : {
-        username = var.nas_server.generic_parameters.smb_credentials.username
-        password = var.nas_server.generic_parameters.smb_credentials.password
+      smbCredentials = try(var.nas_servers[each.value].generic_parameters.smb_credentials, null) == null ? null : {
+        username = var.nas_servers[each.value].generic_parameters.smb_credentials.username
+        password = var.nas_servers[each.value].generic_parameters.smb_credentials.password
       }
     })
-    nasApiCredentials = jsonencode(var.nas_server.api_credentials == null ? null : {
-      apiUsername    = var.nas_server.api_credentials.api_username
-      apiPassword    = var.nas_server.api_credentials.api_password
-      apiCertificate = try(var.nas_server.api_credentials.api_certificate, null)
-      certificateId  = try(var.nas_server.api_credentials.certificate_id, null)
+    nasApiCredentials = jsonencode(var.nas_servers[each.value].api_credentials == null ? null : {
+      apiUsername    = var.nas_servers[each.value].api_credentials.api_username
+      apiPassword    = var.nas_servers[each.value].api_credentials.api_password
+      apiCertificate = try(var.nas_servers[each.value].api_credentials.api_certificate, null)
+      certificateId  = try(var.nas_servers[each.value].api_credentials.certificate_id, null)
     })
-    smbCredentials = jsonencode(var.nas_server.smb_credentials == null ? null : {
-      username = var.nas_server.smb_credentials.username
-      password = var.nas_server.smb_credentials.password
+    smbCredentials = jsonencode(var.nas_servers[each.value].smb_credentials == null ? null : {
+      username = var.nas_servers[each.value].smb_credentials.username
+      password = var.nas_servers[each.value].smb_credentials.password
     })
-    isIsilonChangelistEnabled = jsonencode(try(var.nas_server.is_isilon_changelist_enabled, null))
+    isIsilonChangelistEnabled = jsonencode(try(var.nas_servers[each.value].is_isilon_changelist_enabled, null))
   }
-
-  nas_server_id = try(
-    graphql_mutation.nas_system["server"].computed_update_operation_variables.fid,
-    null
-  )
-
-  configured_shares = {
-    for key, share in var.nas_shares : key => {
-      id = graphql_mutation.nas_share_configuration[key].computed_update_operation_variables.fid
-    }
-  }
-
-  existing_shares = {
-    for name, query in data.graphql_query.share_by_name :
-    "existing:${name}" => one(flatten([
-      for page in jsondecode(query.query_response).paginatedResponseData :
-      page.nasShares.nodes
-    ]))
-    if !contains(
-      [for share in values(local.configured_shares) : share.id],
-      one(flatten([
-        for page in jsondecode(query.query_response).paginatedResponseData :
-        page.nasShares.nodes
-      ])).id
-    )
-  }
-
-  shares_to_protect = merge(
-    {
-      for key, share in local.existing_shares : key => {
-        id = share.id
-      }
-    },
-    {
-      for key, share in local.configured_shares : "configured:${key}" => share
-    }
-  )
-}
-
-resource "graphql_mutation" "nas_system" {
-  for_each = nonsensitive(var.nas_server == null) ? {} : { server = "server" }
-
-  mutation_variables = local.nas_system_mutation_variables
 
   compute_mutation_keys = {
     fid = "data.registerNasSystem.nasSystemSummary.id"
@@ -84,11 +43,18 @@ resource "graphql_mutation" "nas_system" {
   enable_remote_state_verification = false
 }
 
+locals {
+  nas_server_ids = {
+    for key, mutation in graphql_mutation.nas_system :
+    key => mutation.computed_update_operation_variables.fid
+  }
+}
+
 resource "graphql_mutation" "nas_share_configuration" {
   for_each = nonsensitive(toset(keys(var.nas_shares)))
 
   mutation_variables = {
-    nasSourceId = jsonencode(local.nas_server_id)
+    nasSourceId = jsonencode(try(local.nas_server_ids[var.nas_shares[each.value].nas_server_key], ""))
     exportPoint = jsonencode(var.nas_shares[each.value].export_point)
     shareType   = jsonencode(var.nas_shares[each.value].share_type)
     credentials = jsonencode(var.nas_shares[each.value].credentials == null ? null : {
@@ -111,12 +77,20 @@ resource "graphql_mutation" "nas_share_configuration" {
 
   lifecycle {
     precondition {
-      condition     = local.nas_server_id != null
-      error_message = "nas_server must be configured before manually adding NAS shares."
+      condition     = contains(keys(var.nas_servers), var.nas_shares[each.value].nas_server_key)
+      error_message = "Each manually added NAS share must reference a key in nas_servers."
     }
   }
 
   enable_remote_state_verification = false
+}
+
+locals {
+  configured_shares = {
+    for key, share in var.nas_shares : key => {
+      id = graphql_mutation.nas_share_configuration[key].computed_update_operation_variables.fid
+    }
+  }
 }
 
 data "graphql_query" "share_by_name" {
@@ -131,6 +105,38 @@ data "graphql_query" "share_by_name" {
   paginated = true
 }
 
+locals {
+  existing_shares = {
+    for name, query in data.graphql_query.share_by_name :
+    "existing:${name}" => one(flatten([
+      for page in jsondecode(query.query_response).paginatedResponseData :
+      page.nasShares.nodes
+    ]))
+    if !contains(
+      [for share in values(local.configured_shares) : share.id],
+      one(flatten([
+        for page in jsondecode(query.query_response).paginatedResponseData :
+        page.nasShares.nodes
+      ])).id
+    )
+  }
+
+  shares_to_protect = merge(
+    {
+      for key, share in local.existing_shares : key => {
+        id     = share.id
+        sla_id = lookup(var.sla_ids, key, "")
+      }
+    },
+    {
+      for key, share in local.configured_shares : "configured:${key}" => {
+        id     = share.id
+        sla_id = lookup(var.sla_ids, "configured:${key}", "")
+      }
+    }
+  )
+}
+
 resource "graphql_mutation" "nas_share_protection" {
   for_each = nonsensitive(local.shares_to_protect)
 
@@ -138,7 +144,7 @@ resource "graphql_mutation" "nas_share_protection" {
     input = jsonencode({
       objectIds           = [each.value.id]
       slaDomainAssignType = "protectWithSlaId"
-      slaOptionalId       = var.sla_id
+      slaOptionalId       = each.value.sla_id
     })
   }
 
@@ -159,6 +165,16 @@ resource "graphql_mutation" "nas_share_protection" {
   update_mutation = file("${path.module}/../../gql_files/assign-sla.graphql")
   delete_mutation = file("${path.module}/../../gql_files/assign-sla.graphql")
   read_query      = file("${path.module}/../../gql_files/query-nas-share.graphql")
+
+  lifecycle {
+    precondition {
+      condition = can(regex(
+        "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+        each.value.sla_id
+      ))
+      error_message = "Each NAS share must be assigned a valid SLA Domain UUID in sla_ids."
+    }
+  }
 
   enable_remote_state_verification = false
 }

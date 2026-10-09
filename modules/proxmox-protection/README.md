@@ -21,7 +21,10 @@ module "proxmox_protection" {
       object_type = "PROXMOX_CLUSTER"
     }
   }
-  sla_id = "00000000-0000-0000-0000-000000000000"
+  sla_ids = {
+    "object:app_vm" = "00000000-0000-0000-0000-000000000000"
+    "object:cluster" = "11111111-1111-1111-1111-111111111111"
+  }
 }
 ```
 
@@ -30,3 +33,4 @@ assignment mutation. Removing a Terraform entry unassigns protection; it does
 not remove the Proxmox object or its snapshots. Remote state verification is
 disabled because the GraphQL provider cannot reconcile the nested SLA
 assignment mutation against the generic hierarchy-object read response.
+`sla_ids` uses `object:<Terraform object key>` entries.

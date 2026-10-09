@@ -16,12 +16,8 @@ variable "tag_ids" {
   }
 }
 
-variable "sla_id" {
-  description = "Rubrik ID of the SLA Domain to assign to each vSphere folder and tag."
-  type        = string
-
-  validation {
-    condition     = can(regex("^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$", var.sla_id))
-    error_message = "The SLA Domain ID must be a UUID."
-  }
+variable "sla_ids" {
+  description = "SLA Domain IDs keyed as folder:<name> or tag:<UUID>."
+  type        = map(string)
+  default     = {}
 }

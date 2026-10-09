@@ -144,7 +144,7 @@ resource "graphql_mutation" "linux_fileset_protection" {
     input = jsonencode({
       objectIds           = [each.value]
       slaDomainAssignType = "protectWithSlaId"
-      slaOptionalId       = var.sla_id
+      slaOptionalId       = lookup(var.sla_ids, "assignment:${each.key}", "")
     })
   }
 
@@ -168,8 +168,11 @@ resource "graphql_mutation" "linux_fileset_protection" {
 
   lifecycle {
     precondition {
-      condition     = can(regex("^[0-9a-fA-F-]{36}$", var.sla_id))
-      error_message = "A valid SLA Domain UUID is required when fileset assignments are configured."
+      condition = can(regex(
+        "^[0-9a-fA-F-]{36}$",
+        lookup(var.sla_ids, "assignment:${each.key}", "")
+      ))
+      error_message = "Each fileset assignment must be assigned a valid SLA Domain UUID in sla_ids."
     }
   }
 

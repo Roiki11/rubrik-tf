@@ -6,9 +6,9 @@ output "share_protection_state" {
   }
 }
 
-output "nas_server_id" {
-  description = "Rubrik ID of the registered NAS server, or null if no server was configured."
-  value       = local.nas_server_id
+output "nas_server_ids" {
+  description = "Map of configured NAS server keys to Rubrik IDs."
+  value       = local.nas_server_ids
 }
 
 output "nas_share_configuration_state" {

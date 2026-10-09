@@ -1,0 +1,3 @@
+mutation PreserveManagedCloudDirectSystem {
+  __typename
+}
