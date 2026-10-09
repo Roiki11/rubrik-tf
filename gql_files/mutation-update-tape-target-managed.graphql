@@ -1,0 +1,35 @@
+mutation UpdateManagedTapeTarget(
+  $id: UUID!
+  $hostName: String
+  $hostPort: Int
+  $name: String
+  $password: String
+  $username: String
+) {
+  updateTapeTarget(
+    input: {
+      id: $id
+      hostName: $hostName
+      hostPort: $hostPort
+      name: $name
+      password: $password
+      username: $username
+    }
+  ) {
+    clusterName
+    consumedBytes
+    failedTasks
+    id
+    isActive
+    isArchived
+    isComplianceImmutabilitySupported
+    locationConnectionStatus
+    locationScope
+    name
+    readerRetrievalMethod
+    runningTasks
+    status
+    targetType
+    upgradeStatus
+  }
+}

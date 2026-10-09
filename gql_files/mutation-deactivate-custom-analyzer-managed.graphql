@@ -1,0 +1,3 @@
+mutation DeactivateManagedCustomAnalyzer($id: String!) {
+  deactivateCustomAnalyzer(analyzerId: $id)
+}

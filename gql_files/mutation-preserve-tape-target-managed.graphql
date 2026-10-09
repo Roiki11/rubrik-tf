@@ -1,0 +1,5 @@
+mutation PreserveManagedTapeTarget($id: UUID!) {
+  updateTapeTarget(input: { id: $id }) {
+    id
+  }
+}

@@ -1,0 +1,14 @@
+query VSphereServersByName($name: String!, $first: Int!) {
+  vSphereVCenterConnection(
+    first: $first
+    filter: [{ field: NAME_EXACT_MATCH, texts: [$name] }]
+  ) {
+    nodes {
+      id
+      name
+      username
+      isStandaloneHost
+      isVmc
+    }
+  }
+}

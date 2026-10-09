@@ -1,0 +1,32 @@
+mutation CreateManagedClassificationPolicy(
+  $name: String
+  $description: String
+  $analyzerIds: [String!]
+  $colorEnum: ClassificationPolicyColor
+  $documentTypeIds: [UUID!]
+  $mode: ClassificationPolicyMode
+) {
+  createPolicy(
+    input: {
+      name: $name
+      description: $description
+      analyzerIds: $analyzerIds
+      colorEnum: $colorEnum
+      documentTypeIds: $documentTypeIds
+      mode: $mode
+    }
+  ) {
+    colorEnum
+    createdTime
+    deletable
+    description
+    hierarchyObjectIds
+    id
+    isInactive
+    lastUpdatedTime
+    mode
+    name
+    numAnalyzers
+    totalObjects
+  }
+}

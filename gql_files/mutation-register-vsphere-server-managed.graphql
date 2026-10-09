@@ -1,0 +1,11 @@
+mutation RegisterManagedVSphereServer($input: CreateVsphereVcenterInput!) {
+  createVsphereVcenter(input: $input) {
+    asyncRequestStatus {
+      id
+      status
+    }
+    id
+    isHotAddProxyEnabledForOnPremVcenter
+    isVmc
+  }
+}

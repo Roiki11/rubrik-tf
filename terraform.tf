@@ -64,6 +64,20 @@ module "proxmox_protection" {
   sla_id  = module.rubrik_sla_domain.id
 }
 
+module "classification_policy_analyzers" {
+  source = "./modules/classification-policy-analyzers"
+
+  analyzers = var.classification_analyzers
+  policies  = var.classification_policies
+}
+
+module "sensitive_data_discovery" {
+  source = "./modules/sensitive-data-discovery"
+
+  enabled       = var.sensitive_data_discovery_enabled
+  summary_input = var.sensitive_data_summary_input
+}
+
 module "nas_share_protection" {
   source = "./modules/nas-share-protection"
 
@@ -97,6 +111,25 @@ module "automation_service_account" {
   name        = var.service_account_name
   description = var.service_account_description
   role_ids    = setunion(var.service_account_role_ids, [module.object_inventory_role.role_id])
+}
+
+module "vsphere_server_registration" {
+  source = "./modules/vsphere-server-registration"
+
+  servers = var.vsphere_servers
+}
+
+module "proxmox_hosts" {
+  source = "./modules/proxmox-hosts"
+
+  hosts = var.proxmox_hosts
+}
+
+module "tape_archival_targets" {
+  source = "./modules/tape-archival-targets"
+
+  targets        = var.tape_archival_targets
+  reader_targets = var.tape_reader_targets
 }
 
 output "object_inventory_role_id" {
@@ -149,6 +182,26 @@ output "proxmox_object_ids" {
   value       = module.proxmox_protection.object_ids
 }
 
+output "classification_analyzer_ids" {
+  description = "Map of configured custom analyzer names to Rubrik IDs."
+  value       = module.classification_policy_analyzers.analyzer_ids
+}
+
+output "classification_policy_ids" {
+  description = "Map of configured classification policy names to Rubrik IDs."
+  value       = module.classification_policy_analyzers.policy_ids
+}
+
+output "sensitive_data_summary" {
+  description = "Rubrik sensitive-data summary, or null when reporting is disabled."
+  value       = module.sensitive_data_discovery.sensitive_data_summary
+}
+
+output "data_discovery_object_counts" {
+  description = "Rubrik counts for assigned, unassigned, and unsupported discovery objects, or null when reporting is disabled."
+  value       = module.sensitive_data_discovery.discovery_object_counts
+}
+
 output "nas_server_id" {
   description = "Rubrik ID of the registered NAS server, or null if none was configured."
   value       = module.nas_share_protection.nas_server_id
@@ -168,4 +221,24 @@ output "service_account_client_secret" {
 output "service_account_access_token_uri" {
   description = "OAuth endpoint for exchanging the service-account credentials."
   value       = module.automation_service_account.access_token_uri
+}
+
+output "vsphere_server_ids" {
+  description = "Map of configured vSphere server keys to Rubrik inventory IDs."
+  value       = module.vsphere_server_registration.server_ids
+}
+
+output "proxmox_environment_ids" {
+  description = "Map of configured Proxmox host keys to Rubrik environment IDs."
+  value       = module.proxmox_hosts.environment_ids
+}
+
+output "tape_archival_target_ids" {
+  description = "Map of configured tape archival target keys to Rubrik IDs."
+  value       = module.tape_archival_targets.target_ids
+}
+
+output "tape_reader_target_ids" {
+  description = "Map of configured tape reader target keys to Rubrik IDs."
+  value       = module.tape_archival_targets.reader_target_ids
 }

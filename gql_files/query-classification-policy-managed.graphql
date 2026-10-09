@@ -1,0 +1,16 @@
+query ManagedClassificationPolicy($id: String!) {
+  policy(policyId: $id) {
+    colorEnum
+    createdTime
+    deletable
+    description
+    hierarchyObjectIds
+    id
+    isInactive
+    lastUpdatedTime
+    mode
+    name
+    numAnalyzers
+    totalObjects
+  }
+}

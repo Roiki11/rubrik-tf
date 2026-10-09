@@ -1,0 +1,41 @@
+mutation CreateManagedTapeTarget(
+  $clusterUuid: UUID!
+  $destinationFolderName: String!
+  $encryptionPassword: String!
+  $hostName: String!
+  $hostPort: Int!
+  $integralVolumeName: String!
+  $name: String!
+  $password: String!
+  $username: String!
+) {
+  createTapeTarget(
+    input: {
+      clusterUuid: $clusterUuid
+      destinationFolderName: $destinationFolderName
+      encryptionPassword: $encryptionPassword
+      hostName: $hostName
+      hostPort: $hostPort
+      integralVolumeName: $integralVolumeName
+      name: $name
+      password: $password
+      username: $username
+    }
+  ) {
+    clusterName
+    consumedBytes
+    failedTasks
+    id
+    isActive
+    isArchived
+    isComplianceImmutabilitySupported
+    locationConnectionStatus
+    locationScope
+    name
+    readerRetrievalMethod
+    runningTasks
+    status
+    targetType
+    upgradeStatus
+  }
+}

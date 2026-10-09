@@ -25,6 +25,9 @@ mechanism rather than committing them to a tfvars file.
 | [`classification-policy-analyzers`](#classification-policy-analyzers) | Manage custom analyzers, classification policies, and object assignments. |
 | [`sensitive-data-discovery`](#sensitive-data-discovery) | Query sensitive-data summaries and discovery object counts. |
 | [`object-inventory-role`](#object-inventory-role) | Manage inventory-read access and resolve configured object IDs. |
+| [`vsphere-server-registration`](#vsphere-server-registration) | Register vCenter Servers and standalone ESXi hosts. |
+| [`proxmox-hosts`](#proxmox-hosts) | Update API-token and CA configuration for existing Proxmox environments. |
+| [`tape-archival-targets`](#tape-archival-targets) | Create and update tape archival and reader targets. |
 
 ## Root configuration inputs
 
@@ -55,6 +58,14 @@ mechanism rather than committing them to a tfvars file.
 | `service_account_description` | `string` | `""` | Optional service-account description. |
 | `service_account_role_ids` | `set(string)` | `[]` | Additional Rubrik role IDs to grant. The root configuration also grants the managed object-inventory role. |
 | `object_inventory_role_name` | `string` | `"Terraform object inventory reader"` | Name for the account-wide inventory-read role managed by the root configuration. |
+| `classification_analyzers` | `map(object)` | `{}` | Custom analyzers keyed by stable names. Supports analyzer type, risk, structured/unstructured rules, dictionaries, regexes, exclusions, and optional tagging. |
+| `classification_policies` | `map(object)` | `{}` | Classification policies keyed by stable names, including analyzer IDs/keys and target hierarchy/object/root/cluster IDs. `mode` accepts `DISCOVERY` or `COMPLIANCE`. |
+| `sensitive_data_discovery_enabled` | `bool` | `false` | Enable read-only queries for sensitive-data summary and discovery object counts. |
+| `sensitive_data_summary_input` | `any` | `{ includeBreakdown = true }` | `SensitiveDataSummaryInput` passed to Rubrik, including optional `filter` and `includeBreakdown`. |
+| `vsphere_servers` | `map(object)` | `{}` | vCenter/standalone ESXi registration definitions. See [vSphere server registration](#vsphere-server-registration). |
+| `proxmox_hosts` | `map(object)` | `{}` | Existing Proxmox environment IDs and API token/CA configuration. See [Proxmox hosts](#proxmox-hosts). |
+| `tape_archival_targets` | `map(object)` | `{}` | Tape target connection, credential, volume, and encryption settings. See [tape archival targets](#tape-archival-targets). |
+| `tape_reader_targets` | `map(object)` | `{}` | Tape reader target settings, including retrieval method. See [tape archival targets](#tape-archival-targets). |
 
 ### Root input example
 
@@ -116,6 +127,31 @@ sla_domain_archival_specs = [
 service_account_name        = "Terraform automation"
 service_account_description = "Managed by Terraform"
 service_account_role_ids    = []
+classification_analyzers = {
+  internal_reference = {
+    name          = "Internal reference"
+    analyzer_type = "REGEX"
+    risk          = "HIGH_RISK"
+    rule_types    = ["STRUCTURED", "UNSTRUCTURED"]
+    regex         = "REF-[0-9]{8}"
+  }
+}
+classification_policies = {
+  finance_discovery = {
+    name          = "Finance discovery"
+    mode          = "DISCOVERY"
+    analyzer_keys = ["internal_reference"]
+    object_ids    = ["00000000-0000-0000-0000-000000000000"]
+  }
+}
+sensitive_data_discovery_enabled = false
+sensitive_data_summary_input = {
+  includeBreakdown = true
+}
+vsphere_servers       = {}
+proxmox_hosts         = {}
+tape_archival_targets = {}
+tape_reader_targets   = {}
 ```
 
 For NAS configurations, add `nas_server` and/or `nas_shares` as described
@@ -470,6 +506,66 @@ The root configuration additionally grants its managed inventory-reader role
 to this account. The service-account client secret is an output and should be
 handled as sensitive data.
 
+### `classification-policy-analyzers`
+
+Source: `./modules/classification-policy-analyzers`
+
+| Variable | Type | Required/default | Values and notes |
+|---|---|---|---|
+| `analyzers` | `map(object)` | `{}` | Custom analyzer definitions keyed by Terraform name. Required fields: `name`, `analyzer_type`, and `risk`. Optional fields cover dictionaries, regexes, structured-data matching, rules, exclusions, proximity, tags, and inactive status. |
+| `policies` | `map(object)` | `{}` | Policy definitions keyed by Terraform name. Required field: `name`. Optional `mode` is `DISCOVERY` or `COMPLIANCE`; analyzer and target ID sets default empty. `analyzer_keys` references analyzers managed in the same module. |
+
+Analyzer `analyzer_type` uses Rubrik `AnalyzerTypeEnum` (for example,
+`REGEX`, `KEYWORD`, `EMAIL_ADDRESS`, or `US_SSN`); `risk` accepts `HIGH_RISK`,
+`MEDIUM_RISK`, `LOW_RISK`, `NO_RISK`, or `UNKNOWN_RISK`; `rule_types` accepts
+`STRUCTURED` and/or `UNSTRUCTURED`. See the
+[module README](./modules/classification-policy-analyzers/README.md) for
+examples and target assignment semantics.
+
+```hcl
+module "classification" {
+  source = "./modules/classification-policy-analyzers"
+
+  analyzers = {
+    internal_reference = {
+      name          = "Internal reference"
+      analyzer_type = "REGEX"
+      risk          = "HIGH_RISK"
+      rule_types    = ["STRUCTURED", "UNSTRUCTURED"]
+      regex         = "REF-[0-9]{8}"
+    }
+  }
+  policies = {
+    finance_discovery = {
+      name          = "Finance discovery"
+      mode          = "DISCOVERY"
+      analyzer_keys = ["internal_reference"]
+      object_ids    = ["00000000-0000-0000-0000-000000000000"]
+    }
+  }
+}
+```
+
+Policy object assignments use `object_ids`, `object_root_ids`, and
+`cluster_ids`. Deleting a policy or analyzer deactivates it because the
+GraphQL API exposes deactivation rather than hard deletion. Assignments are
+removed when their Terraform configuration is removed.
+
+### `sensitive-data-discovery`
+
+Source: `./modules/sensitive-data-discovery`
+
+| Variable | Type | Required/default | Values and notes |
+|---|---|---|---|
+| `enabled` | `bool` | `true` | Enables or skips reporting queries. When false, the outputs are `null`. |
+| `summary_input` | `any` | `{ includeBreakdown = true }` | Rubrik `SensitiveDataSummaryInput`; optional `filter` (an `AccessFilter`) and `includeBreakdown`. |
+
+This read-only module returns `sensitive_data_summary` and
+`discovery_object_counts` (objects assigned, unassigned, or unsupported).
+Configure scans by assigning objects to active `DISCOVERY` policies with
+`classification-policy-analyzers`; this module does not start a scan itself.
+See the [module README](./modules/sensitive-data-discovery/README.md).
+
 ### `object-inventory-role`
 
 Source: `./modules/object-inventory-role`
@@ -503,6 +599,51 @@ directly; the current Rubrik API lookup used here does not resolve tag names.
 Lookups use the calling GraphQL provider identity and do not automatically
 switch to the service account created by the root configuration.
 
+### `vsphere-server-registration`
+
+Source: `./modules/vsphere-server-registration`
+
+| Variable | Type | Required/default | Values and notes |
+|---|---|---|---|
+| `servers` | `map(object)` | `{}` | vCenter or standalone ESXi registrations keyed by stable Terraform names. Required fields: `cluster_uuid`, `hostname`, `username`, and `password`. Optional fields: `ca_certs`, `is_standalone_host`, `should_enable_hot_add_proxy_onprem`, `conflict_resolution_authz`, `org_network_id`, and `is_compute_visibility_filter_disabled`. |
+
+`conflict_resolution_authz` supports `AllowAutoConflictResolution` or
+`NoConflictResolution`. Registration credentials are stored in Terraform state.
+Changes replace the registration because the API does not expose a credential
+update operation; destroying an entry unregisters the server. Unregistration
+can affect protection and inventory visibility. See the
+[module README](./modules/vsphere-server-registration/README.md).
+
+### `proxmox-hosts`
+
+Source: `./modules/proxmox-hosts`
+
+| Variable | Type | Required/default | Values and notes |
+|---|---|---|---|
+| `hosts` | `map(object)` | `{}` | Existing Rubrik Proxmox environments keyed by stable Terraform names. Each object requires `environment_id` and at least one of `api_token` or `ca_certs`. |
+
+This module updates already-registered environments; the discovered GraphQL
+API has no mutation to register or unregister Proxmox environments. Removing a
+Terraform entry does not deregister it or revert its credentials. Tokens are
+stored in Terraform state. See the
+[module README](./modules/proxmox-hosts/README.md).
+
+### `tape-archival-targets`
+
+Source: `./modules/tape-archival-targets`
+
+| Variable | Type | Required/default | Values and notes |
+|---|---|---|---|
+| `targets` | `map(object)` | `{}` | Tape writer targets keyed by stable Terraform names. Each requires `cluster_uuid`, `destination_folder_name`, `encryption_password`, `host_name`, `host_port`, `integral_volume_name`, `name`, `password`, and `username`. |
+| `reader_targets` | `map(object)` | `{}` | Tape reader targets with the same required fields as `targets`, plus required `reader_retrieval_method` and optional `archival_data_source_ids`. Retrieval methods: `OBJECT_LIST_AND_DETAILS`, `OBJECT_LIST_ONLY`, or `SPECIFIC_OBJECT_LIST_AND_DETAILS`. |
+
+Credentials and encryption passwords are stored in Terraform state. Rubrik
+does not expose a delete mutation for tape targets, so removing an entry
+preserves the target. The API update mutation only supports target name, host,
+port, username, and password; it cannot change volume, folder, encryption, or
+reader retrieval configuration. See the
+[module README](./modules/tape-archival-targets/README.md).
+
 ## Root outputs
 
 The root configuration exports:
@@ -519,7 +660,15 @@ The root configuration exports:
 | `kubernetes_protection_set_ids` | Map of configured Kubernetes protection-set names to Rubrik inventory IDs. |
 | `kubernetes_namespace_ids` | Map of configured Kubernetes namespace keys to Rubrik inventory IDs. |
 | `proxmox_object_ids` | Map of configured Proxmox object keys to Rubrik inventory IDs. |
+| `classification_analyzer_ids` | Map of configured custom analyzer names to Rubrik IDs. |
+| `classification_policy_ids` | Map of configured classification policy names to Rubrik IDs. |
+| `sensitive_data_summary` | Rubrik sensitive-data summary, or `null` when reporting is disabled. |
+| `data_discovery_object_counts` | Rubrik counts for assigned, unassigned, and unsupported discovery objects, or `null` when reporting is disabled. |
 | `nas_server_id` | Registered NAS server ID, or `null` when no server was configured. |
 | `service_account_client_id` | OAuth client ID for the service account. |
 | `service_account_client_secret` | Sensitive OAuth client secret. |
 | `service_account_access_token_uri` | OAuth endpoint used to exchange service-account credentials. |
+| `vsphere_server_ids` | Map of registered vSphere server keys to Rubrik IDs. |
+| `proxmox_environment_ids` | Map of configured Proxmox host keys to Rubrik environment IDs. |
+| `tape_archival_target_ids` | Map of tape archival target keys to Rubrik IDs. |
+| `tape_reader_target_ids` | Map of tape reader target keys to Rubrik IDs. |

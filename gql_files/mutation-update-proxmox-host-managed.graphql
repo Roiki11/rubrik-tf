@@ -1,0 +1,10 @@
+mutation UpdateManagedProxmoxHost($input: UpdateProxmoxEnvironmentInput!) {
+  updateProxmoxEnvironment(input: $input) {
+    output {
+      slaAssignable {
+        id
+        name
+      }
+    }
+  }
+}

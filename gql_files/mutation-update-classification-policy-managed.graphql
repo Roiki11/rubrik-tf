@@ -1,0 +1,38 @@
+mutation UpdateManagedClassificationPolicy(
+  $id: String!
+  $name: String
+  $description: String
+  $analyzerIds: [String!]
+  $colorEnum: ClassificationPolicyColor
+  $documentTypeIds: [UUID!]
+  $mode: ClassificationPolicyMode
+) {
+  updatePolicy(
+    input: {
+      id: $id
+      name: $name
+      description: $description
+      analyzerIds: $analyzerIds
+      colorEnum: $colorEnum
+      documentTypeIds: $documentTypeIds
+      mode: $mode
+      updateName: true
+      updateDescription: true
+      updateAnalyzerIds: true
+      updateMode: true
+    }
+  ) {
+    colorEnum
+    createdTime
+    deletable
+    description
+    hierarchyObjectIds
+    id
+    isInactive
+    lastUpdatedTime
+    mode
+    name
+    numAnalyzers
+    totalObjects
+  }
+}

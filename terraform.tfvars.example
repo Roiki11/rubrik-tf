@@ -64,3 +64,13 @@ object_inventory_role_name  = "Terraform object inventory reader"
 service_account_role_ids = [
   "44444444-4444-4444-4444-444444444444",
 ]
+classification_analyzers = {}
+classification_policies  = {}
+sensitive_data_discovery_enabled = false
+sensitive_data_summary_input = {
+  includeBreakdown = true
+}
+vsphere_servers       = {}
+proxmox_hosts         = {}
+tape_archival_targets = {}
+tape_reader_targets   = {}

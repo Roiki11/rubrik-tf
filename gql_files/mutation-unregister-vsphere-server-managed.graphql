@@ -1,0 +1,11 @@
+mutation UnregisterManagedVSphereServer($id: String!) {
+  vsphereDeleteVcenter(input: { id: $id }) {
+    endTime
+    id
+    nodeId
+    progress
+    result
+    startTime
+    status
+  }
+}

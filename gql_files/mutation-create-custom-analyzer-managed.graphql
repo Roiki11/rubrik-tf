@@ -1,0 +1,71 @@
+mutation CreateManagedCustomAnalyzer(
+  $analyzerRiskInstance: AnalyzerRiskInstanceInput
+  $analyzerType: AnalyzerTypeEnum
+  $dictionary: [String!]
+  $dictionaryCsv: String
+  $excludeFieldNamePattern: String
+  $excludePathPattern: String
+  $excludeValueRegex: String
+  $isInactive: Boolean
+  $keyRegex: String
+  $name: String
+  $proximityDistance: Int
+  $proximityKeywordsRegex: String
+  $regex: String
+  $risk: RiskLevelType
+  $ruleTypes: [AnalyzerRuleType!]
+  $structuredDictionary: [String!]
+  $structuredDictionaryCsv: String
+  $structuredKeyDictionary: [String!]
+  $structuredKeyDictionaryCsv: String
+  $structuredValueRegex: String
+  $tagId: Int
+) {
+  createCustomAnalyzer(
+    input: {
+      analyzerRiskInstance: $analyzerRiskInstance
+      analyzerType: $analyzerType
+      dictionary: $dictionary
+      dictionaryCsv: $dictionaryCsv
+      excludeFieldNamePattern: $excludeFieldNamePattern
+      excludePathPattern: $excludePathPattern
+      excludeValueRegex: $excludeValueRegex
+      isInactive: $isInactive
+      keyRegex: $keyRegex
+      name: $name
+      proximityDistance: $proximityDistance
+      proximityKeywordsRegex: $proximityKeywordsRegex
+      regex: $regex
+      risk: $risk
+      ruleTypes: $ruleTypes
+      structuredDictionary: $structuredDictionary
+      structuredDictionaryCsv: $structuredDictionaryCsv
+      structuredKeyDictionary: $structuredKeyDictionary
+      structuredKeyDictionaryCsv: $structuredKeyDictionaryCsv
+      structuredValueRegex: $structuredValueRegex
+      tagId: $tagId
+    }
+  ) {
+    analyzerType
+    dictionary
+    dictionaryCsv
+    excludeFieldNamePattern
+    excludePathPattern
+    excludeValueRegex
+    id
+    isInactive
+    keyRegex
+    name
+    proximityDistance
+    proximityKeywordsRegex
+    regex
+    risk
+    ruleTypes
+    structuredDictionary
+    structuredDictionaryCsv
+    structuredKeyDictionary
+    structuredKeyDictionaryCsv
+    structuredValueRegex
+    tagId
+  }
+}

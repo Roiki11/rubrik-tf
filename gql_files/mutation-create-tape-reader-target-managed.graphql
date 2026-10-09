@@ -1,0 +1,45 @@
+mutation CreateManagedTapeReaderTarget(
+  $archivalDataSourceIds: [String!]
+  $clusterUuid: UUID!
+  $destinationFolderName: String!
+  $encryptionPassword: String!
+  $hostName: String!
+  $hostPort: Int!
+  $integralVolumeName: String!
+  $name: String!
+  $password: String!
+  $readerRetrievalMethod: ReaderRetrievalMethod!
+  $username: String!
+) {
+  createTapeReaderTarget(
+    input: {
+      archivalDataSourceIds: $archivalDataSourceIds
+      clusterUuid: $clusterUuid
+      destinationFolderName: $destinationFolderName
+      encryptionPassword: $encryptionPassword
+      hostName: $hostName
+      hostPort: $hostPort
+      integralVolumeName: $integralVolumeName
+      name: $name
+      password: $password
+      readerRetrievalMethod: $readerRetrievalMethod
+      username: $username
+    }
+  ) {
+    clusterName
+    consumedBytes
+    failedTasks
+    id
+    isActive
+    isArchived
+    isComplianceImmutabilitySupported
+    locationConnectionStatus
+    locationScope
+    name
+    readerRetrievalMethod
+    runningTasks
+    status
+    targetType
+    upgradeStatus
+  }
+}
