@@ -1,0 +1,17 @@
+query GitHubRepository($workloadId: UUID!) {
+      gitHubRepository(workloadId: $workloadId) {
+        authorizedOperations
+        id
+        isRelic
+        name
+        numWorkloadDescendants
+        objectType
+        onDemandSnapshotCount
+        orgId
+        orgName
+        rscPendingObjectPauseAssignment
+        size
+        slaAssignment
+        slaPauseStatus
+      }
+    }

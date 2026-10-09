@@ -1,0 +1,3 @@
+mutation SetCoordinatorLabels($input: SetCoordinatorLabelsInput!) {
+      setCoordinatorLabels(input: $input)
+    }

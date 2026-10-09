@@ -1,0 +1,11 @@
+mutation CreateMssqlLogShippingConfiguration($input: CreateMssqlLogShippingConfigurationInput!) {
+      createMssqlLogShippingConfiguration(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

@@ -1,0 +1,11 @@
+mutation CreateMssqlLiveMount($input: CreateMssqlLiveMountInput!) {
+      createMssqlLiveMount(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

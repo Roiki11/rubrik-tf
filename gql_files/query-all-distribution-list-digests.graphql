@@ -1,0 +1,15 @@
+query {
+      allDistributionListDigests {
+        account
+        clusterUuids
+        creatorEmailAddress
+        digestId
+        digestName
+        eventDigestConfigJson
+        frequency
+        includeAudits
+        includeEvents
+        isImmediate
+        recipientUserId
+      }
+    }

@@ -1,0 +1,9 @@
+mutation UpdateWhitelistedAnalyzers($stdPath: String!, $snappableFid: String!, $snapshotFid: String!, $analyzerIds: [String!]!, $runAsync: Boolean!) {
+      updateWhitelistedAnalyzers(
+        stdPath: $stdPath
+        snappableFid: $snappableFid
+        snapshotFid: $snapshotFid
+        analyzerIds: $analyzerIds
+        runAsync: $runAsync
+      )
+    }

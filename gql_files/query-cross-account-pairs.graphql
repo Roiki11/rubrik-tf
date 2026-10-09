@@ -1,0 +1,16 @@
+query {
+      crossAccountPairs(first: 10) {
+        nodes {
+          lastSyncedAt
+          name
+          role
+          status
+          url
+          uuid
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

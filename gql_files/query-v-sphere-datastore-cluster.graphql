@@ -1,0 +1,19 @@
+query VSphereDatastoreCluster($fid: UUID!) {
+      vSphereDatastoreCluster(fid: $fid) {
+        authorizedOperations
+        capacity
+        cdmId
+        cdmPendingObjectPauseAssignment
+        freeSpace
+        id
+        isReplica
+        isSdrsEnabled
+        name
+        numWorkloadDescendants
+        objectType
+        replicatedObjectCount
+        slaAssignment
+        slaPauseStatus
+        vcenterId
+      }
+    }

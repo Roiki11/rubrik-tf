@@ -1,0 +1,7 @@
+query HypervServers($input: QueryHypervHostInput!) {
+      hypervServers(input: $input) {
+        hasMore
+        nextCursor
+        total
+      }
+    }

@@ -1,0 +1,30 @@
+query {
+      pureStorageVolumesV1(first: 10) {
+        nodes {
+          arrayId
+          authorizedOperations
+          cdmId
+          cdmLink
+          cdmPendingObjectPauseAssignment
+          clusterUuid
+          id
+          isRelic
+          isReplica
+          name
+          numWorkloadDescendants
+          objectType
+          onDemandSnapshotCount
+          primaryClusterUuid
+          pureStorageId
+          replicatedObjectCount
+          serialNumber
+          size
+          slaAssignment
+          slaPauseStatus
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

@@ -1,0 +1,17 @@
+query VSphereDatacenter($fid: UUID!) {
+      vSphereDatacenter(fid: $fid) {
+        authorizedOperations
+        cdmId
+        cdmPendingObjectPauseAssignment
+        id
+        isReplica
+        name
+        numWorkloadDescendants
+        objectType
+        replicatedObjectCount
+        slaAssignment
+        slaPauseStatus
+        snapshotConsistencyMandate
+        snapshotConsistencySource
+      }
+    }

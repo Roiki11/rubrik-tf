@@ -1,0 +1,3 @@
+mutation UpdateReplicationTarget($input: UpdateReplicationTargetInput!) {
+      updateReplicationTarget(input: $input)
+    }

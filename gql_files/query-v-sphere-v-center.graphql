@@ -1,0 +1,26 @@
+query VSphereVCenter($fid: UUID!) {
+      vSphereVCenter(fid: $fid) {
+        authorizedOperations
+        caCerts
+        cdmPendingObjectPauseAssignment
+        conflictResolutionAuthz
+        id
+        isComputeVisibilityFilterDisabled
+        isHotAddEnabledForOnPremVcenter
+        isReplica
+        isStandaloneHost
+        isVmc
+        lastRefreshTime
+        name
+        numWorkloadDescendants
+        objectType
+        replicatedObjectCount
+        slaAssignment
+        slaPauseStatus
+        snapshotConsistencyMandate
+        snapshotConsistencySource
+        username
+        vcenterId
+        vmcProvider
+      }
+    }

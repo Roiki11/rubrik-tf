@@ -1,0 +1,7 @@
+query {
+      allRvcSsOvaDetails {
+        cdmVersion
+        ovaDownloadLink
+        ovaSize
+      }
+    }

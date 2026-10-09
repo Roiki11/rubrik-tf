@@ -1,0 +1,5 @@
+query InventorySubHierarchyRoot($rootEnum: InventorySubHierarchyRootEnum!) {
+      inventorySubHierarchyRoot(rootEnum: $rootEnum) {
+        rootEnum
+      }
+    }

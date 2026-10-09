@@ -1,0 +1,5 @@
+mutation PitRestoreMysqlInstance($input: PitRestoreMysqldbInstanceInput!) {
+      pitRestoreMysqlInstance(input: $input) {
+        id
+      }
+    }

@@ -1,0 +1,5 @@
+query CapSettingsData($input: CapSettingsDataInput!) {
+      capSettingsData(input: $input) {
+        currentSettingsJson
+      }
+    }

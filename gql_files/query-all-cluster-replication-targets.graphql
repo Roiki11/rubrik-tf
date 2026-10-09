@@ -1,0 +1,6 @@
+query AllClusterReplicationTargets($clusterUuid: UUID!) {
+      allClusterReplicationTargets(clusterUuid: $clusterUuid) {
+        id
+        name
+      }
+    }

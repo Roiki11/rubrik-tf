@@ -1,0 +1,5 @@
+mutation AssignSla($input: AssignSlaInput!) {
+  assignSla(input: $input) {
+    success
+  }
+}

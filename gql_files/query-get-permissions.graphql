@@ -1,0 +1,5 @@
+query GetPermissions($roleId: String!) {
+      getPermissions(roleId: $roleId) {
+        operation
+      }
+    }

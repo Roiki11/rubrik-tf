@@ -1,0 +1,3 @@
+query AllPolicyFrameworks($policyTypes: [PolicyType!]!) {
+      allPolicyFrameworks(policyTypes: $policyTypes)
+    }

@@ -1,0 +1,38 @@
+query {
+      nutanixMounts(first: 10) {
+        nodes {
+          attachedDiskCount
+          cdmId
+          id
+          isDiskLevelMount
+          isMigrationDisabled
+          isVmReady
+          migrationJobInstanceId
+          migrationJobStatus
+          mountJobInstanceId
+          mountSpec
+          mountStatus
+          mountedDate
+          mountedVmFid
+          mountedVmId
+          name
+          nutanixClusterFid
+          nutanixClusterId
+          nutanixClusterName
+          organizationId
+          ownerId
+          powerStatus
+          snapshotDate
+          snapshotId
+          sourceVmFid
+          sourceVmId
+          sourceVmName
+          storageContainerName
+          unmountJobInstanceId
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

@@ -1,0 +1,11 @@
+mutation ExpireMongoOpsManagerSourceDownloadedSnapshots($input: ExpireMongoOpsManagerSourceDownloadedSnapshotsInput!) {
+      expireMongoOpsManagerSourceDownloadedSnapshots(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

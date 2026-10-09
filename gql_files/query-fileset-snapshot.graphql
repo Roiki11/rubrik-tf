@@ -1,0 +1,6 @@
+query FilesetSnapshot($id: String!) {
+      filesetSnapshot(id: $id) {
+        lastModified
+        size
+      }
+    }

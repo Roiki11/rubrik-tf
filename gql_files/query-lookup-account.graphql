@@ -1,0 +1,11 @@
+query LookupAccount($input: LookupAccountInput!) {
+      lookupAccount(input: $input) {
+        accountExpiryDate
+        accountHoldLength
+        accountState
+        accountStateUpdatedAt
+        accountType
+        holdWarningLength
+        subdomain
+      }
+    }

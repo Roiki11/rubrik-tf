@@ -1,0 +1,3 @@
+mutation DeleteNutanixPrismCentral($input: DeleteNutanixPrismCentralInput!) {
+      deleteNutanixPrismCentral(input: $input)
+    }

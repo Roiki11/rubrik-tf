@@ -1,0 +1,7 @@
+query PrincipalRiskTrend($sid: String!, $startTime: DateTime!, $endTime: DateTime!) {
+      principalRiskTrend(
+        sid: $sid
+        startTime: $startTime
+        endTime: $endTime
+      )
+    }

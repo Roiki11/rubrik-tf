@@ -1,0 +1,9 @@
+query SlaAuditDetail($SlaId: UUID!) {
+      slaAuditDetail(SlaId: $SlaId) {
+        applyToExistingSnapshots
+        applyToOndemandAndDownloadedSnapshots
+        timestamp
+        userAction
+        userName
+      }
+    }

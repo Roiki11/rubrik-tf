@@ -1,0 +1,16 @@
+query SnappableContactSearch($snappableFid: UUID!, $orgId: UUID!) {
+      snappableContactSearch(
+        snappableFid: $snappableFid
+        orgId: $orgId
+        first: 10
+      ) {
+        nodes {
+          id
+          parentFolderId
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

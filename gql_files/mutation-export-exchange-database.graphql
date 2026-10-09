@@ -1,0 +1,11 @@
+mutation ExportExchangeDatabase($input: ExportExchangeDatabaseInput!) {
+      exportExchangeDatabase(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

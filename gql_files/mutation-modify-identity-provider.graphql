@@ -1,0 +1,3 @@
+mutation ModifyIdentityProvider($input: ModifyIdentityProviderInput!) {
+      modifyIdentityProvider(input: $input)
+    }

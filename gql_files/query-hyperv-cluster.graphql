@@ -1,0 +1,16 @@
+query HypervCluster($fid: UUID!) {
+      hypervCluster(fid: $fid) {
+        authorizedOperations
+        cdmPendingObjectPauseAssignment
+        connectionStatus
+        id
+        isReplica
+        name
+        numWorkloadDescendants
+        objectType
+        replicatedObjectCount
+        serverIds
+        slaAssignment
+        slaPauseStatus
+      }
+    }

@@ -1,0 +1,18 @@
+query ExchangeDag($fid: UUID!) {
+      exchangeDag(fid: $fid) {
+        authorizedOperations
+        backupPreference
+        cdmId
+        cdmPendingObjectPauseAssignment
+        id
+        isReplica
+        name
+        numWorkloadDescendants
+        objectType
+        primaryClusterUuid
+        replicatedObjectCount
+        slaAssignment
+        slaPauseStatus
+        totalHosts
+      }
+    }

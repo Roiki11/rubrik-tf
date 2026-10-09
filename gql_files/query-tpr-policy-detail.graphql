@@ -1,0 +1,12 @@
+query TprPolicyDetail($tprPolicyId: UUID!) {
+      tprPolicyDetail(tprPolicyId: $tprPolicyId) {
+        createdAt
+        description
+        isCdmEnforcementDisabled
+        name
+        orgId
+        policyId
+        policyScope
+        quorumRequirement
+      }
+    }

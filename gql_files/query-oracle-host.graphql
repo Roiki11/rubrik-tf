@@ -1,0 +1,19 @@
+query OracleHost($fid: UUID!) {
+      oracleHost(fid: $fid) {
+        authorizedOperations
+        cdmPendingObjectPauseAssignment
+        excludedDbUniqueNames
+        hostLogRetentionHours
+        id
+        isReplica
+        logBackupFrequency
+        logRetentionHours
+        name
+        numChannels
+        numWorkloadDescendants
+        objectType
+        replicatedObjectCount
+        slaAssignment
+        slaPauseStatus
+      }
+    }

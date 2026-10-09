@@ -1,0 +1,11 @@
+mutation CreateSapHanaSystemRefresh($input: CreateSapHanaSystemRefreshInput!) {
+      createSapHanaSystemRefresh(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

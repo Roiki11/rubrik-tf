@@ -1,0 +1,3 @@
+mutation JoinSmbDomain($input: JoinSmbDomainInput!) {
+      joinSmbDomain(input: $input)
+    }

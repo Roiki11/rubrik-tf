@@ -1,0 +1,6 @@
+query ViolationsCategorySummary($historicalDays: Int!, $policyTypes: [PolicyType!]!) {
+      violationsCategorySummary(
+        historicalDays: $historicalDays
+        policyTypes: $policyTypes
+      )
+    }

@@ -1,0 +1,31 @@
+query {
+      fusionComputeMounts(first: 10) {
+        nodes {
+          cdmId
+          clusterUrn
+          datastoreName
+          fid
+          hostName
+          hostUrn
+          isReady
+          mountTimestamp
+          mountedVmId
+          mountedVmName
+          name
+          nasIp
+          newVmUrn
+          siteUrn
+          snapshotDate
+          snapshotFid
+          sourceVmFid
+          sourceVmId
+          sourceVmName
+          unmountTimestamp
+          vmStatus
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

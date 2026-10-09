@@ -1,0 +1,21 @@
+query AllOrgsByIds($orgIds: [String!]!) {
+      allOrgsByIds(orgIds: $orgIds) {
+        allUrls
+        allowedClusters
+        authDomainConfig
+        crossAccountCapabilities
+        description
+        fullName
+        hasOwnIdpConfigured
+        id
+        isEnvoyRequired
+        isInheritIpAllowlistDisabled
+        isServiceAccountDisabled
+        mfaStatus
+        name
+        physicalStorageUsed
+        replicationOnlyClusters
+        shouldEnforceMfaForAll
+        tenantNetworkHealth
+      }
+    }

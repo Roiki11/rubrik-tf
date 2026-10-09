@@ -1,0 +1,3 @@
+mutation RegisterNasSystem($input: RegisterNasSystemInput!) {
+      registerNasSystem(input: $input)
+    }

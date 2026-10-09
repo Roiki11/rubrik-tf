@@ -1,0 +1,3 @@
+mutation DeleteUsersFromAccount($ids: [String!]!) {
+      deleteUsersFromAccount(ids: $ids)
+    }

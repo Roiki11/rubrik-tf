@@ -1,0 +1,11 @@
+query {
+      allConnectedClusters {
+        accountName
+        apiVersion
+        isAirGapped
+        isArchived
+        name
+        uuid
+        version
+      }
+    }

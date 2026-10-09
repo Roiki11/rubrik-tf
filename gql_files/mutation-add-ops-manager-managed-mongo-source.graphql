@@ -1,0 +1,5 @@
+mutation AddOpsManagerManagedMongoSource($input: AddOpsManagerManagedMongoSourceInput!) {
+      addOpsManagerManagedMongoSource(input: $input) {
+        id
+      }
+    }

@@ -1,0 +1,3 @@
+mutation CreateVsphereAdvancedTag($input: CreateVsphereAdvancedTagInput!) {
+      createVsphereAdvancedTag(input: $input)
+    }

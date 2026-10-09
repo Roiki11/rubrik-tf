@@ -1,0 +1,3 @@
+mutation VsphereVmDeleteSnapshot($input: VsphereVmDeleteSnapshotInput!) {
+      vsphereVmDeleteSnapshot(input: $input)
+    }

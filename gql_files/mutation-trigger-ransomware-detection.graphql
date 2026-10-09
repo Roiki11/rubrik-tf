@@ -1,0 +1,6 @@
+mutation TriggerRansomwareDetection($input: TriggerRansomwareDetectionInput!) {
+      triggerRansomwareDetection(input: $input) {
+        clusterUuid
+        jobId
+      }
+    }

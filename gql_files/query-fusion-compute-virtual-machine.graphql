@@ -1,0 +1,32 @@
+query FusionComputeVirtualMachine($fid: UUID!) {
+      fusionComputeVirtualMachine(fid: $fid) {
+        agentStatus
+        authorizedOperations
+        cdmId
+        cdmLink
+        cdmPendingObjectPauseAssignment
+        clusterId
+        clusterUuid
+        disks
+        fcVmId
+        guestOsName
+        hostId
+        id
+        ipAddresses
+        isRelic
+        isReplica
+        name
+        numWorkloadDescendants
+        objectType
+        onDemandSnapshotCount
+        primaryClusterUuid
+        replicatedObjectCount
+        resourceSpec
+        siteId
+        slaAssignment
+        slaPauseStatus
+        snapshotConsistencyMandate
+        vmName
+        vrmId
+      }
+    }

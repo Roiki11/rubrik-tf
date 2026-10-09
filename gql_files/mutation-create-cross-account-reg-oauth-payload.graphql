@@ -1,0 +1,3 @@
+mutation CreateCrossAccountRegOauthPayload($input: CreateCrossAccountRegOauthPayloadInput!) {
+      createCrossAccountRegOauthPayload(input: $input)
+    }

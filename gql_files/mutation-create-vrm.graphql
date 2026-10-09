@@ -1,0 +1,5 @@
+mutation CreateVrm($input: CreateVrmInput!) {
+      createVrm(input: $input) {
+        id
+      }
+    }

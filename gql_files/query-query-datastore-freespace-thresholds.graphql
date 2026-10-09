@@ -1,0 +1,3 @@
+query QueryDatastoreFreespaceThresholds($queryDatastoreFreespaceThresholdsInput: [QueryDatastoreFreespaceThresholdInput!]!) {
+      queryDatastoreFreespaceThresholds(queryDatastoreFreespaceThresholdsInput: $queryDatastoreFreespaceThresholdsInput)
+    }

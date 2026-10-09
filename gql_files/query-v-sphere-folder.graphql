@@ -1,0 +1,20 @@
+query VSphereFolder($fid: UUID!) {
+      vSphereFolder(fid: $fid) {
+        authorizedOperations
+        cdmId
+        cdmPendingObjectPauseAssignment
+        datacenterId
+        folderType
+        id
+        isReplica
+        name
+        numWorkloadDescendants
+        objectType
+        replicatedObjectCount
+        slaAssignment
+        slaPauseStatus
+        snapshotConsistencyMandate
+        snapshotConsistencySource
+        vCenterId
+      }
+    }

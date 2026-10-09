@@ -1,0 +1,22 @@
+query ArchivalLocationsForFailoverGroup($primaryClusterId: UUID!, $secondaryClusterId: UUID!) {
+      archivalLocationsForFailoverGroup(
+        primaryClusterId: $primaryClusterId
+        secondaryClusterId: $secondaryClusterId
+        first: 10
+      ) {
+        nodes {
+          id
+          ineligibilityReason
+          isEligible
+          isImmutabilityEnabled
+          locationStatus
+          locationType
+          name
+          storageLocation
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

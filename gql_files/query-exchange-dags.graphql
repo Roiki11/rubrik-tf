@@ -1,0 +1,24 @@
+query {
+      exchangeDags(first: 10) {
+        nodes {
+          authorizedOperations
+          backupPreference
+          cdmId
+          cdmPendingObjectPauseAssignment
+          id
+          isReplica
+          name
+          numWorkloadDescendants
+          objectType
+          primaryClusterUuid
+          replicatedObjectCount
+          slaAssignment
+          slaPauseStatus
+          totalHosts
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

@@ -1,0 +1,5 @@
+mutation HideRevealNasShares($input: HideRevealNasSharesInput!) {
+      hideRevealNasShares(input: $input) {
+        success
+      }
+    }

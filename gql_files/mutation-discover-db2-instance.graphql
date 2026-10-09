@@ -1,0 +1,11 @@
+mutation DiscoverDb2Instance($input: DiscoverDb2InstanceInput!) {
+      discoverDb2Instance(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

@@ -1,0 +1,3 @@
+mutation DisconnectExocomputeCluster($input: DisconnectExocomputeClusterInput!) {
+      disconnectExocomputeCluster(input: $input)
+    }

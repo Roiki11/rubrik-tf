@@ -1,0 +1,10 @@
+query AllArchivalLocationForecasts($locationIds: [UUID!]!) {
+      allArchivalLocationForecasts(locationIds: $locationIds) {
+        confidence
+        currentBytes
+        lastRefreshedAt
+        locationId
+        runwayWeeks
+        weeklyGrowthPct
+      }
+    }

@@ -1,0 +1,8 @@
+mutation ExportPrincipalsSummary($timelineDate: String!, $historicalDeltaDays: Int!) {
+      exportPrincipalsSummary(
+        timelineDate: $timelineDate
+        historicalDeltaDays: $historicalDeltaDays
+      ) {
+        isSuccessful
+      }
+    }

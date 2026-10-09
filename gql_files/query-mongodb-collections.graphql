@@ -1,0 +1,21 @@
+query {
+      mongodbCollections(first: 10) {
+        nodes {
+          authorizedOperations
+          backupCount
+          clusterUuid
+          id
+          isRelic
+          name
+          numWorkloadDescendants
+          objectType
+          rscPendingObjectPauseAssignment
+          slaAssignment
+          slaPauseStatus
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

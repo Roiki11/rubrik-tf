@@ -1,0 +1,11 @@
+mutation ExportMssqlDatabase($input: ExportMssqlDatabaseInput!) {
+      exportMssqlDatabase(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

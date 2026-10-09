@@ -1,0 +1,5 @@
+mutation VsphereVmRegisterAgent($input: VsphereVmRegisterAgentInput!) {
+      vsphereVmRegisterAgent(input: $input) {
+        success
+      }
+    }

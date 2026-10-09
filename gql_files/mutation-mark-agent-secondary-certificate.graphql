@@ -1,0 +1,8 @@
+mutation MarkAgentSecondaryCertificate($input: MarkAgentSecondaryCertificateInput!) {
+      markAgentSecondaryCertificate(input: $input) {
+        certId
+        clusterUuid
+        isAgentEnabled
+        name
+      }
+    }

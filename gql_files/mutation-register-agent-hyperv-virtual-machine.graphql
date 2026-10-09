@@ -1,0 +1,5 @@
+mutation RegisterAgentHypervVirtualMachine($input: RegisterAgentHypervVirtualMachineInput!) {
+      registerAgentHypervVirtualMachine(input: $input) {
+        success
+      }
+    }

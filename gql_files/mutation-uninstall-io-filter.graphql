@@ -1,0 +1,5 @@
+mutation UninstallIoFilter($input: UninstallIoFilterInput!) {
+      uninstallIoFilter(input: $input) {
+        success
+      }
+    }

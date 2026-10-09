@@ -1,0 +1,5 @@
+mutation AddVlan($input: AddVlanInput!) {
+      addVlan(input: $input) {
+        success
+      }
+    }

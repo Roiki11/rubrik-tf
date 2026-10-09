@@ -1,0 +1,5 @@
+mutation UpdateVcenterHotAddBandwidth($input: UpdateVcenterHotAddBandwidthInput!) {
+      updateVcenterHotAddBandwidth(input: $input) {
+        success
+      }
+    }

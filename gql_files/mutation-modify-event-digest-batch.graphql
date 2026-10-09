@@ -1,0 +1,3 @@
+mutation ModifyEventDigestBatch($input: ModifyEventDigestBatchInput!) {
+      modifyEventDigestBatch(input: $input)
+    }

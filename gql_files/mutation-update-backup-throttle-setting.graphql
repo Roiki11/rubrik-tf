@@ -1,0 +1,3 @@
+mutation UpdateBackupThrottleSetting($input: UpdateBackupThrottleSettingInput!) {
+      updateBackupThrottleSetting(input: $input)
+    }

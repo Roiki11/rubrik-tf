@@ -1,0 +1,21 @@
+query {
+      mysqlDatabases(first: 10) {
+        nodes {
+          authorizedOperations
+          cdmPendingObjectPauseAssignment
+          id
+          isRelic
+          isReplica
+          name
+          numWorkloadDescendants
+          objectType
+          replicatedObjectCount
+          slaAssignment
+          slaPauseStatus
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

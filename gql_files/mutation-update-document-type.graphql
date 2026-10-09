@@ -1,0 +1,3 @@
+mutation UpdateDocumentType($input: UpdateDocumentTypeInput!) {
+      updateDocumentType(input: $input)
+    }

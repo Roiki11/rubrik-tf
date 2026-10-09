@@ -1,0 +1,21 @@
+query GitHubOrganization($workloadId: UUID!) {
+      gitHubOrganization(workloadId: $workloadId) {
+        authorizedOperations
+        connectionStatus
+        devOpsOrgType
+        id
+        isRelic
+        lastRefreshTime
+        name
+        nativeId
+        numWorkloadDescendants
+        objectType
+        orgUrl
+        repoCount
+        repoHostType
+        rscPendingObjectPauseAssignment
+        slaAssignment
+        slaPauseStatus
+        zeusState
+      }
+    }

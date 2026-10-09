@@ -1,0 +1,3 @@
+mutation DeleteTotpConfigs($input: DeleteTotpConfigsInput!) {
+      deleteTotpConfigs(input: $input)
+    }

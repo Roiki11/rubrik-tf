@@ -1,0 +1,37 @@
+query {
+      kubernetesProtectionSets(first: 10) {
+        nodes {
+          authorizedOperations
+          cdmId
+          cdmLink
+          cdmPendingObjectPauseAssignment
+          clusterUuid
+          creationType
+          customResourceDependencies
+          definition
+          id
+          isRelic
+          isReplica
+          k8sClusterName
+          k8sClusterUuid
+          labelSelector
+          name
+          namespace
+          namespaceExcludePatterns
+          namespaceIncludePatterns
+          numWorkloadDescendants
+          objectType
+          onDemandSnapshotCount
+          primaryClusterUuid
+          replicatedObjectCount
+          rsName
+          rsType
+          slaAssignment
+          slaPauseStatus
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

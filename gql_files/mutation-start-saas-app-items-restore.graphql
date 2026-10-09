@@ -1,0 +1,6 @@
+mutation StartSaasAppItemsRestore($input: AppItemRestoreConfig!) {
+      startSaasAppItemsRestore(input: $input) {
+        jobId
+        taskchainId
+      }
+    }

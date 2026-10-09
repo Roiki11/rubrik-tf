@@ -1,0 +1,17 @@
+query Crawl($crawlId: String!) {
+      crawl(crawlId: $crawlId) {
+        dataCategoryIds
+        endTime
+        failedObjectCount
+        filesAnalyzeable
+        filesAnalyzed
+        filesTotal
+        filesWithHits
+        id
+        name
+        progress
+        startTime
+        status
+        totalHits
+      }
+    }

@@ -1,0 +1,19 @@
+query PostgreSQLDbCluster($fid: UUID!) {
+      postgreSQLDbCluster(fid: $fid) {
+        authorizedOperations
+        cdmId
+        cdmLink
+        cdmPendingObjectPauseAssignment
+        clusterMode
+        id
+        isRelic
+        isReplica
+        name
+        numWorkloadDescendants
+        objectType
+        onDemandSnapshotCount
+        replicatedObjectCount
+        slaAssignment
+        slaPauseStatus
+      }
+    }

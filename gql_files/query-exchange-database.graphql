@@ -1,0 +1,21 @@
+query ExchangeDatabase($fid: UUID!) {
+      exchangeDatabase(fid: $fid) {
+        activeCopies
+        authorizedOperations
+        cdmId
+        cdmLink
+        cdmPendingObjectPauseAssignment
+        id
+        isRelic
+        isReplica
+        name
+        numWorkloadDescendants
+        objectType
+        onDemandSnapshotCount
+        primaryClusterUuid
+        replicatedObjectCount
+        slaAssignment
+        slaPauseStatus
+        totalCopies
+      }
+    }

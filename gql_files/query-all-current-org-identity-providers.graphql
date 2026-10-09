@@ -1,0 +1,20 @@
+query {
+      allCurrentOrgIdentityProviders {
+        activeUserCount
+        allowIdpInitiatedSso
+        authorizedGroupsCount
+        entityId
+        expirationDate
+        id
+        isDefault
+        isForceAuthnEnabled
+        metadataJson
+        name
+        ownerOrgId
+        signInUrl
+        signOutUrl
+        signingCertificate
+        spInitiatedSignInUrl
+        spInitiatedTestUrl
+      }
+    }

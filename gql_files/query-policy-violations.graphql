@@ -1,0 +1,37 @@
+query PolicyViolations($policyTypes: [PolicyType!]!) {
+      policyViolations(
+        policyTypes: $policyTypes
+        first: 10
+      ) {
+        nodes {
+          createdAt
+          lastEvaluatedAt
+          lastUpdatedAt
+          lastUpdatedBy
+          name
+          originId
+          originStartTime
+          parentPolicyViolationId
+          policyVersion
+          policyViolationId
+          resourceCriticalViolationsCount
+          resourceHighViolationsCount
+          resourceId
+          resourceLowViolationsCount
+          resourceMaxSeverity
+          resourceMediumViolationsCount
+          resourceType
+          resourceViolationsCount
+          secondaryResourceId
+          secondaryResourceType
+          status
+          statusReason
+          userFriendlyViolationId
+          violationSeverity
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

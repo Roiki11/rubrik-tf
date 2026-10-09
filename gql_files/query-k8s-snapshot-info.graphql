@@ -1,0 +1,12 @@
+query K8sSnapshotInfo($snapshotId: UUID!, $namespaceId: UUID!, $isReplica: Boolean!) {
+      k8sSnapshotInfo(
+        snapshotId: $snapshotId
+        namespaceId: $namespaceId
+        isReplica: $isReplica
+      ) {
+        expirationTime
+        isArchived
+        namespace
+        snapshotTime
+      }
+    }

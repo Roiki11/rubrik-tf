@@ -1,0 +1,8 @@
+mutation PatchDb2Database($input: PatchDb2DatabaseInput!) {
+      patchDb2Database(input: $input) {
+        backupCompressionLibraryPath
+        backupParallelism
+        backupSessions
+        isBackupCompressionEnabled
+      }
+    }

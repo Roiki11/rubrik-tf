@@ -1,0 +1,8 @@
+mutation RecoverMongodbSource($input: MosaicRestoreDataInput!) {
+      recoverMongodbSource(input: $input) {
+        data
+        message
+        returnCode
+        status
+      }
+    }

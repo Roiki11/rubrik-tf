@@ -1,0 +1,19 @@
+query ClusterReportMigrationStatus($status: [CdmReportMigrationStatus!]!) {
+      clusterReportMigrationStatus(
+        status: $status
+        first: 10
+      ) {
+        nodes {
+          details
+          reportId
+          reportName
+          reportTemplate
+          rscReportId
+          status
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

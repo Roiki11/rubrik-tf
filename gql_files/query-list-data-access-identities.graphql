@@ -1,0 +1,42 @@
+query {
+      listDataAccessIdentities(first: 10) {
+        nodes {
+          creationTime
+          deletedAt
+          department
+          domainFid
+          domainId
+          domainName
+          entityId
+          entityName
+          fullName
+          hasInsights
+          hybridState
+          identityTags
+          idpType
+          isComplete
+          isNewlyAdded
+          isPrimary
+          lastChanged
+          nativeType
+          numDescendants
+          objectCount
+          previousRiskLevel
+          principalId
+          principalOrigin
+          principalType
+          privilegeType
+          riskLevel
+          rootDomainId
+          rootDomainName
+          status
+          title
+          uniqueIdentifier
+          upn
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

@@ -1,0 +1,3 @@
+query AppAccessGraph($input: AppAccessGraphInput!) {
+      appAccessGraph(input: $input)
+    }

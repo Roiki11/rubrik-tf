@@ -1,0 +1,8 @@
+mutation AssignRetentionSLAToSnapshots($globalSlaAssignType: SlaAssignTypeEnum!, $snapshotFids: [UUID!]!) {
+      assignRetentionSLAToSnapshots(
+        globalSlaAssignType: $globalSlaAssignType
+        snapshotFids: $snapshotFids
+      ) {
+        success
+      }
+    }

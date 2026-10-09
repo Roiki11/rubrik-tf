@@ -1,0 +1,3 @@
+mutation DeleteCephSetting($input: DeleteCephSettingInput!) {
+      deleteCephSetting(input: $input)
+    }

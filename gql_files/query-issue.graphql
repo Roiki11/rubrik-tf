@@ -1,0 +1,9 @@
+query Issue($issueId: String!) {
+      issue(issueId: $issueId) {
+        id
+        openTime
+        paginationId
+        resolvedTime
+        violations
+      }
+    }

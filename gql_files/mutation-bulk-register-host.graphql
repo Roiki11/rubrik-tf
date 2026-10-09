@@ -1,0 +1,7 @@
+mutation BulkRegisterHost($input: BulkRegisterHostInput!) {
+      bulkRegisterHost(input: $input) {
+        hasMore
+        nextCursor
+        total
+      }
+    }

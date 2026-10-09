@@ -1,0 +1,12 @@
+query CertificateInfo($input: GetCertificateInfoInput!) {
+      certificateInfo(input: $input) {
+        certificate
+        expiringAt
+        issuedBy
+        issuedOn
+        issuedTo
+        serialNumber
+        sha1Fingerprint
+        sha256Fingerprint
+      }
+    }

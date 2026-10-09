@@ -1,0 +1,5 @@
+mutation StartRscpUpgrade($input: StartRscpUpgradeInput!) {
+      startRscpUpgrade(input: $input) {
+        message
+      }
+    }

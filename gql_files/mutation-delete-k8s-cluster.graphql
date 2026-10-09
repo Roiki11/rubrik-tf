@@ -1,0 +1,11 @@
+mutation DeleteK8sCluster($input: DeleteK8sClusterInput!) {
+      deleteK8sCluster(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

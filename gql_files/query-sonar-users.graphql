@@ -1,0 +1,17 @@
+query {
+      sonarUsers(first: 10) {
+        nodes {
+          activityDelta
+          email
+          lastAccessTime
+          numActivities
+          subjectName
+          userSid
+          username
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

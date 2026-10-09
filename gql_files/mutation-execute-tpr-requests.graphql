@@ -1,0 +1,3 @@
+mutation ExecuteTprRequests($input: ExecuteTprRequestsInput!) {
+      executeTprRequests(input: $input)
+    }

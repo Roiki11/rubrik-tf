@@ -1,0 +1,11 @@
+mutation DownloadPureStorageProtectionGroupSnapshotFromLocation($input: DownloadPureStorageProtectionGroupSnapshotFromLocationInput!) {
+      downloadPureStorageProtectionGroupSnapshotFromLocation(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

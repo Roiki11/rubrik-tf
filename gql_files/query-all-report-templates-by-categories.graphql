@@ -1,0 +1,7 @@
+query AllReportTemplatesByCategories($input: AllReportTemplatesByCategoriesInput!) {
+      allReportTemplatesByCategories(input: $input) {
+        category
+        description
+        displayName
+      }
+    }

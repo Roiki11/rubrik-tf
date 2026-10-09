@@ -1,0 +1,7 @@
+query RansomwareInvestigationAnalysisSummary($startDay: String!, $endDay: String!, $timezone: String!) {
+      ransomwareInvestigationAnalysisSummary(
+        startDay: $startDay
+        endDay: $endDay
+        timezone: $timezone
+      )
+    }

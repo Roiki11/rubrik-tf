@@ -1,0 +1,3 @@
+mutation GetHealthMonitorPolicyStatus($input: GetHealthMonitorPolicyStatusInput!) {
+      getHealthMonitorPolicyStatus(input: $input)
+    }

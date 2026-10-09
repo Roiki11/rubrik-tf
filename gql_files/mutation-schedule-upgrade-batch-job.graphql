@@ -1,0 +1,11 @@
+mutation ScheduleUpgradeBatchJob($listClusterUuid: [UUID!]!, $mode: String!, $action: ActionType!, $version: String!, $scheduleAt: DateTime!) {
+      scheduleUpgradeBatchJob(
+        listClusterUuid: $listClusterUuid
+        mode: $mode
+        action: $action
+        version: $version
+        scheduleAt: $scheduleAt
+      ) {
+        uuid
+      }
+    }

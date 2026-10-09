@@ -1,0 +1,18 @@
+query {
+      allValidReplicationTargets(first: 10) {
+        nodes {
+          accountName
+          apiVersion
+          isAirGapped
+          isConnected
+          isCrossAccount
+          name
+          uuid
+          version
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

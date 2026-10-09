@@ -1,0 +1,11 @@
+query {
+      getUserDownloads {
+        completeTime
+        createTime
+        id
+        identifier
+        name
+        progress
+        status
+      }
+    }

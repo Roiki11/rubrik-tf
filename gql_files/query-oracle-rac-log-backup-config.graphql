@@ -1,0 +1,7 @@
+query OracleRacLogBackupConfig($input: OracleRacInput!) {
+      oracleRacLogBackupConfig(input: $input) {
+        hostLogRetentionHours
+        logBackupFrequencyMin
+        logRetentionHours
+      }
+    }

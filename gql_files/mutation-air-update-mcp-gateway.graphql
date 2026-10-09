@@ -1,0 +1,3 @@
+mutation AirUpdateMcpGateway($input: AirUpdateMcpGatewayInput!) {
+      airUpdateMcpGateway(input: $input)
+    }

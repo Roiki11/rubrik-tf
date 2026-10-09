@@ -1,0 +1,6 @@
+query TprPublicConfiguration($orgId: String!) {
+      tprPublicConfiguration(orgId: $orgId) {
+        executionMaxTimeoutHours
+        isTprEnabled
+      }
+    }

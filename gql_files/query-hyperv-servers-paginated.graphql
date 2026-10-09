@@ -1,0 +1,22 @@
+query {
+      hypervServersPaginated(first: 10) {
+        nodes {
+          authorizedOperations
+          cdmPendingObjectPauseAssignment
+          connectionStatus
+          hostname
+          id
+          isReplica
+          name
+          numWorkloadDescendants
+          objectType
+          replicatedObjectCount
+          slaAssignment
+          slaPauseStatus
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

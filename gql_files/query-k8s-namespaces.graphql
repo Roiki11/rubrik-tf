@@ -1,0 +1,27 @@
+query {
+      k8sNamespaces(first: 10) {
+        nodes {
+          apiVersion
+          authorizedOperations
+          clusterScoped
+          id
+          isRelic
+          k8sClusterId
+          name
+          namespaceName
+          numPvcs
+          numWorkloadDescendants
+          numWorkloads
+          objectType
+          onDemandSnapshotCount
+          resourceVersion
+          rscPendingObjectPauseAssignment
+          slaAssignment
+          slaPauseStatus
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

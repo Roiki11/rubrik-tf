@@ -1,0 +1,16 @@
+query WebhookById($input: Int!) {
+      webhookById(input: $input) {
+        authType
+        createdAt
+        createdBy
+        description
+        id
+        name
+        providerType
+        serverCertificate
+        serviceAccountId
+        status
+        updatedAt
+        url
+      }
+    }

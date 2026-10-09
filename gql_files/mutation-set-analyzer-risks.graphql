@@ -1,0 +1,3 @@
+mutation SetAnalyzerRisks($input: SetAnalyzerRisksInput!) {
+      setAnalyzerRisks(input: $input)
+    }

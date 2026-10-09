@@ -1,0 +1,18 @@
+query ThreatMonitoringMatchedFileDetails($matchId: Long!) {
+      threatMonitoringMatchedFileDetails(matchId: $matchId) {
+        detectedSnapshotDate
+        fileName
+        filePath
+        firstDetectedSnapshotFid
+        intelSource
+        iocRuleAuthor
+        iocRuleDescription
+        iocRuleName
+        isQuarantinedInFirstObservedSnapshot
+        matchType
+        matchedFileMd5
+        matchedFileSha1
+        matchedFileSha256
+        objectFid
+      }
+    }

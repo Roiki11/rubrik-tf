@@ -1,0 +1,18 @@
+query BrowseContacts($snappableFid: UUID!, $snapshotFid: UUID!, $folderId: String!, $orgId: UUID!) {
+      browseContacts(
+        snappableFid: $snappableFid
+        snapshotFid: $snapshotFid
+        folderId: $folderId
+        orgId: $orgId
+        first: 10
+      ) {
+        nodes {
+          id
+          parentFolderId
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

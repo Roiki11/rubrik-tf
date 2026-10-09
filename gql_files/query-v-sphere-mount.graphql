@@ -1,0 +1,16 @@
+query VSphereMount($fid: UUID!) {
+      vSphereMount(fid: $fid) {
+        attachingDiskCount
+        cdmId
+        clusterName
+        hasAttachingDisk
+        id
+        isReady
+        migrateDatastoreRequestId
+        mountRequestId
+        mountTimestamp
+        newVmName
+        status
+        unmountRequestId
+      }
+    }

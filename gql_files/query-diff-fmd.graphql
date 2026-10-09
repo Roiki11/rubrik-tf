@@ -1,0 +1,11 @@
+query DiffFmd($clusterUuid: UUID!, $managedId: String!, $snapshotId: String!, $browseDiffPath: String!) {
+      diffFmd(
+        clusterUuid: $clusterUuid
+        managedId: $managedId
+        snapshotId: $snapshotId
+        browseDiffPath: $browseDiffPath
+      ) {
+        previousSnapshotDate
+        previousSnapshotId
+      }
+    }

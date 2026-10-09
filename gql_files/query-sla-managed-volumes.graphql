@@ -1,0 +1,36 @@
+query {
+      slaManagedVolumes(first: 10) {
+        nodes {
+          applicationTag
+          authorizedOperations
+          cdmId
+          cdmLink
+          cdmPendingObjectPauseAssignment
+          clientNamePatterns
+          id
+          isRelic
+          isReplica
+          lastResetReason
+          managedVolumeType
+          mountState
+          name
+          numChannels
+          numWorkloadDescendants
+          objectType
+          onDemandSnapshotCount
+          physicalUsedSize
+          protectionDate
+          protocol
+          provisionedSize
+          replicatedObjectCount
+          slaAssignment
+          slaPauseStatus
+          state
+          subnet
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

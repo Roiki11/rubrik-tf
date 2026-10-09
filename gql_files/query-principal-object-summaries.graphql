@@ -1,0 +1,21 @@
+query PrincipalObjectSummaries($sids: [String!]!, $timelineDate: String!, $includeCount: Boolean!) {
+      principalObjectSummaries(
+        sids: $sids
+        timelineDate: $timelineDate
+        includeCount: $includeCount
+        first: 10
+      ) {
+        nodes {
+          fullName
+          objectId
+          objectName
+          objectType
+          principalId
+          riskLevel
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

@@ -1,0 +1,10 @@
+query SlaConflictObjects($fids: [UUID!]!) {
+      slaConflictObjects(fids: $fids) {
+        id
+        name
+        numWorkloadDescendants
+        objectType
+        slaAssignment
+        slaPauseStatus
+      }
+    }

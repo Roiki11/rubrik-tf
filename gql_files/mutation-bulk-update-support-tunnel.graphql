@@ -1,0 +1,6 @@
+mutation BulkUpdateSupportTunnel($input: BulkUpdateSupportTunnelInput!) {
+      bulkUpdateSupportTunnel(input: $input) {
+        errorMessage
+        success
+      }
+    }

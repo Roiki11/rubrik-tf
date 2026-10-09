@@ -1,0 +1,6 @@
+query {
+      getGroupCountByUpgradeJobStatus {
+        count
+        group
+      }
+    }

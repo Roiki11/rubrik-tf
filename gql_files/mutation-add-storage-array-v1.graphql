@@ -1,0 +1,11 @@
+mutation AddStorageArrayV1($input: AddStorageArrayV1Input!) {
+      addStorageArrayV1(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

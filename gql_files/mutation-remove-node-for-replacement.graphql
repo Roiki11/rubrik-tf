@@ -1,0 +1,7 @@
+mutation RemoveNodeForReplacement($input: RemoveNodeForReplacementInput!) {
+      removeNodeForReplacement(input: $input) {
+        isSuccessful
+        jobId
+        message
+      }
+    }

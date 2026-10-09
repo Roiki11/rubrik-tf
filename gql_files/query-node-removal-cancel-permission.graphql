@@ -1,0 +1,6 @@
+query NodeRemovalCancelPermission($input: NodeRemovalCancelPermissionInput!) {
+      nodeRemovalCancelPermission(input: $input) {
+        eventSeriesId
+        isCancelable
+      }
+    }

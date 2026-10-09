@@ -1,0 +1,10 @@
+query K8sAppManifest($app: String!, $version: String!, $retrieveLatestVersion: Boolean!) {
+      k8sAppManifest(
+        app: $app
+        version: $version
+        retrieveLatestVersion: $retrieveLatestVersion
+      ) {
+        isSuccessful
+        version
+      }
+    }

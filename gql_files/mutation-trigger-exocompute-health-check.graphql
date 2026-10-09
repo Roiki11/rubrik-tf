@@ -1,0 +1,5 @@
+mutation TriggerExocomputeHealthCheck($input: TriggerExocomputeHealthCheckInput!) {
+      triggerExocomputeHealthCheck(input: $input) {
+        healthCheckJobId
+      }
+    }

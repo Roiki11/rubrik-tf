@@ -1,0 +1,3 @@
+mutation UpdateFusionComputeVrm($input: UpdateFusionComputeVrmInput!) {
+      updateFusionComputeVrm(input: $input)
+    }

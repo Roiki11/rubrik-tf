@@ -1,0 +1,19 @@
+mutation CreateGlacierReaderTarget($input: CreateGlacierReaderTargetInput!) {
+      createGlacierReaderTarget(input: $input) {
+        clusterName
+        consumedBytes
+        failedTasks
+        id
+        isActive
+        isArchived
+        isComplianceImmutabilitySupported
+        locationConnectionStatus
+        locationScope
+        name
+        readerRetrievalMethod
+        runningTasks
+        status
+        targetType
+        upgradeStatus
+      }
+    }

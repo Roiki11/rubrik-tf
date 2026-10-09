@@ -1,0 +1,5 @@
+mutation EnableReplicationPause($input: EnablePerLocationPauseInputVariable!) {
+      enableReplicationPause(input: $input) {
+        success
+      }
+    }

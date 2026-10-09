@@ -1,0 +1,8 @@
+mutation DeleteMosaicStore($input: DeleteMosaicStoreInput!) {
+      deleteMosaicStore(input: $input) {
+        data
+        message
+        returnCode
+        status
+      }
+    }

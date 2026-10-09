@@ -1,0 +1,18 @@
+query {
+      cdmMssqlLogShippingTargets(first: 10) {
+        nodes {
+          cdmId
+          fid
+          lagTimeFromPrimary
+          lastAppliedPoint
+          location
+          logFrequency
+          state
+          status
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

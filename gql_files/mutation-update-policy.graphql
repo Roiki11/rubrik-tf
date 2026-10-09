@@ -1,0 +1,16 @@
+mutation UpdatePolicy($input: UpdatePolicyInput!) {
+      updatePolicy(input: $input) {
+        colorEnum
+        createdTime
+        deletable
+        description
+        hierarchyObjectIds
+        id
+        isInactive
+        lastUpdatedTime
+        mode
+        name
+        numAnalyzers
+        totalObjects
+      }
+    }

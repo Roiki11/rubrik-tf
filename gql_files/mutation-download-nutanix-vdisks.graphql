@@ -1,0 +1,11 @@
+mutation DownloadNutanixVdisks($input: DownloadNutanixVmSnapshotVirtualDisksInput!) {
+      downloadNutanixVdisks(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

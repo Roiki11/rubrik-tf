@@ -1,0 +1,14 @@
+query NfAnomalyResultsGrouped($groupBy: NfAnomalyResultGroupBy!) {
+      nfAnomalyResultsGrouped(
+        groupBy: $groupBy
+        first: 10
+      ) {
+        nodes {
+    
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

@@ -1,0 +1,11 @@
+mutation CreateOraclePdbRestore($input: CreateOraclePdbRestoreInput!) {
+      createOraclePdbRestore(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

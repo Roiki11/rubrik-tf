@@ -1,0 +1,6 @@
+mutation ExpireSnoozedDirectories($input: ExpireSnoozedDirectoriesInput!) {
+      expireSnoozedDirectories(input: $input) {
+        directoriesExpired
+        total
+      }
+    }

@@ -1,0 +1,11 @@
+mutation BulkRecoverSapHanaDatabases($input: BulkRecoverSapHanaDatabasesInput!) {
+      bulkRecoverSapHanaDatabases(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

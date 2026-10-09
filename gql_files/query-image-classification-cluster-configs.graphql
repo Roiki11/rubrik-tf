@@ -1,0 +1,3 @@
+query ImageClassificationClusterConfigs($clusterUuids: [String!]!) {
+      imageClassificationClusterConfigs(clusterUuids: $clusterUuids)
+    }

@@ -1,0 +1,7 @@
+query MssqlDatabaseMissedSnapshots($input: GetMissedMssqlDbSnapshotsInput!) {
+      mssqlDatabaseMissedSnapshots(input: $input) {
+        hasMore
+        nextCursor
+        total
+      }
+    }

@@ -1,0 +1,3 @@
+mutation SetIsIdentitySecurityRoleAssignmentComplete($irRoomConfigured: Boolean!) {
+      setIsIdentitySecurityRoleAssignmentComplete(irRoomConfigured: $irRoomConfigured)
+    }

@@ -1,0 +1,6 @@
+query VsphereVMRecoverableRange($snappableFid: UUID!) {
+      vsphereVMRecoverableRange(snappableFid: $snappableFid) {
+        hasMore
+        total
+      }
+    }

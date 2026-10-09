@@ -1,0 +1,3 @@
+mutation UpgradeSlas($input: UpgradeSlasInput!) {
+      upgradeSlas(input: $input)
+    }

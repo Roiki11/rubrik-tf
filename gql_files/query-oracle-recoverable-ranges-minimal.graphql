@@ -1,0 +1,3 @@
+query OracleRecoverableRangesMinimal($input: OracleRecoverableRangesMinimalInput!) {
+      oracleRecoverableRangesMinimal(input: $input)
+    }

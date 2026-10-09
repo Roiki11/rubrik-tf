@@ -1,0 +1,6 @@
+query TeamChannelNameAvailable($teamUUID: UUID!, $channelName: String!) {
+      teamChannelNameAvailable(
+        teamUUID: $teamUUID
+        channelName: $channelName
+      )
+    }

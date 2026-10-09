@@ -1,0 +1,3 @@
+mutation UpdateSupportUserAccess($input: UpdateSupportUserAccessInput!) {
+      updateSupportUserAccess(input: $input)
+    }

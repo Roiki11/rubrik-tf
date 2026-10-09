@@ -1,0 +1,20 @@
+query {
+      unifiedUnregisteredDomainControllers(first: 10) {
+        nodes {
+          domainControllerGuid
+          domainControllerSite
+          domainName
+          domainSid
+          fsmoRoles
+          hostname
+          invocationId
+          isGlobalCatalog
+          isReadOnly
+          lastDiscoveredTimestamp
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

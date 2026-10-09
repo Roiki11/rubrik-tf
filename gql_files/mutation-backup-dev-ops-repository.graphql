@@ -1,0 +1,6 @@
+mutation BackupDevOpsRepository($input: BackupDevOpsRepositoryInput!) {
+      backupDevOpsRepository(input: $input) {
+        errorMessage
+        taskchainId
+      }
+    }

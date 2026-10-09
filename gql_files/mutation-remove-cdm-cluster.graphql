@@ -1,0 +1,6 @@
+mutation RemoveCdmCluster($clusterUUID: UUID!, $isForce: Boolean!) {
+      removeCdmCluster(
+        clusterUUID: $clusterUUID
+        isForce: $isForce
+      )
+    }

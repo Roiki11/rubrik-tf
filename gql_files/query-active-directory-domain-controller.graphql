@@ -1,0 +1,29 @@
+query ActiveDirectoryDomainController($fid: UUID!) {
+      activeDirectoryDomainController(fid: $fid) {
+        agentUuid
+        authorizedOperations
+        cdmId
+        cdmLink
+        cdmPendingObjectPauseAssignment
+        dcLocation
+        domainControllerGuid
+        forestRootDomainSid
+        fsmoRoles
+        hostname
+        id
+        isGlobalCatalog
+        isReadOnly
+        isRelic
+        isReplica
+        macAddress
+        macAddresses
+        name
+        numWorkloadDescendants
+        objectType
+        onDemandSnapshotCount
+        replicatedObjectCount
+        serverRoles
+        slaAssignment
+        slaPauseStatus
+      }
+    }

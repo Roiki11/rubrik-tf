@@ -1,0 +1,5 @@
+mutation AssignProtection($input: AssignProtectionInput!) {
+      assignProtection(input: $input) {
+        success
+      }
+    }

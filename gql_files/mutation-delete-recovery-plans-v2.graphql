@@ -1,0 +1,3 @@
+mutation DeleteRecoveryPlansV2($input: DeleteRecoveryPlansV2Input!) {
+      deleteRecoveryPlansV2(input: $input)
+    }

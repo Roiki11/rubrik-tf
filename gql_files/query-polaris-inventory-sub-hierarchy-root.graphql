@@ -1,0 +1,5 @@
+query PolarisInventorySubHierarchyRoot($rootEnum: InventorySubHierarchyRootEnum!) {
+      polarisInventorySubHierarchyRoot(rootEnum: $rootEnum) {
+        rootEnum
+      }
+    }

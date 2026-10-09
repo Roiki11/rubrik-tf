@@ -1,0 +1,7 @@
+query TprStatusForNodeRemoval($input: TprStatusForNodeRemovalInput!) {
+      tprStatusForNodeRemoval(input: $input) {
+        status
+        tprRequestId
+        tprRule
+      }
+    }

@@ -1,0 +1,20 @@
+query ObjectTypeAccessSummary($timelineDate: String!, $historicalDeltaDays: Int!) {
+      objectTypeAccessSummary(
+        timelineDate: $timelineDate
+        historicalDeltaDays: $historicalDeltaDays
+        first: 10
+      ) {
+        nodes {
+          accountId
+          accountName
+          deltaHits
+          objectType
+          platform
+          totalHits
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

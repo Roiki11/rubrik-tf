@@ -1,0 +1,5 @@
+mutation RemoveDisk($input: RemoveDiskInput!) {
+      removeDisk(input: $input) {
+        success
+      }
+    }

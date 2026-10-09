@@ -1,0 +1,24 @@
+query PureStorageVolumeV1($id: UUID!) {
+      pureStorageVolumeV1(id: $id) {
+        arrayId
+        authorizedOperations
+        cdmId
+        cdmLink
+        cdmPendingObjectPauseAssignment
+        clusterUuid
+        id
+        isRelic
+        isReplica
+        name
+        numWorkloadDescendants
+        objectType
+        onDemandSnapshotCount
+        primaryClusterUuid
+        pureStorageId
+        replicatedObjectCount
+        serialNumber
+        size
+        slaAssignment
+        slaPauseStatus
+      }
+    }

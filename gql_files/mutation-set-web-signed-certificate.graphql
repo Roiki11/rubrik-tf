@@ -1,0 +1,11 @@
+mutation SetWebSignedCertificate($input: SetWebSignedCertificateInput!) {
+      setWebSignedCertificate(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

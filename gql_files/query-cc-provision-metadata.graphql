@@ -1,0 +1,17 @@
+query CcProvisionMetadata($input: CcProvisionMetadataReq!) {
+      ccProvisionMetadata(input: $input) {
+        clusterName
+        clusterOpsCdmJobId
+        clusterType
+        clusterUuid
+        internalTimestamp
+        jobType
+        marshaledConfig
+        nodeToReplace
+        progress
+        status
+        statusMessage
+        tprRequestId
+        vendor
+      }
+    }

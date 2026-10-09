@@ -1,0 +1,8 @@
+mutation BulkDeleteMongodbSources($input: BulkDeleteMosaicSourcesInput!) {
+      bulkDeleteMongodbSources(input: $input) {
+        data
+        message
+        returnCode
+        status
+      }
+    }

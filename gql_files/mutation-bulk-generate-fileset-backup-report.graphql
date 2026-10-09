@@ -1,0 +1,3 @@
+mutation BulkGenerateFilesetBackupReport($input: BulkGenerateFilesetBackupReportInput!) {
+      bulkGenerateFilesetBackupReport(input: $input)
+    }

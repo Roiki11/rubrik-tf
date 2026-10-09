@@ -1,0 +1,3 @@
+mutation DeleteReplicationPair($input: DeleteReplicationPairInput!) {
+      deleteReplicationPair(input: $input)
+    }

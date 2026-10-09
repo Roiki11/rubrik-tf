@@ -1,0 +1,5 @@
+mutation StartPeriodicUpgradePrechecksOnDemandJob($clusterUuid: UUID!) {
+      startPeriodicUpgradePrechecksOnDemandJob(clusterUuid: $clusterUuid) {
+        jobId
+      }
+    }

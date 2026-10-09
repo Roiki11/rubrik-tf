@@ -1,0 +1,8 @@
+mutation UpdateMssqlDefaultProperties($input: UpdateMssqlDefaultPropertiesInput!) {
+      updateMssqlDefaultProperties(input: $input) {
+        cbtStatus
+        logBackupFrequencyInSeconds
+        logRetentionTimeInHours
+        shouldUseDefaultBackupLocation
+      }
+    }

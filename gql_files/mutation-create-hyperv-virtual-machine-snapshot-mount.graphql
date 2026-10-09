@@ -1,0 +1,11 @@
+mutation CreateHypervVirtualMachineSnapshotMount($input: CreateHypervVirtualMachineSnapshotMountInput!) {
+      createHypervVirtualMachineSnapshotMount(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

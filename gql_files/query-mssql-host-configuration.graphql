@@ -1,0 +1,35 @@
+query MssqlHostConfiguration($input: MssqlHostConfigInput!) {
+      mssqlHostConfiguration(input: $input) {
+        af2MinimumFileCount
+        cbtMaxMemoryUsageInMb
+        cmdPipeBufferSizeInKb
+        copyLogsToHostDuringLiveMount
+        disableStrictSyncForMssqlLiveMount
+        enableDatabaseBatchSnapshots
+        enableGroupFetch
+        enableMssqlMultiNodeBackup
+        enableMssqlMultiNodeRestore
+        enableVdi
+        enableVdiDb
+        fileRestoreReadParallelism
+        fileRestoreWriteParallelism
+        fileTransferParallelism
+        maxDbLoadSizeInBytes
+        maxNodesForMultiNodeBackup
+        maxNodesForMultiNodeRestore
+        mssqlAllowDirtyReadForAgQuery
+        mssqlAllowDirtyReadForDbSizeQuery
+        mssqlDatabaseQueryTimeout
+        mssqlDefaultMaxDataStreamsPerDatabase
+        mssqlEnableCleanupOnRestoreFailure
+        mssqlUseDmFileSpaceUsage
+        multiNodeRestoreMaxDataStreamsPerNode
+        physicalHostDatabaseRestoreThrottleMaxRefCount
+        physicalHostLogBackupThrottleMaxRefCount
+        throttlePhysicalHostMaxRefCount
+        useAf2ForHighDataFileCount
+        useDefaultBackupLocation
+        vdiRestoreMaxTimeoutInMinutes
+        vdiRestoreTimeoutInSecondsPerGb
+      }
+    }

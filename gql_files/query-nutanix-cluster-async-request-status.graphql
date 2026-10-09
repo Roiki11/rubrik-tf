@@ -1,0 +1,11 @@
+query NutanixClusterAsyncRequestStatus($input: GetNutanixClusterAsyncRequestStatusInput!) {
+      nutanixClusterAsyncRequestStatus(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

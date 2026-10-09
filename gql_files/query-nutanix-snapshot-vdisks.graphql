@@ -1,0 +1,7 @@
+query NutanixSnapshotVdisks($input: GetNutanixVmSnapshotVdisksInput!) {
+      nutanixSnapshotVdisks(input: $input) {
+        hasMore
+        nextCursor
+        total
+      }
+    }

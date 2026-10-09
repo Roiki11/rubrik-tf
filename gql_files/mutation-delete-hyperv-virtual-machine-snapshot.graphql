@@ -1,0 +1,5 @@
+mutation DeleteHypervVirtualMachineSnapshot($input: DeleteHypervVirtualMachineSnapshotInput!) {
+      deleteHypervVirtualMachineSnapshot(input: $input) {
+        success
+      }
+    }

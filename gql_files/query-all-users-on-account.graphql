@@ -1,0 +1,17 @@
+query {
+      allUsersOnAccount {
+        domain
+        domainName
+        email
+        groups
+        id
+        isAccountOwner
+        isEmailEnabled
+        isHidden
+        lastLogin
+        patId
+        status
+        unreadCount
+        username
+      }
+    }

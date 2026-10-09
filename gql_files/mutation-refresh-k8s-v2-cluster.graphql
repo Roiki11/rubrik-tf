@@ -1,0 +1,11 @@
+mutation RefreshK8sV2Cluster($input: RefreshK8sV2ClusterInput!) {
+      refreshK8sV2Cluster(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

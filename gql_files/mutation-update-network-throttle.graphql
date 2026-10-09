@@ -1,0 +1,9 @@
+mutation UpdateNetworkThrottle($input: UpdateNetworkThrottleInput!) {
+      updateNetworkThrottle(input: $input) {
+        archivalThrottlePort
+        defaultThrottleLimit
+        isEnabled
+        networkInterface
+        resourceId
+      }
+    }

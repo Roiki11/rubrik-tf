@@ -1,0 +1,11 @@
+mutation DeleteDb2Instance($input: DeleteDb2InstanceInput!) {
+      deleteDb2Instance(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

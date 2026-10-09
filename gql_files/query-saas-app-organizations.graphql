@@ -1,0 +1,22 @@
+query {
+      saasAppOrganizations(first: 10) {
+        nodes {
+          authorizedOperations
+          environmentType
+          id
+          lastRefreshTime
+          name
+          numWorkloadDescendants
+          objectType
+          onboardedAppTypes
+          slaAssignment
+          slaPauseStatus
+          status
+          storageRegion
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

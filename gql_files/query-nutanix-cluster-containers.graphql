@@ -1,0 +1,7 @@
+query NutanixClusterContainers($input: GetContainersInput!) {
+      nutanixClusterContainers(input: $input) {
+        hasMore
+        nextCursor
+        total
+      }
+    }

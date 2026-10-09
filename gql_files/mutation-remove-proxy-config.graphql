@@ -1,0 +1,5 @@
+mutation RemoveProxyConfig($input: RemoveProxyConfigInput!) {
+      removeProxyConfig(input: $input) {
+        success
+      }
+    }

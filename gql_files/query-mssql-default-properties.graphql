@@ -1,0 +1,8 @@
+query MssqlDefaultProperties($input: GetDefaultDbPropertiesV1Input!) {
+      mssqlDefaultProperties(input: $input) {
+        cbtStatus
+        logBackupFrequencyInSeconds
+        logRetentionTimeInHours
+        shouldUseDefaultBackupLocation
+      }
+    }

@@ -1,0 +1,6 @@
+mutation UpdateIpWhitelist($whitelistMode: WhitelistModeEnum!, $ipCidrs: [String!]!) {
+      updateIpWhitelist(
+        whitelistMode: $whitelistMode
+        ipCidrs: $ipCidrs
+      )
+    }

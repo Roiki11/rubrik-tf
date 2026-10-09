@@ -1,0 +1,10 @@
+mutation VsphereVmRecoverFiles($input: VsphereVmRecoverFilesInput!) {
+      vsphereVmRecoverFiles(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        startTime
+        status
+      }
+    }

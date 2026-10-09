@@ -1,0 +1,3 @@
+mutation AddCrossAccountServiceConsumer($input: AddCrossAccountServiceConsumerInput!) {
+      addCrossAccountServiceConsumer(input: $input)
+    }

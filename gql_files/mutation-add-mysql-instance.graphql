@@ -1,0 +1,6 @@
+mutation AddMysqlInstance($input: AddMysqldbInstanceInput!) {
+      addMysqlInstance(input: $input) {
+        id
+        kosmosTopologyStateId
+      }
+    }

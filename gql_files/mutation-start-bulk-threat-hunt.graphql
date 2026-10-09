@@ -1,0 +1,3 @@
+mutation StartBulkThreatHunt($input: StartThreatHuntV2Input!) {
+      startBulkThreatHunt(input: $input)
+    }

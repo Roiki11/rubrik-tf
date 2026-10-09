@@ -1,0 +1,3 @@
+mutation UpdateEventDigest($input: UpdateEventDigestInput!) {
+      updateEventDigest(input: $input)
+    }

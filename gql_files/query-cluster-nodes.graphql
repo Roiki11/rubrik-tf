@@ -1,0 +1,7 @@
+query ClusterNodes($input: GetNodesInput!) {
+      clusterNodes(input: $input) {
+        hasMore
+        nextCursor
+        total
+      }
+    }

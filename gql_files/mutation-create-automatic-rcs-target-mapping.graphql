@@ -1,0 +1,9 @@
+mutation CreateAutomaticRcsTargetMapping($input: CreateAutomaticRcsTargetMappingInput!) {
+      createAutomaticRcsTargetMapping(input: $input) {
+        groupType
+        id
+        name
+        targetType
+        tieringStatus
+      }
+    }

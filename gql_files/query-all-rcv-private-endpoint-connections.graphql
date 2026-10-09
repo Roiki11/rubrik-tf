@@ -1,0 +1,7 @@
+query AllRcvPrivateEndpointConnections($input: UUID!) {
+      allRcvPrivateEndpointConnections(input: $input) {
+        description
+        name
+        storageAccountId
+      }
+    }

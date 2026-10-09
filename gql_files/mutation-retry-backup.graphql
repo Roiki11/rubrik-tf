@@ -1,0 +1,3 @@
+mutation RetryBackup($backupObjects: [BackupObject!]!) {
+      retryBackup(backupObjects: $backupObjects)
+    }

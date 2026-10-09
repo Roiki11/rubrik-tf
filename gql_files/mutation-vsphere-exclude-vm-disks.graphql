@@ -1,0 +1,5 @@
+mutation VsphereExcludeVmDisks($input: [VsphereExcludeVmDisksInput!]!) {
+      vsphereExcludeVmDisks(input: $input) {
+        success
+      }
+    }

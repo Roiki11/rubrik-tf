@@ -1,0 +1,8 @@
+mutation DownloadReportPdfAsync($input: DownloadReportPdfAsyncInput!) {
+      downloadReportPdfAsync(input: $input) {
+        downloadId
+        externalId
+        jobId
+        referenceId
+      }
+    }

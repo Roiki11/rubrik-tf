@@ -1,0 +1,3 @@
+query HostRbsNetworkLimit($hostId: String!) {
+      hostRbsNetworkLimit(hostId: $hostId)
+    }

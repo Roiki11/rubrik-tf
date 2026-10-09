@@ -1,0 +1,19 @@
+query MysqlInstance($fid: UUID!) {
+      mysqlInstance(fid: $fid) {
+        authorizedOperations
+        cdmId
+        cdmLink
+        cdmPendingObjectPauseAssignment
+        clusterMode
+        id
+        isRelic
+        isReplica
+        name
+        numWorkloadDescendants
+        objectType
+        onDemandSnapshotCount
+        replicatedObjectCount
+        slaAssignment
+        slaPauseStatus
+      }
+    }

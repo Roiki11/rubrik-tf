@@ -1,0 +1,5 @@
+mutation UpdateEncryptionKeyForRcvMigration($input: UpdateEncryptionKeyForRcvMigrationInput!) {
+      updateEncryptionKeyForRcvMigration(input: $input) {
+        status
+      }
+    }

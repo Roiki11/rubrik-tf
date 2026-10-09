@@ -1,0 +1,18 @@
+query Issues($status: IssueStatus!) {
+      issues(
+        status: $status
+        first: 10
+      ) {
+        nodes {
+          id
+          openTime
+          paginationId
+          resolvedTime
+          violations
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

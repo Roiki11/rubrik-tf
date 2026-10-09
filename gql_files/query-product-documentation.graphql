@@ -1,0 +1,13 @@
+query ProductDocumentation($id: String!) {
+      productDocumentation(id: $id) {
+        description
+        id
+        language
+        nextDocId
+        nextDocTitle
+        prevDocId
+        prevDocTitle
+        title
+        type
+      }
+    }

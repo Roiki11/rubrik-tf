@@ -1,0 +1,11 @@
+mutation VsphereDeleteVcenter($input: VsphereDeleteVcenterInput!) {
+      vsphereDeleteVcenter(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

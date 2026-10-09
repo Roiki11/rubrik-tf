@@ -1,0 +1,3 @@
+mutation UpdateWebhookV2($input: UpdateWebhookV2Input!) {
+      updateWebhookV2(input: $input)
+    }

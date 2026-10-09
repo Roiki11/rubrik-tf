@@ -1,0 +1,11 @@
+mutation CreateOnDemandMssqlBackup($input: CreateOnDemandMssqlBackupInput!) {
+      createOnDemandMssqlBackup(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

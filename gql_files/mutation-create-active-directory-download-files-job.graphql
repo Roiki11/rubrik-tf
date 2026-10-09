@@ -1,0 +1,11 @@
+mutation CreateActiveDirectoryDownloadFilesJob($input: CreateActiveDirectoryDownloadFilesJobInput!) {
+      createActiveDirectoryDownloadFilesJob(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

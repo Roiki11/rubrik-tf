@@ -1,0 +1,5 @@
+mutation DownloadResultsCsv($crawlId: String!) {
+      downloadResultsCsv(crawlId: $crawlId) {
+        downloadLink
+      }
+    }

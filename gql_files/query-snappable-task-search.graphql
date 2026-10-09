@@ -1,0 +1,16 @@
+query SnappableTaskSearch($snappableFid: UUID!, $orgId: UUID!) {
+      snappableTaskSearch(
+        snappableFid: $snappableFid
+        orgId: $orgId
+        first: 10
+      ) {
+        nodes {
+          id
+          parentFolderId
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

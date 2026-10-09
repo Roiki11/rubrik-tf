@@ -1,0 +1,9 @@
+query {
+      allTargetMappings {
+        groupType
+        id
+        name
+        targetType
+        tieringStatus
+      }
+    }

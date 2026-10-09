@@ -1,0 +1,27 @@
+query {
+      nasNamespaces(first: 10) {
+        nodes {
+          authorizedOperations
+          cdmId
+          cdmPendingObjectPauseAssignment
+          id
+          isReadonly
+          isReplica
+          name
+          nfsDataAddresses
+          numWorkloadDescendants
+          objectType
+          replicatedObjectCount
+          slaAssignment
+          slaPauseStatus
+          smbDataAddresses
+          userSelectedNfsInterfaces
+          userSelectedSmbInterfaces
+          vendorType
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

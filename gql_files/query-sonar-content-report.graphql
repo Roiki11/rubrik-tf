@@ -1,0 +1,30 @@
+query SonarContentReport($groupBy: DiscoveryContentReportGroupBy!, $day: String!, $timezone: String!, $workloadTypes: [DataGovObjectType!]!) {
+      sonarContentReport(
+        groupBy: $groupBy
+        day: $day
+        timezone: $timezone
+        workloadTypes: $workloadTypes
+        first: 10
+      ) {
+        nodes {
+          analyzerId
+          cluster
+          fileName
+          filesWithHits
+          id
+          location
+          objectName
+          objectType
+          path
+          policyId
+          size
+          slaDomainId
+          snappableFid
+          snapshotTimestamp
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

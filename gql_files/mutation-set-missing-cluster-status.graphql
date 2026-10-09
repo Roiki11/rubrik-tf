@@ -1,0 +1,5 @@
+mutation SetMissingClusterStatus($input: SetMissingClusterStatusInput!) {
+      setMissingClusterStatus(input: $input) {
+        isSuccessful
+      }
+    }

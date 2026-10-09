@@ -1,0 +1,28 @@
+query {
+      db2Instances(first: 10) {
+        nodes {
+          authorizedOperations
+          cdmId
+          cdmPendingObjectPauseAssignment
+          containsHadrDatabase
+          id
+          instanceType
+          isReplica
+          lastRefreshTime
+          lastSyncTime
+          name
+          numWorkloadDescendants
+          objectType
+          primaryClusterUuid
+          replicatedObjectCount
+          slaAssignment
+          slaPauseStatus
+          status
+          statusMessage
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

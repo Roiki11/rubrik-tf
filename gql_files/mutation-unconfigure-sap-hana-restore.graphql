@@ -1,0 +1,11 @@
+mutation UnconfigureSapHanaRestore($input: UnconfigureSapHanaRestoreInput!) {
+      unconfigureSapHanaRestore(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

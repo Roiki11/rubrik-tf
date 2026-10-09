@@ -1,0 +1,36 @@
+query {
+      anomalyResults(first: 10) {
+        nodes {
+          anomalyProbability
+          bytesCreatedCount
+          bytesDeletedCount
+          bytesModifiedCount
+          bytesNetChangedCount
+          detectionTime
+          filesCreatedCount
+          filesDeletedCount
+          filesModifiedCount
+          id
+          isAnomaly
+          isEncrypted
+          location
+          managedId
+          objectType
+          previousSnapshotDate
+          previousSnapshotId
+          resourceDeletedAt
+          severity
+          snapshotDate
+          snapshotFid
+          snapshotId
+          suspiciousFilesCount
+          workloadFid
+          workloadId
+          workloadName
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

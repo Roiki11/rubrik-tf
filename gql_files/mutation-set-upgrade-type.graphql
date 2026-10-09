@@ -1,0 +1,7 @@
+mutation SetUpgradeType($input: SetUpgradeTypeInput!) {
+      setUpgradeType(input: $input) {
+        code
+        excepshuns
+        message
+      }
+    }

@@ -1,0 +1,3 @@
+mutation UpdateClusterPauseStatus($input: UpdateClusterPauseStatusInput!) {
+      updateClusterPauseStatus(input: $input)
+    }

@@ -1,0 +1,18 @@
+query PolicyViolationsByResource($policyTypes: [PolicyType!]!) {
+      policyViolationsByResource(
+        policyTypes: $policyTypes
+        first: 10
+      ) {
+        nodes {
+          activeViolationsCount
+          criticalSeverityViolationCount
+          resourceId
+          resourceType
+          severity
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

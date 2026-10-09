@@ -1,0 +1,8 @@
+mutation SendScheduledReportAsync($input: SendScheduledReportAsyncInput!) {
+      sendScheduledReportAsync(input: $input) {
+        downloadId
+        externalId
+        jobId
+        referenceId
+      }
+    }

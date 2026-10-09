@@ -1,0 +1,8 @@
+query SigninLogFilterValues($filterType: SigninLogFilterType!, $timeRange: TimeRangeInput!) {
+      signinLogFilterValues(
+        filterType: $filterType
+        timeRange: $timeRange
+      ) {
+        hasMore
+      }
+    }

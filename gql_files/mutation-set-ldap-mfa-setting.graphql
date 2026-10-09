@@ -1,0 +1,3 @@
+mutation SetLdapMfaSetting($input: SetLdapMfaSettingInput!) {
+      setLdapMfaSetting(input: $input)
+    }

@@ -1,0 +1,3 @@
+mutation TestSyslogExportRule($input: TestSyslogExportRuleInput!) {
+      testSyslogExportRule(input: $input)
+    }

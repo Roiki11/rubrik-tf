@@ -1,0 +1,3 @@
+query FileSummariesCount($timelineDate: String!) {
+      fileSummariesCount(timelineDate: $timelineDate)
+    }

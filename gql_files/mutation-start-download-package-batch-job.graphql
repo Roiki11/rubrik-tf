@@ -1,0 +1,10 @@
+mutation StartDownloadPackageBatchJob($listClusterUuid: [UUID!]!, $packageUrl: String!, $md5checksum: String!) {
+      startDownloadPackageBatchJob(
+        listClusterUuid: $listClusterUuid
+        packageUrl: $packageUrl
+        md5checksum: $md5checksum
+      ) {
+        jobId
+        uuid
+      }
+    }

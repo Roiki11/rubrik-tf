@@ -1,0 +1,6 @@
+query ArchivalMigration($sourceLocationId: UUID!) {
+      archivalMigration(sourceLocationId: $sourceLocationId) {
+        status
+        targetLocationType
+      }
+    }

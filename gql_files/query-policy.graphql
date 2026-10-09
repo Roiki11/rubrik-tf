@@ -1,0 +1,16 @@
+query Policy($policyId: String!) {
+      policy(policyId: $policyId) {
+        colorEnum
+        createdTime
+        deletable
+        description
+        hierarchyObjectIds
+        id
+        isInactive
+        lastUpdatedTime
+        mode
+        name
+        numAnalyzers
+        totalObjects
+      }
+    }

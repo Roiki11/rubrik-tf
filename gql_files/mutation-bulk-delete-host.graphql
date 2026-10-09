@@ -1,0 +1,5 @@
+mutation BulkDeleteHost($input: BulkDeleteHostInput!) {
+      bulkDeleteHost(input: $input) {
+        success
+      }
+    }

@@ -1,0 +1,12 @@
+query {
+      allPendingActions {
+        actionTypeStr
+        clusterUuid
+        createdAt
+        description
+        info
+        pendingActionId
+        status
+        updatedAt
+      }
+    }

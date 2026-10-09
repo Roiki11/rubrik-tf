@@ -1,0 +1,3 @@
+mutation LockCyberRecovery($input: LockCyberRecoveryInput!) {
+      lockCyberRecovery(input: $input)
+    }

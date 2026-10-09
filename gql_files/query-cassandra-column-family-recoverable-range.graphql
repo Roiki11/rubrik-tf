@@ -1,0 +1,7 @@
+query CassandraColumnFamilyRecoverableRange($input: GetMosaicRecoverableRangeInput!) {
+      cassandraColumnFamilyRecoverableRange(input: $input) {
+        message
+        returnCode
+        status
+      }
+    }

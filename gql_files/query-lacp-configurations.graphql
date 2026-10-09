@@ -1,0 +1,15 @@
+query LacpConfigurations($clusterUuids: [UUID!]!) {
+      lacpConfigurations(
+        clusterUuids: $clusterUuids
+        first: 10
+      ) {
+        nodes {
+          bond0
+          clusterUuid
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

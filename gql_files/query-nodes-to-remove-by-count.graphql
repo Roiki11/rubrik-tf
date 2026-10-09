@@ -1,0 +1,15 @@
+query NodesToRemoveByCount($clusterUuid: UUID!, $nodeCount: Int!) {
+      nodesToRemoveByCount(
+        clusterUuid: $clusterUuid
+        nodeCount: $nodeCount
+        first: 10
+      ) {
+        nodes {
+          nodeId
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

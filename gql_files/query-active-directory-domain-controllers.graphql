@@ -1,0 +1,35 @@
+query {
+      activeDirectoryDomainControllers(first: 10) {
+        nodes {
+          agentUuid
+          authorizedOperations
+          cdmId
+          cdmLink
+          cdmPendingObjectPauseAssignment
+          dcLocation
+          domainControllerGuid
+          forestRootDomainSid
+          fsmoRoles
+          hostname
+          id
+          isGlobalCatalog
+          isReadOnly
+          isRelic
+          isReplica
+          macAddress
+          macAddresses
+          name
+          numWorkloadDescendants
+          objectType
+          onDemandSnapshotCount
+          replicatedObjectCount
+          serverRoles
+          slaAssignment
+          slaPauseStatus
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

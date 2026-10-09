@@ -1,0 +1,9 @@
+mutation CreateManualTargetMapping($input: CreateManualTargetMappingInput!) {
+      createManualTargetMapping(input: $input) {
+        groupType
+        id
+        name
+        targetType
+        tieringStatus
+      }
+    }

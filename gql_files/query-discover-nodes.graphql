@@ -1,0 +1,7 @@
+query DiscoverNodes($id: String!) {
+      discoverNodes(id: $id) {
+        hasMore
+        nextCursor
+        total
+      }
+    }

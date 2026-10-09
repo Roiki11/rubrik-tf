@@ -1,0 +1,30 @@
+query MssqlInstance($fid: UUID!) {
+      mssqlInstance(fid: $fid) {
+        activeNode
+        authorizedOperations
+        cdmPendingObjectPauseAssignment
+        configurationVersion
+        discoveredAddress
+        hasLogConfigFromSla
+        hasPermissions
+        hasSysadminRole
+        hostLogRetention
+        hostsInstalled
+        id
+        isClusterInstance
+        isReplica
+        logBackupFrequencyInSeconds
+        logBackupRetentionInHours
+        name
+        networkName
+        numWorkloadDescendants
+        objectType
+        protectionDate
+        replicatedObjectCount
+        serviceAccountUser
+        slaAssignment
+        slaPauseStatus
+        unprotectableReasons
+        version
+      }
+    }

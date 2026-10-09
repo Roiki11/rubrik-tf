@@ -1,0 +1,19 @@
+query VSphereComputeCluster($fid: UUID!) {
+      vSphereComputeCluster(fid: $fid) {
+        authorizedOperations
+        cdmPendingObjectPauseAssignment
+        drsStatus
+        hasDatastoresForRecovery
+        id
+        ioFilterStatus
+        isReplica
+        name
+        numWorkloadDescendants
+        objectType
+        replicatedObjectCount
+        slaAssignment
+        slaPauseStatus
+        snapshotConsistencyMandate
+        snapshotConsistencySource
+      }
+    }

@@ -1,0 +1,3 @@
+mutation BulkUpdateMssqlDbs($input: BulkUpdateMssqlDbsInput!) {
+      bulkUpdateMssqlDbs(input: $input)
+    }

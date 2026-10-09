@@ -1,0 +1,17 @@
+query {
+      snoozedDirectories(first: 10) {
+        nodes {
+          createdDate
+          directory
+          expirationDate
+          falsePositiveType
+          otherReason
+          status
+          userAccount
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

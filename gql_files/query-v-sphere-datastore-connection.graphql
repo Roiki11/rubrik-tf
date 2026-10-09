@@ -1,0 +1,27 @@
+query {
+      vSphereDatastoreConnection(first: 10) {
+        nodes {
+          authorizedOperations
+          backingDeviceName
+          capacity
+          cdmPendingObjectPauseAssignment
+          datastoreType
+          freeSpace
+          id
+          isArchived
+          isLocal
+          isReplica
+          isStandaloneDatastore
+          name
+          numWorkloadDescendants
+          objectType
+          replicatedObjectCount
+          slaAssignment
+          slaPauseStatus
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

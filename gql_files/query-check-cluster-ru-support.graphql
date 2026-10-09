@@ -1,0 +1,8 @@
+query CheckClusterRuSupport($clusterId: String!) {
+      checkClusterRuSupport(clusterId: $clusterId) {
+        clusterUnsupportedWorkloadState
+        clusterUuid
+        isRuSupported
+        ruUnsupportabilityReason
+      }
+    }

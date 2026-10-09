@@ -1,0 +1,5 @@
+mutation CreateIntegrations($input: CreateIntegrationsInput!) {
+      createIntegrations(input: $input) {
+        ids
+      }
+    }

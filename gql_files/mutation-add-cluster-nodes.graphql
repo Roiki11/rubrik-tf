@@ -1,0 +1,6 @@
+mutation AddClusterNodes($AddClusterNodesInput: AddClusterNodesInput!) {
+      addClusterNodes(AddClusterNodesInput: $AddClusterNodesInput) {
+        jobId
+        status
+      }
+    }

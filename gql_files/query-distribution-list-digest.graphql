@@ -1,0 +1,15 @@
+query DistributionListDigest($input: DistributionDigestByIdInput!) {
+      distributionListDigest(input: $input) {
+        account
+        clusterUuids
+        creatorEmailAddress
+        digestId
+        digestName
+        eventDigestConfigJson
+        frequency
+        includeAudits
+        includeEvents
+        isImmediate
+        recipientUserId
+      }
+    }

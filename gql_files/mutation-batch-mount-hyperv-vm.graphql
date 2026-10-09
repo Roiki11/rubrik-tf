@@ -1,0 +1,3 @@
+mutation BatchMountHypervVm($input: BatchMountHypervVmInput!) {
+      batchMountHypervVm(input: $input)
+    }

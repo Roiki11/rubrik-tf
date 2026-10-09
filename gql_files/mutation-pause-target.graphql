@@ -1,0 +1,6 @@
+mutation PauseTarget($input: PauseTargetInput!) {
+      pauseTarget(input: $input) {
+        locationId
+        status
+      }
+    }

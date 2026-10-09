@@ -1,0 +1,7 @@
+query ThreatHuntMatchedSnapshots($huntId: String!, $objectFid: UUID!, $matchIds: [Long!]!) {
+      threatHuntMatchedSnapshots(
+        huntId: $huntId
+        objectFid: $objectFid
+        matchIds: $matchIds
+      )
+    }

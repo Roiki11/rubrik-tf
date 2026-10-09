@@ -1,0 +1,3 @@
+mutation UpdateAuthDomainUsersHiddenStatus($input: UpdateAuthDomainUsersHiddenStatusInput!) {
+      updateAuthDomainUsersHiddenStatus(input: $input)
+    }

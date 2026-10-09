@@ -1,0 +1,17 @@
+query {
+      threatMonitoringMatchedObjects(first: 10) {
+        nodes {
+          filesMatched
+          lastDetection
+          matchType
+          objectFid
+          objectName
+          objectType
+          severity
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

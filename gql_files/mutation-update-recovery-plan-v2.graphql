@@ -1,0 +1,3 @@
+mutation UpdateRecoveryPlanV2($input: UpdateRecoveryPlanV2Input!) {
+      updateRecoveryPlanV2(input: $input)
+    }

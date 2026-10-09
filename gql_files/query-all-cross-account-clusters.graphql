@@ -1,0 +1,17 @@
+query {
+      allCrossAccountClusters(first: 10) {
+        nodes {
+          accountName
+          apiVersion
+          isAirGapped
+          isArchived
+          name
+          uuid
+          version
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

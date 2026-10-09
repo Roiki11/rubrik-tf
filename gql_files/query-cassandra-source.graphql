@@ -1,0 +1,20 @@
+query CassandraSource($fid: UUID!) {
+      cassandraSource(fid: $fid) {
+        backupCount
+        clusterUuid
+        id
+        isRelic
+        lastRefreshTime
+        name
+        nodeCount
+        numWorkloadDescendants
+        objectType
+        rscPendingObjectPauseAssignment
+        size
+        slaAssignment
+        slaPauseStatus
+        sourceIp
+        status
+        watcherEnabled
+      }
+    }

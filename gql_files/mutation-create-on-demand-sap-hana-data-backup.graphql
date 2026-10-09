@@ -1,0 +1,11 @@
+mutation CreateOnDemandSapHanaDataBackup($input: CreateOnDemandSapHanaDataBackupInput!) {
+      createOnDemandSapHanaDataBackup(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

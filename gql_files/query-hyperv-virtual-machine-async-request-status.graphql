@@ -1,0 +1,11 @@
+query HypervVirtualMachineAsyncRequestStatus($input: GetHypervVirtualMachineAsyncRequestStatusInput!) {
+      hypervVirtualMachineAsyncRequestStatus(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

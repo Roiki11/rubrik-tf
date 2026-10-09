@@ -1,0 +1,6 @@
+query {
+      resourceGroups {
+        id
+        name
+      }
+    }

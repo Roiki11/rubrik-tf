@@ -1,0 +1,29 @@
+query ArchivalPerObjectInfo($input: UUID!) {
+      archivalPerObjectInfo(
+        input: $input
+        first: 10
+      ) {
+        nodes {
+          archivalLag
+          archivalLocationId
+          archivalLocationName
+          isRcv
+          latestArchivedSnapshotDate
+          locationType
+          monthlyGrowthBytes
+          numActiveSnapshots
+          objectLocation
+          objectName
+          objectStatus
+          objectType
+          slaDomain
+          storageTier
+          storageUsage
+          workloadId
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

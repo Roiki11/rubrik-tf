@@ -1,0 +1,17 @@
+query {
+      certificates(first: 10) {
+        nodes {
+          certificate
+          certificateId
+          description
+          expiringAt
+          hasKey
+          name
+          usedBy
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

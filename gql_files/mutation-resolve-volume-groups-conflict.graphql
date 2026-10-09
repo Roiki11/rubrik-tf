@@ -1,0 +1,5 @@
+mutation ResolveVolumeGroupsConflict($input: ResolveVolumeGroupsConflictInput!) {
+      resolveVolumeGroupsConflict(input: $input) {
+        success
+      }
+    }

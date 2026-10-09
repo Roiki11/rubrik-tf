@@ -1,0 +1,7 @@
+mutation UpdateLdapIntegration($name: String!, $bindUserName: String!, $bindUserPassword: String!) {
+      updateLdapIntegration(
+        name: $name
+        bindUserName: $bindUserName
+        bindUserPassword: $bindUserPassword
+      )
+    }

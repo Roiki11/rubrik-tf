@@ -1,0 +1,3 @@
+mutation RefreshReaderTarget($input: RefreshReaderTargetInput!) {
+      refreshReaderTarget(input: $input)
+    }

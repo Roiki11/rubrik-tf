@@ -1,0 +1,3 @@
+mutation DeleteManagedVolume($input: DeleteManagedVolumeInput!) {
+      deleteManagedVolume(input: $input)
+    }

@@ -1,0 +1,5 @@
+mutation GenerateConfigProtectionRestoreForm($input: GenerateConfigProtectionRestoreFormInput!) {
+      generateConfigProtectionRestoreForm(input: $input) {
+        configurationTypes
+      }
+    }

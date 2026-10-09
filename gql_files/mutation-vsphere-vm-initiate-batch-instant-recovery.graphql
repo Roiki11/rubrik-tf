@@ -1,0 +1,3 @@
+mutation VsphereVmInitiateBatchInstantRecovery($input: VsphereVmInitiateBatchInstantRecoveryInput!) {
+      vsphereVmInitiateBatchInstantRecovery(input: $input)
+    }

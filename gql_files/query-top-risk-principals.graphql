@@ -1,0 +1,8 @@
+query TopRiskPrincipals($principalRiskSummaryPrincipalType: PrincipalRiskySummaryPrincipalType!, $limit: Int!) {
+      topRiskPrincipals(
+        principalRiskSummaryPrincipalType: $principalRiskSummaryPrincipalType
+        limit: $limit
+      ) {
+        latestTimelineDate
+      }
+    }

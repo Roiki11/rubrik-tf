@@ -1,0 +1,5 @@
+mutation CreateSecurityPolicy($input: CreateSecurityPolicyInput!) {
+      createSecurityPolicy(input: $input) {
+        policyId
+      }
+    }

@@ -1,0 +1,14 @@
+query GetRolesByIds($roleIds: [String!]!) {
+      getRolesByIds(roleIds: $roleIds) {
+        alreadySyncedClusters
+        description
+        explicitProtectableClusters
+        id
+        isOrgAdmin
+        isReadOnly
+        isSynced
+        name
+        orgId
+        protectableClusters
+      }
+    }

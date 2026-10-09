@@ -1,0 +1,8 @@
+query RecoveryReport($input: RecoveryReportInput!) {
+      recoveryReport(input: $input) {
+        expiredAt
+        reportId
+        reportUrl
+        status
+      }
+    }

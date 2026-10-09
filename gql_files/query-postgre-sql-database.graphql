@@ -1,0 +1,14 @@
+query PostgreSQLDatabase($fid: UUID!) {
+      postgreSQLDatabase(fid: $fid) {
+        authorizedOperations
+        cdmPendingObjectPauseAssignment
+        id
+        isReplica
+        name
+        numWorkloadDescendants
+        objectType
+        replicatedObjectCount
+        slaAssignment
+        slaPauseStatus
+      }
+    }

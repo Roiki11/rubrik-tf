@@ -1,0 +1,16 @@
+query HypervServer($fid: UUID!) {
+      hypervServer(fid: $fid) {
+        authorizedOperations
+        cdmPendingObjectPauseAssignment
+        connectionStatus
+        hostname
+        id
+        isReplica
+        name
+        numWorkloadDescendants
+        objectType
+        replicatedObjectCount
+        slaAssignment
+        slaPauseStatus
+      }
+    }

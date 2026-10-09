@@ -1,0 +1,8 @@
+mutation RecoverCassandraSource($input: MosaicRestoreDataInput!) {
+      recoverCassandraSource(input: $input) {
+        data
+        message
+        returnCode
+        status
+      }
+    }

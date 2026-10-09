@@ -1,0 +1,3 @@
+query DataAccessStats($input: DataAccessStatsInput!) {
+      dataAccessStats(input: $input)
+    }

@@ -1,0 +1,6 @@
+mutation InitializeUploadSession($input: InitializeUploadSessionInput!) {
+      initializeUploadSession(input: $input) {
+        partSize
+        sessionId
+      }
+    }

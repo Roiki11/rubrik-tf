@@ -1,0 +1,5 @@
+query MinimumCdmVersionForFeatureSet($featureListMinimumCdmVersion: FeatureListMinimumCdmVersionInputType!) {
+      minimumCdmVersionForFeatureSet(featureListMinimumCdmVersion: $featureListMinimumCdmVersion) {
+        minimumVersion
+      }
+    }

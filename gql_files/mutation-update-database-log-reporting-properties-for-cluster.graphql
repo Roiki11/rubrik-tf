@@ -1,0 +1,7 @@
+mutation UpdateDatabaseLogReportingPropertiesForCluster($input: UpdateDatabaseLogReportingPropertiesForClusterInput!) {
+      updateDatabaseLogReportingPropertiesForCluster(input: $input) {
+        enableDelayNotification
+        logDelayNotificationFrequencyInMin
+        logDelayThresholdInMin
+      }
+    }

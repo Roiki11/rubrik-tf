@@ -1,0 +1,19 @@
+query {
+      appAccessPrincipals(first: 10) {
+        nodes {
+          appCount
+          applicationLogoId
+          id
+          idpType
+          logoId
+          memberCount
+          name
+          nativeType
+          principalType
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

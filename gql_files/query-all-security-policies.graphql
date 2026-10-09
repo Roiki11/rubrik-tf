@@ -1,0 +1,5 @@
+query AllSecurityPolicies($policyTypes: [PolicyType!]!) {
+      allSecurityPolicies(policyTypes: $policyTypes) {
+        violationNames
+      }
+    }

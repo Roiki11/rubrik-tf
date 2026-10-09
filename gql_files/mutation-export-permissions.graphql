@@ -1,0 +1,5 @@
+mutation ExportPermissions($input: ExportPermissionsInput!) {
+      exportPermissions(input: $input) {
+        isSuccessful
+      }
+    }

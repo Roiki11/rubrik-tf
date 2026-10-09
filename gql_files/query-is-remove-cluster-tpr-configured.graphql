@@ -1,0 +1,3 @@
+query IsRemoveClusterTprConfigured($clusterUuid: UUID!) {
+      isRemoveClusterTprConfigured(clusterUuid: $clusterUuid)
+    }

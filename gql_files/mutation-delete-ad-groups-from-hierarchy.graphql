@@ -1,0 +1,5 @@
+mutation DeleteAdGroupsFromHierarchy($input: DeleteAdGroupsFromHierarchyInput!) {
+      deleteAdGroupsFromHierarchy(input: $input) {
+        success
+      }
+    }

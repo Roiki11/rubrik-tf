@@ -1,0 +1,17 @@
+query HostShare($fid: UUID!) {
+      hostShare(fid: $fid) {
+        authorizedOperations
+        cdmPendingObjectPauseAssignment
+        id
+        isChangelistEnabled
+        isReplica
+        name
+        nasMigrationInfo
+        nasShareType
+        numWorkloadDescendants
+        objectType
+        replicatedObjectCount
+        slaAssignment
+        slaPauseStatus
+      }
+    }

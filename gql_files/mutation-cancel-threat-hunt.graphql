@@ -1,0 +1,3 @@
+mutation CancelThreatHunt($input: CancelThreatHuntInput!) {
+      cancelThreatHunt(input: $input)
+    }

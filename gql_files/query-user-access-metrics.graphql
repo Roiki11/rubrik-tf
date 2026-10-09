@@ -1,0 +1,6 @@
+query {
+      userAccessMetrics {
+        activeDirectorySnapshotExists
+        contentAnalysisResultsExists
+      }
+    }

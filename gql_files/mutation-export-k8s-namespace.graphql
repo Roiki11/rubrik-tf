@@ -1,0 +1,6 @@
+mutation ExportK8sNamespace($input: ExportK8sNamespaceInput!) {
+      exportK8sNamespace(input: $input) {
+        jobId
+        taskchainId
+      }
+    }

@@ -1,0 +1,3 @@
+mutation DisableSupportUserAccess($input: DisableSupportUserAccessInput!) {
+      disableSupportUserAccess(input: $input)
+    }

@@ -1,0 +1,11 @@
+mutation DownloadSapHanaSnapshot($input: DownloadSapHanaSnapshotInput!) {
+      downloadSapHanaSnapshot(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

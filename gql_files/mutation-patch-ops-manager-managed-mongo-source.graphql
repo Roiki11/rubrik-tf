@@ -1,0 +1,11 @@
+mutation PatchOpsManagerManagedMongoSource($input: PatchOpsManagerManagedMongoSourceInput!) {
+      patchOpsManagerManagedMongoSource(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

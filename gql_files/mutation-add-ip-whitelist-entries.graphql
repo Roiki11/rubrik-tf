@@ -1,0 +1,3 @@
+mutation AddIpWhitelistEntries($input: AddIpWhitelistEntriesInput!) {
+      addIpWhitelistEntries(input: $input)
+    }

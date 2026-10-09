@@ -1,0 +1,5 @@
+mutation RequestPureStorageProtectionGroupForceFullSnapshot($input: RequestPureStorageProtectionGroupForceFullSnapshotInput!) {
+      requestPureStorageProtectionGroupForceFullSnapshot(input: $input) {
+        id
+      }
+    }

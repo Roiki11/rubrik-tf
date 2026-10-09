@@ -1,0 +1,9 @@
+query TprConfiguration($orgId: String!) {
+      tprConfiguration(orgId: $orgId) {
+        executionMaxTimeoutHours
+        isTprEnabled
+        reminderHours
+        requestTimeoutHours
+        staticQuorumRequirement
+      }
+    }

@@ -1,0 +1,14 @@
+query SnappableGroupByConnection($groupBy: SnappableGroupByEnum!) {
+      snappableGroupByConnection(
+        groupBy: $groupBy
+        first: 10
+      ) {
+        nodes {
+    
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

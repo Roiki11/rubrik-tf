@@ -1,0 +1,15 @@
+query AllWebhookMessageTemplates($input: WebhookMessageTemplatesReqInput!) {
+      allWebhookMessageTemplates(input: $input) {
+        createdAt
+        createdBy
+        docFormat
+        docUrl
+        id
+        msgType
+        name
+        recordType
+        templateData
+        updatedAt
+        updatedBy
+      }
+    }

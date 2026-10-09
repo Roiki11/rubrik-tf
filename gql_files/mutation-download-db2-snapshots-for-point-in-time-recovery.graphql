@@ -1,0 +1,11 @@
+mutation DownloadDb2SnapshotsForPointInTimeRecovery($input: DownloadDb2SnapshotsForPointInTimeRecoveryInput!) {
+      downloadDb2SnapshotsForPointInTimeRecovery(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

@@ -1,0 +1,14 @@
+query PostgresDbClusterAsyncRequestStatus($clusterUuid: UUID!, $id: String!) {
+      postgresDbClusterAsyncRequestStatus(
+        clusterUuid: $clusterUuid
+        id: $id
+      ) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

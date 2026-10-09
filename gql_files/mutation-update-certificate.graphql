@@ -1,0 +1,3 @@
+mutation UpdateCertificate($certificateId: Long!) {
+      updateCertificate(certificateId: $certificateId)
+    }

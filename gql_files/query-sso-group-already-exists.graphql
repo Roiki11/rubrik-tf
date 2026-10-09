@@ -1,0 +1,5 @@
+query SsoGroupAlreadyExists($ssoGroupName: String!) {
+      ssoGroupAlreadyExists(ssoGroupName: $ssoGroupName) {
+        doesExist
+      }
+    }

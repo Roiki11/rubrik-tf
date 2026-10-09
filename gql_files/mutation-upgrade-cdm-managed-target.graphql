@@ -1,0 +1,3 @@
+mutation UpgradeCdmManagedTarget($input: UpgradeCdmManagedTargetInput!) {
+      upgradeCdmManagedTarget(input: $input)
+    }

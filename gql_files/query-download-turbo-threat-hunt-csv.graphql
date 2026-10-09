@@ -1,0 +1,6 @@
+query DownloadTurboThreatHuntCsv($input: DownloadTurboThreatHuntResultsCsvInput!) {
+      downloadTurboThreatHuntCsv(input: $input) {
+        signedUrl
+        status
+      }
+    }

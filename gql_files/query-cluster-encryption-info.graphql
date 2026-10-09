@@ -1,0 +1,29 @@
+query ClusterEncryptionInfo($encryptionStatusFilter: [ClusterEncryptionStatusFilter!]!, $keyProtection: [ClusterKeyProtection!]!, $clusters: [UUID!]!, $encryptionTypes: [ClusterEncryptionType!]!) {
+      clusterEncryptionInfo(
+        encryptionStatusFilter: $encryptionStatusFilter
+        keyProtection: $keyProtection
+        clusters: $clusters
+        encryptionTypes: $encryptionTypes
+        first: 10
+      ) {
+        nodes {
+          canUserManageCluster
+          cipher
+          clusterProductType
+          encryptionType
+          isConnected
+          isEncrypted
+          isOnCloud
+          kmipClientUsername
+          name
+          softwareVersion
+          supportedKeyTypes
+          totalKmipServers
+          uuid
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

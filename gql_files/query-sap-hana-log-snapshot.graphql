@@ -1,0 +1,13 @@
+query SapHanaLogSnapshot($fid: UUID!) {
+      sapHanaLogSnapshot(fid: $fid) {
+        cdmId
+        clusterUuid
+        date
+        fid
+        internalTimestamp
+        isArchived
+        locationMap
+        workloadId
+        workloadType
+      }
+    }

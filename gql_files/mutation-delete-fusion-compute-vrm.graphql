@@ -1,0 +1,11 @@
+mutation DeleteFusionComputeVrm($input: DeleteFusionComputeVrmInput!) {
+      deleteFusionComputeVrm(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

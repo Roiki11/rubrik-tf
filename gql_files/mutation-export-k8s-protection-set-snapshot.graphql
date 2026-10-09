@@ -1,0 +1,11 @@
+mutation ExportK8sProtectionSetSnapshot($input: ExportK8sProtectionSetSnapshotInput!) {
+      exportK8sProtectionSetSnapshot(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

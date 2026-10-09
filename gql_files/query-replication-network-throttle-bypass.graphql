@@ -1,0 +1,5 @@
+query ReplicationNetworkThrottleBypass($input: QueryReplicationTargetInfoInput!) {
+      replicationNetworkThrottleBypass(input: $input) {
+        total
+      }
+    }

@@ -1,0 +1,5 @@
+query HealthCheckErrorReport($input: GetHealthCheckErrorReportReq!) {
+      healthCheckErrorReport(input: $input) {
+        csvData
+      }
+    }

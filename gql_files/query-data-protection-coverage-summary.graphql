@@ -1,0 +1,3 @@
+query DataProtectionCoverageSummary($historicalDeltaDays: Int!) {
+      dataProtectionCoverageSummary(historicalDeltaDays: $historicalDeltaDays)
+    }

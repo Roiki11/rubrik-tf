@@ -1,0 +1,3 @@
+mutation SetDatastoreFreespaceThresholds($input: SetDatastoreFreespaceThresholdsInput!) {
+      setDatastoreFreespaceThresholds(input: $input)
+    }

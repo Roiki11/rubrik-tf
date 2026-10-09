@@ -1,0 +1,10 @@
+query HierarchyObjects($fids: [UUID!]!) {
+      hierarchyObjects(fids: $fids) {
+        id
+        name
+        numWorkloadDescendants
+        objectType
+        slaAssignment
+        slaPauseStatus
+      }
+    }

@@ -1,0 +1,11 @@
+mutation RefreshDb2Database($input: RefreshDb2DatabaseInput!) {
+      refreshDb2Database(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

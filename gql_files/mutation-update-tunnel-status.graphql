@@ -1,0 +1,3 @@
+mutation UpdateTunnelStatus($input: UpdateTunnelStatusInput!) {
+      updateTunnelStatus(input: $input)
+    }

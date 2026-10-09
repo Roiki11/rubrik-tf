@@ -1,0 +1,6 @@
+mutation DeactivatePolicy($policyId: String!, $runAsync: Boolean!) {
+      deactivatePolicy(
+        policyId: $policyId
+        runAsync: $runAsync
+      )
+    }

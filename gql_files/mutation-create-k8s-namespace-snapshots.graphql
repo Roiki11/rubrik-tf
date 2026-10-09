@@ -1,0 +1,6 @@
+mutation CreateK8sNamespaceSnapshots($input: CreateK8sNamespaceSnapshotsInput!) {
+      createK8sNamespaceSnapshots(input: $input) {
+        jobId
+        taskchainId
+      }
+    }

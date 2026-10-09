@@ -1,0 +1,11 @@
+mutation UpdateMssqlLogShippingConfigurationV1($input: UpdateMssqlLogShippingConfigurationV1Input!) {
+      updateMssqlLogShippingConfigurationV1(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

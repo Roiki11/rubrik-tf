@@ -1,0 +1,8 @@
+query AllVmwareCdpStateInfos($ids: [String!]!) {
+      allVmwareCdpStateInfos(ids: $ids) {
+        healthPercentage
+        localStatus
+        replicationStatus
+        vmId
+      }
+    }

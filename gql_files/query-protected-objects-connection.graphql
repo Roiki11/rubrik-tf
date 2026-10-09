@@ -1,0 +1,21 @@
+query ProtectedObjectsConnection($slaIds: [UUID!]!) {
+      protectedObjectsConnection(
+        slaIds: $slaIds
+        first: 10
+      ) {
+        nodes {
+          effectiveSlaFidOpt
+          effectiveSlaOpt
+          id
+          isArchived
+          isUnprotected
+          name
+          objectType
+          slaPauseStatus
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

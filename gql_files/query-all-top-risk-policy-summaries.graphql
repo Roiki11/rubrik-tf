@@ -1,0 +1,7 @@
+query AllTopRiskPolicySummaries($getWhitelistedResults: Boolean!, $limit: Int!, $workloadTypes: [DataGovObjectType!]!) {
+      allTopRiskPolicySummaries(
+        getWhitelistedResults: $getWhitelistedResults
+        limit: $limit
+        workloadTypes: $workloadTypes
+      )
+    }

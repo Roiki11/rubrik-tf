@@ -1,0 +1,37 @@
+query OracleDataGuardGroup($fid: UUID!) {
+      oracleDataGuardGroup(fid: $fid) {
+        authorizedOperations
+        cdmId
+        cdmLink
+        cdmPendingObjectPauseAssignment
+        dataGuardGroupId
+        dataGuardType
+        dbRole
+        dbUniqueName
+        hostLogRetentionHours
+        id
+        isRelic
+        isReplica
+        isZeroRpoEnabled
+        logBackupFrequency
+        logRatePerRmanChannelInMb
+        logRetentionHours
+        name
+        numChannels
+        numInstances
+        numLogSnapshots
+        numTablespaces
+        numWorkloadDescendants
+        objectType
+        onDemandSnapshotCount
+        preferredDataGuardMemberUniqueNames
+        ratePerRmanChannelInMb
+        replicatedObjectCount
+        sectionSizeInGigabytes
+        shouldBackupFromPrimaryOnly
+        slaAssignment
+        slaPauseStatus
+        tablespaces
+        useSecureThrift
+      }
+    }

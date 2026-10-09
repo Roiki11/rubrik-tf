@@ -1,0 +1,35 @@
+mutation AddK8sCluster($input: AddK8sClusterInput!) {
+      addK8sCluster(input: $input) {
+        backupSubnetCidr
+        dataPathTransport
+        distribution
+        effectiveSlaId
+        effectiveSlaSource
+        effectiveSlaType
+        helmStatus
+        helmVersion
+        id
+        isDbProtectionEnabled
+        k8SVersion
+        kubevirtVersion
+        kuprServerProxyPodMultusIp
+        lastRefreshTime
+        loadbalancerIpDns
+        maxConcurrentAgents
+        maxPvcsPerAgent
+        nadName
+        nadNamespace
+        name
+        namespaceCount
+        numLabels
+        numProtectionSets
+        numVms
+        onboardingType
+        port
+        pvcGroupingStrategy
+        region
+        registry
+        status
+        transport
+      }
+    }

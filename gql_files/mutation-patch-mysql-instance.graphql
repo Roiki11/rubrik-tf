@@ -1,0 +1,5 @@
+mutation PatchMysqlInstance($input: PatchMysqldbInstanceInput!) {
+      patchMysqlInstance(input: $input) {
+        kosmosTopologyStateId
+      }
+    }

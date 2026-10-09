@@ -1,0 +1,5 @@
+mutation AcknowledgeClusterNotification($input: AcknowledgeClusterNotificationInput!) {
+      acknowledgeClusterNotification(input: $input) {
+        success
+      }
+    }

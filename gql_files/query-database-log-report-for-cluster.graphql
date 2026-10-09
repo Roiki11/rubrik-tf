@@ -1,0 +1,7 @@
+query DatabaseLogReportForCluster($input: QueryLogReportInput!) {
+      databaseLogReportForCluster(input: $input) {
+        hasMore
+        nextCursor
+        total
+      }
+    }

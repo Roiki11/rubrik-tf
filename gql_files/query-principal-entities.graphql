@@ -1,0 +1,7 @@
+query {
+      principalEntities {
+        id
+        idpType
+        name
+      }
+    }

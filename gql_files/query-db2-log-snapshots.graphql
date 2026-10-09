@@ -1,0 +1,18 @@
+query {
+      db2LogSnapshots(first: 10) {
+        nodes {
+          cdmId
+          clusterUuid
+          date
+          fid
+          internalTimestamp
+          isArchived
+          workloadId
+          workloadType
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

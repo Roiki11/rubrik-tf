@@ -1,0 +1,5 @@
+mutation FinishArchivalMigration($input: FinishArchivalMigrationInput!) {
+      finishArchivalMigration(input: $input) {
+        isSuccessful
+      }
+    }

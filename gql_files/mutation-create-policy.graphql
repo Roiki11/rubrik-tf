@@ -1,0 +1,16 @@
+mutation CreatePolicy($input: CreatePolicyInput!) {
+      createPolicy(input: $input) {
+        colorEnum
+        createdTime
+        deletable
+        description
+        hierarchyObjectIds
+        id
+        isInactive
+        lastUpdatedTime
+        mode
+        name
+        numAnalyzers
+        totalObjects
+      }
+    }

@@ -1,0 +1,12 @@
+query {
+      clusterRefs(first: 10) {
+        nodes {
+          name
+          uuid
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

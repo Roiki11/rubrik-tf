@@ -1,0 +1,6 @@
+mutation CancelScheduledUpgrade($clusterUuid: UUID!) {
+      cancelScheduledUpgrade(clusterUuid: $clusterUuid) {
+        message
+        status
+      }
+    }

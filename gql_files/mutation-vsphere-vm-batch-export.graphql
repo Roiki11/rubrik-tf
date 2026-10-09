@@ -1,0 +1,3 @@
+mutation VsphereVmBatchExport($input: VsphereVmBatchExportInput!) {
+      vsphereVmBatchExport(input: $input)
+    }

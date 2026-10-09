@@ -1,0 +1,7 @@
+mutation {
+      generateClusterRegistrationToken {
+        productType
+        pubkey
+        token
+      }
+    }

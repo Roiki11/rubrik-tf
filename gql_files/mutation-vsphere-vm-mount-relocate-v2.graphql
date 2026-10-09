@@ -1,0 +1,11 @@
+mutation VsphereVmMountRelocateV2($input: VsphereVmMountRelocateV2Input!) {
+      vsphereVmMountRelocateV2(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

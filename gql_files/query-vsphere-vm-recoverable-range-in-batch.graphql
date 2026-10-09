@@ -1,0 +1,3 @@
+query VsphereVMRecoverableRangeInBatch($requestInfo: BatchVmwareVmRecoverableRangesRequestInput!) {
+      vsphereVMRecoverableRangeInBatch(requestInfo: $requestInfo)
+    }

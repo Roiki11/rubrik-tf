@@ -1,0 +1,14 @@
+query PolicyObjectUsages($objectIds: [String!]!) {
+      policyObjectUsages(
+        objectIds: $objectIds
+        first: 10
+      ) {
+        nodes {
+    
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

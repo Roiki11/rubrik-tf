@@ -1,0 +1,18 @@
+query ScheduledReport($id: Int!) {
+      scheduledReport(id: $id) {
+        attachmentTypes
+        createdAt
+        dailyTime
+        id
+        lastUpdatedAt
+        monthlyDate
+        monthlyTime
+        recipientEmails
+        reportId
+        showChartsInEmailBody
+        timeZone
+        title
+        weeklyDays
+        weeklyTime
+      }
+    }

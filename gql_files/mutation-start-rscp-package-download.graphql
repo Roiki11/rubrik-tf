@@ -1,0 +1,5 @@
+mutation StartRscpPackageDownload($input: StartRscpPackageDownloadInput!) {
+      startRscpPackageDownload(input: $input) {
+        message
+      }
+    }

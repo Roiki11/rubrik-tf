@@ -1,0 +1,3 @@
+query IsSfdcReachable($hostname: String!) {
+      isSfdcReachable(hostname: $hostname)
+    }

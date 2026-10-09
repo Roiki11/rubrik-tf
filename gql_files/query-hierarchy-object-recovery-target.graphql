@@ -1,0 +1,10 @@
+query HierarchyObjectRecoveryTarget($fid: UUID!) {
+      hierarchyObjectRecoveryTarget(fid: $fid) {
+        id
+        name
+        numWorkloadDescendants
+        objectType
+        slaAssignment
+        slaPauseStatus
+      }
+    }

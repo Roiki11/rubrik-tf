@@ -1,0 +1,20 @@
+query FailoverGroupHosts($failoverGroupId: UUID!) {
+      failoverGroupHosts(
+        failoverGroupId: $failoverGroupId
+        first: 10
+      ) {
+        nodes {
+          activeClusterUuid
+          counterpartIds
+          hostId
+          hostName
+          hostStatus
+          hostType
+          numberOfObjects
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

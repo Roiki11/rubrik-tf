@@ -1,0 +1,7 @@
+query ValidateOrgName($input: ValidateOrgNameInput!) {
+      validateOrgName(input: $input) {
+        name
+        nameValidity
+        url
+      }
+    }

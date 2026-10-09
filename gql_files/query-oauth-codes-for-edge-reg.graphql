@@ -1,0 +1,9 @@
+query OauthCodesForEdgeReg($numberOfEdges: Int!, $cdmOvaLink: String!) {
+      oauthCodesForEdgeReg(
+        numberOfEdges: $numberOfEdges
+        cdmOvaLink: $cdmOvaLink
+      ) {
+        cdmOvaLink
+        windowsToolLink
+      }
+    }

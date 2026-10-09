@@ -1,0 +1,3 @@
+mutation UpdateSnmpConfig($input: UpdateSnmpConfigInput!) {
+      updateSnmpConfig(input: $input)
+    }

@@ -1,0 +1,3 @@
+query AllMssqlDatabaseRestoreFiles($input: MssqlGetRestoreFilesV1Input!) {
+      allMssqlDatabaseRestoreFiles(input: $input)
+    }

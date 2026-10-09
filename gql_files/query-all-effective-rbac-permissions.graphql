@@ -1,0 +1,5 @@
+query AllEffectiveRbacPermissions($roleId: String!) {
+      allEffectiveRbacPermissions(roleId: $roleId) {
+        operations
+      }
+    }

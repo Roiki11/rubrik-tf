@@ -1,0 +1,11 @@
+mutation DownloadOracleDatabaseSnapshot($input: DownloadOracleDatabaseSnapshotInput!) {
+      downloadOracleDatabaseSnapshot(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

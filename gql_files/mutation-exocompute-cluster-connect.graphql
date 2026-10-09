@@ -1,0 +1,6 @@
+mutation ExocomputeClusterConnect($input: ExocomputeClusterConnectInput!) {
+      exocomputeClusterConnect(input: $input) {
+        clusterSetupYaml
+        clusterUuid
+      }
+    }

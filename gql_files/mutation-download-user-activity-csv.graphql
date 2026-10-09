@@ -1,0 +1,5 @@
+mutation DownloadUserActivityCsv($input: DownloadUserActivityCsvInput!) {
+      downloadUserActivityCsv(input: $input) {
+        isSuccessful
+      }
+    }

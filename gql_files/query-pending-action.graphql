@@ -1,0 +1,12 @@
+query PendingAction($pendingActionId: String!) {
+      pendingAction(pendingActionId: $pendingActionId) {
+        actionTypeStr
+        clusterUuid
+        createdAt
+        description
+        info
+        pendingActionId
+        status
+        updatedAt
+      }
+    }

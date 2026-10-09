@@ -1,0 +1,30 @@
+query Db2Database($fid: UUID!) {
+      db2Database(fid: $fid) {
+        authorizedOperations
+        backupCompressionLibraryPath
+        backupParallelism
+        backupSessions
+        backupTriggerType
+        cdmId
+        cdmLink
+        cdmPendingObjectPauseAssignment
+        db2DbType
+        id
+        isBackupCompressionEnabled
+        isRelic
+        isReplica
+        lastSyncTime
+        logBackupThreshold
+        name
+        numWorkloadDescendants
+        objectType
+        onDemandSnapshotCount
+        primaryClusterUuid
+        protectionDate
+        replicatedObjectCount
+        slaAssignment
+        slaPauseStatus
+        status
+        statusMessage
+      }
+    }

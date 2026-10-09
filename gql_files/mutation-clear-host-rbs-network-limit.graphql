@@ -1,0 +1,3 @@
+mutation ClearHostRbsNetworkLimit($input: ClearHostRbsNetworkLimitInput!) {
+      clearHostRbsNetworkLimit(input: $input)
+    }

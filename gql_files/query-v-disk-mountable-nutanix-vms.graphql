@@ -1,0 +1,36 @@
+query {
+      vDiskMountableNutanixVms(first: 10) {
+        nodes {
+          authorizedOperations
+          blueprintId
+          blueprintName
+          cdmId
+          cdmLink
+          cdmPendingObjectPauseAssignment
+          currentHostId
+          excludedDisks
+          hypervisorType
+          id
+          isAgentRegistered
+          isBlueprintChild
+          isRelic
+          isReplica
+          name
+          numWorkloadDescendants
+          nutanixSnapshotConsistencyMandate
+          nutanixVmMountCount
+          objectType
+          onDemandSnapshotCount
+          osType
+          replicatedObjectCount
+          slaAssignment
+          slaPauseStatus
+          snapshotConsistencyMandate
+          vmUuid
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

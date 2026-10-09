@@ -1,0 +1,11 @@
+mutation DeleteMysqldbInstanceLiveMount($input: DeleteMysqldbInstanceLiveMountInput!) {
+      deleteMysqldbInstanceLiveMount(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

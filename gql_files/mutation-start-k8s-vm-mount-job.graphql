@@ -1,0 +1,11 @@
+mutation StartK8sVmMountJob($input: StartK8sVmMountJobInput!) {
+      startK8sVmMountJob(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

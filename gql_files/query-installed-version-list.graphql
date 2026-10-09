@@ -1,0 +1,7 @@
+query {
+      installedVersionList {
+        count
+        group
+        isUpgradeRecommended
+      }
+    }

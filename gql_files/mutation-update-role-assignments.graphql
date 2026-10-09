@@ -1,0 +1,3 @@
+mutation UpdateRoleAssignments($roleIds: [String!]!) {
+      updateRoleAssignments(roleIds: $roleIds)
+    }

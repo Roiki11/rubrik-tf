@@ -1,0 +1,5 @@
+mutation UpdateSlasForMigrationToRcvTarget($input: UpdateSlasForMigrationToRcvTargetInput!) {
+      updateSlasForMigrationToRcvTarget(input: $input) {
+        updatedSlaIds
+      }
+    }

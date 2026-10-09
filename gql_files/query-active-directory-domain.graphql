@@ -1,0 +1,19 @@
+query ActiveDirectoryDomain($fid: UUID!) {
+      activeDirectoryDomain(fid: $fid) {
+        authorizedOperations
+        cdmId
+        cdmPendingObjectPauseAssignment
+        domainName
+        domainSid
+        id
+        isArchived
+        isReplica
+        name
+        numWorkloadDescendants
+        objectType
+        registeredDomainControllersCount
+        replicatedObjectCount
+        slaAssignment
+        slaPauseStatus
+      }
+    }

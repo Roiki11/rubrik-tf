@@ -1,0 +1,6 @@
+query {
+      workdayIngestionStatus {
+        lastRunStartTime
+        lastSuccessTime
+      }
+    }

@@ -1,0 +1,11 @@
+mutation DownloadMongoOpsManagerSourceSnapshotsForPointInTimeRecovery($input: DownloadMongoOpsManagerSourceSnapshotsForPointInTimeRecoveryInput!) {
+      downloadMongoOpsManagerSourceSnapshotsForPointInTimeRecovery(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

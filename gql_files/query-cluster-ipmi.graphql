@@ -1,0 +1,5 @@
+query ClusterIpmi($input: GetIpmiInput!) {
+      clusterIpmi(input: $input) {
+        isAvailable
+      }
+    }

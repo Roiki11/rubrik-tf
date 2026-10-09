@@ -1,0 +1,3 @@
+mutation RefreshGlobalManagerConnectivityStatus($clusterUuid: UUID!) {
+      refreshGlobalManagerConnectivityStatus(clusterUuid: $clusterUuid)
+    }

@@ -1,0 +1,3 @@
+query VCenterPreAddInfo($input: PreAddVcenterInput!) {
+      vCenterPreAddInfo(input: $input)
+    }

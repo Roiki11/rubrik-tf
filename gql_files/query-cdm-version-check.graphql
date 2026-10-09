@@ -1,0 +1,5 @@
+query CdmVersionCheck($featureToCdmVersion: FeatureCdmVersionInput!) {
+      cdmVersionCheck(featureToCdmVersion: $featureToCdmVersion) {
+        isSupported
+      }
+    }

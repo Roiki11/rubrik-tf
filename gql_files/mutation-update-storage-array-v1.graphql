@@ -1,0 +1,3 @@
+mutation UpdateStorageArrayV1($input: UpdateStorageArrayV1Input!) {
+      updateStorageArrayV1(input: $input)
+    }

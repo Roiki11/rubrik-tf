@@ -1,0 +1,25 @@
+query {
+      activeDirectoryDomains(first: 10) {
+        nodes {
+          authorizedOperations
+          cdmId
+          cdmPendingObjectPauseAssignment
+          domainName
+          domainSid
+          id
+          isArchived
+          isReplica
+          name
+          numWorkloadDescendants
+          objectType
+          registeredDomainControllersCount
+          replicatedObjectCount
+          slaAssignment
+          slaPauseStatus
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

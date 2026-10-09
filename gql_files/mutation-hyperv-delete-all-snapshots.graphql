@@ -1,0 +1,5 @@
+mutation HypervDeleteAllSnapshots($input: HypervDeleteAllSnapshotsInput!) {
+      hypervDeleteAllSnapshots(input: $input) {
+        success
+      }
+    }

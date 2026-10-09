@@ -1,0 +1,6 @@
+mutation EnableDisableAppConsistency($input: EnableDisableAppConsistencyInput!) {
+      enableDisableAppConsistency(input: $input) {
+        failedWorkloadIds
+        successWorkloadIds
+      }
+    }

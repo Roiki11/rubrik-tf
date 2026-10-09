@@ -1,0 +1,17 @@
+query {
+      smbDomains(first: 10) {
+        nodes {
+          accountName
+          dnsServers
+          domainId
+          id
+          isArchived
+          name
+          status
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

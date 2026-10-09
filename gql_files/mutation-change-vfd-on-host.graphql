@@ -1,0 +1,3 @@
+mutation ChangeVfdOnHost($input: ChangeVfdOnHostInput!) {
+      changeVfdOnHost(input: $input)
+    }

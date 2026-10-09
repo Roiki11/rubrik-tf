@@ -1,0 +1,3 @@
+mutation VsphereVmUnregisterAgent($input: VmUnregisterAgentInput!) {
+      vsphereVmUnregisterAgent(input: $input)
+    }

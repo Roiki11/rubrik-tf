@@ -1,0 +1,3 @@
+mutation CancelTprRequest($input: CancelTprRequestInput!) {
+      cancelTprRequest(input: $input)
+    }

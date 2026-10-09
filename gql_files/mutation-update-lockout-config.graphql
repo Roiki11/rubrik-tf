@@ -1,0 +1,11 @@
+mutation UpdateLockoutConfig($input: UpdateLockoutConfigInput!) {
+      updateLockoutConfig(input: $input) {
+        accountAutoUnlockDurationInMins
+        isAutoUnlockFeatureEnabled
+        isBruteForceLockoutEnabled
+        isSelfServiceEnabled
+        loginAttemptsLimit
+        selfServiceAttemptsLimit
+        selfServiceTokenValidityInMins
+      }
+    }

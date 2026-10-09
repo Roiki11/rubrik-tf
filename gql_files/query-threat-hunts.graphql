@@ -1,0 +1,15 @@
+query {
+      threatHunts(first: 10) {
+        nodes {
+          huntId
+          huntType
+          name
+          startTime
+          status
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

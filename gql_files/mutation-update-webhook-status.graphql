@@ -1,0 +1,5 @@
+mutation UpdateWebhookStatus($input: UpdateWebhookStatusInput!) {
+      updateWebhookStatus(input: $input) {
+        isSuccessful
+      }
+    }

@@ -1,0 +1,9 @@
+query DownloadSlaWithReplicationCsv($cdmClusterUUID: UUID!, $includeArchived: Boolean!) {
+      downloadSlaWithReplicationCsv(
+        cdmClusterUUID: $cdmClusterUUID
+        includeArchived: $includeArchived
+      ) {
+        doesSlaExists
+        isDownloadSuccessful
+      }
+    }

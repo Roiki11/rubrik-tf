@@ -1,0 +1,11 @@
+mutation VsphereSnapshotDownloadFilesFromLocation($input: VsphereSnapshotDownloadFilesFromLocationInput!) {
+      vsphereSnapshotDownloadFilesFromLocation(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

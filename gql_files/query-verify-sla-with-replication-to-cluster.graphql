@@ -1,0 +1,8 @@
+query VerifySlaWithReplicationToCluster($cdmClusterUUID: UUID!, $includeArchived: Boolean!) {
+      verifySlaWithReplicationToCluster(
+        cdmClusterUUID: $cdmClusterUUID
+        includeArchived: $includeArchived
+      ) {
+        isActiveSla
+      }
+    }

@@ -1,0 +1,3 @@
+query RecoverySpecs($input: RecoverySpecsInput!) {
+      recoverySpecs(input: $input)
+    }

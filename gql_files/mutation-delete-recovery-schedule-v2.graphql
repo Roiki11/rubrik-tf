@@ -1,0 +1,3 @@
+mutation DeleteRecoveryScheduleV2($input: DeleteRecoveryScheduleV2Input!) {
+      deleteRecoveryScheduleV2(input: $input)
+    }

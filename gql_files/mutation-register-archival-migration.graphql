@@ -1,0 +1,5 @@
+mutation RegisterArchivalMigration($input: RegisterArchivalMigrationInput!) {
+      registerArchivalMigration(input: $input) {
+        success
+      }
+    }

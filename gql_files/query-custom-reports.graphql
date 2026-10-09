@@ -1,0 +1,21 @@
+query {
+      customReports(first: 10) {
+        nodes {
+          createdAt
+          createdBy
+          description
+          id
+          name
+          reportCategory
+          reportViewType
+          room
+          scheduledReportsCount
+          updatedAt
+          updatedBy
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

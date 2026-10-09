@@ -1,0 +1,6 @@
+mutation EnableTarget($input: EnableTargetInput!) {
+      enableTarget(input: $input) {
+        locationId
+        status
+      }
+    }

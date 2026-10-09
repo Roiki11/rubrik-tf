@@ -1,0 +1,8 @@
+query SnmpConfigurations($input: GetSnmpConfigurationInput!) {
+      snmpConfigurations(input: $input) {
+        communityString
+        isEnabled
+        snmpAgentPort
+        users
+      }
+    }

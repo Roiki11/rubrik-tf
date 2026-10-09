@@ -1,0 +1,5 @@
+mutation UpdateInsightState($input: UpdateInsightStateInput!) {
+      updateInsightState(input: $input) {
+        isInsightDismissed
+      }
+    }

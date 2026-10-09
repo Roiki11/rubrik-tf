@@ -1,0 +1,16 @@
+query SnappableEmailSearch($snappableFid: UUID!, $orgId: UUID!) {
+      snappableEmailSearch(
+        snappableFid: $snappableFid
+        orgId: $orgId
+        first: 10
+      ) {
+        nodes {
+          id
+          parentFolderId
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

@@ -1,0 +1,12 @@
+query {
+      sonarUserGroups(first: 10) {
+        nodes {
+          groupId
+          groupName
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

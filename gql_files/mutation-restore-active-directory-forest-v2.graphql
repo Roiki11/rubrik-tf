@@ -1,0 +1,6 @@
+mutation RestoreActiveDirectoryForestV2($input: RestoreActiveDirectoryForestV2Input!) {
+      restoreActiveDirectoryForestV2(input: $input) {
+        jobId
+        taskchainId
+      }
+    }

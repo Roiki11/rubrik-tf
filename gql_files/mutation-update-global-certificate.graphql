@@ -1,0 +1,5 @@
+mutation UpdateGlobalCertificate($input: UpdateGlobalCertificateInput!) {
+      updateGlobalCertificate(input: $input) {
+        clusterUuids
+      }
+    }

@@ -1,0 +1,8 @@
+query PhoenixRolloutProgress($orgId: UUID!) {
+      phoenixRolloutProgress(orgId: $orgId) {
+        numEnabled
+        numInProcess
+        numIncompleteFirstFull
+        numNotEnabled
+      }
+    }

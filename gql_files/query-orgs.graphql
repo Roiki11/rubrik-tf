@@ -1,0 +1,27 @@
+query {
+      orgs(first: 10) {
+        nodes {
+          allUrls
+          allowedClusters
+          authDomainConfig
+          crossAccountCapabilities
+          description
+          fullName
+          hasOwnIdpConfigured
+          id
+          isEnvoyRequired
+          isInheritIpAllowlistDisabled
+          isServiceAccountDisabled
+          mfaStatus
+          name
+          physicalStorageUsed
+          replicationOnlyClusters
+          shouldEnforceMfaForAll
+          tenantNetworkHealth
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

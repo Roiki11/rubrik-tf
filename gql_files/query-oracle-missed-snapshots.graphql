@@ -1,0 +1,7 @@
+query OracleMissedSnapshots($input: GetMissedOracleDbSnapshotsInput!) {
+      oracleMissedSnapshots(input: $input) {
+        hasMore
+        nextCursor
+        total
+      }
+    }

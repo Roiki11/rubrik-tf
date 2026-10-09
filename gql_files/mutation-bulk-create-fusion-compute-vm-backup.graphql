@@ -1,0 +1,3 @@
+mutation BulkCreateFusionComputeVmBackup($input: BulkCreateFusionComputeVmBackupInput!) {
+      bulkCreateFusionComputeVmBackup(input: $input)
+    }

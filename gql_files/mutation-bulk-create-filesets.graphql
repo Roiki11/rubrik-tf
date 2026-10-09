@@ -1,0 +1,7 @@
+mutation BulkCreateFilesets($input: BulkCreateFilesetsInput!) {
+      bulkCreateFilesets(input: $input) {
+        hasMore
+        nextCursor
+        total
+      }
+    }

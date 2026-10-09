@@ -1,0 +1,6 @@
+mutation ResumeTarget($input: ResumeTargetInput!) {
+      resumeTarget(input: $input) {
+        locationId
+        status
+      }
+    }

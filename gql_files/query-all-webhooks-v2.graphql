@@ -1,0 +1,16 @@
+query {
+      allWebhooksV2 {
+        authType
+        createdAt
+        createdBy
+        description
+        id
+        name
+        providerType
+        serverCertificate
+        serviceAccountId
+        status
+        updatedAt
+        url
+      }
+    }

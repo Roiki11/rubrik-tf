@@ -1,0 +1,26 @@
+query FailoverGroupArchivalLocations($failoverGroupId: UUID!) {
+      failoverGroupArchivalLocations(
+        failoverGroupId: $failoverGroupId
+        first: 10
+      ) {
+        nodes {
+          isSourceImmutabilityEnabled
+          isTargetImmutabilityEnabled
+          sourceLocationId
+          sourceLocationName
+          sourceLocationStatus
+          sourceLocationType
+          sourceStorageLocation
+          targetLastRefreshTime
+          targetLocationId
+          targetLocationName
+          targetLocationStatus
+          targetLocationType
+          targetStorageLocation
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

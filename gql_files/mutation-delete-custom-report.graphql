@@ -1,0 +1,3 @@
+mutation DeleteCustomReport($input: DeleteCustomReportInput!) {
+      deleteCustomReport(input: $input)
+    }

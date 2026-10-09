@@ -1,0 +1,3 @@
+mutation BulkRegisterSecondaryHosts($input: BulkRegisterSecondaryHostsInput!) {
+      bulkRegisterSecondaryHosts(input: $input)
+    }

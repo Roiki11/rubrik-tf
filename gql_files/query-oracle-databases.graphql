@@ -1,0 +1,45 @@
+query {
+      oracleDatabases(first: 10) {
+        nodes {
+          archiveLogMode
+          authorizedOperations
+          cdmId
+          cdmLink
+          cdmPendingObjectPauseAssignment
+          dataGuardType
+          dbRole
+          dbUniqueName
+          hostLogRetentionHours
+          id
+          isLiveMount
+          isRelic
+          isReplica
+          isZeroRpoEnabled
+          logBackupFrequency
+          logRatePerRmanChannelInMb
+          logRetentionHours
+          name
+          numChannels
+          numInstances
+          numLogSnapshots
+          numTablespaces
+          numWorkloadDescendants
+          objectType
+          onDemandSnapshotCount
+          osNames
+          osType
+          ratePerRmanChannelInMb
+          rbaRole
+          replicatedObjectCount
+          sectionSizeInGigabytes
+          slaAssignment
+          slaPauseStatus
+          tablespaces
+          useSecureThrift
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

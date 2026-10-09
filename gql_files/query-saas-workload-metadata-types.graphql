@@ -1,0 +1,3 @@
+query SaasWorkloadMetadataTypes($input: SaasWorkloadMetadataTypesReq!) {
+      saasWorkloadMetadataTypes(input: $input)
+    }

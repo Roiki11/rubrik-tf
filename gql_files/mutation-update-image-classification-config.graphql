@@ -1,0 +1,3 @@
+mutation UpdateImageClassificationConfig($input: UpdateImageClassificationConfigInput!) {
+      updateImageClassificationConfig(input: $input)
+    }

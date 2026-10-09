@@ -1,0 +1,11 @@
+mutation InplaceExportNutanixSnapshot($input: CreateNutanixInplaceExportInput!) {
+      inplaceExportNutanixSnapshot(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

@@ -1,0 +1,18 @@
+query VSphereTagCategory($fid: UUID!) {
+      vSphereTagCategory(fid: $fid) {
+        authorizedOperations
+        cdmPendingObjectPauseAssignment
+        id
+        isFilterCategory
+        isReplica
+        name
+        numWorkloadDescendants
+        objectType
+        replicatedObjectCount
+        slaAssignment
+        slaPauseStatus
+        snapshotConsistencyMandate
+        snapshotConsistencySource
+        vcenterId
+      }
+    }

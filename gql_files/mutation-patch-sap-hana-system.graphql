@@ -1,0 +1,3 @@
+mutation PatchSapHanaSystem($input: PatchSapHanaSystemInput!) {
+      patchSapHanaSystem(input: $input)
+    }

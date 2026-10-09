@@ -1,0 +1,6 @@
+mutation ValidateAndSaveCustomerKmsInfo($input: ValidateAndSaveCustomerKmsInfoInput!) {
+      validateAndSaveCustomerKmsInfo(input: $input) {
+        errorMessage
+        inputFieldName
+      }
+    }

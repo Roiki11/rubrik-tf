@@ -1,0 +1,16 @@
+query MssqlAvailabilityGroupDatabaseVirtualGroups($fids: [UUID!]!) {
+      mssqlAvailabilityGroupDatabaseVirtualGroups(
+        fids: $fids
+        first: 10
+      ) {
+        nodes {
+          activeDbFid
+          linkedFids
+          name
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

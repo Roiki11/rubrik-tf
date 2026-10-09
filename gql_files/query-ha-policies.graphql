@@ -1,0 +1,22 @@
+query {
+      haPolicies(first: 10) {
+        nodes {
+          archivalLocationCount
+          creationTime
+          description
+          hostCount
+          id
+          lastUpdatedTime
+          name
+          objectCount
+          primaryClusterUuid
+          secondaryClusterUuids
+          status
+          statusMessage
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

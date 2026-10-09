@@ -1,0 +1,3 @@
+mutation RunCustomAnalyzer($input: RunCustomAnalyzerInput!) {
+      runCustomAnalyzer(input: $input)
+    }

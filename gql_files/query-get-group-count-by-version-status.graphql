@@ -1,0 +1,6 @@
+query {
+      getGroupCountByVersionStatus {
+        count
+        group
+      }
+    }

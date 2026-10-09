@@ -1,0 +1,5 @@
+query AllBackupThrottleSettings($clusterUuids: [UUID!]!) {
+      allBackupThrottleSettings(clusterUuids: $clusterUuids) {
+        enableThrottling
+      }
+    }

@@ -1,0 +1,23 @@
+query FusionComputeHost($fid: UUID!) {
+      fusionComputeHost(fid: $fid) {
+        authorizedOperations
+        cdmId
+        cdmPendingObjectPauseAssignment
+        clusterId
+        clusterUuid
+        fcHostId
+        hostName
+        id
+        ipAddresses
+        isReplica
+        name
+        numWorkloadDescendants
+        objectType
+        primaryClusterUuid
+        replicatedObjectCount
+        siteId
+        slaAssignment
+        slaPauseStatus
+        vrmId
+      }
+    }

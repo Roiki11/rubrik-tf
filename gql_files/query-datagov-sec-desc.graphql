@@ -1,0 +1,7 @@
+query DatagovSecDesc($snappableFid: String!, $snapshotFid: String!, $stdPath: String!) {
+      datagovSecDesc(
+        snappableFid: $snappableFid
+        snapshotFid: $snapshotFid
+        stdPath: $stdPath
+      )
+    }

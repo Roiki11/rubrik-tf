@@ -1,0 +1,8 @@
+mutation AddPolicyObjects($policyIds: [String!]!, $objectIds: [String!]!, $objectRootIds: [String!]!, $clusterIds: [String!]!) {
+      addPolicyObjects(
+        policyIds: $policyIds
+        objectIds: $objectIds
+        objectRootIds: $objectRootIds
+        clusterIds: $clusterIds
+      )
+    }

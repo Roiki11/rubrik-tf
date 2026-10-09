@@ -1,0 +1,3 @@
+mutation BulkOnDemandSnapshotNutanixVm($input: BulkOnDemandSnapshotNutanixVmInput!) {
+      bulkOnDemandSnapshotNutanixVm(input: $input)
+    }

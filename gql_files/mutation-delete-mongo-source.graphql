@@ -1,0 +1,11 @@
+mutation DeleteMongoSource($input: DeleteMongoSourceInput!) {
+      deleteMongoSource(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

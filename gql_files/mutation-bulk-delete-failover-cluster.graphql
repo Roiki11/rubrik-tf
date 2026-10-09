@@ -1,0 +1,5 @@
+mutation BulkDeleteFailoverCluster($input: BulkDeleteFailoverClusterInput!) {
+      bulkDeleteFailoverCluster(input: $input) {
+        success
+      }
+    }

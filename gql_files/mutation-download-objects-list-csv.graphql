@@ -1,0 +1,5 @@
+mutation DownloadObjectsListCsv($input: DownloadObjectsListCsvInput!) {
+      downloadObjectsListCsv(input: $input) {
+        isSuccessful
+      }
+    }

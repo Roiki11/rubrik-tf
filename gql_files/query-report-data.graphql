@@ -1,0 +1,15 @@
+query ReportData($dataView: DataViewTypeEnum!, $columns: [String!]!) {
+      reportData(
+        dataView: $dataView
+        columns: $columns
+        first: 10
+      ) {
+        nodes {
+    
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

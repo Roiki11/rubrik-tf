@@ -1,0 +1,5 @@
+mutation BulkDeleteFilesetTemplate($input: BulkDeleteFilesetTemplateInput!) {
+      bulkDeleteFilesetTemplate(input: $input) {
+        success
+      }
+    }

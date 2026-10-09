@@ -1,0 +1,7 @@
+query VmwareRecoverableRanges($input: VmwareRecoverableRangesInput!) {
+      vmwareRecoverableRanges(input: $input) {
+        hasMore
+        nextCursor
+        total
+      }
+    }

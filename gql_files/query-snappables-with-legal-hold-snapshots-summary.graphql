@@ -1,0 +1,17 @@
+query SnappablesWithLegalHoldSnapshotsSummary($input: SnappablesWithLegalHoldSnapshotsInput!) {
+      snappablesWithLegalHoldSnapshotsSummary(
+        input: $input
+        first: 10
+      ) {
+        nodes {
+          id
+          name
+          snappableType
+          snapshotCount
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

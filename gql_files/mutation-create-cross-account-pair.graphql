@@ -1,0 +1,3 @@
+mutation CreateCrossAccountPair($input: CreateCrossAccountPairInput!) {
+      createCrossAccountPair(input: $input)
+    }

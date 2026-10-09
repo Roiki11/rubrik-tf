@@ -1,0 +1,7 @@
+query MssqlLogShippingTargets($input: QueryLogShippingConfigurationsV2Input!) {
+      mssqlLogShippingTargets(input: $input) {
+        hasMore
+        nextCursor
+        total
+      }
+    }

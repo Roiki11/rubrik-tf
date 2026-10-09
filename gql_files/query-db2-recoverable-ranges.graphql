@@ -1,0 +1,18 @@
+query {
+      db2RecoverableRanges(first: 10) {
+        nodes {
+          baseSnapshotId
+          cdmId
+          clusterUuid
+          dbId
+          endTime
+          fid
+          isArchived
+          startTime
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

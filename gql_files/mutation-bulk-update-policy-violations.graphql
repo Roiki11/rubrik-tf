@@ -1,0 +1,3 @@
+mutation BulkUpdatePolicyViolations($input: BulkUpdatePolicyViolationsInput!) {
+      bulkUpdatePolicyViolations(input: $input)
+    }

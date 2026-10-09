@@ -1,0 +1,3 @@
+mutation UpdateIntegration($input: UpdateIntegrationInput!) {
+      updateIntegration(input: $input)
+    }

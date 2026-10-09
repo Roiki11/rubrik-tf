@@ -1,0 +1,27 @@
+query {
+      vSphereHostConnection(first: 10) {
+        nodes {
+          authorizedOperations
+          cdmId
+          cdmPendingObjectPauseAssignment
+          hasDatastoresForRecovery
+          id
+          ioFilterStatus
+          isReplica
+          isStandaloneHost
+          name
+          numWorkloadDescendants
+          objectType
+          replicatedObjectCount
+          slaAssignment
+          slaPauseStatus
+          snapshotConsistencyMandate
+          snapshotConsistencySource
+          sshEnabled
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

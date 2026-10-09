@@ -1,0 +1,11 @@
+mutation CreateOnDemandDb2Backup($input: CreateOnDemandDb2BackupInput!) {
+      createOnDemandDb2Backup(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

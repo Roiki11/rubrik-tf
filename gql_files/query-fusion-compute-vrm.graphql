@@ -1,0 +1,23 @@
+query FusionComputeVrm($fid: UUID!) {
+      fusionComputeVrm(fid: $fid) {
+        authorizedOperations
+        cdmId
+        cdmPendingObjectPauseAssignment
+        clusterUuid
+        connectionStatus
+        hostName
+        id
+        ipAddress
+        isRefreshed
+        isReplica
+        lastRefreshTime
+        name
+        numWorkloadDescendants
+        objectType
+        primaryClusterUuid
+        replicatedObjectCount
+        slaAssignment
+        slaPauseStatus
+        username
+      }
+    }

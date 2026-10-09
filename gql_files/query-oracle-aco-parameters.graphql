@@ -1,0 +1,5 @@
+query OracleAcoParameters($input: ClusterUuidWithDbIdInput!) {
+      oracleAcoParameters(input: $input) {
+        parameters
+      }
+    }

@@ -1,0 +1,5 @@
+query ResetTypeOfRemovalJob($input: ResetTypeOfRemovalJobInput!) {
+      resetTypeOfRemovalJob(input: $input) {
+        resetAfterRemoveType
+      }
+    }

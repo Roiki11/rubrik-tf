@@ -1,0 +1,21 @@
+query VSphereHost($fid: UUID!) {
+      vSphereHost(fid: $fid) {
+        authorizedOperations
+        cdmId
+        cdmPendingObjectPauseAssignment
+        hasDatastoresForRecovery
+        id
+        ioFilterStatus
+        isReplica
+        isStandaloneHost
+        name
+        numWorkloadDescendants
+        objectType
+        replicatedObjectCount
+        slaAssignment
+        slaPauseStatus
+        snapshotConsistencyMandate
+        snapshotConsistencySource
+        sshEnabled
+      }
+    }

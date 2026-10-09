@@ -1,0 +1,24 @@
+query {
+      mongodbSources(first: 10) {
+        nodes {
+          backupCount
+          clusterUuid
+          id
+          name
+          nodeCount
+          numWorkloadDescendants
+          objectType
+          rscPendingObjectPauseAssignment
+          size
+          slaAssignment
+          slaPauseStatus
+          sourceIp
+          status
+          watcherEnabled
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

@@ -1,0 +1,29 @@
+query SapHanaSystem($fid: UUID!) {
+      sapHanaSystem(fid: $fid) {
+        authorizedOperations
+        backupTriggerType
+        cdmId
+        cdmLink
+        cdmPendingObjectPauseAssignment
+        clusterUuid
+        id
+        instanceNumber
+        isForceFullOnMasterChangeEnabled
+        isRelic
+        isReplica
+        lastRefreshTime
+        lastStatusUpdateTime
+        name
+        numWorkloadDescendants
+        objectType
+        onDemandSnapshotCount
+        primaryClusterUuid
+        rbaRole
+        replicatedObjectCount
+        sid
+        slaAssignment
+        slaPauseStatus
+        status
+        statusMessage
+      }
+    }

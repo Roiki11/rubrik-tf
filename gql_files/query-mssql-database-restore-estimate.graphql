@@ -1,0 +1,5 @@
+query MssqlDatabaseRestoreEstimate($input: MssqlRestoreEstimateV1Input!) {
+      mssqlDatabaseRestoreEstimate(input: $input) {
+        bytesFromCloud
+      }
+    }

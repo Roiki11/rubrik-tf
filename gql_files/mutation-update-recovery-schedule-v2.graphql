@@ -1,0 +1,3 @@
+mutation UpdateRecoveryScheduleV2($input: UpdateRecoveryScheduleV2Input!) {
+      updateRecoveryScheduleV2(input: $input)
+    }

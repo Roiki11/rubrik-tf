@@ -1,0 +1,3 @@
+query HypervHostsVirtualSwitches($hostIds: [UUID!]!) {
+      hypervHostsVirtualSwitches(hostIds: $hostIds)
+    }

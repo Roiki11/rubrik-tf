@@ -1,0 +1,8 @@
+query AllPolicyFilterValues($policyFilterType: FilterType!, $policyType: PolicyType!) {
+      allPolicyFilterValues(
+        policyFilterType: $policyFilterType
+        policyType: $policyType
+      ) {
+        possibleRelationships
+      }
+    }

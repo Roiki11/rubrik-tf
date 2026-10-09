@@ -1,0 +1,11 @@
+mutation CreateActiveDirectoryUnmount($input: CreateActiveDirectoryUnmountInput!) {
+      createActiveDirectoryUnmount(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

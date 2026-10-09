@@ -1,0 +1,5 @@
+mutation DeleteFailoverClusterApp($input: DeleteFailoverClusterAppInput!) {
+      deleteFailoverClusterApp(input: $input) {
+        success
+      }
+    }

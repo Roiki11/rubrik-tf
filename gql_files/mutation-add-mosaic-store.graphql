@@ -1,0 +1,8 @@
+mutation AddMosaicStore($input: AddMosaicStoreInput!) {
+      addMosaicStore(input: $input) {
+        data
+        message
+        returnCode
+        status
+      }
+    }

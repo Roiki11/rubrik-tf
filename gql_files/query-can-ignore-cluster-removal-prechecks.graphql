@@ -1,0 +1,9 @@
+query CanIgnoreClusterRemovalPrechecks($clusterUuid: UUID!) {
+      canIgnoreClusterRemovalPrechecks(clusterUuid: $clusterUuid) {
+        canIgnorePrecheck
+        ignorePrecheckTime
+        isAirGapped
+        isDisconnected
+        lastConnectionTime
+      }
+    }

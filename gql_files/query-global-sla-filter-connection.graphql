@@ -1,0 +1,12 @@
+query {
+      globalSlaFilterConnection(first: 10) {
+        nodes {
+          id
+          name
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

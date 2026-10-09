@@ -1,0 +1,19 @@
+query MssqlAvailabilityGroup($fid: UUID!) {
+      mssqlAvailabilityGroup(fid: $fid) {
+        authorizedOperations
+        cdmPendingObjectPauseAssignment
+        copyOnly
+        hasLogConfigFromSla
+        hostLogRetention
+        id
+        isReplica
+        logBackupFrequencyInSeconds
+        logBackupRetentionInHours
+        name
+        numWorkloadDescendants
+        objectType
+        replicatedObjectCount
+        slaAssignment
+        slaPauseStatus
+      }
+    }

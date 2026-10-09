@@ -1,0 +1,8 @@
+mutation UpdateRole($roleId: String!, $name: String!, $description: String!, $permissions: [PermissionInput!]!) {
+      updateRole(
+        roleId: $roleId
+        name: $name
+        description: $description
+        permissions: $permissions
+      )
+    }

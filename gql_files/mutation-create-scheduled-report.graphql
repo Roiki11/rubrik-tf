@@ -1,0 +1,3 @@
+mutation CreateScheduledReport($input: CreateScheduledReportInput!) {
+      createScheduledReport(input: $input)
+    }

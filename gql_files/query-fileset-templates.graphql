@@ -1,0 +1,40 @@
+query FilesetTemplates($hostRoot: HostRoot!) {
+      filesetTemplates(
+        hostRoot: $hostRoot
+        first: 10
+      ) {
+        nodes {
+          allowBackupHiddenFoldersInNetworkMounts
+          allowBackupNetworkMounts
+          authorizedOperations
+          backupScriptErrorHandling
+          cdmId
+          cdmPendingObjectPauseAssignment
+          exceptions
+          excludes
+          id
+          includes
+          isArrayEnabled
+          isReplica
+          name
+          numWorkloadDescendants
+          objectType
+          osType
+          postBackupScript
+          preBackupScript
+          replicatedObjectCount
+          shareType
+          shouldOverrideClusterWideBlocklistedFilesystemPaths
+          shouldRetryPrescriptIfBackupFails
+          slaAssignment
+          slaPauseStatus
+          templateAllowlistFilesystemPaths
+          templateBlocklistFilesystemTypes
+          templateBlocklistedFilesystemPaths
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

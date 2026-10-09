@@ -1,0 +1,3 @@
+mutation UpdateCustomIntelFeed($input: UpdateCustomIntelFeedInput!) {
+      updateCustomIntelFeed(input: $input)
+    }

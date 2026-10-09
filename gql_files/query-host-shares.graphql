@@ -1,0 +1,23 @@
+query {
+      hostShares(first: 10) {
+        nodes {
+          authorizedOperations
+          cdmPendingObjectPauseAssignment
+          id
+          isChangelistEnabled
+          isReplica
+          name
+          nasMigrationInfo
+          nasShareType
+          numWorkloadDescendants
+          objectType
+          replicatedObjectCount
+          slaAssignment
+          slaPauseStatus
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

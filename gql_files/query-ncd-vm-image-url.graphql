@@ -1,0 +1,7 @@
+query NcdVmImageUrl($input: VmImageUrlInput!) {
+      ncdVmImageUrl(input: $input) {
+        downloadUrl
+        sha256
+        size
+      }
+    }

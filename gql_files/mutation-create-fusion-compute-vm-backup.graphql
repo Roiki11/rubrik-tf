@@ -1,0 +1,11 @@
+mutation CreateFusionComputeVmBackup($input: CreateFusionComputeVmBackupInput!) {
+      createFusionComputeVmBackup(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

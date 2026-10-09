@@ -1,0 +1,5 @@
+mutation ValidateOracleAcoFile($input: ValidateOracleAcoFileInput!) {
+      validateOracleAcoFile(input: $input) {
+        acoParameterErrors
+      }
+    }

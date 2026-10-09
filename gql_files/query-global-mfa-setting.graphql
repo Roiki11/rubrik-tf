@@ -1,0 +1,10 @@
+query {
+      globalMfaSetting {
+        isTotpEnforcedGlobal
+        isTotpGlobalEnforceLocked
+        isTotpMandatory
+        mandatoryTotpEnforcementDate
+        mfaRememberHours
+        totpReminderHours
+      }
+    }

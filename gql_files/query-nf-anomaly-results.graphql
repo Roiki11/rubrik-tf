@@ -1,0 +1,17 @@
+query {
+      nfAnomalyResults(first: 10) {
+        nodes {
+          anomalyId
+          detectionTime
+          isAnomaly
+          location
+          objectType
+          workloadFid
+          workloadName
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

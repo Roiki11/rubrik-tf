@@ -1,0 +1,3 @@
+mutation BulkUpdateNasShares($input: BulkUpdateNasSharesInput!) {
+      bulkUpdateNasShares(input: $input)
+    }

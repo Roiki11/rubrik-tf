@@ -1,0 +1,7 @@
+query ClusterNetworkInterfaces($input: GetNetworkInterfaceInput!) {
+      clusterNetworkInterfaces(input: $input) {
+        hasMore
+        nextCursor
+        total
+      }
+    }

@@ -1,0 +1,12 @@
+query {
+      mssqlAvailabilityGroupVirtualGroups(first: 10) {
+        nodes {
+          linkedFids
+          name
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

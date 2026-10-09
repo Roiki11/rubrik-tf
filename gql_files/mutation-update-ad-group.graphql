@@ -1,0 +1,3 @@
+mutation UpdateAdGroup($input: UpdateAdGroupInput!) {
+      updateAdGroup(input: $input)
+    }

@@ -1,0 +1,5 @@
+query ValidateRoleName($input: ValidateRoleNameReq!) {
+      validateRoleName(input: $input) {
+        roleNameValidity
+      }
+    }

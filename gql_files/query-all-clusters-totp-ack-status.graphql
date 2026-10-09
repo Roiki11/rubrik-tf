@@ -1,0 +1,3 @@
+query AllClustersTotpAckStatus($listClusterUuid: [UUID!]!) {
+      allClustersTotpAckStatus(listClusterUuid: $listClusterUuid)
+    }

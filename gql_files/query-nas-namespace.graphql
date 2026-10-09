@@ -1,0 +1,21 @@
+query NasNamespace($fid: UUID!) {
+      nasNamespace(fid: $fid) {
+        authorizedOperations
+        cdmId
+        cdmPendingObjectPauseAssignment
+        id
+        isReadonly
+        isReplica
+        name
+        nfsDataAddresses
+        numWorkloadDescendants
+        objectType
+        replicatedObjectCount
+        slaAssignment
+        slaPauseStatus
+        smbDataAddresses
+        userSelectedNfsInterfaces
+        userSelectedSmbInterfaces
+        vendorType
+      }
+    }

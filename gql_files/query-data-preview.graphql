@@ -1,0 +1,3 @@
+query DataPreview($input: GetDataPreviewRequest!) {
+      dataPreview(input: $input)
+    }

@@ -1,0 +1,16 @@
+query ClusterConnection($first: Int, $after: String) {
+  clusterConnection(first: $first, after: $after) {
+    nodes {
+      id
+      name
+      type
+      status
+      isHealthy
+      version
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+  }
+}

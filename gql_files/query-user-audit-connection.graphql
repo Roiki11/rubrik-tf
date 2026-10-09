@@ -1,0 +1,25 @@
+query {
+      userAuditConnection(first: 10) {
+        nodes {
+          actorType
+          auditType
+          id
+          ipAddress
+          message
+          objectId
+          objectName
+          objectType
+          orgId
+          orgName
+          severity
+          status
+          time
+          userName
+          userNote
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

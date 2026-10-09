@@ -1,0 +1,3 @@
+mutation VsphereVmRefreshAgent($input: VmRefreshAgentInput!) {
+      vsphereVmRefreshAgent(input: $input)
+    }

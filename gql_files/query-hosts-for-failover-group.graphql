@@ -1,0 +1,20 @@
+query HostsForFailoverGroup($primaryClusterId: UUID!, $secondaryClusterId: UUID!) {
+      hostsForFailoverGroup(
+        primaryClusterId: $primaryClusterId
+        secondaryClusterId: $secondaryClusterId
+        first: 10
+      ) {
+        nodes {
+          id
+          ineligibilityReason
+          isEligible
+          name
+          osType
+          rbsStatus
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

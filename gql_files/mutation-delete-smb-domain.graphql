@@ -1,0 +1,3 @@
+mutation DeleteSmbDomain($input: DeleteSmbDomainInput!) {
+      deleteSmbDomain(input: $input)
+    }

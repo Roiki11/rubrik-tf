@@ -1,0 +1,3 @@
+mutation DeleteSyslogExportRule($input: DeleteSyslogExportRuleInput!) {
+      deleteSyslogExportRule(input: $input)
+    }

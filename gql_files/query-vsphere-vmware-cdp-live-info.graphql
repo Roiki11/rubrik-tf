@@ -1,0 +1,3 @@
+query VsphereVmwareCdpLiveInfo($ids: [String!]!) {
+      vsphereVmwareCdpLiveInfo(ids: $ids)
+    }

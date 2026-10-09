@@ -1,0 +1,5 @@
+query IsUpgradeAvailable($clusterUuid: UUID!) {
+      isUpgradeAvailable(clusterUuid: $clusterUuid) {
+        isAvailable
+      }
+    }

@@ -1,0 +1,3 @@
+mutation DeleteIntegrations($input: DeleteIntegrationsInput!) {
+      deleteIntegrations(input: $input)
+    }

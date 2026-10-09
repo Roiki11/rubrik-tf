@@ -1,0 +1,8 @@
+mutation UpdateProxyConfig($input: UpdateProxyConfigInput!) {
+      updateProxyConfig(input: $input) {
+        host
+        port
+        protocol
+        username
+      }
+    }

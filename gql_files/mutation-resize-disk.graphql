@@ -1,0 +1,5 @@
+mutation ResizeDisk($input: ResizeDiskInput!) {
+      resizeDisk(input: $input) {
+        success
+      }
+    }

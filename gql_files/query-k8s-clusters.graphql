@@ -1,0 +1,21 @@
+query {
+      k8sClusters(first: 10) {
+        nodes {
+          authorizedOperations
+          clusterIp
+          id
+          lastRefreshTime
+          name
+          numWorkloadDescendants
+          objectType
+          rscPendingObjectPauseAssignment
+          slaAssignment
+          slaPauseStatus
+          status
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

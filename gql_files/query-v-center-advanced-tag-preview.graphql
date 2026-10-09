@@ -1,0 +1,3 @@
+query VCenterAdvancedTagPreview($input: PreviewFilterInput!) {
+      vCenterAdvancedTagPreview(input: $input)
+    }

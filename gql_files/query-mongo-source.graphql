@@ -1,0 +1,30 @@
+query MongoSource($fid: UUID!) {
+      mongoSource(fid: $fid) {
+        activeCollectionCount
+        authorizedOperations
+        caCertificateId
+        cdmId
+        cdmLink
+        cdmPendingObjectPauseAssignment
+        clusterUuid
+        discoveryStatus
+        id
+        isArchived
+        isRelic
+        isReplica
+        lastRefreshTime
+        managementType
+        name
+        numWorkloadDescendants
+        objectType
+        onDemandSnapshotCount
+        primaryClusterUuid
+        protectedCollectionCount
+        replicatedObjectCount
+        slaAssignment
+        slaPauseStatus
+        sourceType
+        status
+        username
+      }
+    }

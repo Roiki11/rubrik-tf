@@ -1,0 +1,3 @@
+mutation UpdateCertificateHost($input: UpdateCertificateHostInput!) {
+      updateCertificateHost(input: $input)
+    }

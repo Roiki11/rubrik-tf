@@ -1,0 +1,3 @@
+mutation CreateNutanixPrismCentral($input: CreateNutanixPrismCentralInput!) {
+      createNutanixPrismCentral(input: $input)
+    }

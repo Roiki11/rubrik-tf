@@ -1,0 +1,3 @@
+query PrivilegedPrincipalSummaries($historicalDeltaDays: Int!) {
+      privilegedPrincipalSummaries(historicalDeltaDays: $historicalDeltaDays)
+    }

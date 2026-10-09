@@ -1,0 +1,3 @@
+mutation SetSsoCertificate($input: SetSsoCertificateInput!) {
+      setSsoCertificate(input: $input)
+    }

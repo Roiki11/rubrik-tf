@@ -1,0 +1,5 @@
+query IsUpgradeRecommended($clusterUuid: UUID!) {
+      isUpgradeRecommended(clusterUuid: $clusterUuid) {
+        isRecommended
+      }
+    }

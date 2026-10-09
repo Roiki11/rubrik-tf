@@ -1,0 +1,15 @@
+query AllCustomReports($input: AllCustomReportsInput!) {
+      allCustomReports(input: $input) {
+        createdAt
+        createdBy
+        description
+        id
+        name
+        reportCategory
+        reportViewType
+        room
+        scheduledReportsCount
+        updatedAt
+        updatedBy
+      }
+    }

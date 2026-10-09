@@ -1,0 +1,21 @@
+query HypervVirtualMachine($fid: UUID!) {
+      hypervVirtualMachine(fid: $fid) {
+        authorizedOperations
+        cdmId
+        cdmLink
+        cdmPendingObjectPauseAssignment
+        hypervVmMountCount
+        id
+        isRelic
+        isReplica
+        name
+        numWorkloadDescendants
+        objectType
+        onDemandSnapshotCount
+        osType
+        protectionDate
+        replicatedObjectCount
+        slaAssignment
+        slaPauseStatus
+      }
+    }

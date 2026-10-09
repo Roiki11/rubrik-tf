@@ -1,0 +1,18 @@
+query {
+      identityDataLocationsEncryptionInfo(first: 10) {
+        nodes {
+          cipher
+          encryptionType
+          keyName
+          keyVaultName
+          keyVersion
+          locationName
+          workloadId
+          workloadType
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

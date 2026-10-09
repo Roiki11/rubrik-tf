@@ -1,0 +1,11 @@
+mutation TakeManagedVolumeOnDemandSnapshot($input: TakeManagedVolumeOnDemandSnapshotInput!) {
+      takeManagedVolumeOnDemandSnapshot(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

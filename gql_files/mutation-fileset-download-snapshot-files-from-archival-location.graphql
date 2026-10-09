@@ -1,0 +1,11 @@
+mutation FilesetDownloadSnapshotFilesFromArchivalLocation($input: FilesetDownloadSnapshotFilesFromArchivalLocationInput!) {
+      filesetDownloadSnapshotFilesFromArchivalLocation(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

@@ -1,0 +1,24 @@
+mutation GenerateCsr($name: String!, $hostnames: [String!]!) {
+      generateCsr(
+        name: $name
+        hostnames: $hostnames
+      ) {
+        city
+        country
+        createdAt
+        creatorEmail
+        csr
+        csrFid
+        csrId
+        email
+        hostnames
+        keyStrength
+        keyType
+        name
+        organization
+        organizationUnit
+        state
+        surname
+        userId
+      }
+    }

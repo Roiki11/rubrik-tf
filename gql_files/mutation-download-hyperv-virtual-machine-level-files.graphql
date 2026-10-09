@@ -1,0 +1,11 @@
+mutation DownloadHypervVirtualMachineLevelFiles($input: DownloadHypervVirtualMachineVmLevelFilesInput!) {
+      downloadHypervVirtualMachineLevelFiles(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

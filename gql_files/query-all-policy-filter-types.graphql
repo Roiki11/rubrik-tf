@@ -1,0 +1,6 @@
+query AllPolicyFilterTypes($resourceType: PolicyResourceType!, $policyType: PolicyType!) {
+      allPolicyFilterTypes(
+        resourceType: $resourceType
+        policyType: $policyType
+      )
+    }

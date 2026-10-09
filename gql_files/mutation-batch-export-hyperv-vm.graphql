@@ -1,0 +1,3 @@
+mutation BatchExportHypervVm($input: BatchExportHypervVmInput!) {
+      batchExportHypervVm(input: $input)
+    }

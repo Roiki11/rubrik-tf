@@ -1,0 +1,14 @@
+mutation CreateOnDemandMongoDatabaseBackup($input: CreateOnDemandMongoDatabaseSnapshotInput!, $attributes: [FeatureFlagAttributeInput!]!) {
+      createOnDemandMongoDatabaseBackup(
+        input: $input
+        attributes: $attributes
+      ) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

@@ -1,0 +1,5 @@
+query ValidateScriptOutputForManualPermissionValidation($input: ValidateScriptOutputForManualPermissionValidationReq!) {
+      validateScriptOutputForManualPermissionValidation(input: $input) {
+        isValid
+      }
+    }

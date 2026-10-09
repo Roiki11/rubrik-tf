@@ -1,0 +1,5 @@
+query HypervHostVirtualSwitches($input: GetHypervHostVirtualSwitchesInput!) {
+      hypervHostVirtualSwitches(input: $input) {
+        hasMore
+      }
+    }

@@ -1,0 +1,10 @@
+query PipelineHealthForTimeRange($beginTime: DateTime!) {
+      pipelineHealthForTimeRange(beginTime: $beginTime) {
+        failedAnalysis
+        failedBackup
+        failedIndexing
+        totalAnalysis
+        totalBackup
+        totalIndexing
+      }
+    }

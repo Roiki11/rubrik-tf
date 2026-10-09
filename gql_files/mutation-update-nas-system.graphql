@@ -1,0 +1,9 @@
+mutation UpdateNasSystem($input: UpdateNasSystemInput!) {
+      updateNasSystem(input: $input) {
+        connectionStatus
+        hostname
+        id
+        isReplicated
+        vendorType
+      }
+    }

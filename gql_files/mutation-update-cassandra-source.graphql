@@ -1,0 +1,8 @@
+mutation UpdateCassandraSource($input: ModifyMosaicSourceInput!) {
+      updateCassandraSource(input: $input) {
+        data
+        message
+        returnCode
+        status
+      }
+    }

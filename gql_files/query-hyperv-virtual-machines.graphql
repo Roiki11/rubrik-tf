@@ -1,0 +1,27 @@
+query {
+      hypervVirtualMachines(first: 10) {
+        nodes {
+          authorizedOperations
+          cdmId
+          cdmLink
+          cdmPendingObjectPauseAssignment
+          hypervVmMountCount
+          id
+          isRelic
+          isReplica
+          name
+          numWorkloadDescendants
+          objectType
+          onDemandSnapshotCount
+          osType
+          protectionDate
+          replicatedObjectCount
+          slaAssignment
+          slaPauseStatus
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

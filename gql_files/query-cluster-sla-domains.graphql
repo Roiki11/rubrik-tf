@@ -1,0 +1,21 @@
+query {
+      clusterSlaDomains(first: 10) {
+        nodes {
+          cdmId
+          fid
+          id
+          isReadOnly
+          isRetentionLockedSla
+          name
+          ownerOrgName
+          polarisManagedId
+          protectedObjectCount
+          retentionLockMode
+          version
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

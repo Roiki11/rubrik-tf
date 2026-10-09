@@ -1,0 +1,11 @@
+mutation ExpireDownloadedDb2Snapshots($input: ExpireDownloadedDb2SnapshotsInput!) {
+      expireDownloadedDb2Snapshots(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

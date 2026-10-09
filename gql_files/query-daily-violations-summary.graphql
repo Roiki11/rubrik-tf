@@ -1,0 +1,7 @@
+query DailyViolationsSummary($startDate: DateTime!, $endDate: DateTime!, $policyTypes: [PolicyType!]!) {
+      dailyViolationsSummary(
+        startDate: $startDate
+        endDate: $endDate
+        policyTypes: $policyTypes
+      )
+    }

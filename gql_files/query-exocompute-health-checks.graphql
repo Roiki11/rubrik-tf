@@ -1,0 +1,5 @@
+query ExocomputeHealthChecks($input: ExocomputeHealthChecksReq!) {
+      exocomputeHealthChecks(input: $input) {
+        executionTime
+      }
+    }

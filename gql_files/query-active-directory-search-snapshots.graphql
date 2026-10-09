@@ -1,0 +1,17 @@
+query ActiveDirectorySearchSnapshots($id: String!, $name: String!) {
+      activeDirectorySearchSnapshots(
+        id: $id
+        name: $name
+        first: 10
+      ) {
+        nodes {
+          dnt
+          name
+          objectType
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

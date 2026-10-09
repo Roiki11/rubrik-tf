@@ -1,0 +1,7 @@
+query KubernetesVirtualMachineSnapshots($input: KubernetesVirtualMachineSnapshotsInput!) {
+      kubernetesVirtualMachineSnapshots(input: $input) {
+        hasMore
+        nextCursor
+        total
+      }
+    }

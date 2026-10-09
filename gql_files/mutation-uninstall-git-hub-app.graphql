@@ -1,0 +1,3 @@
+mutation UninstallGitHubApp($input: UninstallGitHubAppInput!) {
+      uninstallGitHubApp(input: $input)
+    }

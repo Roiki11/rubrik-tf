@@ -1,0 +1,29 @@
+query {
+      fusionComputeRecoverableNetworks(first: 10) {
+        nodes {
+          authorizedOperations
+          cdmId
+          cdmPendingObjectPauseAssignment
+          clusterUuid
+          fcNetworkId
+          hostIds
+          id
+          isReplica
+          name
+          networkName
+          networkType
+          numWorkloadDescendants
+          objectType
+          primaryClusterUuid
+          replicatedObjectCount
+          siteId
+          slaAssignment
+          slaPauseStatus
+          vrmId
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

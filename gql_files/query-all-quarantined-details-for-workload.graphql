@@ -1,0 +1,5 @@
+query AllQuarantinedDetailsForWorkload($workloadId: String!) {
+      allQuarantinedDetailsForWorkload(workloadId: $workloadId) {
+        snapshotId
+      }
+    }

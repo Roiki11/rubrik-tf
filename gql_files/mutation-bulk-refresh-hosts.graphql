@@ -1,0 +1,3 @@
+mutation BulkRefreshHosts($input: BulkRefreshHostsInput!) {
+      bulkRefreshHosts(input: $input)
+    }

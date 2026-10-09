@@ -1,0 +1,11 @@
+mutation DownloadK8sProtectionSetSnapshotFiles($input: DownloadK8sProtectionSetSnapshotFilesInput!) {
+      downloadK8sProtectionSetSnapshotFiles(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

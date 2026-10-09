@@ -1,0 +1,17 @@
+query SnapshotResults($snappableFid: String!, $startTimeMs: Long!, $endTimeMs: Long!) {
+      snapshotResults(
+        snappableFid: $snappableFid
+        startTimeMs: $startTimeMs
+        endTimeMs: $endTimeMs
+        first: 10
+      ) {
+        nodes {
+          snapshotFid
+          snapshotTime
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

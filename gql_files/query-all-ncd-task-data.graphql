@@ -1,0 +1,8 @@
+query AllNcdTaskData($clusters: [UUID!]!) {
+      allNcdTaskData(clusters: $clusters) {
+        description
+        site
+        status
+        timestamp
+      }
+    }

@@ -1,0 +1,18 @@
+query UserAnalyzerAccess($userId: String!, $startDay: String!, $timezone: String!, $limit: Int!) {
+      userAnalyzerAccess(
+        userId: $userId
+        startDay: $startDay
+        timezone: $timezone
+        limit: $limit
+        first: 10
+      ) {
+        nodes {
+          count
+          countDelta
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

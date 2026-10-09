@@ -1,0 +1,10 @@
+query TotpConfigStatus($userId: String!) {
+      totpConfigStatus(userId: $userId) {
+        isEnabled
+        isEnforced
+        isEnforcedUserLevel
+        isSupported
+        totpConfigUpdateAt
+        totpReminderHours
+      }
+    }

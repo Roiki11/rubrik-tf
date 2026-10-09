@@ -1,0 +1,21 @@
+query FusionComputeCluster($fid: UUID!) {
+      fusionComputeCluster(fid: $fid) {
+        authorizedOperations
+        cdmId
+        cdmPendingObjectPauseAssignment
+        clusterName
+        clusterUuid
+        fcClusterId
+        id
+        isReplica
+        name
+        numWorkloadDescendants
+        objectType
+        primaryClusterUuid
+        replicatedObjectCount
+        siteId
+        slaAssignment
+        slaPauseStatus
+        vrmId
+      }
+    }

@@ -1,0 +1,3 @@
+mutation DeregisterPrivateContainerRegistry($input: DeregisterPrivateContainerRegistryInput!) {
+      deregisterPrivateContainerRegistry(input: $input)
+    }

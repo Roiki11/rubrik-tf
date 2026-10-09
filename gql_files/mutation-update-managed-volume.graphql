@@ -1,0 +1,21 @@
+mutation UpdateManagedVolume($input: UpdateManagedVolumeInput!) {
+      updateManagedVolume(input: $input) {
+        applicationTag
+        hostPatterns
+        isDeleted
+        isRelic
+        isWritable
+        mvType
+        numChannels
+        pendingSnapshotCount
+        shareType
+        smbDomainName
+        smbValidIps
+        smbValidUsers
+        snapshotCount
+        state
+        subnet
+        usedSize
+        volumeSize
+      }
+    }

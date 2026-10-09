@@ -1,0 +1,16 @@
+query AllSnapshotPvcs($snapshotId: String!, $snappableId: UUID!, $isReplica: Boolean!) {
+      allSnapshotPvcs(
+        snapshotId: $snapshotId
+        snappableId: $snappableId
+        isReplica: $isReplica
+      ) {
+        accessMode
+        capacity
+        id
+        labels
+        name
+        phase
+        storageClass
+        volume
+      }
+    }

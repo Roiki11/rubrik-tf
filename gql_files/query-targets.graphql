@@ -1,0 +1,25 @@
+query {
+      targets(first: 10) {
+        nodes {
+          clusterName
+          consumedBytes
+          failedTasks
+          id
+          isActive
+          isArchived
+          isComplianceImmutabilitySupported
+          locationConnectionStatus
+          locationScope
+          name
+          readerRetrievalMethod
+          runningTasks
+          status
+          targetType
+          upgradeStatus
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

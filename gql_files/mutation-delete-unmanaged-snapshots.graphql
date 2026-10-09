@@ -1,0 +1,5 @@
+mutation DeleteUnmanagedSnapshots($input: DeleteUnmanagedSnapshotsInput!) {
+      deleteUnmanagedSnapshots(input: $input) {
+        success
+      }
+    }

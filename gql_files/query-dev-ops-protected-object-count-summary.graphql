@@ -1,0 +1,6 @@
+query DevOpsProtectedObjectCountSummary($objectType: ManagedObjectType!) {
+      devOpsProtectedObjectCountSummary(objectType: $objectType) {
+        protectedCount
+        totalCount
+      }
+    }

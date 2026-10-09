@@ -1,0 +1,5 @@
+mutation DownloadThreatHuntV2ResultsCsv($input: DownloadThreatHuntV2CsvInput!) {
+      downloadThreatHuntV2ResultsCsv(input: $input) {
+        isSuccessful
+      }
+    }

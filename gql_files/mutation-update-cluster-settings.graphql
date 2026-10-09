@@ -1,0 +1,12 @@
+mutation UpdateClusterSettings($input: UpdateClusterSettingsInput!) {
+      updateClusterSettings(input: $input) {
+        acceptedEulaVersion
+        apiVersion
+        clusterUuid
+        latestEulaVersion
+        name
+        registeredMode
+        rubrikUrl
+        version
+      }
+    }

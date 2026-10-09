@@ -1,0 +1,6 @@
+mutation DeleteSecurityPolicy($policyId: UUID!, $policyType: PolicyType!) {
+      deleteSecurityPolicy(
+        policyId: $policyId
+        policyType: $policyType
+      )
+    }

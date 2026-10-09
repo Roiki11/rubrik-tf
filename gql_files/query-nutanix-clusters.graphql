@@ -1,0 +1,27 @@
+query {
+      nutanixClusters(first: 10) {
+        nodes {
+          authorizedOperations
+          cdmId
+          cdmPendingObjectPauseAssignment
+          hostName
+          id
+          isReplica
+          lastRefreshTime
+          name
+          naturalId
+          nosVersion
+          numWorkloadDescendants
+          nutanixSnapshotConsistencyMandate
+          objectType
+          replicatedObjectCount
+          slaAssignment
+          slaPauseStatus
+          userName
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

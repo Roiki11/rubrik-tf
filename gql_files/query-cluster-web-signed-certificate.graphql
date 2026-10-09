@@ -1,0 +1,5 @@
+query ClusterWebSignedCertificate($input: ClusterWebSignedCertificateInput!) {
+      clusterWebSignedCertificate(input: $input) {
+        webServerConfiguredWithCaSignedCertificate
+      }
+    }

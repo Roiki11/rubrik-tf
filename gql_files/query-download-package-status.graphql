@@ -1,0 +1,9 @@
+query DownloadPackageStatus($clusterUuid: UUID!) {
+      downloadPackageStatus(clusterUuid: $clusterUuid) {
+        availability
+        description
+        md5Sum
+        size
+        version
+      }
+    }

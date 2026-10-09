@@ -1,0 +1,6 @@
+query VsphereVMMissedRecoverableRange($snappableFid: UUID!) {
+      vsphereVMMissedRecoverableRange(snappableFid: $snappableFid) {
+        hasMore
+        total
+      }
+    }

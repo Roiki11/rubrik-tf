@@ -1,0 +1,3 @@
+mutation StopJobInstanceFromEventSeries($input: StopJobInstanceFromEventSeriesInput!) {
+      stopJobInstanceFromEventSeries(input: $input)
+    }

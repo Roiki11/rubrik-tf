@@ -1,0 +1,18 @@
+query BrowseFolder($snappableFid: UUID!, $snapshotFid: UUID!, $folderId: String!, $orgId: UUID!) {
+      browseFolder(
+        snappableFid: $snappableFid
+        snapshotFid: $snapshotFid
+        folderId: $folderId
+        orgId: $orgId
+        first: 10
+      ) {
+        nodes {
+          id
+          parentFolderId
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

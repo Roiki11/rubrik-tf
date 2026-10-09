@@ -1,0 +1,26 @@
+query HostFailoverClusters($hostFailoverClusterRoot: HostFailoverClusterRoot!) {
+      hostFailoverClusters(
+        hostFailoverClusterRoot: $hostFailoverClusterRoot
+        first: 10
+      ) {
+        nodes {
+          authorizedOperations
+          cdmId
+          cdmPendingObjectPauseAssignment
+          id
+          isArchived
+          isReplica
+          name
+          nodesOsType
+          numWorkloadDescendants
+          objectType
+          replicatedObjectCount
+          slaAssignment
+          slaPauseStatus
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

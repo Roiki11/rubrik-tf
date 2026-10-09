@@ -1,0 +1,11 @@
+mutation DownloadFilesetSnapshotFromLocation($input: DownloadFilesetSnapshotFromLocationInput!) {
+      downloadFilesetSnapshotFromLocation(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

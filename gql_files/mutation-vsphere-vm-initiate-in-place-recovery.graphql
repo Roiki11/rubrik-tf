@@ -1,0 +1,11 @@
+mutation VsphereVmInitiateInPlaceRecovery($input: VsphereVmInitiateInPlaceRecoveryInput!) {
+      vsphereVmInitiateInPlaceRecovery(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

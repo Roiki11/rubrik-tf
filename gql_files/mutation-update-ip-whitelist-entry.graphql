@@ -1,0 +1,3 @@
+mutation UpdateIpWhitelistEntry($input: UpdateIpWhitelistEntryInput!) {
+      updateIpWhitelistEntry(input: $input)
+    }

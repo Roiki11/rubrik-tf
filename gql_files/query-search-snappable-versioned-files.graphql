@@ -1,0 +1,18 @@
+query SearchSnappableVersionedFiles($snappableFid: UUID!, $searchQuery: String!) {
+      searchSnappableVersionedFiles(
+        snappableFid: $snappableFid
+        searchQuery: $searchQuery
+        first: 10
+      ) {
+        nodes {
+          absolutePath
+          displayPath
+          filename
+          path
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

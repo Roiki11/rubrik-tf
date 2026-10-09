@@ -1,0 +1,15 @@
+query MongodbDatabase($fid: UUID!) {
+      mongodbDatabase(fid: $fid) {
+        backupCount
+        clusterUuid
+        id
+        isRelic
+        name
+        numWorkloadDescendants
+        objectType
+        rscPendingObjectPauseAssignment
+        slaAssignment
+        slaPauseStatus
+        watcherEnabled
+      }
+    }

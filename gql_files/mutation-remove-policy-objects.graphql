@@ -1,0 +1,9 @@
+mutation RemovePolicyObjects($policyIds: [String!]!, $objectIds: [String!]!, $objectRootIds: [String!]!, $clusterIds: [String!]!, $runAsync: Boolean!) {
+      removePolicyObjects(
+        policyIds: $policyIds
+        objectIds: $objectIds
+        objectRootIds: $objectRootIds
+        clusterIds: $clusterIds
+        runAsync: $runAsync
+      )
+    }

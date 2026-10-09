@@ -1,0 +1,11 @@
+mutation CreateK8sProtectionSetSnapshot($input: CreateK8sProtectionSetSnapshotInput!) {
+      createK8sProtectionSetSnapshot(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

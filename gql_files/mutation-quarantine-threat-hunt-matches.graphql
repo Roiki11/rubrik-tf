@@ -1,0 +1,5 @@
+mutation QuarantineThreatHuntMatches($input: QuarantineThreatHuntMatchesInput!) {
+      quarantineThreatHuntMatches(input: $input) {
+        isQuarantineSuccessful
+      }
+    }

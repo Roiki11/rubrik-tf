@@ -1,0 +1,3 @@
+mutation DeleteLdapPrincipals($principalIds: [String!]!) {
+      deleteLdapPrincipals(principalIds: $principalIds)
+    }

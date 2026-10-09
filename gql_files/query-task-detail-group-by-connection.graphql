@@ -1,0 +1,14 @@
+query TaskDetailGroupByConnection($groupBy: TaskDetailGroupByEnum!) {
+      taskDetailGroupByConnection(
+        groupBy: $groupBy
+        first: 10
+      ) {
+        nodes {
+    
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

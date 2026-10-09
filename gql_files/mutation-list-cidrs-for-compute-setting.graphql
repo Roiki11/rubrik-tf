@@ -1,0 +1,3 @@
+mutation ListCidrsForComputeSetting($input: ListCidrsForComputeSettingInput!) {
+      listCidrsForComputeSetting(input: $input)
+    }

@@ -1,0 +1,8 @@
+query AllNcdObjectsOverTimeData($clusters: [UUID!]!) {
+      allNcdObjectsOverTimeData(clusters: $clusters) {
+        directories
+        files
+        links
+        timestamp
+      }
+    }

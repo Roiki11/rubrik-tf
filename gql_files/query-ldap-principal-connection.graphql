@@ -1,0 +1,21 @@
+query LdapPrincipalConnection($id: UUID!, $searchText: String!) {
+      ldapPrincipalConnection(
+        id: $id
+        searchText: $searchText
+        first: 10
+      ) {
+        nodes {
+          authDomainId
+          authDomainName
+          description
+          email
+          id
+          name
+          principalType
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

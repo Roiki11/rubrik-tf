@@ -1,0 +1,11 @@
+mutation BulkUpdateSystemConfig($input: BulkUpdateSapHanaSystemConfigInput!) {
+      bulkUpdateSystemConfig(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

@@ -1,0 +1,15 @@
+query GlobalSlaStatuses($SlaId: UUID!) {
+      globalSlaStatuses(
+        SlaId: $SlaId
+        first: 10
+      ) {
+        nodes {
+          pauseStatus
+          syncStatus
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

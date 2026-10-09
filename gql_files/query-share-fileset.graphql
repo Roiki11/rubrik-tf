@@ -1,0 +1,26 @@
+query ShareFileset($fid: UUID!) {
+      shareFileset(fid: $fid) {
+        authorizedOperations
+        cdmId
+        cdmLink
+        cdmPendingObjectPauseAssignment
+        hardlinkSupportEnabled
+        id
+        isPassThrough
+        isRelic
+        isReplica
+        name
+        nasMigrationInfo
+        numWorkloadDescendants
+        objectType
+        onDemandSnapshotCount
+        pathExceptions
+        pathExcluded
+        pathIncluded
+        replicatedObjectCount
+        shareType
+        slaAssignment
+        slaPauseStatus
+        symlinkResolutionEnabled
+      }
+    }

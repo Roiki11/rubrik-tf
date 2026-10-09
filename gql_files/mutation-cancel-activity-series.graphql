@@ -1,0 +1,3 @@
+mutation CancelActivitySeries($input: CancelActivitySeriesInput!) {
+      cancelActivitySeries(input: $input)
+    }

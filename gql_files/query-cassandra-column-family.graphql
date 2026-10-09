@@ -1,0 +1,16 @@
+query CassandraColumnFamily($fid: UUID!) {
+      cassandraColumnFamily(fid: $fid) {
+        authorizedOperations
+        backupCount
+        clusterUuid
+        id
+        isRelic
+        name
+        numWorkloadDescendants
+        objectType
+        protectionDate
+        rscPendingObjectPauseAssignment
+        slaAssignment
+        slaPauseStatus
+      }
+    }

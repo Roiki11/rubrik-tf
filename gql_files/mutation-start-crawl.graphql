@@ -1,0 +1,8 @@
+mutation StartCrawl($name: String!, $resources: [ResourceInput!]!) {
+      startCrawl(
+        name: $name
+        resources: $resources
+      ) {
+        crawlId
+      }
+    }

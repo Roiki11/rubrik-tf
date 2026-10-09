@@ -1,0 +1,3 @@
+mutation ModifyActiveDirectoryLiveMount($input: ModifyActiveDirectoryLiveMountInput!) {
+      modifyActiveDirectoryLiveMount(input: $input)
+    }

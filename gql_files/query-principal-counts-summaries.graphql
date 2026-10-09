@@ -1,0 +1,3 @@
+query PrincipalCountsSummaries($historicalDeltaDays: Int!) {
+      principalCountsSummaries(historicalDeltaDays: $historicalDeltaDays)
+    }

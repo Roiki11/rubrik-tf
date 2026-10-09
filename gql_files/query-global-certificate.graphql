@@ -1,0 +1,25 @@
+query GlobalCertificate($certificateId: String!) {
+      globalCertificate(certificateId: $certificateId) {
+        certificate
+        certificateFid
+        certificateId
+        description
+        expiringAt
+        hasKey
+        isCa
+        isCaSigned
+        isCdmBorn
+        issuedBy
+        issuedOn
+        issuedTo
+        issuerType
+        keyStrength
+        keyType
+        name
+        serialNumber
+        sha1Fingerprint
+        sha256Fingerprint
+        status
+        userHasPrivilegeToScheduleRotation
+      }
+    }

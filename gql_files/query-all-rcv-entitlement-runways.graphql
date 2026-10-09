@@ -1,0 +1,10 @@
+query AllRcvEntitlementRunways($groups: [RcvEntitlementGroupQueryInput!]!) {
+      allRcvEntitlementRunways(groups: $groups) {
+        currentBytes
+        lastRefreshedAt
+        redundancy
+        runwayDays
+        tier
+        weeklyGrowthPct
+      }
+    }

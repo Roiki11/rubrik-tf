@@ -1,0 +1,33 @@
+query {
+      sapHanaDatabases(first: 10) {
+        nodes {
+          authorizedOperations
+          backupTriggerType
+          cdmId
+          cdmLink
+          cdmPendingObjectPauseAssignment
+          clusterUuid
+          dataPathType
+          forceFull
+          id
+          isRelic
+          isReplica
+          name
+          numWorkloadDescendants
+          objectType
+          onDemandSnapshotCount
+          primaryClusterUuid
+          protectionDate
+          rbaRole
+          replicatedObjectCount
+          slaAssignment
+          slaPauseStatus
+          systemId
+          totalSnapshotCount
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

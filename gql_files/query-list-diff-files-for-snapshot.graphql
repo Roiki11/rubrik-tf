@@ -1,0 +1,14 @@
+query ListDiffFilesForSnapshot($snapshotFid: UUID!) {
+      listDiffFilesForSnapshot(
+        snapshotFid: $snapshotFid
+        first: 10
+      ) {
+        nodes {
+    
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

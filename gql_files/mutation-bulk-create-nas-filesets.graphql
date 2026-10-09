@@ -1,0 +1,3 @@
+mutation BulkCreateNasFilesets($input: BulkCreateNasFilesetsInput!) {
+      bulkCreateNasFilesets(input: $input)
+    }

@@ -1,0 +1,8 @@
+mutation CreateCassandraSource($input: AddMosaicSourceInput!) {
+      createCassandraSource(input: $input) {
+        data
+        message
+        returnCode
+        status
+      }
+    }

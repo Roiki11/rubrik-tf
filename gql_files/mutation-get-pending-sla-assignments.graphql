@@ -1,0 +1,5 @@
+mutation GetPendingSlaAssignments($input: GetPendingSlaAssignmentsInput!) {
+      getPendingSlaAssignments(input: $input) {
+        invalidIds
+      }
+    }

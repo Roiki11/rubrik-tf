@@ -1,0 +1,27 @@
+query {
+      certificateSigningRequests(first: 10) {
+        nodes {
+          city
+          country
+          createdAt
+          creatorEmail
+          csr
+          csrFid
+          csrId
+          email
+          hostnames
+          keyStrength
+          keyType
+          name
+          organization
+          organizationUnit
+          state
+          surname
+          userId
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

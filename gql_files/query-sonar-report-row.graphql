@@ -1,0 +1,17 @@
+query {
+      sonarReportRow(first: 10) {
+        nodes {
+          numHighRiskLocations
+          numObjects
+          numViolatedFiles
+          policyId
+          policyName
+          policyStatus
+          violations
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

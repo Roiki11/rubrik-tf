@@ -1,0 +1,7 @@
+mutation VsphereVmListEsxiDatastores($input: VsphereVmListEsxiDatastoresInput!) {
+      vsphereVmListEsxiDatastores(input: $input) {
+        hasMore
+        nextCursor
+        total
+      }
+    }

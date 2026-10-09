@@ -1,0 +1,3 @@
+mutation BatchMountNutanixVm($input: BatchMountNutanixVmInput!) {
+      batchMountNutanixVm(input: $input)
+    }

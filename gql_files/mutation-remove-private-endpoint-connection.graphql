@@ -1,0 +1,3 @@
+mutation RemovePrivateEndpointConnection($input: RemovePrivateEndpointConnectionInput!) {
+      removePrivateEndpointConnection(input: $input)
+    }

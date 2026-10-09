@@ -1,0 +1,3 @@
+mutation AddMssqlHost($input: BulkRegisterHostAsyncInput!) {
+      addMssqlHost(input: $input)
+    }

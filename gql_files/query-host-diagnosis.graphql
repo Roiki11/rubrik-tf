@@ -1,0 +1,3 @@
+query HostDiagnosis($id: String!) {
+      hostDiagnosis(id: $id)
+    }

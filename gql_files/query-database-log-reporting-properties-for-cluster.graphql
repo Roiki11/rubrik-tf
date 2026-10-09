@@ -1,0 +1,7 @@
+query DatabaseLogReportingPropertiesForCluster($input: QueryReportPropertiesInput!) {
+      databaseLogReportingPropertiesForCluster(input: $input) {
+        enableDelayNotification
+        logDelayNotificationFrequencyInMin
+        logDelayThresholdInMin
+      }
+    }

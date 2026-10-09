@@ -1,0 +1,3 @@
+mutation UpdateWebhook($input: UpdateWebhookInput!) {
+      updateWebhook(input: $input)
+    }

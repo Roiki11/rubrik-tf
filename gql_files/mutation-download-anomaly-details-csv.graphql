@@ -1,0 +1,5 @@
+mutation DownloadAnomalyDetailsCsv($input: DownloadAnomalyDetailsCsvInput!) {
+      downloadAnomalyDetailsCsv(input: $input) {
+        isSuccessful
+      }
+    }

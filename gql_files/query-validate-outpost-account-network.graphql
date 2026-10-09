@@ -1,0 +1,6 @@
+query ValidateOutpostAccountNetwork($input: ValidateOutpostAccountNetworkInput!) {
+      validateOutpostAccountNetwork(input: $input) {
+        error
+        valid
+      }
+    }

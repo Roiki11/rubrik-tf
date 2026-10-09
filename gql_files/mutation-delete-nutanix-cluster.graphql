@@ -1,0 +1,11 @@
+mutation DeleteNutanixCluster($input: DeleteNutanixClusterInput!) {
+      deleteNutanixCluster(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

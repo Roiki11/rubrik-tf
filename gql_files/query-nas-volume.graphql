@@ -1,0 +1,18 @@
+query NasVolume($fid: UUID!) {
+      nasVolume(fid: $fid) {
+        authorizedOperations
+        cdmPendingObjectPauseAssignment
+        id
+        isReadonly
+        isReplica
+        name
+        numWorkloadDescendants
+        objectType
+        replicatedObjectCount
+        sizeInBytes
+        sizeUsedInBytes
+        slaAssignment
+        slaPauseStatus
+        snapMirrorLabels
+      }
+    }

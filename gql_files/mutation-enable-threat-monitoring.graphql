@@ -1,0 +1,3 @@
+mutation EnableThreatMonitoring($input: EnableThreatMonitoringInput!) {
+      enableThreatMonitoring(input: $input)
+    }

@@ -1,0 +1,21 @@
+query K8sNamespace($fid: UUID!) {
+      k8sNamespace(fid: $fid) {
+        apiVersion
+        authorizedOperations
+        clusterScoped
+        id
+        isRelic
+        k8sClusterId
+        name
+        namespaceName
+        numPvcs
+        numWorkloadDescendants
+        numWorkloads
+        objectType
+        onDemandSnapshotCount
+        resourceVersion
+        rscPendingObjectPauseAssignment
+        slaAssignment
+        slaPauseStatus
+      }
+    }

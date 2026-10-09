@@ -1,0 +1,17 @@
+query RansomwareResult($clusterUuid: UUID!, $managedId: String!, $snapshotId: String!) {
+      ransomwareResult(
+        clusterUuid: $clusterUuid
+        managedId: $managedId
+        snapshotId: $snapshotId
+      ) {
+        clusterUuid
+        encryptionProbability
+        id
+        isEncrypted
+        managedId
+        snapshotData
+        snapshotFid
+        snapshotId
+        workloadId
+      }
+    }

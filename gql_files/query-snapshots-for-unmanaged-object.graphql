@@ -1,0 +1,18 @@
+query SnapshotsForUnmanagedObject($input: QueryUnmanagedObjectSnapshotsV1Input!) {
+      snapshotsForUnmanagedObject(
+        input: $input
+        first: 10
+      ) {
+        nodes {
+          date
+          id
+          isCustomRetentionApplied
+          isRetentionLockApplied
+          snapshotType
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

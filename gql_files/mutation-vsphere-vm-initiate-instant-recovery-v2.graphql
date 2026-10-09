@@ -1,0 +1,11 @@
+mutation VsphereVmInitiateInstantRecoveryV2($input: VsphereVmInitiateInstantRecoveryV2Input!) {
+      vsphereVmInitiateInstantRecoveryV2(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

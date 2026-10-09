@@ -1,0 +1,11 @@
+mutation DownloadActiveDirectorySnapshotFromLocation($input: DownloadActiveDirectorySnapshotFromLocationInput!) {
+      downloadActiveDirectorySnapshotFromLocation(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

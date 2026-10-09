@@ -1,0 +1,7 @@
+mutation CreateVsphereVcenter($input: CreateVsphereVcenterInput!) {
+      createVsphereVcenter(input: $input) {
+        id
+        isHotAddProxyEnabledForOnPremVcenter
+        isVmc
+      }
+    }

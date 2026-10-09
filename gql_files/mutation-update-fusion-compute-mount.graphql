@@ -1,0 +1,3 @@
+mutation UpdateFusionComputeMount($input: UpdateFusionComputeMountInput!) {
+      updateFusionComputeMount(input: $input)
+    }

@@ -1,0 +1,5 @@
+mutation SendTestMessageToWebhook($input: SendTestMessageToWebhookInput!) {
+      sendTestMessageToWebhook(input: $input) {
+        isSuccessful
+      }
+    }

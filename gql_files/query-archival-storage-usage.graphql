@@ -1,0 +1,6 @@
+query ArchivalStorageUsage($input: UUID!) {
+      archivalStorageUsage(input: $input) {
+        logTimestamp
+        storageUsage
+      }
+    }

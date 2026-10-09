@@ -1,0 +1,11 @@
+mutation DownloadNutanixSnapshot($input: DownloadNutanixSnapshotInput!) {
+      downloadNutanixSnapshot(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

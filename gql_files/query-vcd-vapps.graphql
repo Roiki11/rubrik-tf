@@ -1,0 +1,27 @@
+query {
+      vcdVapps(first: 10) {
+        nodes {
+          authorizedOperations
+          cdmId
+          cdmLink
+          cdmPendingObjectPauseAssignment
+          id
+          isBestEffortSynchronizationEnabled
+          isRelic
+          isReplica
+          isTemplate
+          name
+          numWorkloadDescendants
+          objectType
+          onDemandSnapshotCount
+          protectionDate
+          replicatedObjectCount
+          slaAssignment
+          slaPauseStatus
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

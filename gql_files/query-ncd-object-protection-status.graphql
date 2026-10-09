@@ -1,0 +1,6 @@
+query NcdObjectProtectionStatus($clusters: [UUID!]!) {
+      ncdObjectProtectionStatus(clusters: $clusters) {
+        averageFileSize
+        throughput
+      }
+    }

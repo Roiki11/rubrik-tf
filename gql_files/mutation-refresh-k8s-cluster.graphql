@@ -1,0 +1,6 @@
+mutation RefreshK8sCluster($input: RefreshK8sClusterInput!) {
+      refreshK8sCluster(input: $input) {
+        jobId
+        taskchainId
+      }
+    }

@@ -1,0 +1,24 @@
+query OracleRac($fid: UUID!) {
+      oracleRac(fid: $fid) {
+        authorizedOperations
+        backupNodes
+        cdmPendingObjectPauseAssignment
+        distributeBackupsAutomatically
+        excludedDbUniqueNames
+        hostLogRetentionHours
+        id
+        isReplica
+        logBackupFrequency
+        logRetentionHours
+        name
+        numChannels
+        numWorkloadDescendants
+        objectType
+        primaryNode
+        replicatedObjectCount
+        secondaryNodes
+        shouldEnableMultiNodeBackup
+        slaAssignment
+        slaPauseStatus
+      }
+    }

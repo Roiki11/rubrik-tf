@@ -1,0 +1,18 @@
+query UserFileActivityTimeline($userId: String!, $nativePath: String!, $startDay: String!, $timezone: String!, $timeGranularity: TimeGranularity!) {
+      userFileActivityTimeline(
+        userId: $userId
+        nativePath: $nativePath
+        startDay: $startDay
+        timezone: $timezone
+        timeGranularity: $timeGranularity
+        first: 10
+      ) {
+        nodes {
+          day
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

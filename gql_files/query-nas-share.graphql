@@ -1,0 +1,28 @@
+query NasShare($fid: UUID!) {
+      nasShare(fid: $fid) {
+        authorizedOperations
+        cdmId
+        cdmPendingObjectPauseAssignment
+        connectedThrough
+        exportPoint
+        hostAddress
+        hostIdForRestore
+        id
+        isChangelistEnabled
+        isHidden
+        isNasShareManuallyAdded
+        isNetAppSnapDiffEnabled
+        isNutanixCftEnabled
+        isRelic
+        isReplica
+        isStale
+        name
+        numWorkloadDescendants
+        objectType
+        replicatedObjectCount
+        shareType
+        slaAssignment
+        slaPauseStatus
+        userSelectedInterfaces
+      }
+    }

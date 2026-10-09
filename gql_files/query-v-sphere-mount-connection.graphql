@@ -1,0 +1,22 @@
+query {
+      vSphereMountConnection(first: 10) {
+        nodes {
+          attachingDiskCount
+          cdmId
+          clusterName
+          hasAttachingDisk
+          id
+          isReady
+          migrateDatastoreRequestId
+          mountRequestId
+          mountTimestamp
+          newVmName
+          status
+          unmountRequestId
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

@@ -1,0 +1,6 @@
+mutation RemoveVlans($input: RemoveVlansInput!) {
+      removeVlans(input: $input) {
+        failureVlanIds
+        successVlanIds
+      }
+    }

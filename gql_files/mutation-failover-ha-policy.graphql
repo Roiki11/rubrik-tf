@@ -1,0 +1,11 @@
+mutation FailoverHaPolicy($input: FailoverHaPolicyInput!) {
+      failoverHaPolicy(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

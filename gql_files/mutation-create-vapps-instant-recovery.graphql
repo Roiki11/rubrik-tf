@@ -1,0 +1,3 @@
+mutation CreateVappsInstantRecovery($input: CreateVappsInstantRecoveryInput!) {
+      createVappsInstantRecovery(input: $input)
+    }

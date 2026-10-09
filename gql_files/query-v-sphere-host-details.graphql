@@ -1,0 +1,6 @@
+query VSphereHostDetails($input: GetVmwareHostInput!) {
+      vSphereHostDetails(input: $input) {
+        computeClusterId
+        moid
+      }
+    }

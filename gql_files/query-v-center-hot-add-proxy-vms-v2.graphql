@@ -1,0 +1,20 @@
+query VCenterHotAddProxyVmsV2($clusterUuids: [UUID!]!) {
+      vCenterHotAddProxyVmsV2(
+        clusterUuids: $clusterUuids
+        first: 10
+      ) {
+        nodes {
+          clusterUuid
+          computeClusterName
+          id
+          name
+          status
+          usedPortCount
+          vcenterName
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

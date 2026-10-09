@@ -1,0 +1,27 @@
+query {
+      exchangeDatabases(first: 10) {
+        nodes {
+          activeCopies
+          authorizedOperations
+          cdmId
+          cdmLink
+          cdmPendingObjectPauseAssignment
+          id
+          isRelic
+          isReplica
+          name
+          numWorkloadDescendants
+          objectType
+          onDemandSnapshotCount
+          primaryClusterUuid
+          replicatedObjectCount
+          slaAssignment
+          slaPauseStatus
+          totalCopies
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

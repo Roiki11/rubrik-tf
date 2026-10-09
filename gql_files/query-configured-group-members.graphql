@@ -1,0 +1,19 @@
+query ConfiguredGroupMembers($orgId: UUID!, $pdls: [String!]!) {
+      configuredGroupMembers(
+        orgId: $orgId
+        pdls: $pdls
+        first: 10
+      ) {
+        nodes {
+          displayName
+          id
+          objectType
+          pdl
+          url
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

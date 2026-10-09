@@ -1,0 +1,25 @@
+query {
+      vSphereComputeClusters(first: 10) {
+        nodes {
+          authorizedOperations
+          cdmPendingObjectPauseAssignment
+          drsStatus
+          hasDatastoresForRecovery
+          id
+          ioFilterStatus
+          isReplica
+          name
+          numWorkloadDescendants
+          objectType
+          replicatedObjectCount
+          slaAssignment
+          slaPauseStatus
+          snapshotConsistencyMandate
+          snapshotConsistencySource
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

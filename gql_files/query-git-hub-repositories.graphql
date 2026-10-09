@@ -1,0 +1,28 @@
+query GitHubRepositories($queryType: QueryType!, $ancestorId: String!, $filter: [Filter!]!) {
+      gitHubRepositories(
+        queryType: $queryType
+        ancestorId: $ancestorId
+        filter: $filter
+        first: 10
+      ) {
+        nodes {
+          authorizedOperations
+          id
+          isRelic
+          name
+          numWorkloadDescendants
+          objectType
+          onDemandSnapshotCount
+          orgId
+          orgName
+          rscPendingObjectPauseAssignment
+          size
+          slaAssignment
+          slaPauseStatus
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

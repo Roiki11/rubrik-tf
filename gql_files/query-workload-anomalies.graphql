@@ -1,0 +1,37 @@
+query WorkloadAnomalies($beginTime: DateTime!) {
+      workloadAnomalies(
+        beginTime: $beginTime
+        first: 10
+      ) {
+        nodes {
+          anomalousSnapshotDate
+          anomalousSnapshotFid
+          anomalousSnapshotId
+          anomalyAnalysisLocationId
+          anomalyAnalysisLocationName
+          anomalyCategory
+          anomalyId
+          anomalyType
+          createdFileCount
+          deletedFileCount
+          detectionTime
+          encryption
+          isInfrastructureAlertsEnabled
+          isSensitiveDataDiscoverySupported
+          modifiedFileCount
+          objectType
+          previousSnapshotFid
+          resolutionStatus
+          severity
+          suspiciousFileCount
+          totalChildren
+          workloadFid
+          workloadId
+          workloadName
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

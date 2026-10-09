@@ -1,0 +1,8 @@
+mutation DeleteMongodbSource($input: DeleteMosaicSourceInput!) {
+      deleteMongodbSource(input: $input) {
+        data
+        message
+        returnCode
+        status
+      }
+    }

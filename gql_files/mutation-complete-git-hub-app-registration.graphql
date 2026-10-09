@@ -1,0 +1,5 @@
+mutation CompleteGitHubAppRegistration($input: CompleteGitHubAppRegistrationInput!) {
+      completeGitHubAppRegistration(input: $input) {
+        installationUrl
+      }
+    }

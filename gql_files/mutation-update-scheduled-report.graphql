@@ -1,0 +1,3 @@
+mutation UpdateScheduledReport($input: UpdateScheduledReportInput!) {
+      updateScheduledReport(input: $input)
+    }

@@ -1,0 +1,20 @@
+query {
+      adVolumeExports(first: 10) {
+        nodes {
+          domainControllerId
+          domainControllerName
+          floatingIp
+          id
+          internalTimestamp
+          isActive
+          isUserVisible
+          mountDir
+          mountNodeIp
+          smbValidIps
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

@@ -1,0 +1,5 @@
+mutation RegisterAgentNutanixVm($input: RegisterAgentNutanixVmInput!) {
+      registerAgentNutanixVm(input: $input) {
+        success
+      }
+    }

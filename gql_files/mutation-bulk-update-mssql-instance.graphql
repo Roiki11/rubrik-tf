@@ -1,0 +1,3 @@
+mutation BulkUpdateMssqlInstance($input: BulkUpdateMssqlInstanceInput!) {
+      bulkUpdateMssqlInstance(input: $input)
+    }

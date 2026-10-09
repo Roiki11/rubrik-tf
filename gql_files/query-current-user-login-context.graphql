@@ -1,0 +1,8 @@
+query {
+      currentUserLoginContext {
+        accountName
+        orgFullName
+        orgId
+        orgName
+      }
+    }

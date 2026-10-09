@@ -1,0 +1,3 @@
+mutation SetUserLevelTotpEnforcement($input: SetUserLevelTotpEnforcementInput!) {
+      setUserLevelTotpEnforcement(input: $input)
+    }

@@ -1,0 +1,11 @@
+query NutanixVmAsyncRequestStatus($input: GetNutanixVmAsyncRequestStatusInput!) {
+      nutanixVmAsyncRequestStatus(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

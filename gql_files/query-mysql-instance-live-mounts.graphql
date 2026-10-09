@@ -1,0 +1,18 @@
+query {
+      mysqlInstanceLiveMounts(first: 10) {
+        nodes {
+          hostMountPath
+          id
+          mountCreateTime
+          name
+          pointInTime
+          subnetMask
+          workloadId
+          workloadName
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

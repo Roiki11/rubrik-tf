@@ -1,0 +1,3 @@
+query NutanixMountsV2($input: GetNutanixMountsReq!) {
+      nutanixMountsV2(input: $input)
+    }

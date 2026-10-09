@@ -1,0 +1,3 @@
+query IsValidTprPolicyName($tprPolicyName: String!) {
+      isValidTprPolicyName(tprPolicyName: $tprPolicyName)
+    }

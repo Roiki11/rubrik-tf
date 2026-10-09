@@ -1,0 +1,3 @@
+mutation DeleteCsr($input: DeleteCsrInput!) {
+      deleteCsr(input: $input)
+    }

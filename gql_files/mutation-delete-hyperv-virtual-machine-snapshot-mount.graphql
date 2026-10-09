@@ -1,0 +1,11 @@
+mutation DeleteHypervVirtualMachineSnapshotMount($input: DeleteHypervVirtualMachineSnapshotMountInput!) {
+      deleteHypervVirtualMachineSnapshotMount(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

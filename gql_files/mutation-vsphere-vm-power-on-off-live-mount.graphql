@@ -1,0 +1,6 @@
+mutation VsphereVmPowerOnOffLiveMount($input: VsphereVmPowerOnOffLiveMountInput!) {
+      vsphereVmPowerOnOffLiveMount(input: $input) {
+        nasIp
+        powerStatus
+      }
+    }

@@ -1,0 +1,16 @@
+query TprRequestDetail($tprRequestId: String!) {
+      tprRequestDetail(tprRequestId: $tprRequestId) {
+        createdAt
+        executionExpiresAt
+        executionType
+        expiresAt
+        id
+        isPotentialLastApprover
+        orgId
+        orgName
+        status
+        triggeredTprRule
+        triggeredTprRules
+        updatedAt
+      }
+    }

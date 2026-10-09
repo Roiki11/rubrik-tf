@@ -1,0 +1,3 @@
+mutation CreateK8sAgentManifest($input: CreateK8sAgentManifestInput!) {
+      createK8sAgentManifest(input: $input)
+    }

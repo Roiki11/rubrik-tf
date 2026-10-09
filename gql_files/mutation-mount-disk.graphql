@@ -1,0 +1,5 @@
+mutation MountDisk($input: MountDiskInput!) {
+      mountDisk(input: $input) {
+        taskchainUuid
+      }
+    }

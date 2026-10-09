@@ -1,0 +1,24 @@
+query Taskchain($taskchainId: String!) {
+      taskchain(taskchainId: $taskchainId) {
+        account
+        component
+        config
+        currentTaskExecutionAttempts
+        currentTaskIndex
+        endTime
+        error
+        id
+        jobId
+        jobType
+        name
+        parentTaskchainId
+        podName
+        priority
+        progress
+        progressedAt
+        startTime
+        state
+        taskchainUuid
+        workflowName
+      }
+    }

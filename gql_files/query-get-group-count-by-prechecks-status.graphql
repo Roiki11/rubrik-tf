@@ -1,0 +1,6 @@
+query {
+      getGroupCountByPrechecksStatus {
+        count
+        group
+      }
+    }

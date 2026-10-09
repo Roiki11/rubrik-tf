@@ -1,0 +1,11 @@
+mutation MountNutanixSnapshotV1($input: MountNutanixSnapshotV1Input!) {
+      mountNutanixSnapshotV1(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

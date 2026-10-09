@@ -1,0 +1,3 @@
+mutation BatchOnDemandBackupHypervVm($input: BatchOnDemandBackupHypervVmInput!) {
+      batchOnDemandBackupHypervVm(input: $input)
+    }

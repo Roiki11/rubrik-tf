@@ -1,0 +1,3 @@
+mutation BatchInstantRecoverHypervVm($input: BatchInstantRecoverHypervVmInput!) {
+      batchInstantRecoverHypervVm(input: $input)
+    }

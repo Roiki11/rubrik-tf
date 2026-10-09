@@ -1,0 +1,22 @@
+query PolicyObjOpt($snappableFid: String!, $snapshotFid: String!) {
+      policyObjOpt(
+        snappableFid: $snappableFid
+        snapshotFid: $snapshotFid
+      ) {
+        accessRiskReasons
+        analysisStatus
+        hasInsights
+        id
+        isUserAccessEnabledObject
+        isUserActivityEnabled
+        objectType
+        osType
+        riskLevel
+        scanStatus
+        shareType
+        snapshotFid
+        snapshotTimestamp
+        timeContext
+        violationSeverity
+      }
+    }

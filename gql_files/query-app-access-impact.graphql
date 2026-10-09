@@ -1,0 +1,6 @@
+query AppAccessImpact($input: AppAccessImpactInput!) {
+      appAccessImpact(input: $input) {
+        principalId
+        principalName
+      }
+    }

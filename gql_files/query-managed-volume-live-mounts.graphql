@@ -1,0 +1,22 @@
+query {
+      managedVolumeLiveMounts(first: 10) {
+        nodes {
+          authorizedOperations
+          cdmPendingObjectPauseAssignment
+          id
+          isReplica
+          logicalUsedSize
+          name
+          numChannels
+          numWorkloadDescendants
+          objectType
+          replicatedObjectCount
+          slaAssignment
+          slaPauseStatus
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

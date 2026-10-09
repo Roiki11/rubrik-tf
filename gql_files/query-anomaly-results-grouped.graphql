@@ -1,0 +1,14 @@
+query AnomalyResultsGrouped($groupBy: AnomalyResultGroupBy!) {
+      anomalyResultsGrouped(
+        groupBy: $groupBy
+        first: 10
+      ) {
+        nodes {
+    
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

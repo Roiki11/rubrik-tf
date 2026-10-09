@@ -1,0 +1,6 @@
+mutation TestExistingWebhook($input: TestExistingWebhookInput!) {
+      testExistingWebhook(input: $input) {
+        isSuccessful
+        webhookStatus
+      }
+    }

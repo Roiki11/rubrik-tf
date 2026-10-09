@@ -1,0 +1,19 @@
+query {
+      customTprPolicies(first: 10) {
+        nodes {
+          actions
+          description
+          numberOfObjectTypes
+          numberOfProtectableObjects
+          orgId
+          orgName
+          policyId
+          policyName
+          quorumRequirement
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

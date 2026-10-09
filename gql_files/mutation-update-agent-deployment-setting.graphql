@@ -1,0 +1,6 @@
+mutation UpdateAgentDeploymentSetting($input: UpdateVmAgentDeploymentSettingInput!) {
+      updateAgentDeploymentSetting(input: $input) {
+        guestCredentialId
+        isAutomatic
+      }
+    }

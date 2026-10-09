@@ -1,0 +1,11 @@
+query {
+      lockoutConfig {
+        accountAutoUnlockDurationInMins
+        isAutoUnlockFeatureEnabled
+        isBruteForceLockoutEnabled
+        isSelfServiceEnabled
+        loginAttemptsLimit
+        selfServiceAttemptsLimit
+        selfServiceTokenValidityInMins
+      }
+    }

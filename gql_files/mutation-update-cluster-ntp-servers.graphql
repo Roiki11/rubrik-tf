@@ -1,0 +1,5 @@
+mutation UpdateClusterNtpServers($input: UpdateClusterNtpServersInput!) {
+      updateClusterNtpServers(input: $input) {
+        success
+      }
+    }

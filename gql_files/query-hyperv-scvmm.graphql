@@ -1,0 +1,18 @@
+query HypervScvmm($fid: UUID!) {
+      hypervScvmm(fid: $fid) {
+        authorizedOperations
+        cdmPendingObjectPauseAssignment
+        connectionStatus
+        hostName
+        id
+        isReplica
+        name
+        numWorkloadDescendants
+        objectType
+        replicatedObjectCount
+        runAsAccount
+        shouldDeployAgent
+        slaAssignment
+        slaPauseStatus
+      }
+    }

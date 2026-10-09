@@ -1,0 +1,3 @@
+mutation UpdatePureStorageProtectionGroup($input: UpdatePureStorageProtectionGroupInput!) {
+      updatePureStorageProtectionGroup(input: $input)
+    }

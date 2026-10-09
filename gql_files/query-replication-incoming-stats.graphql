@@ -1,0 +1,3 @@
+query ReplicationIncomingStats($input: ReplicationBandwidthIncomingInput!) {
+      replicationIncomingStats(input: $input)
+    }

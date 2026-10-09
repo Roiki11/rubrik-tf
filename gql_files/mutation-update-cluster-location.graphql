@@ -1,0 +1,40 @@
+mutation UpdateClusterLocation($clusterUuid: UUID!, $clusterLocation: ClusterLocationEdit!) {
+      updateClusterLocation(
+        clusterUuid: $clusterUuid
+        clusterLocation: $clusterLocation
+      ) {
+        cdmRbacMigrationStatus
+        connectivityLastUpdated
+        cyberEventLockdownMode
+        defaultAddress
+        defaultPort
+        encryptionEnabled
+        eosDate
+        eosStatus
+        estimatedRunway
+        id
+        isAirGapped
+        isClusterRemovalTprEnabled
+        isHealthy
+        isTprEnabled
+        lastConnectionTime
+        licensedProducts
+        name
+        noSqlWorkloadCount
+        passesConnectivityCheck
+        pauseStatus
+        productType
+        rawAddress
+        registeredMode
+        registrationTime
+        snapshotCount
+        status
+        statusFromDb
+        subStatus
+        systemStatus
+        systemStatusMessage
+        timezone
+        type
+        version
+      }
+    }

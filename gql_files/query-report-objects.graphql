@@ -1,0 +1,13 @@
+query {
+      reportObjects(first: 10) {
+        nodes {
+          id
+          name
+          objectTypeDisplayName
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

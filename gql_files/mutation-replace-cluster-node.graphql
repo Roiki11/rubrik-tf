@@ -1,0 +1,7 @@
+mutation ReplaceClusterNode($input: ReplaceClusterNodeInput!) {
+      replaceClusterNode(input: $input) {
+        isSuccessful
+        jobId
+        message
+      }
+    }

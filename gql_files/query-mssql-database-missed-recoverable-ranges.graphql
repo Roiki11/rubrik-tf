@@ -1,0 +1,7 @@
+query MssqlDatabaseMissedRecoverableRanges($input: GetMssqlDbMissedRecoverableRangesInput!) {
+      mssqlDatabaseMissedRecoverableRanges(input: $input) {
+        hasMore
+        nextCursor
+        total
+      }
+    }

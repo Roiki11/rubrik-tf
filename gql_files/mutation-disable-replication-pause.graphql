@@ -1,0 +1,5 @@
+mutation DisableReplicationPause($input: DisableReplicationPauseInput!) {
+      disableReplicationPause(input: $input) {
+        success
+      }
+    }

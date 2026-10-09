@@ -1,0 +1,6 @@
+query AgentDeploymentSetting($input: GetVmAgentDeploymentSettingInput!) {
+      agentDeploymentSetting(input: $input) {
+        guestCredentialId
+        isAutomatic
+      }
+    }

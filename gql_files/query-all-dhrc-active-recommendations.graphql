@@ -1,0 +1,10 @@
+query {
+      allDhrcActiveRecommendations {
+        category
+        compiledAt
+        earliestMetric
+        key
+        message
+        weight
+      }
+    }

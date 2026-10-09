@@ -1,0 +1,11 @@
+mutation ExportOracleDatabase($input: ExportOracleDatabaseInput!) {
+      exportOracleDatabase(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

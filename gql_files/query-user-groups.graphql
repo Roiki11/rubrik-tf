@@ -1,0 +1,7 @@
+query {
+      userGroups {
+        domainName
+        groupId
+        groupName
+      }
+    }

@@ -1,0 +1,15 @@
+query {
+      allValidReplicationSources(first: 10) {
+        nodes {
+          accountName
+          apiVersion
+          name
+          uuid
+          version
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

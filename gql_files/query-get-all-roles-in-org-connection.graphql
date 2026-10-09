@@ -1,0 +1,20 @@
+query {
+      getAllRolesInOrgConnection(first: 10) {
+        nodes {
+          alreadySyncedClusters
+          description
+          explicitProtectableClusters
+          id
+          isOrgAdmin
+          isReadOnly
+          isSynced
+          name
+          orgId
+          protectableClusters
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

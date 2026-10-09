@@ -1,0 +1,3 @@
+mutation UpdateDistributionListDigest($input: UpdateDistributionListDigestInput!) {
+      updateDistributionListDigest(input: $input)
+    }

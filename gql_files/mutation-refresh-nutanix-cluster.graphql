@@ -1,0 +1,11 @@
+mutation RefreshNutanixCluster($input: RefreshNutanixClusterInput!) {
+      refreshNutanixCluster(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

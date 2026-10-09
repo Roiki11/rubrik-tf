@@ -1,0 +1,8 @@
+mutation UpdateHypervVirtualMachine($input: UpdateHypervVirtualMachineInput!) {
+      updateHypervVirtualMachine(input: $input) {
+        guestOsType
+        isAgentRegistered
+        naturalId
+        operatingSystemType
+      }
+    }

@@ -1,0 +1,5 @@
+query ClassifiableAssetCount($day: String!) {
+      classifiableAssetCount(day: $day) {
+        totalAssetCount
+      }
+    }

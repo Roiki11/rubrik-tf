@@ -1,0 +1,21 @@
+query {
+      cassandraKeyspaces(first: 10) {
+        nodes {
+          backupCount
+          clusterUuid
+          id
+          isRelic
+          name
+          numWorkloadDescendants
+          objectType
+          rscPendingObjectPauseAssignment
+          slaAssignment
+          slaPauseStatus
+          watcherEnabled
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

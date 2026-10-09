@@ -1,0 +1,6 @@
+mutation UpdateFloatingIps($input: UpdateFloatingIpsInput!) {
+      updateFloatingIps(input: $input) {
+        id
+        status
+      }
+    }

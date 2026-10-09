@@ -1,0 +1,3 @@
+mutation RefreshNutanixPrismCentral($input: RefreshNutanixPrismCentralInput!) {
+      refreshNutanixPrismCentral(input: $input)
+    }

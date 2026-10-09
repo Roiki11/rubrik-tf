@@ -1,0 +1,11 @@
+mutation RecoverSapHanaDatabaseToPointInTime($input: RecoverSapHanaDatabaseToPointInTimeInput!) {
+      recoverSapHanaDatabaseToPointInTime(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

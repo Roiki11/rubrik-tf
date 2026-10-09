@@ -1,0 +1,5 @@
+mutation HypervScvmmDelete($input: HypervScvmmDeleteInput!) {
+      hypervScvmmDelete(input: $input) {
+        success
+      }
+    }

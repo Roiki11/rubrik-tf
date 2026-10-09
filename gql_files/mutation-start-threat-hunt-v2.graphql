@@ -1,0 +1,5 @@
+mutation StartThreatHuntV2($input: StartThreatHuntV2Input!) {
+      startThreatHuntV2(input: $input) {
+        huntId
+      }
+    }

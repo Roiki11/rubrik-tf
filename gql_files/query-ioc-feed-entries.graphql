@@ -1,0 +1,21 @@
+query IocFeedEntries($providerId: String!) {
+      iocFeedEntries(
+        providerId: $providerId
+        first: 10
+      ) {
+        nodes {
+          author
+          intelId
+          iocStatus
+          iocType
+          lastUpdatedTime
+          providerIocId
+          providerMalwareId
+          threatFamily
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

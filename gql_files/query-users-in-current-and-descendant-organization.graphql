@@ -1,0 +1,23 @@
+query {
+      usersInCurrentAndDescendantOrganization(first: 10) {
+        nodes {
+          domain
+          domainName
+          email
+          groups
+          id
+          isAccountOwner
+          isEmailEnabled
+          isHidden
+          lastLogin
+          patId
+          status
+          unreadCount
+          username
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

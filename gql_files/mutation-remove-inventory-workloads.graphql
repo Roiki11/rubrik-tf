@@ -1,0 +1,3 @@
+mutation RemoveInventoryWorkloads($input: RemoveInventoryWorkloadsInput!) {
+      removeInventoryWorkloads(input: $input)
+    }

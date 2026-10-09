@@ -1,0 +1,3 @@
+mutation RefreshDevOpsOrganizations($input: RefreshDevOpsOrganizationsInput!) {
+      refreshDevOpsOrganizations(input: $input)
+    }

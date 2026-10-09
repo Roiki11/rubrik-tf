@@ -1,0 +1,3 @@
+mutation VsphereVmInitiateBatchLiveMountV2($input: VsphereVmInitiateBatchLiveMountV2Input!) {
+      vsphereVmInitiateBatchLiveMountV2(input: $input)
+    }

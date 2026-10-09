@@ -1,0 +1,9 @@
+query AllObjectsAlreadyAssignedToOrgs($objectIdsForHierarchyTypes: [ObjectIdsForHierarchyTypeInput!]!, $allowedClusters: [String!]!) {
+      allObjectsAlreadyAssignedToOrgs(
+        objectIdsForHierarchyTypes: $objectIdsForHierarchyTypes
+        allowedClusters: $allowedClusters
+      ) {
+        objectIds
+        snappableType
+      }
+    }

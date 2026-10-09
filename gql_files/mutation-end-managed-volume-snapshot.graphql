@@ -1,0 +1,5 @@
+mutation EndManagedVolumeSnapshot($input: EndManagedVolumeSnapshotInput!) {
+      endManagedVolumeSnapshot(input: $input) {
+        rscSnapshotId
+      }
+    }

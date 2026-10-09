@@ -1,0 +1,5 @@
+query CdmInventorySubHierarchyRoot($rootEnum: InventorySubHierarchyRootEnum!) {
+      cdmInventorySubHierarchyRoot(rootEnum: $rootEnum) {
+        rootEnum
+      }
+    }

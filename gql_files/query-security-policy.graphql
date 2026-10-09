@@ -1,0 +1,8 @@
+query SecurityPolicy($policyId: UUID!, $policyType: PolicyType!) {
+      securityPolicy(
+        policyId: $policyId
+        policyType: $policyType
+      ) {
+        violationNames
+      }
+    }

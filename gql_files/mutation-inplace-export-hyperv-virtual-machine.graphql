@@ -1,0 +1,11 @@
+mutation InplaceExportHypervVirtualMachine($input: InplaceExportHypervVirtualMachineInput!) {
+      inplaceExportHypervVirtualMachine(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

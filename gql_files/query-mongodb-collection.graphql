@@ -1,0 +1,15 @@
+query MongodbCollection($fid: UUID!) {
+      mongodbCollection(fid: $fid) {
+        authorizedOperations
+        backupCount
+        clusterUuid
+        id
+        isRelic
+        name
+        numWorkloadDescendants
+        objectType
+        rscPendingObjectPauseAssignment
+        slaAssignment
+        slaPauseStatus
+      }
+    }

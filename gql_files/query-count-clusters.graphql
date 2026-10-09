@@ -1,0 +1,10 @@
+query {
+      countClusters {
+        disconnectedClusters
+        fatalClusters
+        okClusters
+        totalClusters
+        tunnelEnabledClusters
+        warningClusters
+      }
+    }

@@ -1,0 +1,3 @@
+query OwnersFilterValues($input: GetOwnersFilterValuesInput!) {
+      ownersFilterValues(input: $input)
+    }

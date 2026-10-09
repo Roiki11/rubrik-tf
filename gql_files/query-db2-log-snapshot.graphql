@@ -1,0 +1,12 @@
+query Db2LogSnapshot($db2LogSnapshotFid: UUID!) {
+      db2LogSnapshot(db2LogSnapshotFid: $db2LogSnapshotFid) {
+        cdmId
+        clusterUuid
+        date
+        fid
+        internalTimestamp
+        isArchived
+        workloadId
+        workloadType
+      }
+    }

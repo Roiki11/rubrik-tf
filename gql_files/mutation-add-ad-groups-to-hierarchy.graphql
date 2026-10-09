@@ -1,0 +1,5 @@
+mutation AddAdGroupsToHierarchy($input: AddAdGroupsToHierarchyInput!) {
+      addAdGroupsToHierarchy(input: $input) {
+        success
+      }
+    }

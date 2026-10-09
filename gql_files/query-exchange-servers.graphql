@@ -1,0 +1,26 @@
+query {
+      exchangeServers(first: 10) {
+        nodes {
+          authorizedOperations
+          cdmId
+          cdmPendingObjectPauseAssignment
+          hasVgConflict
+          id
+          isReplica
+          name
+          numWorkloadDescendants
+          objectType
+          primaryClusterUuid
+          replicatedObjectCount
+          slaAssignment
+          slaPauseStatus
+          totalDbs
+          version
+          vgConflictResolvedByUser
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

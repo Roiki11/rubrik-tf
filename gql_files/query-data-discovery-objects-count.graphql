@@ -1,0 +1,7 @@
+query {
+      dataDiscoveryObjectsCount {
+        dataDiscoveryAssignedCount
+        dataDiscoveryNotAssignedCount
+        dataDiscoveryNotSupportedCount
+      }
+    }

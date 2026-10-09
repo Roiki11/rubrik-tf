@@ -1,0 +1,5 @@
+query PoliciesMaxLastEvaluatedAt($policyTypes: [PolicyType!]!) {
+      policiesMaxLastEvaluatedAt(policyTypes: $policyTypes) {
+        maxLastEvaluatedAt
+      }
+    }

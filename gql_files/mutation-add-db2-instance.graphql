@@ -1,0 +1,5 @@
+mutation AddDb2Instance($input: AddDb2InstanceInput!) {
+      addDb2Instance(input: $input) {
+        id
+      }
+    }

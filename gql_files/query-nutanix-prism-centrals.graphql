@@ -1,0 +1,30 @@
+query {
+      nutanixPrismCentrals(first: 10) {
+        nodes {
+          authorizedOperations
+          cdmId
+          cdmPendingObjectPauseAssignment
+          duplicateObjectsAbsoluteCount
+          hostName
+          id
+          isDrEnabled
+          isReplica
+          lastRefreshTime
+          name
+          naturalId
+          nosVersion
+          numWorkloadDescendants
+          nutanixClusterIds
+          objectType
+          replicatedObjectCount
+          shouldUseV4
+          slaAssignment
+          slaPauseStatus
+          userName
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

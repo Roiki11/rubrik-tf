@@ -1,0 +1,11 @@
+query HypervHostAsyncRequestStatus($input: GetHypervHostAsyncRequestStatusInput!) {
+      hypervHostAsyncRequestStatus(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

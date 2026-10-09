@@ -1,0 +1,13 @@
+query {
+      slaDomains(first: 10) {
+        nodes {
+          id
+          name
+          version
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

@@ -1,0 +1,12 @@
+query CdmMssqlLogShippingTarget($fid: UUID!) {
+      cdmMssqlLogShippingTarget(fid: $fid) {
+        cdmId
+        fid
+        lagTimeFromPrimary
+        lastAppliedPoint
+        location
+        logFrequency
+        state
+        status
+      }
+    }

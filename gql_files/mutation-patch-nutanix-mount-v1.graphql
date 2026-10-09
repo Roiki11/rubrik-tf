@@ -1,0 +1,3 @@
+mutation PatchNutanixMountV1($input: PatchNutanixMountV1Input!) {
+      patchNutanixMountV1(input: $input)
+    }

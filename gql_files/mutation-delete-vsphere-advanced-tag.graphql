@@ -1,0 +1,5 @@
+mutation DeleteVsphereAdvancedTag($input: DeleteVsphereAdvancedTagInput!) {
+      deleteVsphereAdvancedTag(input: $input) {
+        success
+      }
+    }

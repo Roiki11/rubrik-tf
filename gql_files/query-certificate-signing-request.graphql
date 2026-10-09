@@ -1,0 +1,21 @@
+query CertificateSigningRequest($input: GetCsrInput!) {
+      certificateSigningRequest(input: $input) {
+        city
+        country
+        createdAt
+        creatorEmail
+        csr
+        csrFid
+        csrId
+        email
+        hostnames
+        keyStrength
+        keyType
+        name
+        organization
+        organizationUnit
+        state
+        surname
+        userId
+      }
+    }

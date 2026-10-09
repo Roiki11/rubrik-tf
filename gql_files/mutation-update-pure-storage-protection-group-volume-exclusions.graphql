@@ -1,0 +1,3 @@
+mutation UpdatePureStorageProtectionGroupVolumeExclusions($input: UpdatePureStorageProtectionGroupVolumeExclusionsInput!) {
+      updatePureStorageProtectionGroupVolumeExclusions(input: $input)
+    }

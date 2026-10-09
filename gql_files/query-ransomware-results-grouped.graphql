@@ -1,0 +1,14 @@
+query RansomwareResultsGrouped($groupBy: RansomwareResultGroupBy!) {
+      ransomwareResultsGrouped(
+        groupBy: $groupBy
+        first: 10
+      ) {
+        nodes {
+    
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

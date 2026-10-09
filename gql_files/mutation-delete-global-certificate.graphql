@@ -1,0 +1,5 @@
+mutation DeleteGlobalCertificate($input: DeleteGlobalCertificateInput!) {
+      deleteGlobalCertificate(input: $input) {
+        clusterUuids
+      }
+    }

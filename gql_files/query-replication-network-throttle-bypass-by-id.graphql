@@ -1,0 +1,7 @@
+query ReplicationNetworkThrottleBypassById($input: QueryByIdReplicationTargetInfoInput!) {
+      replicationNetworkThrottleBypassById(input: $input) {
+        clusterName
+        id
+        shouldBypassReplicationThrottle
+      }
+    }

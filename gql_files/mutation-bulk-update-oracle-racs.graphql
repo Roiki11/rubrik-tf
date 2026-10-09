@@ -1,0 +1,3 @@
+mutation BulkUpdateOracleRacs($input: BulkUpdateOracleRacsInput!) {
+      bulkUpdateOracleRacs(input: $input)
+    }

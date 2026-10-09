@@ -1,0 +1,3 @@
+mutation RemoveLdapIntegration($id: UUID!) {
+      removeLdapIntegration(id: $id)
+    }

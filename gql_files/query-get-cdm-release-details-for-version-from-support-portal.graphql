@@ -1,0 +1,13 @@
+query GetCdmReleaseDetailsForVersionFromSupportPortal($listClusterUuid: [UUID!]!, $filterVersion: String!, $fetchLinks: Boolean!, $filterUpgradeable: Boolean!, $shouldShowAll: Boolean!, $filterAfterSource: Boolean!) {
+      getCdmReleaseDetailsForVersionFromSupportPortal(
+        listClusterUuid: $listClusterUuid
+        filterVersion: $filterVersion
+        fetchLinks: $fetchLinks
+        filterUpgradeable: $filterUpgradeable
+        shouldShowAll: $shouldShowAll
+        filterAfterSource: $filterAfterSource
+      ) {
+        compatibilityMatrixLink
+        supportSoftwareLink
+      }
+    }

@@ -1,0 +1,5 @@
+mutation BulkObjectPause($ToggleObjectPause: ToggleObjectPauseReq!) {
+      bulkObjectPause(ToggleObjectPause: $ToggleObjectPause) {
+        success
+      }
+    }

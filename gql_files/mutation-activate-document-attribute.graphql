@@ -1,0 +1,5 @@
+mutation ActivateDocumentAttribute($input: ActivateDocumentAttributeInput!) {
+      activateDocumentAttribute(input: $input) {
+        isSuccess
+      }
+    }

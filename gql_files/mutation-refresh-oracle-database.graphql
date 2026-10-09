@@ -1,0 +1,11 @@
+mutation RefreshOracleDatabase($input: RefreshOracleDatabaseInput!) {
+      refreshOracleDatabase(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

@@ -1,0 +1,5 @@
+mutation UpdatePredefinedDataType($input: UpdatePredefinedDataTypeInput!) {
+      updatePredefinedDataType(input: $input) {
+        id
+      }
+    }

@@ -1,0 +1,27 @@
+query {
+      fusionComputeClusters(first: 10) {
+        nodes {
+          authorizedOperations
+          cdmId
+          cdmPendingObjectPauseAssignment
+          clusterName
+          clusterUuid
+          fcClusterId
+          id
+          isReplica
+          name
+          numWorkloadDescendants
+          objectType
+          primaryClusterUuid
+          replicatedObjectCount
+          siteId
+          slaAssignment
+          slaPauseStatus
+          vrmId
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

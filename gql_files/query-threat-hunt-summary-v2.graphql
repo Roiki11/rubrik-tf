@@ -1,0 +1,22 @@
+query ThreatHuntSummaryV2($huntId: String!) {
+      threatHuntSummaryV2(
+        huntId: $huntId
+        first: 10
+      ) {
+        nodes {
+          earliestMatchedSnapshotDate
+          hasQuarantinedMatches
+          latestMatchedSnapshotDate
+          latestSnapshotWithoutMatchDate
+          location
+          objectScanStatus
+          totalMatchedPaths
+          totalMatchedSnapshots
+          totalUniqueMatchedPaths
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

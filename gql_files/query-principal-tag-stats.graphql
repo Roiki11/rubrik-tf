@@ -1,0 +1,3 @@
+query PrincipalTagStats($input: GetPrincipalTagStatsInput!) {
+      principalTagStats(input: $input)
+    }

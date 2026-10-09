@@ -1,0 +1,5 @@
+mutation CreateAutomatedRestoreMysqldbInstance($input: CreateAutomatedRestoreMysqldbInstanceInput!) {
+      createAutomatedRestoreMysqldbInstance(input: $input) {
+        id
+      }
+    }

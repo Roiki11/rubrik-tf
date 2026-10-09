@@ -1,0 +1,11 @@
+mutation DownloadDb2Snapshot($input: DownloadDb2SnapshotInput!) {
+      downloadDb2Snapshot(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

@@ -1,0 +1,16 @@
+query {
+      tprRequestSummaries(first: 10) {
+        nodes {
+          orgId
+          orgName
+          requestId
+          status
+          triggeredTprRule
+          updatedAt
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

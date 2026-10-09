@@ -1,0 +1,9 @@
+query UpgradePathEligibility($clusterUuid: UUID!, $targetVersion: String!, $operation: String!) {
+      upgradePathEligibility(
+        clusterUuid: $clusterUuid
+        targetVersion: $targetVersion
+        operation: $operation
+      ) {
+        isEligible
+      }
+    }

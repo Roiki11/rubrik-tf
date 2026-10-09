@@ -1,0 +1,6 @@
+query ViolationsEnvironmentSummary($historicalDays: Int!, $policyTypes: [PolicyType!]!) {
+      violationsEnvironmentSummary(
+        historicalDays: $historicalDays
+        policyTypes: $policyTypes
+      )
+    }

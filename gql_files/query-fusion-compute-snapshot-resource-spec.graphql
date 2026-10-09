@@ -1,0 +1,3 @@
+query FusionComputeSnapshotResourceSpec($input: FusionComputeSnapshotResourceSpecInput!) {
+      fusionComputeSnapshotResourceSpec(input: $input)
+    }

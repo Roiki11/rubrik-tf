@@ -1,0 +1,24 @@
+query WindowsFileset($fid: UUID!) {
+      windowsFileset(fid: $fid) {
+        authorizedOperations
+        cdmId
+        cdmLink
+        cdmPendingObjectPauseAssignment
+        hardlinkSupportEnabled
+        id
+        isPassThrough
+        isRelic
+        isReplica
+        name
+        numWorkloadDescendants
+        objectType
+        onDemandSnapshotCount
+        pathExceptions
+        pathExcluded
+        pathIncluded
+        replicatedObjectCount
+        slaAssignment
+        slaPauseStatus
+        symlinkResolutionEnabled
+      }
+    }

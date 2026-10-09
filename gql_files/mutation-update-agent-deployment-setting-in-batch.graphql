@@ -1,0 +1,3 @@
+mutation UpdateAgentDeploymentSettingInBatch($input: UpdateAgentDeploymentSettingInBatchInput!) {
+      updateAgentDeploymentSettingInBatch(input: $input)
+    }

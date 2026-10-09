@@ -1,0 +1,5 @@
+mutation CreateSsoUsers($input: CreateSsoUsersInput!) {
+      createSsoUsers(input: $input) {
+        userIds
+      }
+    }

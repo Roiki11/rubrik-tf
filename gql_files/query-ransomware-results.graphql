@@ -1,0 +1,19 @@
+query {
+      ransomwareResults(first: 10) {
+        nodes {
+          clusterUuid
+          encryptionProbability
+          id
+          isEncrypted
+          managedId
+          snapshotData
+          snapshotFid
+          snapshotId
+          workloadId
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

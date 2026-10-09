@@ -1,0 +1,3 @@
+mutation CreateFailoverCluster($input: CreateFailoverClusterInput!) {
+      createFailoverCluster(input: $input)
+    }

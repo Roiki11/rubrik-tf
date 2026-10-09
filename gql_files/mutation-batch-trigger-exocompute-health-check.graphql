@@ -1,0 +1,6 @@
+mutation BatchTriggerExocomputeHealthCheck($input: BatchTriggerExocomputeHealthCheckInput!) {
+      batchTriggerExocomputeHealthCheck(input: $input) {
+        failedConfigIds
+        healthCheckJobIds
+      }
+    }

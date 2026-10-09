@@ -1,0 +1,6 @@
+query AllClusterGlobalSlas($cdmClusterUUID: UUID!) {
+      allClusterGlobalSlas(cdmClusterUUID: $cdmClusterUUID) {
+        id
+        name
+      }
+    }

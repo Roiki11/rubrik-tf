@@ -1,0 +1,6 @@
+query ThreatMonitoringObjectEnablementStats($beginTime: DateTime!) {
+      threatMonitoringObjectEnablementStats(beginTime: $beginTime) {
+        enabledObjects
+        supportedObjects
+      }
+    }

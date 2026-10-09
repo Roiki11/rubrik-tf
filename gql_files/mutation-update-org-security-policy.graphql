@@ -1,0 +1,3 @@
+mutation UpdateOrgSecurityPolicy($input: UpdateOrgSecurityPolicyInput!) {
+      updateOrgSecurityPolicy(input: $input)
+    }

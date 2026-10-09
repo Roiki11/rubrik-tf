@@ -1,0 +1,5 @@
+mutation GenerateRecoveryReport($input: GenerateRecoveryReportInput!) {
+      generateRecoveryReport(input: $input) {
+        reportId
+      }
+    }

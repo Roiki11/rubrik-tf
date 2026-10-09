@@ -1,0 +1,3 @@
+mutation UpdateFeed($input: UpdateFeedInput!) {
+      updateFeed(input: $input)
+    }

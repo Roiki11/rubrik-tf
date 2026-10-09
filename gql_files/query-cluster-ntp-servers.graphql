@@ -1,0 +1,7 @@
+query ClusterNtpServers($input: GetClusterNtpServersInput!) {
+      clusterNtpServers(input: $input) {
+        hasMore
+        nextCursor
+        total
+      }
+    }

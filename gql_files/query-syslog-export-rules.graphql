@@ -1,0 +1,7 @@
+query SyslogExportRules($input: GetSyslogExportRulesInput!) {
+      syslogExportRules(input: $input) {
+        hasMore
+        nextCursor
+        total
+      }
+    }

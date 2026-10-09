@@ -1,0 +1,13 @@
+query {
+      allNosqlStorageLocations {
+        backupCount
+        clusterUuid
+        fid
+        geographicLocation
+        id
+        spaceConsumedBytes
+        storageLocationName
+        storeConnectionStatus
+        storeType
+      }
+    }

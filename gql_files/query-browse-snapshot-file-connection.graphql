@@ -1,0 +1,22 @@
+query BrowseSnapshotFileConnection($snapshotFid: UUID!, $path: String!) {
+      browseSnapshotFileConnection(
+        snapshotFid: $snapshotFid
+        path: $path
+        first: 10
+      ) {
+        nodes {
+          absolutePath
+          displayPath
+          fileMode
+          filename
+          lastModified
+          path
+          size
+          statusMessage
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

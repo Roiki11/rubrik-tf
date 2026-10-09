@@ -1,0 +1,5 @@
+mutation StartTurboThreatHunt($input: StartTurboThreatHuntInput!) {
+      startTurboThreatHunt(input: $input) {
+        huntId
+      }
+    }

@@ -1,0 +1,3 @@
+mutation AddClusterRoute($input: AddClusterRouteInput!) {
+      addClusterRoute(input: $input)
+    }

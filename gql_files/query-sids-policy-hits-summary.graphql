@@ -1,0 +1,7 @@
+query SidsPolicyHitsSummary($sids: [String!]!, $day: String!, $historicalDeltaDays: Int!) {
+      sidsPolicyHitsSummary(
+        sids: $sids
+        day: $day
+        historicalDeltaDays: $historicalDeltaDays
+      )
+    }

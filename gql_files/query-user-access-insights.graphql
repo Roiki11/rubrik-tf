@@ -1,0 +1,17 @@
+query UserAccessInsights($startTime: DateTime!, $endTime: DateTime!) {
+      userAccessInsights(
+        startTime: $startTime
+        endTime: $endTime
+        first: 10
+      ) {
+        nodes {
+          message
+          time
+          type
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

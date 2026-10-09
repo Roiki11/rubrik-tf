@@ -1,0 +1,3 @@
+mutation DeleteWebhookV2($input: DeleteWebhookV2Input!) {
+      deleteWebhookV2(input: $input)
+    }

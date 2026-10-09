@@ -1,0 +1,3 @@
+mutation SetMfaSetting($input: SetMfaSettingInput!) {
+      setMfaSetting(input: $input)
+    }

@@ -1,0 +1,11 @@
+mutation ValidateOracleDatabaseBackups($input: ValidateOracleDatabaseBackupsInput!) {
+      validateOracleDatabaseBackups(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

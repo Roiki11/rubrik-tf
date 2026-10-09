@@ -1,0 +1,12 @@
+query UserDetail($userId: String!, $startDay: String!, $timezone: String!) {
+      userDetail(
+        userId: $userId
+        startDay: $startDay
+        timezone: $timezone
+      ) {
+        location
+        name
+        numFilesAccessible
+        risk
+      }
+    }

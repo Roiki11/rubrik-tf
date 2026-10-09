@@ -1,0 +1,3 @@
+mutation UpdateSecurityPolicy($input: UpdateDSPMPolicyInput!) {
+      updateSecurityPolicy(input: $input)
+    }

@@ -1,0 +1,23 @@
+query FusionComputeNetwork($fid: UUID!) {
+      fusionComputeNetwork(fid: $fid) {
+        authorizedOperations
+        cdmId
+        cdmPendingObjectPauseAssignment
+        clusterUuid
+        fcNetworkId
+        hostIds
+        id
+        isReplica
+        name
+        networkName
+        networkType
+        numWorkloadDescendants
+        objectType
+        primaryClusterUuid
+        replicatedObjectCount
+        siteId
+        slaAssignment
+        slaPauseStatus
+        vrmId
+      }
+    }

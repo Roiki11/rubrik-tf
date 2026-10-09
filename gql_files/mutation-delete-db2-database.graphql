@@ -1,0 +1,11 @@
+mutation DeleteDb2Database($input: DeleteDb2DatabaseInput!) {
+      deleteDb2Database(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

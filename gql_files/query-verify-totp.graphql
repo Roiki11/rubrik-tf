@@ -1,0 +1,5 @@
+query VerifyTotp($input: VerifyTotpInput!) {
+      verifyTotp(input: $input) {
+        valid
+      }
+    }

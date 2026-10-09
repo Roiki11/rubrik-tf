@@ -1,0 +1,11 @@
+mutation ExportSlaManagedVolumeSnapshot($input: ExportSlaManagedVolumeSnapshotInput!) {
+      exportSlaManagedVolumeSnapshot(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

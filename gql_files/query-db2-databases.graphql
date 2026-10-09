@@ -1,0 +1,36 @@
+query {
+      db2Databases(first: 10) {
+        nodes {
+          authorizedOperations
+          backupCompressionLibraryPath
+          backupParallelism
+          backupSessions
+          backupTriggerType
+          cdmId
+          cdmLink
+          cdmPendingObjectPauseAssignment
+          db2DbType
+          id
+          isBackupCompressionEnabled
+          isRelic
+          isReplica
+          lastSyncTime
+          logBackupThreshold
+          name
+          numWorkloadDescendants
+          objectType
+          onDemandSnapshotCount
+          primaryClusterUuid
+          protectionDate
+          replicatedObjectCount
+          slaAssignment
+          slaPauseStatus
+          status
+          statusMessage
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

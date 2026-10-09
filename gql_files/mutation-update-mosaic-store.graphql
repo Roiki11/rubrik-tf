@@ -1,0 +1,8 @@
+mutation UpdateMosaicStore($input: ModifyMosaicStoreInput!) {
+      updateMosaicStore(input: $input) {
+        data
+        message
+        returnCode
+        status
+      }
+    }

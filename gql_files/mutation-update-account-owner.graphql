@@ -1,0 +1,3 @@
+mutation UpdateAccountOwner($userId: String!) {
+      updateAccountOwner(userId: $userId)
+    }

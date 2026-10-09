@@ -1,0 +1,24 @@
+query {
+      hypervScvmms(first: 10) {
+        nodes {
+          authorizedOperations
+          cdmPendingObjectPauseAssignment
+          connectionStatus
+          hostName
+          id
+          isReplica
+          name
+          numWorkloadDescendants
+          objectType
+          replicatedObjectCount
+          runAsAccount
+          shouldDeployAgent
+          slaAssignment
+          slaPauseStatus
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

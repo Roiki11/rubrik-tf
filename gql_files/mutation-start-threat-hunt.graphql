@@ -1,0 +1,6 @@
+mutation StartThreatHunt($input: StartThreatHuntInput!) {
+      startThreatHunt(input: $input) {
+        huntId
+        isSyncSuccessful
+      }
+    }

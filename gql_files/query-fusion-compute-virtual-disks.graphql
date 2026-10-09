@@ -1,0 +1,22 @@
+query FusionComputeVirtualDisks($fusionComputeVirtualMachineFid: UUID!) {
+      fusionComputeVirtualDisks(
+        fusionComputeVirtualMachineFid: $fusionComputeVirtualMachineFid
+        first: 10
+      ) {
+        nodes {
+          datastoreUrn
+          diskName
+          indepDisk
+          isThin
+          quantityGb
+          sequenceNum
+          volumeUrl
+          volumeUrn
+          volumeUuid
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

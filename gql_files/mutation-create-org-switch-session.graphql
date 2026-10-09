@@ -1,0 +1,5 @@
+mutation CreateOrgSwitchSession($input: CreateOrgSwitchSessionInput!) {
+      createOrgSwitchSession(input: $input) {
+        accessToken
+      }
+    }

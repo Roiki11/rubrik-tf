@@ -1,0 +1,3 @@
+query ClusterRoutes($clusterUuid: UUID!) {
+      clusterRoutes(clusterUuid: $clusterUuid)
+    }

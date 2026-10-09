@@ -1,0 +1,18 @@
+query LegalHoldSnapshotsForSnappable($input: LegalHoldSnapshotsForSnappableInput!) {
+      legalHoldSnapshotsForSnappable(
+        input: $input
+        first: 10
+      ) {
+        nodes {
+          customizations
+          id
+          legalHoldTime
+          snapshotTime
+          type
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

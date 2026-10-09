@@ -1,0 +1,24 @@
+query {
+      entityInsights(first: 10) {
+        nodes {
+          application
+          createdAt
+          defaultAction
+          id
+          isRead
+          level
+          message
+          metadata
+          priority
+          resourceId
+          resourceSubtype
+          resourceType
+          subtype
+          variables
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

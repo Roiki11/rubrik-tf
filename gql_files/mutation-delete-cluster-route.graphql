@@ -1,0 +1,3 @@
+mutation DeleteClusterRoute($input: DeleteClusterRouteInput!) {
+      deleteClusterRoute(input: $input)
+    }

@@ -1,0 +1,19 @@
+query FailoverClusterApp($fid: UUID!) {
+      failoverClusterApp(fid: $fid) {
+        authorizedOperations
+        cdmId
+        cdmPendingObjectPauseAssignment
+        failoverClusterId
+        failoverClusterType
+        id
+        isArchived
+        isReplica
+        name
+        numWorkloadDescendants
+        objectType
+        replicatedObjectCount
+        slaAssignment
+        slaPauseStatus
+        vips
+      }
+    }

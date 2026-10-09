@@ -1,0 +1,5 @@
+query NodeToReplace($input: NodeToReplaceInput!) {
+      nodeToReplace(input: $input) {
+        nodeToReplace
+      }
+    }

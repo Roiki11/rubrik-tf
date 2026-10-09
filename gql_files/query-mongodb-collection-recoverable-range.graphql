@@ -1,0 +1,7 @@
+query MongodbCollectionRecoverableRange($input: GetMosaicRecoverableRangeInput!) {
+      mongodbCollectionRecoverableRange(input: $input) {
+        message
+        returnCode
+        status
+      }
+    }

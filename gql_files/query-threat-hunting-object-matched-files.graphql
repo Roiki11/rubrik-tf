@@ -1,0 +1,30 @@
+query ThreatHuntingObjectMatchedFiles($huntId: String!, $objectFid: UUID!) {
+      threatHuntingObjectMatchedFiles(
+        huntId: $huntId
+        objectFid: $objectFid
+        first: 10
+      ) {
+        nodes {
+          archiveRelativePath
+          createdTime
+          earliestMatchedSnapshotDate
+          filename
+          filepath
+          isInsideArchive
+          isQuarantinedInFirstObservedSnapshot
+          latestMatchedSnapshotDate
+          latestSnapshotWithoutMatchDate
+          matchId
+          matchedFileMd5
+          matchedFileSha1
+          matchedFileSha256
+          modifiedTime
+          totalSnapshotsMatched
+          totalSnapshotsScanned
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

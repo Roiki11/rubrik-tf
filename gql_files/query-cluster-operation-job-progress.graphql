@@ -1,0 +1,8 @@
+query ClusterOperationJobProgress($input: ClusterOperationJobProgressInput!) {
+      clusterOperationJobProgress(input: $input) {
+        jobProgress
+        jobStatus
+        jobType
+        message
+      }
+    }

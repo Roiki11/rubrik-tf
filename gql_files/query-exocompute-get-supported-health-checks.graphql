@@ -1,0 +1,5 @@
+query ExocomputeGetSupportedHealthChecks($input: ExocomputeGetSupportedHealthChecksReq!) {
+      exocomputeGetSupportedHealthChecks(input: $input) {
+        supportedChecks
+      }
+    }

@@ -1,0 +1,3 @@
+query ObjectTagValues($key: String!) {
+      objectTagValues(key: $key)
+    }

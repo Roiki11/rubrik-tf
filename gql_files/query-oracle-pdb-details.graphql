@@ -1,0 +1,5 @@
+query OraclePdbDetails($input: OraclePdbDetailsInput!) {
+      oraclePdbDetails(input: $input) {
+        regularPdbs
+      }
+    }

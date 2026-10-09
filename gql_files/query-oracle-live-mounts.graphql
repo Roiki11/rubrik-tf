@@ -1,0 +1,20 @@
+query {
+      oracleLiveMounts(first: 10) {
+        nodes {
+          cdmId
+          creationDate
+          id
+          isFilesOnlyMount
+          isInstantRecovered
+          isReady
+          mountedDatabaseName
+          sourceDatabaseName
+          status
+          targetHostMount
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

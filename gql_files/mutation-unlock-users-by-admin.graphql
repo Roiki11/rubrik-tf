@@ -1,0 +1,3 @@
+mutation UnlockUsersByAdmin($input: UnlockUsersByAdminInput!) {
+      unlockUsersByAdmin(input: $input)
+    }

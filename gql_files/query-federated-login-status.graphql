@@ -1,0 +1,6 @@
+query {
+      federatedLoginStatus {
+        enabled
+        inventoryCardEnabled
+      }
+    }

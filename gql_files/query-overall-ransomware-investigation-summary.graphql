@@ -1,0 +1,7 @@
+query OverallRansomwareInvestigationSummary($historyNumHours: Int!) {
+      overallRansomwareInvestigationSummary(historyNumHours: $historyNumHours) {
+        analysisFailureCount
+        analysisSuccessCount
+        anomaliesCount
+      }
+    }

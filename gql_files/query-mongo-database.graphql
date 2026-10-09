@@ -1,0 +1,20 @@
+query MongoDatabase($fid: UUID!) {
+      mongoDatabase(fid: $fid) {
+        activeCollectionCount
+        authorizedOperations
+        cdmId
+        cdmPendingObjectPauseAssignment
+        clusterUuid
+        id
+        isRelic
+        isReplica
+        name
+        numWorkloadDescendants
+        objectType
+        primaryClusterUuid
+        protectedCollectionCount
+        replicatedObjectCount
+        slaAssignment
+        slaPauseStatus
+      }
+    }

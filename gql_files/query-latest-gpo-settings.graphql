@@ -1,0 +1,7 @@
+query LatestGpoSettings($input: GetLatestGpoSettingsReq!) {
+      latestGpoSettings(input: $input) {
+        snapshotTime
+        uniformJson
+        versionNumber
+      }
+    }

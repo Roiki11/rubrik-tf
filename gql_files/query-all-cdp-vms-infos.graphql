@@ -1,0 +1,20 @@
+query {
+      allCdpVmsInfos(first: 10) {
+        nodes {
+          cdpLocalStatus
+          cdpReplicationStatus
+          ioFilterStatus
+          latestSnapshotTime
+          replicationTarget
+          slaDomainName
+          sourceCluster
+          vmId
+          vmLocation
+          vmName
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

@@ -1,0 +1,5 @@
+mutation ActivateDataCategory($input: ActivateDataCategoryInput!) {
+      activateDataCategory(input: $input) {
+        isSuccess
+      }
+    }

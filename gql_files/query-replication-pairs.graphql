@@ -1,0 +1,15 @@
+query {
+      replicationPairs(first: 10) {
+        nodes {
+          failedTasks
+          isPaused
+          runningTasks
+          status
+          storage
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

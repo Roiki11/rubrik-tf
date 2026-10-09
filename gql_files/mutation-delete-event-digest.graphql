@@ -1,0 +1,3 @@
+mutation DeleteEventDigest($input: DeleteEventDigestInput!) {
+      deleteEventDigest(input: $input)
+    }

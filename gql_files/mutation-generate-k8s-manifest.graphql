@@ -1,0 +1,5 @@
+mutation GenerateK8sManifest($input: GenerateK8sManifestInput!) {
+      generateK8sManifest(input: $input) {
+        data
+      }
+    }

@@ -1,0 +1,3 @@
+mutation ArchiveCrawl($crawlId: String!) {
+      archiveCrawl(crawlId: $crawlId)
+    }

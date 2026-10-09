@@ -1,0 +1,3 @@
+query SmbConfiguration($input: GetSmbConfigurationInput!) {
+      smbConfiguration(input: $input)
+    }

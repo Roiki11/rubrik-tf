@@ -1,0 +1,3 @@
+mutation AddStorageArrays($input: AddStorageArraysInput!) {
+      addStorageArrays(input: $input)
+    }

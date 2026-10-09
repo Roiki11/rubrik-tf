@@ -1,0 +1,3 @@
+mutation BrowseMssqlDatabaseSnapshot($input: BrowseMssqlDatabaseSnapshotInput!) {
+      browseMssqlDatabaseSnapshot(input: $input)
+    }

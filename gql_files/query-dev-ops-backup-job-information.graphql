@@ -1,0 +1,5 @@
+query DevOpsBackupJobInformation($devopsOrgType: DevopsOrgType!) {
+      devOpsBackupJobInformation(devopsOrgType: $devopsOrgType) {
+        lastSuccessfulBackupTime
+      }
+    }

@@ -1,0 +1,3 @@
+query VappSnapshotInstantRecoveryOptions($input: VappSnapshotInstantRecoveryOptionsInput!) {
+      vappSnapshotInstantRecoveryOptions(input: $input)
+    }

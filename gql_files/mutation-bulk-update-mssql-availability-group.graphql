@@ -1,0 +1,3 @@
+mutation BulkUpdateMssqlAvailabilityGroup($input: BulkUpdateMssqlAvailabilityGroupInput!) {
+      bulkUpdateMssqlAvailabilityGroup(input: $input)
+    }

@@ -1,0 +1,19 @@
+query VSphereResourcePool($fid: UUID!) {
+      vSphereResourcePool(fid: $fid) {
+        authorizedOperations
+        cdmId
+        cdmPendingObjectPauseAssignment
+        filterDescription
+        hasDatastoresForRecovery
+        id
+        isReplica
+        name
+        numWorkloadDescendants
+        objectType
+        replicatedObjectCount
+        slaAssignment
+        slaPauseStatus
+        snapshotConsistencyMandate
+        snapshotConsistencySource
+      }
+    }

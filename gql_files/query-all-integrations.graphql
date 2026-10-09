@@ -1,0 +1,3 @@
+query AllIntegrations($integrationTypes: [IntegrationType!]!) {
+      allIntegrations(integrationTypes: $integrationTypes)
+    }

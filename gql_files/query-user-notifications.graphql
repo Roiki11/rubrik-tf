@@ -1,0 +1,6 @@
+query {
+      userNotifications {
+        id
+        unreadCount
+      }
+    }

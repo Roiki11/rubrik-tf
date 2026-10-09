@@ -1,0 +1,9 @@
+query TargetMapping($targetMappingId: UUID!) {
+      targetMapping(targetMappingId: $targetMappingId) {
+        groupType
+        id
+        name
+        targetType
+        tieringStatus
+      }
+    }

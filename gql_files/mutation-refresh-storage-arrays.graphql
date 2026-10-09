@@ -1,0 +1,3 @@
+mutation RefreshStorageArrays($input: RefreshStorageArraysInput!) {
+      refreshStorageArrays(input: $input)
+    }

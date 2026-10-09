@@ -1,0 +1,27 @@
+query {
+      recoveries(first: 10) {
+        nodes {
+          canSaveAsPlan
+          dataTransferType
+          elapsedTime
+          endTime
+          id
+          isAdhocRecovery
+          isArchived
+          numWorkloads
+          progress
+          recoveryFailureAction
+          recoveryName
+          recoveryOutcome
+          recoveryPlanId
+          recoveryType
+          startTime
+          status
+          triggeredFrom
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

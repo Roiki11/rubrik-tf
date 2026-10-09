@@ -1,0 +1,5 @@
+mutation CompleteUploadSession($input: CompleteUploadSessionInput!) {
+      completeUploadSession(input: $input) {
+        success
+      }
+    }

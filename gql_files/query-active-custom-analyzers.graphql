@@ -1,0 +1,31 @@
+query {
+      activeCustomAnalyzers(first: 10) {
+        nodes {
+          analyzerType
+          dictionary
+          dictionaryCsv
+          excludeFieldNamePattern
+          excludePathPattern
+          excludeValueRegex
+          id
+          isInactive
+          keyRegex
+          name
+          proximityDistance
+          proximityKeywordsRegex
+          regex
+          risk
+          ruleTypes
+          structuredDictionary
+          structuredDictionaryCsv
+          structuredKeyDictionary
+          structuredKeyDictionaryCsv
+          structuredValueRegex
+          tagId
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

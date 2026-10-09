@@ -1,0 +1,11 @@
+query AllK8sReplicaSnapshotInfos($snapshotId: String!, $snappableId: UUID!) {
+      allK8sReplicaSnapshotInfos(
+        snapshotId: $snapshotId
+        snappableId: $snappableId
+      ) {
+        date
+        expirationDate
+        snappableId
+        snapshotId
+      }
+    }

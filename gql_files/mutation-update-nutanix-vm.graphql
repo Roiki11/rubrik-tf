@@ -1,0 +1,7 @@
+mutation UpdateNutanixVm($input: UpdateNutanixVmInput!) {
+      updateNutanixVm(input: $input) {
+        excludedDiskIds
+        isAgentRegistered
+        isPaused
+      }
+    }

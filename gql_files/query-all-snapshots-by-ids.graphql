@@ -1,0 +1,20 @@
+query AllSnapshotsByIds($snapshotFids: [UUID!]!, $shouldShowSnapshotRetentionInfo: Boolean!) {
+      allSnapshotsByIds(
+        snapshotFids: $snapshotFids
+        shouldShowSnapshotRetentionInfo: $shouldShowSnapshotRetentionInfo
+      ) {
+        date
+        expirationDate
+        id
+        indexingAttempts
+        isAnomaly
+        isCorrupted
+        isExpired
+        isIndexed
+        isOnDemandSnapshot
+        isQuarantineProcessing
+        isQuarantined
+        isUnindexable
+        snappableId
+      }
+    }

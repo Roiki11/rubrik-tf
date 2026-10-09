@@ -1,0 +1,5 @@
+query ValidateBulkThreatHunt($input: ValidateBulkThreatHuntInput!) {
+      validateBulkThreatHunt(input: $input) {
+        validationStatus
+      }
+    }

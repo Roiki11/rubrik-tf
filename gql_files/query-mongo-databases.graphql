@@ -1,0 +1,26 @@
+query {
+      mongoDatabases(first: 10) {
+        nodes {
+          activeCollectionCount
+          authorizedOperations
+          cdmId
+          cdmPendingObjectPauseAssignment
+          clusterUuid
+          id
+          isRelic
+          isReplica
+          name
+          numWorkloadDescendants
+          objectType
+          primaryClusterUuid
+          protectedCollectionCount
+          replicatedObjectCount
+          slaAssignment
+          slaPauseStatus
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

@@ -1,0 +1,8 @@
+query HypervVmDetail($input: GetHypervVirtualMachineInput!) {
+      hypervVmDetail(input: $input) {
+        guestOsType
+        isAgentRegistered
+        naturalId
+        operatingSystemType
+      }
+    }

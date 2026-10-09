@@ -1,0 +1,12 @@
+query VSphereVmById($fid: UUID!) {
+  vSphereVmNew(fid: $fid) {
+    id
+    name
+    guestOsName
+    powerStatus
+    protectionDate
+    slaAssignment
+    isRelic
+    isReplica
+  }
+}

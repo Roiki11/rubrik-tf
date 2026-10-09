@@ -1,0 +1,5 @@
+mutation DeleteK8sProtectionSet($input: DeleteK8sProtectionSetInput!) {
+      deleteK8sProtectionSet(input: $input) {
+        success
+      }
+    }

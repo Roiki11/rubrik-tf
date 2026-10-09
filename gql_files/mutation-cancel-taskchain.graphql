@@ -1,0 +1,5 @@
+mutation CancelTaskchain($taskchainId: String!) {
+      cancelTaskchain(taskchainId: $taskchainId) {
+        success
+      }
+    }

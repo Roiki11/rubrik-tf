@@ -1,0 +1,12 @@
+mutation TakeOnDemandSnapshot($input: TakeOnDemandSnapshotInput!) {
+  takeOnDemandSnapshot(input: $input) {
+    errors {
+      error
+      workloadId
+    }
+    taskchainUuids {
+      taskchainUuid
+      workloadId
+    }
+  }
+}

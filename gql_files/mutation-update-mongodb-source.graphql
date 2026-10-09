@@ -1,0 +1,8 @@
+mutation UpdateMongodbSource($input: ModifyMosaicSourceInput!) {
+      updateMongodbSource(input: $input) {
+        data
+        message
+        returnCode
+        status
+      }
+    }

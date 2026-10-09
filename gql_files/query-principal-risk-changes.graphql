@@ -1,0 +1,8 @@
+query PrincipalRiskChanges($principalRiskSummaryPrincipalType: PrincipalRiskySummaryPrincipalType!, $limit: Int!, $startTime: DateTime!, $endTime: DateTime!) {
+      principalRiskChanges(
+        principalRiskSummaryPrincipalType: $principalRiskSummaryPrincipalType
+        limit: $limit
+        startTime: $startTime
+        endTime: $endTime
+      )
+    }

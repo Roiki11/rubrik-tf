@@ -1,0 +1,5 @@
+query AllValidRegionsForDynamoDbRecovery($input: GetValidRegionsForDynamoDbRecoveryReq!) {
+      allValidRegionsForDynamoDbRecovery(input: $input) {
+        regions
+      }
+    }

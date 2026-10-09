@@ -1,0 +1,3 @@
+query Integration($id: Int!) {
+      integration(id: $id)
+    }

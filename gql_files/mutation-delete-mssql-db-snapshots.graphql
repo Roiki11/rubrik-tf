@@ -1,0 +1,5 @@
+mutation DeleteMssqlDbSnapshots($input: DeleteMssqlDbSnapshotsInput!) {
+      deleteMssqlDbSnapshots(input: $input) {
+        success
+      }
+    }

@@ -1,0 +1,6 @@
+mutation GeneratePresignedUrlForDownload($input: GeneratePresignedUrlForDownloadInput!) {
+      generatePresignedUrlForDownload(input: $input) {
+        expiresAt
+        presignedUrl
+      }
+    }

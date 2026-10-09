@@ -1,0 +1,15 @@
+query VSphereNetwork($fid: UUID!) {
+      vSphereNetwork(fid: $fid) {
+        authorizedOperations
+        cdmPendingObjectPauseAssignment
+        id
+        isReplica
+        moid
+        name
+        numWorkloadDescendants
+        objectType
+        replicatedObjectCount
+        slaAssignment
+        slaPauseStatus
+      }
+    }

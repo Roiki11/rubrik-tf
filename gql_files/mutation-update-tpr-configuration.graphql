@@ -1,0 +1,3 @@
+mutation UpdateTprConfiguration($input: UpdateTprConfigurationInput!) {
+      updateTprConfiguration(input: $input)
+    }

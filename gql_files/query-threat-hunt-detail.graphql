@@ -1,0 +1,9 @@
+query ThreatHuntDetail($huntId: String!) {
+      threatHuntDetail(huntId: $huntId) {
+        huntId
+        huntType
+        name
+        startTime
+        status
+      }
+    }

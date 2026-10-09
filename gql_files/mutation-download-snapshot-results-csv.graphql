@@ -1,0 +1,8 @@
+mutation DownloadSnapshotResultsCsv($snappableFid: String!, $snapshotFid: String!) {
+      downloadSnapshotResultsCsv(
+        snappableFid: $snappableFid
+        snapshotFid: $snapshotFid
+      ) {
+        isSuccessful
+      }
+    }

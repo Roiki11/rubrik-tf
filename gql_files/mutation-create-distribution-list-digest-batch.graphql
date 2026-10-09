@@ -1,0 +1,3 @@
+mutation CreateDistributionListDigestBatch($input: CreateDistributionListDigestBatchInput!) {
+      createDistributionListDigestBatch(input: $input)
+    }

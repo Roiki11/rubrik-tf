@@ -1,0 +1,3 @@
+mutation UpdateClusterDefaultAddress($input: UpdateClusterDefaultAddressInput!) {
+      updateClusterDefaultAddress(input: $input)
+    }

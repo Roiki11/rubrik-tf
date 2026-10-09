@@ -1,0 +1,7 @@
+mutation {
+      downloadCdmTprConfigurationAsync {
+        downloadId
+        jobId
+        referenceId
+      }
+    }

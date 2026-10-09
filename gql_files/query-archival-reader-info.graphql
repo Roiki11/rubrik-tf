@@ -1,0 +1,7 @@
+query ArchivalReaderInfo($input: GetArchivalReaderInfoReq!) {
+      archivalReaderInfo(input: $input) {
+        activeOwnerLocationIds
+        activeReaderLocationIds
+        inactiveOwnerLocationIds
+      }
+    }

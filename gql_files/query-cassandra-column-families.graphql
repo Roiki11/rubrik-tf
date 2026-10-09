@@ -1,0 +1,22 @@
+query {
+      cassandraColumnFamilies(first: 10) {
+        nodes {
+          authorizedOperations
+          backupCount
+          clusterUuid
+          id
+          isRelic
+          name
+          numWorkloadDescendants
+          objectType
+          protectionDate
+          rscPendingObjectPauseAssignment
+          slaAssignment
+          slaPauseStatus
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

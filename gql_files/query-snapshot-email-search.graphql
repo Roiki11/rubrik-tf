@@ -1,0 +1,17 @@
+query SnapshotEmailSearch($snappableFid: UUID!, $snapshotFid: UUID!, $orgId: UUID!) {
+      snapshotEmailSearch(
+        snappableFid: $snappableFid
+        snapshotFid: $snapshotFid
+        orgId: $orgId
+        first: 10
+      ) {
+        nodes {
+          id
+          parentFolderId
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

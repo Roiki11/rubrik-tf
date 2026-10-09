@@ -1,0 +1,8 @@
+mutation DeleteTerminatedClusterOperationJobData($input: DeleteTerminatedClusterOperationJobDataInput!) {
+      deleteTerminatedClusterOperationJobData(input: $input) {
+        jobProgress
+        jobStatus
+        jobType
+        message
+      }
+    }

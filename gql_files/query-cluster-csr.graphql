@@ -1,0 +1,5 @@
+query ClusterCsr($input: GetClusterCsrInput!) {
+      clusterCsr(input: $input) {
+        csr
+      }
+    }

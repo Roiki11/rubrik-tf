@@ -1,0 +1,5 @@
+mutation GetDownloadUrl($downloadId: Long!) {
+      getDownloadUrl(downloadId: $downloadId) {
+        url
+      }
+    }

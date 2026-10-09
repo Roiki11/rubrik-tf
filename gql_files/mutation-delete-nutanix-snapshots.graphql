@@ -1,0 +1,5 @@
+mutation DeleteNutanixSnapshots($input: DeleteNutanixSnapshotsInput!) {
+      deleteNutanixSnapshots(input: $input) {
+        success
+      }
+    }

@@ -1,0 +1,18 @@
+query MongodbSource($fid: UUID!) {
+      mongodbSource(fid: $fid) {
+        backupCount
+        clusterUuid
+        id
+        name
+        nodeCount
+        numWorkloadDescendants
+        objectType
+        rscPendingObjectPauseAssignment
+        size
+        slaAssignment
+        slaPauseStatus
+        sourceIp
+        status
+        watcherEnabled
+      }
+    }

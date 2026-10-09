@@ -1,0 +1,6 @@
+mutation UpdateVolumeGroup($input: UpdateVolumeGroupInput!) {
+      updateVolumeGroup(input: $input) {
+        configuredSlaDomainId
+        isPaused
+      }
+    }

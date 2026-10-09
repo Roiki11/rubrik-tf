@@ -1,0 +1,3 @@
+mutation HypervScvmmUpdate($input: HypervScvmmUpdateInput!) {
+      hypervScvmmUpdate(input: $input)
+    }

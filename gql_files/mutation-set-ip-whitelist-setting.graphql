@@ -1,0 +1,3 @@
+mutation SetIpWhitelistSetting($input: SetIpWhitelistSettingInput!) {
+      setIpWhitelistSetting(input: $input)
+    }

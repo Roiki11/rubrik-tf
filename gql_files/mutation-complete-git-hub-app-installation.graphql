@@ -1,0 +1,3 @@
+mutation CompleteGitHubAppInstallation($input: CompleteGitHubAppInstallationInput!) {
+      completeGitHubAppInstallation(input: $input)
+    }

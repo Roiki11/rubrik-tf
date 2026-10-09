@@ -1,0 +1,18 @@
+query {
+      sapHanaRecoverableRanges(first: 10) {
+        nodes {
+          baseFullSnapshotId
+          cdmId
+          clusterUuid
+          dbId
+          endTime
+          fid
+          isArchived
+          startTime
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

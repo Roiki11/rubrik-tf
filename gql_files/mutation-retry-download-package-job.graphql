@@ -1,0 +1,5 @@
+mutation RetryDownloadPackageJob($clusterUuid: UUID!) {
+      retryDownloadPackageJob(clusterUuid: $clusterUuid) {
+        jobId
+      }
+    }

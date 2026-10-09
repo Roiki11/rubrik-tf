@@ -1,0 +1,41 @@
+query {
+      mssqlDatabases(first: 10) {
+        nodes {
+          authorizedOperations
+          cdmId
+          cdmLink
+          cdmOnDemandSnapshotCount
+          cdmPendingObjectPauseAssignment
+          copyOnly
+          dagId
+          hasLogConfigFromSla
+          hasPermissions
+          hostLogRetention
+          id
+          isInAvailabilityGroup
+          isLogShippingSecondary
+          isMount
+          isOnline
+          isRelic
+          isReplica
+          logBackupFrequencyInSeconds
+          logBackupRetentionInHours
+          name
+          numWorkloadDescendants
+          objectType
+          onDemandSnapshotCount
+          postBackupScript
+          preBackupScript
+          recoveryModel
+          replicatedObjectCount
+          slaAssignment
+          slaPauseStatus
+          unprotectableReasons
+          version
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

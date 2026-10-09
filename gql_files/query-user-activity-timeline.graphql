@@ -1,0 +1,17 @@
+query UserActivityTimeline($userId: String!, $startDay: String!, $timezone: String!, $uniqueActivities: Boolean!) {
+      userActivityTimeline(
+        userId: $userId
+        startDay: $startDay
+        timezone: $timezone
+        uniqueActivities: $uniqueActivities
+        first: 10
+      ) {
+        nodes {
+          day
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

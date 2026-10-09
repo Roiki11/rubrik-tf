@@ -1,0 +1,13 @@
+query {
+      roleTemplates(first: 10) {
+        nodes {
+          description
+          id
+          name
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

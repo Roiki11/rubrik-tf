@@ -1,0 +1,50 @@
+query ObjectFiles($day: String!, $timezone: String!) {
+      objectFiles(
+        day: $day
+        timezone: $timezone
+        first: 10
+      ) {
+        nodes {
+          accessibleBySidsRepresentation
+          accessibleBySidsRepresentationShortForm
+          createdBy
+          creationTime
+          dbEntityType
+          directory
+          errorCode
+          filename
+          isDirectAcl
+          lastAccessTime
+          lastModifiedTime
+          lastScanTime
+          mode
+          modifiedBy
+          nativePath
+          numActivities
+          numActivitiesDelta
+          numChildren
+          numDescendantErrorFiles
+          numDescendantFiles
+          numDescendantFolders
+          numDescendantSkippedExtFiles
+          numDescendantSkippedSizeFiles
+          openAccessType
+          owner
+          paginationId
+          riskLevel
+          riskReasons
+          size
+          snapshotFid
+          snapshotTimestamp
+          stalenessType
+          stdPath
+          totalSensitiveHits
+          type
+          userAccessType
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

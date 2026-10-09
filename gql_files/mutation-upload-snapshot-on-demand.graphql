@@ -1,0 +1,6 @@
+mutation UploadSnapshotOnDemand($input: UploadSnapshotOnDemandInput!) {
+      uploadSnapshotOnDemand(input: $input) {
+        message
+        requestId
+      }
+    }

@@ -1,0 +1,7 @@
+query NutanixBrowseSnapshot($input: BrowseNutanixSnapshotInput!) {
+      nutanixBrowseSnapshot(input: $input) {
+        hasMore
+        nextCursor
+        total
+      }
+    }

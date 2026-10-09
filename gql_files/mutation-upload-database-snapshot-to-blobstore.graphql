@@ -1,0 +1,6 @@
+mutation UploadDatabaseSnapshotToBlobstore($input: UploadDatabaseSnapshotToBlobstoreInput!) {
+      uploadDatabaseSnapshotToBlobstore(input: $input) {
+        error
+        jobId
+      }
+    }

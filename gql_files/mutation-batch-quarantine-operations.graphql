@@ -1,0 +1,3 @@
+mutation BatchQuarantineOperations($input: BatchQuarantineOperationsInput!) {
+      batchQuarantineOperations(input: $input)
+    }

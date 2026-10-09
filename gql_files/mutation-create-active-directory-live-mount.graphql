@@ -1,0 +1,11 @@
+mutation CreateActiveDirectoryLiveMount($input: CreateActiveDirectoryLiveMountInput!) {
+      createActiveDirectoryLiveMount(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

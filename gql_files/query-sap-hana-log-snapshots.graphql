@@ -1,0 +1,19 @@
+query {
+      sapHanaLogSnapshots(first: 10) {
+        nodes {
+          cdmId
+          clusterUuid
+          date
+          fid
+          internalTimestamp
+          isArchived
+          locationMap
+          workloadId
+          workloadType
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

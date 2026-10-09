@@ -1,0 +1,14 @@
+query {
+      analyzerGroups(first: 10) {
+        nodes {
+          documentTypeIds
+          groupType
+          id
+          name
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

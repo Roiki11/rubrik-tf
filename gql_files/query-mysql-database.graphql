@@ -1,0 +1,15 @@
+query MysqlDatabase($fid: UUID!) {
+      mysqlDatabase(fid: $fid) {
+        authorizedOperations
+        cdmPendingObjectPauseAssignment
+        id
+        isRelic
+        isReplica
+        name
+        numWorkloadDescendants
+        objectType
+        replicatedObjectCount
+        slaAssignment
+        slaPauseStatus
+      }
+    }

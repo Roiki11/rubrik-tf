@@ -1,0 +1,6 @@
+query VCenterHotAddBandwidth($input: GetHotAddBandwidthInput!) {
+      vCenterHotAddBandwidth(input: $input) {
+        exportLimit
+        ingestLimit
+      }
+    }

@@ -1,0 +1,8 @@
+query {
+      rscpUpgradeStatus {
+        rscClusterUpgradeStatus
+        statusGenTimestamp
+        uiStatus
+        version
+      }
+    }

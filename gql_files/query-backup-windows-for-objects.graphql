@@ -1,0 +1,3 @@
+query BackupWindowsForObjects($objectIds: [UUID!]!) {
+      backupWindowsForObjects(objectIds: $objectIds)
+    }

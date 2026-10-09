@@ -1,0 +1,16 @@
+query {
+      allMipLabels {
+        color
+        contentFormats
+        descriptionForAdmins
+        descriptionForUsers
+        displayName
+        hasProtection
+        isActive
+        isAppliable
+        labelId
+        parentLabelId
+        sensitivity
+        tenantId
+      }
+    }

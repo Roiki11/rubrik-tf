@@ -1,0 +1,6 @@
+query WorkloadForeverId($clusterUuid: UUID!, $managedId: String!) {
+      workloadForeverId(
+        clusterUuid: $clusterUuid
+        managedId: $managedId
+      )
+    }

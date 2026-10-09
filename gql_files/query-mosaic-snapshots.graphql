@@ -1,0 +1,7 @@
+query MosaicSnapshots($input: GetMosaicVersionInput!) {
+      mosaicSnapshots(input: $input) {
+        message
+        returnCode
+        status
+      }
+    }

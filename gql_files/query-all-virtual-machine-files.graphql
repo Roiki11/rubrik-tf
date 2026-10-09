@@ -1,0 +1,7 @@
+query AllVirtualMachineFiles($input: VirtualMachineFilesInput!) {
+      allVirtualMachineFiles(input: $input) {
+        hasMore
+        nextCursor
+        total
+      }
+    }

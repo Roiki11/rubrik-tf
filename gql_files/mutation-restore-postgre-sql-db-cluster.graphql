@@ -1,0 +1,5 @@
+mutation RestorePostgreSqlDbCluster($input: RestorePostgreSqlDbClusterInput!) {
+      restorePostgreSqlDbCluster(input: $input) {
+        id
+      }
+    }

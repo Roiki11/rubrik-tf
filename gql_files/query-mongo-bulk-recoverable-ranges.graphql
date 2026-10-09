@@ -1,0 +1,3 @@
+query MongoBulkRecoverableRanges($input: RecoverableRangeInput!) {
+      mongoBulkRecoverableRanges(input: $input)
+    }

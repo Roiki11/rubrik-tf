@@ -1,0 +1,5 @@
+mutation DeactivateDocumentAttribute($input: DeactivateDocumentAttributeInput!) {
+      deactivateDocumentAttribute(input: $input) {
+        isSuccess
+      }
+    }

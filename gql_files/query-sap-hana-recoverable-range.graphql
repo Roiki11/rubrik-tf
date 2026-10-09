@@ -1,0 +1,12 @@
+query SapHanaRecoverableRange($fid: UUID!) {
+      sapHanaRecoverableRange(fid: $fid) {
+        baseFullSnapshotId
+        cdmId
+        clusterUuid
+        dbId
+        endTime
+        fid
+        isArchived
+        startTime
+      }
+    }

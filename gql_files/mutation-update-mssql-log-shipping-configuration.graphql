@@ -1,0 +1,5 @@
+mutation UpdateMssqlLogShippingConfiguration($input: UpdateMssqlLogShippingConfigurationInput!) {
+      updateMssqlLogShippingConfiguration(input: $input) {
+        shouldDisconnectStandbyUsers
+      }
+    }

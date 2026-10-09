@@ -1,0 +1,3 @@
+mutation RefreshHost($input: RefreshHostInput!) {
+      refreshHost(input: $input)
+    }

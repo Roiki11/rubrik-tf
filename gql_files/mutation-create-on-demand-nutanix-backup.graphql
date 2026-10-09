@@ -1,0 +1,11 @@
+mutation CreateOnDemandNutanixBackup($input: CreateOnDemandNutanixBackupInput!) {
+      createOnDemandNutanixBackup(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

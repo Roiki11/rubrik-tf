@@ -1,0 +1,9 @@
+query {
+      allDhrcScores {
+        calculatedAt
+        category
+        date
+        earliestMetric
+        value
+      }
+    }

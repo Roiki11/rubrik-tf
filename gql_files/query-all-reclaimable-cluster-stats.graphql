@@ -1,0 +1,20 @@
+query {
+      allReclaimableClusterStats(first: 10) {
+        nodes {
+          clusterName
+          clusterUuid
+          downloadedSnapshotsStorage
+          otherStorage
+          protectedObjectsStorage
+          relicStorage
+          totalCapacity
+          totalUsedStorage
+          unprotectedObjectsStorage
+          version
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

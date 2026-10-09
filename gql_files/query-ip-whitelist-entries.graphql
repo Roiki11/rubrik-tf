@@ -1,0 +1,17 @@
+query {
+      ipWhitelistEntries(first: 10) {
+        nodes {
+          containsCurrentIpAddress
+          createdAt
+          description
+          id
+          ipCidr
+          isGlobalEntry
+          updatedAt
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

@@ -1,0 +1,5 @@
+query FusionComputeEcho($input: FusionComputeEchoRequest!) {
+      fusionComputeEcho(input: $input) {
+        reply
+      }
+    }

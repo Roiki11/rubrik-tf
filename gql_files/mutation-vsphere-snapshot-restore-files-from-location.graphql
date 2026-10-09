@@ -1,0 +1,11 @@
+mutation VsphereSnapshotRestoreFilesFromLocation($input: VsphereSnapshotRestoreFilesFromLocationInput!) {
+      vsphereSnapshotRestoreFilesFromLocation(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

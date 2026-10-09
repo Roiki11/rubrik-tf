@@ -1,0 +1,8 @@
+query WorkloadAlertSetting($clusterUuid: UUID!, $workloadId: UUID!) {
+      workloadAlertSetting(
+        clusterUuid: $clusterUuid
+        workloadId: $workloadId
+      ) {
+        enabled
+      }
+    }

@@ -1,0 +1,20 @@
+query LdapAuthorizedPrincipalConnection($searchText: String!) {
+      ldapAuthorizedPrincipalConnection(
+        searchText: $searchText
+        first: 10
+      ) {
+        nodes {
+          authDomainId
+          authDomainName
+          email
+          id
+          lastLogin
+          name
+          principalType
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

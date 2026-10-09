@@ -1,0 +1,16 @@
+query AllFileActivities($ListFileActivitiesInput: ListFileActivitiesInput!, $FileActivitiesSort: FileActivitiesSort!) {
+      allFileActivities(
+        ListFileActivitiesInput: $ListFileActivitiesInput
+        FileActivitiesSort: $FileActivitiesSort
+        first: 10
+      ) {
+        nodes {
+          numActivities
+          paginationId
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

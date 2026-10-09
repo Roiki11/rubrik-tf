@@ -1,0 +1,21 @@
+query SnapshotsSecurityInfo($workloadIds: [UUID!]!) {
+      snapshotsSecurityInfo(
+        workloadIds: $workloadIds
+        first: 10
+      ) {
+        nodes {
+          anomalyConfidence
+          date
+          hasMalware
+          isAnomaly
+          isQuarantined
+          snapshotId
+          suspiciousFileCount
+          workloadId
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

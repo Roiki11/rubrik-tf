@@ -1,0 +1,6 @@
+query {
+      clusterRegistrationProductInfo {
+        latestProductType
+        productTypes
+      }
+    }

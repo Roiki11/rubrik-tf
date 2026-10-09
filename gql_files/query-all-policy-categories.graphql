@@ -1,0 +1,5 @@
+query AllPolicyCategories($policyTypes: [PolicyType!]!) {
+      allPolicyCategories(policyTypes: $policyTypes) {
+        policyCategories
+      }
+    }

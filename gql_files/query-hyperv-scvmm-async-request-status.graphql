@@ -1,0 +1,11 @@
+query HypervScvmmAsyncRequestStatus($input: GetHypervScvmmAsyncRequestStatusInput!) {
+      hypervScvmmAsyncRequestStatus(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

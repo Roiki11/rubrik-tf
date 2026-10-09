@@ -1,0 +1,21 @@
+query {
+      allMissingClusters(first: 10) {
+        nodes {
+          clusterIp
+          clusterType
+          connectionStatus
+          disconnectedState
+          exclusionReason
+          isExcluded
+          name
+          nodes
+          numOfNodes
+          uuid
+          version
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

@@ -1,0 +1,11 @@
+query CrowdstrikeCaseActivitySummary($detectionIds: [String!]!) {
+      crowdstrikeCaseActivitySummary(detectionIds: $detectionIds) {
+        impactedIdentityProviders
+        latestActionTime
+        recoveryUrl
+        totalActors
+        totalRelatedActions
+        totalTargetEntities
+        totalViolations
+      }
+    }

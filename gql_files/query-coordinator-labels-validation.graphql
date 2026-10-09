@@ -1,0 +1,3 @@
+query CoordinatorLabelsValidation($clusterUuid: UUID!) {
+      coordinatorLabelsValidation(clusterUuid: $clusterUuid)
+    }

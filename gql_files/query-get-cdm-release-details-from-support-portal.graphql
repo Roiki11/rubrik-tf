@@ -1,0 +1,15 @@
+query GetCdmReleaseDetailsFromSupportPortal($platform: String!, $nodeCount: Long!, $sourceVersion: String!, $filterVersion: String!, $fetchLinks: Boolean!, $filterUpgradeable: Boolean!, $shouldShowAll: Boolean!, $filterAfterSource: Boolean!) {
+      getCdmReleaseDetailsFromSupportPortal(
+        platform: $platform
+        nodeCount: $nodeCount
+        sourceVersion: $sourceVersion
+        filterVersion: $filterVersion
+        fetchLinks: $fetchLinks
+        filterUpgradeable: $filterUpgradeable
+        shouldShowAll: $shouldShowAll
+        filterAfterSource: $filterAfterSource
+      ) {
+        compatibilityMatrixLink
+        supportSoftwareLink
+      }
+    }

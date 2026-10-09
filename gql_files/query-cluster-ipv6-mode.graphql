@@ -1,0 +1,5 @@
+query ClusterIpv6Mode($input: ClusterIpv6ModeInput!) {
+      clusterIpv6Mode(input: $input) {
+        isIpv6Mode
+      }
+    }

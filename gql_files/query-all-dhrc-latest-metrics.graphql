@@ -1,0 +1,8 @@
+query {
+      allDhrcLatestMetrics {
+        collectedAt
+        maxValue
+        metric
+        value
+      }
+    }

@@ -1,0 +1,37 @@
+query SigninLogs($timeRange: TimeRangeInput!) {
+      signinLogs(
+        timeRange: $timeRange
+        first: 10
+      ) {
+        nodes {
+          actorDisplayName
+          actorPrincipalName
+          applicationName
+          authenticationMethod
+          city
+          country
+          deviceName
+          errorCode
+          eventId
+          eventTimestamp
+          eventType
+          failureCategory
+          ipAddress
+          logonType
+          mfaStatus
+          processName
+          provider
+          resourceName
+          result
+          riskLevel
+          state
+          tenantId
+          userId
+          userSid
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

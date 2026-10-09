@@ -1,0 +1,5 @@
+mutation CreateOrg($input: CreateOrgInput!) {
+      createOrg(input: $input) {
+        organizationId
+      }
+    }

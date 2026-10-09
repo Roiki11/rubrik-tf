@@ -1,0 +1,8 @@
+query SaasAppCascadingImpact($saasAppType: SaasAppType!, $restoreConfig: AppItemRestoreConfig!) {
+      saasAppCascadingImpact(
+        saasAppType: $saasAppType
+        restoreConfig: $restoreConfig
+      ) {
+        operationId
+      }
+    }

@@ -1,0 +1,7 @@
+query PrechecksStatusWithNextJobInfo($clusterUuid: UUID!) {
+      prechecksStatusWithNextJobInfo(clusterUuid: $clusterUuid) {
+        endTime
+        numPrechecks
+        runPeriodInMinutes
+      }
+    }

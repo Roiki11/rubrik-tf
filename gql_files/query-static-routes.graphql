@@ -1,0 +1,3 @@
+query StaticRoutes($input: GetRoutesInput!) {
+      staticRoutes(input: $input)
+    }

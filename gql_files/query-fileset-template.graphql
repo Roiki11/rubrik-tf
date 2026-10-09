@@ -1,0 +1,31 @@
+query FilesetTemplate($fid: UUID!) {
+      filesetTemplate(fid: $fid) {
+        allowBackupHiddenFoldersInNetworkMounts
+        allowBackupNetworkMounts
+        authorizedOperations
+        backupScriptErrorHandling
+        cdmId
+        cdmPendingObjectPauseAssignment
+        exceptions
+        excludes
+        id
+        includes
+        isArrayEnabled
+        isReplica
+        name
+        numWorkloadDescendants
+        objectType
+        osType
+        postBackupScript
+        preBackupScript
+        replicatedObjectCount
+        shareType
+        shouldOverrideClusterWideBlocklistedFilesystemPaths
+        shouldRetryPrescriptIfBackupFails
+        slaAssignment
+        slaPauseStatus
+        templateAllowlistFilesystemPaths
+        templateBlocklistFilesystemTypes
+        templateBlocklistedFilesystemPaths
+      }
+    }

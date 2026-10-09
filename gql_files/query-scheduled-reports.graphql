@@ -1,0 +1,24 @@
+query {
+      scheduledReports(first: 10) {
+        nodes {
+          attachmentTypes
+          createdAt
+          dailyTime
+          id
+          lastUpdatedAt
+          monthlyDate
+          monthlyTime
+          recipientEmails
+          reportId
+          showChartsInEmailBody
+          timeZone
+          title
+          weeklyDays
+          weeklyTime
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

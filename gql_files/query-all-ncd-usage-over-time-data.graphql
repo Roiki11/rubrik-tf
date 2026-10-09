@@ -1,0 +1,7 @@
+query AllNcdUsageOverTimeData($clusters: [UUID!]!) {
+      allNcdUsageOverTimeData(clusters: $clusters) {
+        changeInBytes
+        newInBytes
+        timestamp
+      }
+    }

@@ -1,0 +1,5 @@
+mutation ConfirmPartUpload($input: ConfirmPartUploadInput!) {
+      confirmPartUpload(input: $input) {
+        success
+      }
+    }

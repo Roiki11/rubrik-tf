@@ -1,0 +1,23 @@
+query {
+      crawls(first: 10) {
+        nodes {
+          dataCategoryIds
+          endTime
+          failedObjectCount
+          filesAnalyzeable
+          filesAnalyzed
+          filesTotal
+          filesWithHits
+          id
+          name
+          progress
+          startTime
+          status
+          totalHits
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

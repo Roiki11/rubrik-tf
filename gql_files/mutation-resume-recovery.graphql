@@ -1,0 +1,3 @@
+mutation ResumeRecovery($input: ResumeRecoveryInput!) {
+      resumeRecovery(input: $input)
+    }

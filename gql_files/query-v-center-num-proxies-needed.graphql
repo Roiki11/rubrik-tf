@@ -1,0 +1,3 @@
+query VCenterNumProxiesNeeded($input: GetNumProxiesNeededInput!) {
+      vCenterNumProxiesNeeded(input: $input)
+    }

@@ -1,0 +1,3 @@
+mutation DisableTprOrg($input: DisableTprOrgInput!) {
+      disableTprOrg(input: $input)
+    }

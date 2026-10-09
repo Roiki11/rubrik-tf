@@ -1,0 +1,3 @@
+mutation UpdateVcenterV2($input: UpdateVcenterV2Input!) {
+      updateVcenterV2(input: $input)
+    }

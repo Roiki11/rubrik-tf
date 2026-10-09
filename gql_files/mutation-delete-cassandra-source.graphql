@@ -1,0 +1,8 @@
+mutation DeleteCassandraSource($input: DeleteMosaicSourceInput!) {
+      deleteCassandraSource(input: $input) {
+        data
+        message
+        returnCode
+        status
+      }
+    }

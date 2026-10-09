@@ -1,0 +1,3 @@
+mutation TakeSaasOnDemandSnapshot($input: TakeSaasOnDemandSnapshotInput!) {
+      takeSaasOnDemandSnapshot(input: $input)
+    }

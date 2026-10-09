@@ -1,0 +1,3 @@
+mutation BulkUpdateFilesetTemplate($input: BulkUpdateFilesetTemplateInput!) {
+      bulkUpdateFilesetTemplate(input: $input)
+    }

@@ -1,0 +1,3 @@
+query NutanixSnapshotDetail($input: GetNutanixSnapshotDetailInput!) {
+      nutanixSnapshotDetail(input: $input)
+    }

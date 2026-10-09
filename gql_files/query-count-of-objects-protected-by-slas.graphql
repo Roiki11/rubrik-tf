@@ -1,0 +1,3 @@
+query CountOfObjectsProtectedBySlas($slaIds: [UUID!]!) {
+      countOfObjectsProtectedBySlas(slaIds: $slaIds)
+    }

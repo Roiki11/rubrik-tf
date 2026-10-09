@@ -1,0 +1,9 @@
+query InvestigationCsvDownloadLink($clusterUuid: UUID!, $workloadId: String!, $snapshotId: String!) {
+      investigationCsvDownloadLink(
+        clusterUuid: $clusterUuid
+        workloadId: $workloadId
+        snapshotId: $snapshotId
+      ) {
+        downloadLink
+      }
+    }

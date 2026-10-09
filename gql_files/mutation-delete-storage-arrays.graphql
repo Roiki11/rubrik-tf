@@ -1,0 +1,3 @@
+mutation DeleteStorageArrays($input: DeleteStorageArraysInput!) {
+      deleteStorageArrays(input: $input)
+    }

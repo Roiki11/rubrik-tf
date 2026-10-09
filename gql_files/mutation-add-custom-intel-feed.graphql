@@ -1,0 +1,5 @@
+mutation AddCustomIntelFeed($input: AddCustomIntelFeedInput!) {
+      addCustomIntelFeed(input: $input) {
+        providerId
+      }
+    }

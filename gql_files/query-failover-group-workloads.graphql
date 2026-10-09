@@ -1,0 +1,25 @@
+query FailoverGroupWorkloads($failoverGroupId: UUID!) {
+      failoverGroupWorkloads(
+        failoverGroupId: $failoverGroupId
+        first: 10
+      ) {
+        nodes {
+          counterpartIds
+          hostIds
+          hostNames
+          location
+          locationId
+          managedObjectType
+          name
+          primaryClusterUuid
+          status
+          statusMessage
+          workloadId
+          workloadType
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

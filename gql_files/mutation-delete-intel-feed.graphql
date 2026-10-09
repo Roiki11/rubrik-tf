@@ -1,0 +1,3 @@
+mutation DeleteIntelFeed($input: DeleteIntelFeedInput!) {
+      deleteIntelFeed(input: $input)
+    }

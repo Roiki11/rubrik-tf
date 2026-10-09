@@ -1,0 +1,3 @@
+mutation PromoteReaderTarget($input: PromoteReaderTargetInput!) {
+      promoteReaderTarget(input: $input)
+    }

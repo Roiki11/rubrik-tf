@@ -1,0 +1,3 @@
+mutation PatchFusionComputeVm($input: PatchFusionComputeVmInput!) {
+      patchFusionComputeVm(input: $input)
+    }

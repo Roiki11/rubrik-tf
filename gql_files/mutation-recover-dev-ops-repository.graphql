@@ -1,0 +1,6 @@
+mutation RecoverDevOpsRepository($input: RecoverDevOpsRepositoryInput!) {
+      recoverDevOpsRepository(input: $input) {
+        errorMessage
+        taskchainId
+      }
+    }

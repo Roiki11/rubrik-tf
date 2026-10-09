@@ -1,0 +1,8 @@
+mutation CreateMongodbSource($input: AddMosaicSourceInput!) {
+      createMongodbSource(input: $input) {
+        data
+        message
+        returnCode
+        status
+      }
+    }

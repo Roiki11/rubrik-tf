@@ -1,0 +1,11 @@
+mutation ExportFusionComputeSnapshot($input: ExportFusionComputeSnapshotInput!) {
+      exportFusionComputeSnapshot(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

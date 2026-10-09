@@ -1,0 +1,5 @@
+mutation DeleteGlobalSla($id: UUID!) {
+      deleteGlobalSla(id: $id) {
+        success
+      }
+    }

@@ -1,0 +1,5 @@
+query ValidateIocEntry($input: ValidateIocEntryInput!) {
+      validateIocEntry(input: $input) {
+        valid
+      }
+    }

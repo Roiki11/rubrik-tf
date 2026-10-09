@@ -1,0 +1,5 @@
+mutation DeleteFilesetSnapshots($input: DeleteFilesetSnapshotsInput!) {
+      deleteFilesetSnapshots(input: $input) {
+        success
+      }
+    }

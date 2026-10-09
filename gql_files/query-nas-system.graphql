@@ -1,0 +1,33 @@
+query NasSystem($fid: UUID!) {
+      nasSystem(fid: $fid) {
+        authorizedOperations
+        cdmId
+        cdmPendingObjectPauseAssignment
+        id
+        isChangelistEnabled
+        isNetAppMetroClusterEnabled
+        isNetAppSnapDiffEnabled
+        isNfsSupported
+        isNutanixCftEnabled
+        isRelic
+        isReplica
+        isSmbSupported
+        isUserSuppliedSmbCredentials
+        lastRefreshTime
+        lastStatus
+        name
+        namespaceCount
+        nfsPseudoFsPrefix
+        numWorkloadDescendants
+        objectType
+        osVersion
+        replicatedObjectCount
+        shareCount
+        slaAssignment
+        slaPauseStatus
+        userSelectedNfsInterfaces
+        userSelectedSmbInterfaces
+        vendorType
+        volumeCount
+      }
+    }

@@ -1,0 +1,5 @@
+mutation PitRestorePostgreSQLDbCluster($input: PitRestorePostgresDbClusterInput!) {
+      pitRestorePostgreSQLDbCluster(input: $input) {
+        id
+      }
+    }

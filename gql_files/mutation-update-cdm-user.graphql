@@ -1,0 +1,3 @@
+mutation UpdateCdmUser($input: UpdateCdmUserInput!) {
+      updateCdmUser(input: $input)
+    }

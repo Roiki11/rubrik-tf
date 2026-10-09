@@ -1,0 +1,3 @@
+mutation DeleteDistributionListDigestBatch($input: DeleteDistributionListDigestBatchInput!) {
+      deleteDistributionListDigestBatch(input: $input)
+    }

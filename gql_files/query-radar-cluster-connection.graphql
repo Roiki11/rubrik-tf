@@ -1,0 +1,45 @@
+query {
+      radarClusterConnection(first: 10) {
+        nodes {
+          cdmRbacMigrationStatus
+          connectivityLastUpdated
+          cyberEventLockdownMode
+          defaultAddress
+          defaultPort
+          encryptionEnabled
+          eosDate
+          eosStatus
+          estimatedRunway
+          id
+          isAirGapped
+          isAssignedByParentAccount
+          isClusterRemovalTprEnabled
+          isHealthy
+          isTprEnabled
+          isTunnelEnabled
+          lastConnectionTime
+          licensedProducts
+          managementType
+          name
+          passesConnectivityCheck
+          pauseStatus
+          productType
+          rawAddress
+          registeredMode
+          registrationTime
+          snapshotCount
+          status
+          statusFromDb
+          subStatus
+          systemStatus
+          systemStatusMessage
+          timezone
+          type
+          version
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

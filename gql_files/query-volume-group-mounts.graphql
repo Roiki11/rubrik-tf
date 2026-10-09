@@ -1,0 +1,25 @@
+query {
+      volumeGroupMounts(first: 10) {
+        nodes {
+          id
+          isReady
+          mountPath
+          mountRequestId
+          mountTimestamp
+          name
+          nodeCompositeId
+          nodeIp
+          recoveryPurpose
+          restoreScriptPath
+          smbShareName
+          sourceVolumeGroupId
+          targetHostId
+          targetHostName
+          unmountRequestId
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

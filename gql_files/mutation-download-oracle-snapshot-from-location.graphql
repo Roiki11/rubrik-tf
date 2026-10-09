@@ -1,0 +1,11 @@
+mutation DownloadOracleSnapshotFromLocation($input: DownloadOracleSnapshotFromLocationInput!) {
+      downloadOracleSnapshotFromLocation(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

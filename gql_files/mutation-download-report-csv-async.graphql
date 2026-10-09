@@ -1,0 +1,8 @@
+mutation DownloadReportCsvAsync($input: DownloadReportCsvAsyncInput!) {
+      downloadReportCsvAsync(input: $input) {
+        downloadId
+        externalId
+        jobId
+        referenceId
+      }
+    }

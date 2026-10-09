@@ -1,0 +1,9 @@
+mutation UpdateManualTargetMapping($input: UpdateManualTargetMappingInput!) {
+      updateManualTargetMapping(input: $input) {
+        groupType
+        id
+        name
+        targetType
+        tieringStatus
+      }
+    }

@@ -1,0 +1,5 @@
+mutation RecoverGlueIcebergTableSnapshot($input: RecoverGlueIcebergTableSnapshotInput!) {
+      recoverGlueIcebergTableSnapshot(input: $input) {
+        taskchainUuid
+      }
+    }

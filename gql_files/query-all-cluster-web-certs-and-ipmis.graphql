@@ -1,0 +1,6 @@
+query AllClusterWebCertsAndIpmis($input: BulkClusterWebCertAndIpmiInput!) {
+      allClusterWebCertsAndIpmis(input: $input) {
+        clusterUuid
+        error
+      }
+    }

@@ -1,0 +1,3 @@
+query IsTotpAckNecessaryForCluster($clusterUuid: UUID!) {
+      isTotpAckNecessaryForCluster(clusterUuid: $clusterUuid)
+    }

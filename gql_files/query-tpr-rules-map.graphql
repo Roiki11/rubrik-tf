@@ -1,0 +1,10 @@
+query {
+      tprRulesMap {
+        dataManagementByCluster
+        dataManagementByObject
+        dataManagementByObjectWorkloads
+        dataManagementBySlaDomain
+        systemConfigurationCluster
+        systemConfigurationGlobal
+      }
+    }

@@ -1,0 +1,18 @@
+query {
+      pausedObjects(first: 10) {
+        nodes {
+          note
+          objectId
+          objectName
+          objectType
+          pauseStartDate
+          pausedBy
+          pendingPauseStatus
+          snappableHierarchyType
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

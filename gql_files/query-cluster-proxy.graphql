@@ -1,0 +1,8 @@
+query ClusterProxy($clusterUuid: UUID!) {
+      clusterProxy(clusterUuid: $clusterUuid) {
+        port
+        protocol
+        server
+        username
+      }
+    }

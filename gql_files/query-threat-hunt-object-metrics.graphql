@@ -1,0 +1,10 @@
+query ThreatHuntObjectMetrics($huntId: String!) {
+      threatHuntObjectMetrics(huntId: $huntId) {
+        cleanRecoverableObjectLimit
+        totalAffectedObjects
+        totalObjectsScanned
+        totalObjectsUnscannable
+        totalUnaffectedObjects
+        unaffectedObjectsFromDb
+      }
+    }

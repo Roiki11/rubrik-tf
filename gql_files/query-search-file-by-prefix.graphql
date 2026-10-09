@@ -1,0 +1,12 @@
+query SearchFileByPrefix($clusterUuid: UUID!, $managedId: String!, $snapshotId: String!, $searchFolderPath: String!, $filenamePrefix: String!) {
+      searchFileByPrefix(
+        clusterUuid: $clusterUuid
+        managedId: $managedId
+        snapshotId: $snapshotId
+        searchFolderPath: $searchFolderPath
+        filenamePrefix: $filenamePrefix
+      ) {
+        previousSnapshotDate
+        previousSnapshotId
+      }
+    }

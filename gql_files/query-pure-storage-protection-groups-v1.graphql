@@ -1,0 +1,30 @@
+query {
+      pureStorageProtectionGroupsV1(first: 10) {
+        nodes {
+          arrayId
+          authorizedOperations
+          cdmId
+          cdmLink
+          cdmPendingObjectPauseAssignment
+          clusterUuid
+          excludedVolumes
+          id
+          isRelic
+          isReplica
+          name
+          numVolumes
+          numWorkloadDescendants
+          objectType
+          onDemandSnapshotCount
+          primaryClusterUuid
+          pureStorageId
+          replicatedObjectCount
+          slaAssignment
+          slaPauseStatus
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

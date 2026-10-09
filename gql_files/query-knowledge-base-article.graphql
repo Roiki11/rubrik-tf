@@ -1,0 +1,13 @@
+query KnowledgeBaseArticle($id: String!) {
+      knowledgeBaseArticle(id: $id) {
+        articleNumber
+        author
+        createdDate
+        description
+        id
+        lastModified
+        recordType
+        title
+        viewCount
+      }
+    }

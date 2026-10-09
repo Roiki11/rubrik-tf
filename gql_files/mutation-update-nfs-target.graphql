@@ -1,0 +1,19 @@
+mutation UpdateNfsTarget($input: UpdateNfsTargetInput!) {
+      updateNfsTarget(input: $input) {
+        clusterName
+        consumedBytes
+        failedTasks
+        id
+        isActive
+        isArchived
+        isComplianceImmutabilitySupported
+        locationConnectionStatus
+        locationScope
+        name
+        readerRetrievalMethod
+        runningTasks
+        status
+        targetType
+        upgradeStatus
+      }
+    }

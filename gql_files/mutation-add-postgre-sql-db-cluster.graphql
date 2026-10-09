@@ -1,0 +1,5 @@
+mutation AddPostgreSQLDbCluster($input: AddPostgreSqlDbClusterInput!) {
+      addPostgreSQLDbCluster(input: $input) {
+        id
+      }
+    }

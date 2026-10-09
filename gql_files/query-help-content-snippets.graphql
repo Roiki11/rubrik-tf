@@ -1,0 +1,21 @@
+query HelpContentSnippets($filter: HelpContentSnippetsFilterInput!) {
+      helpContentSnippets(
+        filter: $filter
+        first: 10
+      ) {
+        nodes {
+          category
+          description
+          id
+          lastUpdated
+          link
+          source
+          sourceLabel
+          title
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

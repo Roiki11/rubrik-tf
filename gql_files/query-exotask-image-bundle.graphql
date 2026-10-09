@@ -1,0 +1,7 @@
+query {
+      exotaskImageBundle {
+        bundleVersion
+        eksVersion
+        repoUrl
+      }
+    }

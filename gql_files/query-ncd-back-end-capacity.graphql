@@ -1,0 +1,5 @@
+query NcdBackEndCapacity($clusters: [UUID!]!) {
+      ncdBackEndCapacity(clusters: $clusters) {
+        usageInBytes
+      }
+    }

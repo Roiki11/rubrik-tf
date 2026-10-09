@@ -1,0 +1,8 @@
+query RansomwareDetectionWorkloadLocations($beginTime: DateTime!, $returnOnlyForAnomalousEntities: Boolean!) {
+      ransomwareDetectionWorkloadLocations(
+        beginTime: $beginTime
+        returnOnlyForAnomalousEntities: $returnOnlyForAnomalousEntities
+      ) {
+        locations
+      }
+    }

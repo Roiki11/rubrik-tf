@@ -1,0 +1,11 @@
+query DecryptExportUrl($workloadFid: UUID!, $exportUrlSpecsEnc: String!) {
+      decryptExportUrl(
+        workloadFid: $workloadFid
+        exportUrlSpecsEnc: $exportUrlSpecsEnc
+      ) {
+        actionType
+        blobName
+        blobSasUri
+        polarisAccount
+      }
+    }

@@ -1,0 +1,11 @@
+mutation MountNutanixVdisks($input: CreateNutanixVdisksMountInput!) {
+      mountNutanixVdisks(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

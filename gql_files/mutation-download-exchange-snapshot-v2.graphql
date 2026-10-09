@@ -1,0 +1,11 @@
+mutation DownloadExchangeSnapshotV2($input: DownloadExchangeSnapshotV2Input!) {
+      downloadExchangeSnapshotV2(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

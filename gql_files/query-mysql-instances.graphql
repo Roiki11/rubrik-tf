@@ -1,0 +1,25 @@
+query {
+      mysqlInstances(first: 10) {
+        nodes {
+          authorizedOperations
+          cdmId
+          cdmLink
+          cdmPendingObjectPauseAssignment
+          clusterMode
+          id
+          isRelic
+          isReplica
+          name
+          numWorkloadDescendants
+          objectType
+          onDemandSnapshotCount
+          replicatedObjectCount
+          slaAssignment
+          slaPauseStatus
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

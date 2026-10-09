@@ -1,0 +1,32 @@
+query GitHubOrganizations($queryType: QueryType!, $ancestorId: String!, $filter: [Filter!]!) {
+      gitHubOrganizations(
+        queryType: $queryType
+        ancestorId: $ancestorId
+        filter: $filter
+        first: 10
+      ) {
+        nodes {
+          authorizedOperations
+          connectionStatus
+          devOpsOrgType
+          id
+          isRelic
+          lastRefreshTime
+          name
+          nativeId
+          numWorkloadDescendants
+          objectType
+          orgUrl
+          repoCount
+          repoHostType
+          rscPendingObjectPauseAssignment
+          slaAssignment
+          slaPauseStatus
+          zeusState
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

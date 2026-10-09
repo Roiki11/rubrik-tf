@@ -1,0 +1,5 @@
+mutation UpdateVsphereVmNew($input: UpdateVsphereVmNewInput!) {
+      updateVsphereVmNew(input: $input) {
+        success
+      }
+    }

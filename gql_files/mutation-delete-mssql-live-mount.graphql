@@ -1,0 +1,11 @@
+mutation DeleteMssqlLiveMount($input: DeleteMssqlLiveMountInput!) {
+      deleteMssqlLiveMount(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

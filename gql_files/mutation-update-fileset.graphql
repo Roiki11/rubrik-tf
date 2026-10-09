@@ -1,0 +1,13 @@
+mutation UpdateFileset($input: UpdateFilesetInput!) {
+      updateFileset(input: $input) {
+        archiveStorage
+        archivedSnapshotCount
+        backupScriptErrorHandling
+        backupScriptTimeout
+        localStorage
+        postBackupScript
+        preBackupScript
+        protectionDate
+        snapshotCount
+      }
+    }

@@ -1,0 +1,6 @@
+mutation CancelDownloadPackage($clusterUuid: UUID!) {
+      cancelDownloadPackage(clusterUuid: $clusterUuid) {
+        message
+        status
+      }
+    }

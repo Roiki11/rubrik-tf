@@ -1,0 +1,26 @@
+query FusionComputeDatastore($fid: UUID!) {
+      fusionComputeDatastore(fid: $fid) {
+        authorizedOperations
+        capacity
+        cdmId
+        cdmPendingObjectPauseAssignment
+        clusterUuid
+        datastoreName
+        datastoreType
+        fcDatastoreId
+        freeSpace
+        hosts
+        id
+        isLocal
+        isReplica
+        name
+        numWorkloadDescendants
+        objectType
+        primaryClusterUuid
+        replicatedObjectCount
+        siteId
+        slaAssignment
+        slaPauseStatus
+        vrmId
+      }
+    }

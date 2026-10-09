@@ -1,0 +1,7 @@
+query SlaDomain($id: UUID!) {
+      slaDomain(id: $id) {
+        id
+        name
+        version
+      }
+    }

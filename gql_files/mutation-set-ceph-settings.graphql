@@ -1,0 +1,3 @@
+mutation SetCephSettings($input: SetCephSettingsInput!) {
+      setCephSettings(input: $input)
+    }

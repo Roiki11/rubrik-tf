@@ -1,0 +1,6 @@
+query ScriptsForManualPermissionValidation($input: GetScriptsForManualPermissionValidationReq!) {
+      scriptsForManualPermissionValidation(input: $input) {
+        bashScript
+        powershellScript
+      }
+    }

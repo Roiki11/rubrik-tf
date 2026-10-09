@@ -1,0 +1,22 @@
+query VSphereTag($fid: UUID!) {
+      vSphereTag(fid: $fid) {
+        authorizedOperations
+        cdmPendingObjectPauseAssignment
+        condition
+        filterDescription
+        id
+        isFilter
+        isReplica
+        name
+        numWorkloadDescendants
+        objectIds
+        objectType
+        replicatedObjectCount
+        slaAssignment
+        slaDomainId
+        slaPauseStatus
+        snapshotConsistencyMandate
+        snapshotConsistencySource
+        vcenterId
+      }
+    }

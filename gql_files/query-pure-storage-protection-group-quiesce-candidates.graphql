@@ -1,0 +1,7 @@
+query PureStorageProtectionGroupQuiesceCandidates($input: PureStorageProtectionGroupQuiesceCandidatesInput!) {
+      pureStorageProtectionGroupQuiesceCandidates(input: $input) {
+        hasMore
+        nextCursor
+        total
+      }
+    }

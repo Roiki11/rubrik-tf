@@ -1,0 +1,3 @@
+mutation PatchPostgreSQLDbCluster($input: PatchPostgresDbClusterInput!) {
+      patchPostgreSQLDbCluster(input: $input)
+    }

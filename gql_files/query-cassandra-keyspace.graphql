@@ -1,0 +1,15 @@
+query CassandraKeyspace($fid: UUID!) {
+      cassandraKeyspace(fid: $fid) {
+        backupCount
+        clusterUuid
+        id
+        isRelic
+        name
+        numWorkloadDescendants
+        objectType
+        rscPendingObjectPauseAssignment
+        slaAssignment
+        slaPauseStatus
+        watcherEnabled
+      }
+    }

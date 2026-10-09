@@ -1,0 +1,11 @@
+mutation TakeMssqlLogBackup($input: TakeMssqlLogBackupInput!) {
+      takeMssqlLogBackup(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

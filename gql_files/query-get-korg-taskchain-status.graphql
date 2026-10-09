@@ -1,0 +1,3 @@
+query GetKorgTaskchainStatus($taskchainId: String!) {
+      getKorgTaskchainStatus(taskchainId: $taskchainId)
+    }

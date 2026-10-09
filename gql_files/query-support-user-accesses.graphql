@@ -1,0 +1,17 @@
+query {
+      supportUserAccesses(first: 10) {
+        nodes {
+          accessStatus
+          actualEndTime
+          durationInHours
+          endTime
+          id
+          startTime
+          ticketNumber
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

@@ -1,0 +1,3 @@
+query CdmAdminUser($input: GetCdmUserRequest!) {
+      cdmAdminUser(input: $input)
+    }

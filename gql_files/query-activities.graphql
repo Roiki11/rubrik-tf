@@ -1,0 +1,25 @@
+query {
+      activities(first: 10) {
+        nodes {
+          actionType
+          activityProvider
+          activityType
+          actorIpAddress
+          actorState
+          category
+          classification
+          classifiedOn
+          id
+          nativeCorrelationId
+          operation
+          sourceId
+          status
+          time
+          title
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

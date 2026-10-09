@@ -1,0 +1,31 @@
+query PolicyViolation($violationId: String!, $policyTypes: [PolicyType!]!) {
+      policyViolation(
+        violationId: $violationId
+        policyTypes: $policyTypes
+      ) {
+        createdAt
+        lastEvaluatedAt
+        lastUpdatedAt
+        lastUpdatedBy
+        name
+        originId
+        originStartTime
+        parentPolicyViolationId
+        policyVersion
+        policyViolationId
+        resourceCriticalViolationsCount
+        resourceHighViolationsCount
+        resourceId
+        resourceLowViolationsCount
+        resourceMaxSeverity
+        resourceMediumViolationsCount
+        resourceType
+        resourceViolationsCount
+        secondaryResourceId
+        secondaryResourceType
+        status
+        statusReason
+        userFriendlyViolationId
+        violationSeverity
+      }
+    }

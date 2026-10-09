@@ -1,0 +1,11 @@
+mutation VsphereVmInitiateLiveMountV2($input: VsphereVmInitiateLiveMountV2Input!) {
+      vsphereVmInitiateLiveMountV2(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

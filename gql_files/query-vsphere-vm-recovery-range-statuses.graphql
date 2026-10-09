@@ -1,0 +1,3 @@
+query VsphereVmRecoveryRangeStatuses($input: VsphereVmRecoveryRangeStatusReq!) {
+      vsphereVmRecoveryRangeStatuses(input: $input)
+    }

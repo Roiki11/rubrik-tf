@@ -1,0 +1,34 @@
+query GlobalCertificates($input: GlobalCertificatesQueryInput!) {
+      globalCertificates(
+        input: $input
+        first: 10
+      ) {
+        nodes {
+          certificate
+          certificateFid
+          certificateId
+          description
+          expiringAt
+          hasKey
+          isCa
+          isCaSigned
+          isCdmBorn
+          issuedBy
+          issuedOn
+          issuedTo
+          issuerType
+          keyStrength
+          keyType
+          name
+          serialNumber
+          sha1Fingerprint
+          sha256Fingerprint
+          status
+          userHasPrivilegeToScheduleRotation
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

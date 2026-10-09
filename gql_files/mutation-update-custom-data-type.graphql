@@ -1,0 +1,3 @@
+mutation UpdateCustomDataType($input: UpdateCustomDataTypeInput!) {
+      updateCustomDataType(input: $input)
+    }

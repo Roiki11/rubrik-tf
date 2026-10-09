@@ -1,0 +1,3 @@
+query ValidateClusterLicenseCapacity($input: ValidateClusterLicenseCapacityInput!) {
+      validateClusterLicenseCapacity(input: $input)
+    }

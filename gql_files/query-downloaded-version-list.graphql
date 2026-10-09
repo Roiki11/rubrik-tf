@@ -1,0 +1,6 @@
+query {
+      downloadedVersionList {
+        count
+        group
+      }
+    }

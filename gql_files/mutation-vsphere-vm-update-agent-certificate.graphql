@@ -1,0 +1,3 @@
+mutation VsphereVmUpdateAgentCertificate($input: VmUpdateAgentCertificateInput!) {
+      vsphereVmUpdateAgentCertificate(input: $input)
+    }

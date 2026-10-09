@@ -1,0 +1,9 @@
+mutation UpdateRcsAutomaticTargetMapping($input: UpdateRcsAutomaticTargetMappingInput!) {
+      updateRcsAutomaticTargetMapping(input: $input) {
+        groupType
+        id
+        name
+        targetType
+        tieringStatus
+      }
+    }

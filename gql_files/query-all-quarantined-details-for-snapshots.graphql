@@ -1,0 +1,5 @@
+query AllQuarantinedDetailsForSnapshots($snapshotIds: [String!]!) {
+      allQuarantinedDetailsForSnapshots(snapshotIds: $snapshotIds) {
+        snapshotId
+      }
+    }

@@ -1,0 +1,26 @@
+query SnapshotOfASnappableConnection($workloadId: String!) {
+      snapshotOfASnappableConnection(
+        workloadId: $workloadId
+        first: 10
+      ) {
+        nodes {
+          date
+          expirationDate
+          id
+          indexingAttempts
+          isAnomaly
+          isCorrupted
+          isExpired
+          isIndexed
+          isOnDemandSnapshot
+          isQuarantineProcessing
+          isQuarantined
+          isUnindexable
+          snappableId
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

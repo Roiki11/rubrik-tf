@@ -1,0 +1,11 @@
+mutation ExportProxmoxVmSnapshot($input: ExportProxmoxVmSnapshotInput!) {
+      exportProxmoxVmSnapshot(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

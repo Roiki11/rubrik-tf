@@ -1,0 +1,17 @@
+query ThreatMonitoringMatchedFileDetailsV2($matchedSnapshotFid: UUID!, $filepath: String!) {
+      threatMonitoringMatchedFileDetailsV2(
+        matchedSnapshotFid: $matchedSnapshotFid
+        filepath: $filepath
+      ) {
+        detectedSnapshotDate
+        fileName
+        filePath
+        firstDetectedSnapshotFid
+        isFileVersionQuarantined
+        isQuarantinedInFirstObservedSnapshot
+        matchedFileMd5
+        matchedFileSha1
+        matchedFileSha256
+        mtime
+      }
+    }

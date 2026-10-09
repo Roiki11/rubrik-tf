@@ -1,0 +1,22 @@
+query {
+      policies(first: 10) {
+        nodes {
+          colorEnum
+          createdTime
+          deletable
+          description
+          hierarchyObjectIds
+          id
+          isInactive
+          lastUpdatedTime
+          mode
+          name
+          numAnalyzers
+          totalObjects
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

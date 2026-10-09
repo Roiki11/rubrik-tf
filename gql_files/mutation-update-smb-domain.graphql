@@ -1,0 +1,3 @@
+mutation UpdateSmbDomain($input: UpdateSmbDomainInput!) {
+      updateSmbDomain(input: $input)
+    }

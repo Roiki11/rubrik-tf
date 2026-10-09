@@ -1,0 +1,13 @@
+query AllAccountProducts($nameFilter: [ProductName!]!, $typeFilter: [ProductType!]!, $stateFilter: [ProductState!]!) {
+      allAccountProducts(
+        nameFilter: $nameFilter
+        typeFilter: $typeFilter
+        stateFilter: $stateFilter
+      ) {
+        account
+        expirationDate
+        name
+        state
+        type
+      }
+    }

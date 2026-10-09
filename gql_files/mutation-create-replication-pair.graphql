@@ -1,0 +1,3 @@
+mutation CreateReplicationPair($input: CreateReplicationPairInput!) {
+      createReplicationPair(input: $input)
+    }

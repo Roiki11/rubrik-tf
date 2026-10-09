@@ -1,0 +1,7 @@
+query MongoRestoreTargetsForSnapshot($input: GetValidOpsManagerManagedRestoreTargetsForSnapshotInput!) {
+      mongoRestoreTargetsForSnapshot(input: $input) {
+        hasMore
+        nextCursor
+        total
+      }
+    }

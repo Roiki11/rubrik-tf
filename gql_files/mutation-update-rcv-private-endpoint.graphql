@@ -1,0 +1,7 @@
+mutation UpdateRcvPrivateEndpoint($input: UpdateRcvPrivateEndpointInput!) {
+      updateRcvPrivateEndpoint(input: $input) {
+        description
+        name
+        storageAccountId
+      }
+    }

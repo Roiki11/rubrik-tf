@@ -1,0 +1,3 @@
+query VappTemplateSnapshotExportOptions($input: VappTemplateSnapshotExportOptionsInput!) {
+      vappTemplateSnapshotExportOptions(input: $input)
+    }

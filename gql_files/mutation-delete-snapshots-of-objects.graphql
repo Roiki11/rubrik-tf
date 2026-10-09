@@ -1,0 +1,3 @@
+mutation DeleteSnapshotsOfObjects($input: DeleteSnapshotsOfObjectsInput!) {
+      deleteSnapshotsOfObjects(input: $input)
+    }

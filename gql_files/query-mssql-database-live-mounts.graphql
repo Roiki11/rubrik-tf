@@ -1,0 +1,20 @@
+query {
+      mssqlDatabaseLiveMounts(first: 10) {
+        nodes {
+          cdmId
+          creationDate
+          fid
+          isReady
+          mountRequestId
+          mountedDatabaseId
+          mountedDatabaseName
+          ownerId
+          recoveryPoint
+          unmountRequestId
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

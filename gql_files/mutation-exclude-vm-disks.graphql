@@ -1,0 +1,5 @@
+mutation ExcludeVmDisks($input: [ExcludeVmDisksInput!]!) {
+      excludeVmDisks(input: $input) {
+        success
+      }
+    }

@@ -1,0 +1,20 @@
+query PureStorageArrayV1($id: UUID!) {
+      pureStorageArrayV1(id: $id) {
+        authorizedOperations
+        cdmId
+        cdmPendingObjectPauseAssignment
+        clusterUuid
+        hostName
+        id
+        isReplica
+        name
+        numWorkloadDescendants
+        objectType
+        primaryClusterUuid
+        pureStorageId
+        replicatedObjectCount
+        slaAssignment
+        slaPauseStatus
+        version
+      }
+    }

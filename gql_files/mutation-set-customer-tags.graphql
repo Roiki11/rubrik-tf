@@ -1,0 +1,3 @@
+mutation SetCustomerTags($input: SetCustomerTagsInput!) {
+      setCustomerTags(input: $input)
+    }

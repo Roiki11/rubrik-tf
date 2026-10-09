@@ -1,0 +1,36 @@
+query ThreatMonitoringMatchedFiles($objectFid: UUID!) {
+      threatMonitoringMatchedFiles(
+        objectFid: $objectFid
+        first: 10
+      ) {
+        nodes {
+          archiveRelativePath
+          detectedTime
+          fileName
+          fileSize
+          filepath
+          firstObservedSnapshotDate
+          firstObservedSnapshotFid
+          isFileVersionQuarantined
+          isFirstObservedSnapshotExpired
+          isInsideArchive
+          isMatchedSnapshotExpired
+          isQuarantinedInFirstObservedSnapshot
+          isValidated
+          isValidationRequired
+          matchId
+          matchType
+          matchedSnapshotDate
+          matchedSnapshotFid
+          mtime
+          objectFid
+          objectName
+          objectType
+          severity
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

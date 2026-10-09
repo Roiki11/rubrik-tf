@@ -1,0 +1,5 @@
+mutation CreateLegalHold($input: CreateLegalHoldInput!) {
+      createLegalHold(input: $input) {
+        snapshotIds
+      }
+    }

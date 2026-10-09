@@ -1,0 +1,3 @@
+query LicensesForClusterProductSummary($input: LicensesForClusterProductSummaryInput!) {
+      licensesForClusterProductSummary(input: $input)
+    }

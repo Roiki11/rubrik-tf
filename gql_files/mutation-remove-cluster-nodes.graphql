@@ -1,0 +1,7 @@
+mutation RemoveClusterNodes($input: RemoveClusterNodesInput!) {
+      removeClusterNodes(input: $input) {
+        jobId
+        message
+        success
+      }
+    }

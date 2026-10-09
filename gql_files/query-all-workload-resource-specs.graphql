@@ -1,0 +1,8 @@
+query AllWorkloadResourceSpecs($input: ListWorkloadResourceSpecsInput!) {
+      allWorkloadResourceSpecs(input: $input) {
+        isArchived
+        snapshotId
+        workloadId
+        workloadName
+      }
+    }

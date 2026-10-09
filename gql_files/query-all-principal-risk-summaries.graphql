@@ -1,0 +1,7 @@
+query AllPrincipalRiskSummaries($queryDate: String!, $historicalDeltaDays: Int!, $principalRiskSummaryPrincipalType: PrincipalRiskySummaryPrincipalType!) {
+      allPrincipalRiskSummaries(
+        queryDate: $queryDate
+        historicalDeltaDays: $historicalDeltaDays
+        principalRiskSummaryPrincipalType: $principalRiskSummaryPrincipalType
+      )
+    }

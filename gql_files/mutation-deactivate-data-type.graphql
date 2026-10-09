@@ -1,0 +1,5 @@
+mutation DeactivateDataType($input: DeactivateDataTypeInput!) {
+      deactivateDataType(input: $input) {
+        isSuccess
+      }
+    }

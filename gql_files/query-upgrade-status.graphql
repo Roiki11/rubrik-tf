@@ -1,0 +1,17 @@
+query UpgradeStatus($clusterUuid: UUID!) {
+      upgradeStatus(clusterUuid: $clusterUuid) {
+        currentState
+        currentStateName
+        currentStateProgress
+        finishedStates
+        mode
+        nodeName
+        pendingStates
+        progress
+        tarballName
+        upgradeProgressPercentage
+        upgradeTimeLeftSecs
+        upgradeTimestamp
+        userSurfacedTaskName
+      }
+    }

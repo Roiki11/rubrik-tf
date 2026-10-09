@@ -1,0 +1,3 @@
+mutation BulkUpdateMssqlPropertiesOnHost($input: BulkUpdateMssqlPropertiesOnHostInput!) {
+      bulkUpdateMssqlPropertiesOnHost(input: $input)
+    }

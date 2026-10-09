@@ -1,0 +1,5 @@
+query ComputeClusterStatus($input: GetComputeClusterInput!) {
+      computeClusterStatus(input: $input) {
+        moid
+      }
+    }

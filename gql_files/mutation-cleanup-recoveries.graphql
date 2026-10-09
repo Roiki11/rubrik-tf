@@ -1,0 +1,3 @@
+mutation CleanupRecoveries($input: CleanupRecoveriesInput!) {
+      cleanupRecoveries(input: $input)
+    }

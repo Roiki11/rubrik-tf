@@ -1,0 +1,5 @@
+mutation ArchiveK8sCluster($input: ArchiveK8sClusterInput!) {
+      archiveK8sCluster(input: $input) {
+        clusterId
+      }
+    }

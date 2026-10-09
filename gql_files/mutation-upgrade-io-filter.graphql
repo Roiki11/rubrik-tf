@@ -1,0 +1,5 @@
+mutation UpgradeIoFilter($input: UpgradeIoFilterInput!) {
+      upgradeIoFilter(input: $input) {
+        success
+      }
+    }

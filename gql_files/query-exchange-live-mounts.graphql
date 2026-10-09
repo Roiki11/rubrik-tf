@@ -1,0 +1,15 @@
+query {
+      exchangeLiveMounts(first: 10) {
+        nodes {
+          cdmId
+          id
+          isReady
+          nodeCompositeId
+          nodeIp
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

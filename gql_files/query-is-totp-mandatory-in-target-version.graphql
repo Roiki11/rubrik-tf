@@ -1,0 +1,3 @@
+query IsTotpMandatoryInTargetVersion($version: String!) {
+      isTotpMandatoryInTargetVersion(version: $version)
+    }

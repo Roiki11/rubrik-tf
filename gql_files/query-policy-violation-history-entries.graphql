@@ -1,0 +1,17 @@
+query PolicyViolationHistoryEntries($violationId: String!, $policyType: PolicyType!) {
+      policyViolationHistoryEntries(
+        violationId: $violationId
+        policyType: $policyType
+        first: 10
+      ) {
+        nodes {
+          actorName
+          eventType
+          timestamp
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

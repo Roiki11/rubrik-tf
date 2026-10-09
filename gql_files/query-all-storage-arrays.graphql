@@ -1,0 +1,3 @@
+query AllStorageArrays($input: [UUID!]!) {
+      allStorageArrays(input: $input)
+    }

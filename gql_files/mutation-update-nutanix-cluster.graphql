@@ -1,0 +1,5 @@
+mutation UpdateNutanixCluster($input: UpdateNutanixClusterInput!) {
+      updateNutanixCluster(input: $input) {
+        caCerts
+      }
+    }

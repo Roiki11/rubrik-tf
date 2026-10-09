@@ -1,0 +1,3 @@
+mutation RevokeAllOrgRoles($input: RevokeAllOrgRolesInput!) {
+      revokeAllOrgRoles(input: $input)
+    }

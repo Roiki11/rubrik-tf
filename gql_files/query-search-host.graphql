@@ -1,0 +1,10 @@
+query SearchHost($id: String!, $path: String!) {
+      searchHost(
+        id: $id
+        path: $path
+      ) {
+        hasMore
+        nextCursor
+        total
+      }
+    }

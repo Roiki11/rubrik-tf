@@ -1,0 +1,5 @@
+mutation CreateOnDemandGlueIcebergTableBackup($input: CreateOnDemandGlueIcebergTableBackupInput!) {
+      createOnDemandGlueIcebergTableBackup(input: $input) {
+        taskchainUuid
+      }
+    }

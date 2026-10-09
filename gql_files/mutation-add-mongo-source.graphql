@@ -1,0 +1,5 @@
+mutation AddMongoSource($input: AddMongoSourceInput!) {
+      addMongoSource(input: $input) {
+        id
+      }
+    }

@@ -1,0 +1,6 @@
+rubrik_graphql_url = "https://<your-rsc-tenant>/api/graphql"
+rubrik_api_token   = "<your-bearer-token>"
+sla_domain_id      = "00000000-0000-0000-0000-000000000000"
+vsphere_vm_ids = [
+  "11111111-1111-1111-1111-111111111111",
+]

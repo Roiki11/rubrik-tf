@@ -1,0 +1,7 @@
+query GlobalFileSearch($input: GlobalFileSearchInput!) {
+      globalFileSearch(input: $input) {
+        hasMore
+        nextCursor
+        total
+      }
+    }

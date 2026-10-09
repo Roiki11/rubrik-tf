@@ -1,0 +1,6 @@
+mutation CreateRecoveryPlanV2($input: CreateRecoveryPlanV2Input!) {
+      createRecoveryPlanV2(input: $input) {
+        recoveryPlanId
+        recoverySpecIds
+      }
+    }

@@ -1,0 +1,3 @@
+mutation TakeOnDemandSnapshotSync($input: TakeOnDemandSnapshotSyncInput!) {
+      takeOnDemandSnapshotSync(input: $input)
+    }

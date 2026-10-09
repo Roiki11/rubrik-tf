@@ -1,0 +1,3 @@
+mutation UpdateFailoverClusterApp($input: UpdateFailoverClusterAppInput!) {
+      updateFailoverClusterApp(input: $input)
+    }

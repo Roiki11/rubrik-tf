@@ -1,0 +1,11 @@
+mutation MigrateNutanixMountV1($input: MigrateNutanixMountV1Input!) {
+      migrateNutanixMountV1(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

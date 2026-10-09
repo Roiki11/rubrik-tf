@@ -1,0 +1,15 @@
+query SonarReport($sonarReportGroupBy: DiscoveryReportGroupBy!) {
+      sonarReport(
+        sonarReportGroupBy: $sonarReportGroupBy
+        first: 10
+      ) {
+        nodes {
+          count
+          groupByValue
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

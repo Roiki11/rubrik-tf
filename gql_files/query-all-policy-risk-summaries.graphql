@@ -1,0 +1,9 @@
+query AllPolicyRiskSummaries($policyIds: [String!]!, $summaryDate: String!) {
+      allPolicyRiskSummaries(
+        policyIds: $policyIds
+        summaryDate: $summaryDate
+      ) {
+        id
+        risk
+      }
+    }

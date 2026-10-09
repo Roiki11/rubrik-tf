@@ -1,0 +1,3 @@
+mutation PatchDb2Instance($input: PatchDb2InstanceInput!) {
+      patchDb2Instance(input: $input)
+    }

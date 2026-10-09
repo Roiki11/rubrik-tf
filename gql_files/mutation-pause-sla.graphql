@@ -1,0 +1,5 @@
+mutation PauseSla($input: PauseSlaInput!) {
+      pauseSla(input: $input) {
+        success
+      }
+    }

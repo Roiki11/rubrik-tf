@@ -1,0 +1,15 @@
+query SnapshotFilesDeltaV2($path: String!, $snapshotFid: UUID!) {
+      snapshotFilesDeltaV2(
+        path: $path
+        snapshotFid: $snapshotFid
+        first: 10
+      ) {
+        nodes {
+    
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

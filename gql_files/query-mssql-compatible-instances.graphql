@@ -1,0 +1,7 @@
+query MssqlCompatibleInstances($input: GetCompatibleMssqlInstancesV1Input!) {
+      mssqlCompatibleInstances(input: $input) {
+        hasMore
+        nextCursor
+        total
+      }
+    }

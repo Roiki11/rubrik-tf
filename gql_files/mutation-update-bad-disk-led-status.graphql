@@ -1,0 +1,6 @@
+mutation UpdateBadDiskLedStatus($input: UpdateBadDiskLedStatusInput!) {
+      updateBadDiskLedStatus(input: $input) {
+        output
+        result
+      }
+    }

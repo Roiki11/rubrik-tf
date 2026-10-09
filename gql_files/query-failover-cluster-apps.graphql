@@ -1,0 +1,28 @@
+query FailoverClusterApps($hostFailoverClusterRoot: HostFailoverClusterRoot!) {
+      failoverClusterApps(
+        hostFailoverClusterRoot: $hostFailoverClusterRoot
+        first: 10
+      ) {
+        nodes {
+          authorizedOperations
+          cdmId
+          cdmPendingObjectPauseAssignment
+          failoverClusterId
+          failoverClusterType
+          id
+          isArchived
+          isReplica
+          name
+          numWorkloadDescendants
+          objectType
+          replicatedObjectCount
+          slaAssignment
+          slaPauseStatus
+          vips
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

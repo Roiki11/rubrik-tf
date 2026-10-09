@@ -1,0 +1,3 @@
+mutation PutSmbConfiguration($input: PutSmbConfigurationInput!) {
+      putSmbConfiguration(input: $input)
+    }

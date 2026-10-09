@@ -1,0 +1,8 @@
+mutation UpdateAutoEnablePolicyClusterConfig($input: UpdateAutoEnablePolicyClusterConfigInput!) {
+      updateAutoEnablePolicyClusterConfig(input: $input) {
+        id
+        name
+        type
+        version
+      }
+    }

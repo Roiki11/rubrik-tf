@@ -1,0 +1,7 @@
+mutation BeginManagedVolumeSnapshot($input: BeginManagedVolumeSnapshotInput!) {
+      beginManagedVolumeSnapshot(input: $input) {
+        ownerId
+        rscSnapshotId
+        snapshotId
+      }
+    }

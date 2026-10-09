@@ -1,0 +1,11 @@
+mutation RefreshFusionComputeVrm($input: RefreshFusionComputeVrmInput!) {
+      refreshFusionComputeVrm(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

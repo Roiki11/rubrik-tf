@@ -1,0 +1,5 @@
+mutation UpdateReplicationNetworkThrottleBypass($input: UpdateReplicationNetworkThrottleBypassInput!) {
+      updateReplicationNetworkThrottleBypass(input: $input) {
+        success
+      }
+    }

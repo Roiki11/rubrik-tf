@@ -1,0 +1,5 @@
+mutation StartRecovery($input: StartRecoveryInput!) {
+      startRecovery(input: $input) {
+        recoveryId
+      }
+    }

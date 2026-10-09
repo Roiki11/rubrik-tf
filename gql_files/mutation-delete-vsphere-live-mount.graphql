@@ -1,0 +1,11 @@
+mutation DeleteVsphereLiveMount($input: DeleteVsphereLiveMountInput!) {
+      deleteVsphereLiveMount(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

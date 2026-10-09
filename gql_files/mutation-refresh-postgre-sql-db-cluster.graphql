@@ -1,0 +1,11 @@
+mutation RefreshPostgreSQLDbCluster($input: RefreshPostgresDbClusterInput!) {
+      refreshPostgreSQLDbCluster(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

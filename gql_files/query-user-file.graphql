@@ -1,0 +1,12 @@
+query UserFile($externalId: String!) {
+      userFile(externalId: $externalId) {
+        completedAt
+        createdAt
+        creator
+        expiresAt
+        externalId
+        filename
+        state
+        type
+      }
+    }

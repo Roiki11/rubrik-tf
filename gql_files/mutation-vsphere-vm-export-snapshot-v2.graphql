@@ -1,0 +1,11 @@
+mutation VsphereVmExportSnapshotV2($input: VsphereVmExportSnapshotV2Input!) {
+      vsphereVmExportSnapshotV2(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

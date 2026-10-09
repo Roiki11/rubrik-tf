@@ -1,0 +1,3 @@
+mutation AddAndJoinSmbDomain($input: AddAndJoinSmbDomainInput!) {
+      addAndJoinSmbDomain(input: $input)
+    }

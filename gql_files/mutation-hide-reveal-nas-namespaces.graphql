@@ -1,0 +1,3 @@
+mutation HideRevealNasNamespaces($input: HideRevealNasNamespacesInput!) {
+      hideRevealNasNamespaces(input: $input)
+    }

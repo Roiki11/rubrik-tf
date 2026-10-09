@@ -1,0 +1,5 @@
+query ClusterFloatingIps($input: GetClusterIpsInput!) {
+      clusterFloatingIps(input: $input) {
+        items
+      }
+    }

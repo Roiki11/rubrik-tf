@@ -1,0 +1,8 @@
+mutation UpdateNutanixPrismCentral($input: UpdateNutanixPrismCentralInput!) {
+      updateNutanixPrismCentral(input: $input) {
+        hostname
+        isDrEnabled
+        shouldUseV4
+        username
+      }
+    }

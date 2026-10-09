@@ -1,0 +1,3 @@
+mutation CreateCustomDataType($input: CreateCustomDataTypeInput!) {
+      createCustomDataType(input: $input)
+    }

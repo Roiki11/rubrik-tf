@@ -1,0 +1,9 @@
+query DiscoveryTimeline($startDay: String!, $endDay: String!, $timezone: String!, $getWhitelistedResults: Boolean!, $workloadTypes: [DataGovObjectType!]!) {
+      discoveryTimeline(
+        startDay: $startDay
+        endDay: $endDay
+        timezone: $timezone
+        getWhitelistedResults: $getWhitelistedResults
+        workloadTypes: $workloadTypes
+      )
+    }

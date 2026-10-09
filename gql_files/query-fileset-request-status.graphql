@@ -1,0 +1,11 @@
+query FilesetRequestStatus($input: GetFilesetAsyncRequestStatusInput!) {
+      filesetRequestStatus(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

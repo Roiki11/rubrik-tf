@@ -1,0 +1,3 @@
+mutation UpdateVlan($input: UpdateVlanInput!) {
+      updateVlan(input: $input)
+    }

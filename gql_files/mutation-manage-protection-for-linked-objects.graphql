@@ -1,0 +1,6 @@
+mutation ManageProtectionForLinkedObjects($input: ManageProtectionForLinkedObjectsInput!) {
+      manageProtectionForLinkedObjects(input: $input) {
+        jobId
+        taskchainId
+      }
+    }

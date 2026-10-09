@@ -1,0 +1,14 @@
+query ClusterGroupByConnection($groupBy: ClusterGroupByEnum!) {
+      clusterGroupByConnection(
+        groupBy: $groupBy
+        first: 10
+      ) {
+        nodes {
+    
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

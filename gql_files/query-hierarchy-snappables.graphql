@@ -1,0 +1,16 @@
+query {
+      hierarchySnappables(first: 10) {
+        nodes {
+          id
+          name
+          numWorkloadDescendants
+          objectType
+          slaAssignment
+          slaPauseStatus
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

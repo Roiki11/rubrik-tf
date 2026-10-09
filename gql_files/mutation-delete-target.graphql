@@ -1,0 +1,3 @@
+mutation DeleteTarget($input: DeleteTargetInput!) {
+      deleteTarget(input: $input)
+    }

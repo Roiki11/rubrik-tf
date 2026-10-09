@@ -1,0 +1,17 @@
+query HostFailoverCluster($fid: UUID!) {
+      hostFailoverCluster(fid: $fid) {
+        authorizedOperations
+        cdmId
+        cdmPendingObjectPauseAssignment
+        id
+        isArchived
+        isReplica
+        name
+        nodesOsType
+        numWorkloadDescendants
+        objectType
+        replicatedObjectCount
+        slaAssignment
+        slaPauseStatus
+      }
+    }

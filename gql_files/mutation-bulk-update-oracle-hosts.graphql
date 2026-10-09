@@ -1,0 +1,3 @@
+mutation BulkUpdateOracleHosts($input: BulkUpdateOracleHostsInput!) {
+      bulkUpdateOracleHosts(input: $input)
+    }

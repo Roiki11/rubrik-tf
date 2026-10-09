@@ -1,0 +1,6 @@
+query UsersSummary($startDay: String!, $endDay: String!) {
+      usersSummary(
+        startDay: $startDay
+        endDay: $endDay
+      )
+    }

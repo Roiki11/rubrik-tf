@@ -1,0 +1,10 @@
+query FilesetSnapshotFiles($id: String!, $path: String!) {
+      filesetSnapshotFiles(
+        id: $id
+        path: $path
+      ) {
+        hasMore
+        nextCursor
+        total
+      }
+    }

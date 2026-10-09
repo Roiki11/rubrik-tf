@@ -1,0 +1,15 @@
+query {
+      principalAttributes(first: 10) {
+        nodes {
+          displayName
+          domain
+          idpType
+          principalType
+          sid
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

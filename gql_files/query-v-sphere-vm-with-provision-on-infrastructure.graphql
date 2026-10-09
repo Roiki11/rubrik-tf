@@ -1,0 +1,37 @@
+query VSphereVmWithProvisionOnInfrastructure($fid: UUID!) {
+      vSphereVmWithProvisionOnInfrastructure(fid: $fid) {
+        arrayIntegrationEnabled
+        authorizedOperations
+        blueprintId
+        blueprintName
+        cdmId
+        cdmLink
+        cdmPendingObjectPauseAssignment
+        guestCredentialAuthorizationStatus
+        guestCredentialId
+        guestOsName
+        guestOsType
+        id
+        isActive
+        isArrayIntegrationPossible
+        isBlueprintChild
+        isRelic
+        isReplica
+        name
+        numWorkloadDescendants
+        objectType
+        onDemandSnapshotCount
+        parentResourcePoolId
+        parentWorkloadIdOpt
+        parentWorkloadTypeOpt
+        powerStatus
+        protectionDate
+        replicatedObjectCount
+        slaAssignment
+        slaPauseStatus
+        snapshotConsistencyMandate
+        snapshotConsistencySource
+        templateType
+        vmwareToolsInstalled
+      }
+    }

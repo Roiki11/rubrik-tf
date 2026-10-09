@@ -1,0 +1,25 @@
+query {
+      hypervMounts(first: 10) {
+        nodes {
+          attachedDiskCount
+          id
+          isDiskLevelMount
+          isVmReady
+          mountSpec
+          mountTime
+          mountedVmFid
+          mountedVmStatus
+          name
+          serverFid
+          serverName
+          sourceVm
+          sourceVmFid
+          targetVm
+          targetVmFid
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

@@ -1,0 +1,6 @@
+mutation CreateRcvPrivateEndpointApprovalRequest($input: CreateRcvPrivateEndpointApprovalRequestInput!) {
+      createRcvPrivateEndpointApprovalRequest(input: $input) {
+        requestMessage
+        storageAccountId
+      }
+    }

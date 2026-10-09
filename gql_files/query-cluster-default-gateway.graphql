@@ -1,0 +1,3 @@
+query ClusterDefaultGateway($input: GetDefaultGatewayInput!) {
+      clusterDefaultGateway(input: $input)
+    }

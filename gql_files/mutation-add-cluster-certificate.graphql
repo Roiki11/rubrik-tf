@@ -1,0 +1,15 @@
+mutation AddClusterCertificate($input: AddClusterCertificateInput!) {
+      addClusterCertificate(input: $input) {
+        certId
+        description
+        expiration
+        hasKey
+        isInternal
+        isTrusted
+        keyStrength
+        keyType
+        name
+        pemFile
+        usedBy
+      }
+    }

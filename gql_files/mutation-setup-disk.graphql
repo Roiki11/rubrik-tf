@@ -1,0 +1,9 @@
+mutation SetupDisk($input: SetupDiskInput!) {
+      setupDisk(input: $input) {
+        capacityBytes
+        isResizable
+        path
+        unallocatedBytes
+        usableBytes
+      }
+    }

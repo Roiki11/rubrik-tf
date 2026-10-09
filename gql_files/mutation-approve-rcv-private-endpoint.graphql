@@ -1,0 +1,6 @@
+mutation ApproveRcvPrivateEndpoint($input: ApproveRcvPrivateEndpointInput!) {
+      approveRcvPrivateEndpoint(input: $input) {
+        errorMessage
+        success
+      }
+    }

@@ -1,0 +1,5 @@
+mutation CreateTprPolicy($input: CreateTprPolicyInput!) {
+      createTprPolicy(input: $input) {
+        policyId
+      }
+    }

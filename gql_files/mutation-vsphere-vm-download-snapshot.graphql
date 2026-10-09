@@ -1,0 +1,11 @@
+mutation VsphereVmDownloadSnapshot($input: VsphereVmDownloadSnapshotInput!) {
+      vsphereVmDownloadSnapshot(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

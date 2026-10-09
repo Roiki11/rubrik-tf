@@ -1,0 +1,6 @@
+mutation CreateK8sCluster($input: CreateK8sClusterInput!) {
+      createK8sCluster(input: $input) {
+        clusterId
+        yamlUrl
+      }
+    }

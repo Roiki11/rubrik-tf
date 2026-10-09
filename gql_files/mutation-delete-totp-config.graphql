@@ -1,0 +1,3 @@
+mutation DeleteTotpConfig($userId: String!) {
+      deleteTotpConfig(userId: $userId)
+    }

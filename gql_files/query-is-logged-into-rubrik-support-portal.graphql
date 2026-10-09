@@ -1,0 +1,6 @@
+query {
+      isLoggedIntoRubrikSupportPortal {
+        isLoggedIn
+        username
+      }
+    }

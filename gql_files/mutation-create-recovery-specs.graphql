@@ -1,0 +1,3 @@
+mutation CreateRecoverySpecs($input: CreateRecoverySpecsInput!) {
+      createRecoverySpecs(input: $input)
+    }

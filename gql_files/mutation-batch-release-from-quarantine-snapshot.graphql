@@ -1,0 +1,5 @@
+mutation BatchReleaseFromQuarantineSnapshot($input: BatchReleaseFromQuarantineSnapshotInput!) {
+      batchReleaseFromQuarantineSnapshot(input: $input) {
+        isBatchReleaseFromQuarantineSuccessful
+      }
+    }

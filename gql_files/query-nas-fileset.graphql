@@ -1,0 +1,29 @@
+query NasFileset($fid: UUID!) {
+      nasFileset(fid: $fid) {
+        allowBackupHiddenFoldersInNetworkMounts
+        authorizedOperations
+        cdmId
+        cdmLink
+        cdmPendingObjectPauseAssignment
+        hardlinkSupportEnabled
+        id
+        isPassThrough
+        isRelic
+        isReplica
+        name
+        nasMigrationInfo
+        numWorkloadDescendants
+        objectType
+        onDemandSnapshotCount
+        pathsExceptions
+        pathsExcluded
+        pathsIncluded
+        replicatedObjectCount
+        slaAssignment
+        slaPauseStatus
+        snapmirrorLabelForFullBackup
+        snapmirrorLabelForIncrementalBackup
+        symlinkResolutionEnabled
+        templateFid
+      }
+    }

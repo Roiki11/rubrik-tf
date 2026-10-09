@@ -1,0 +1,8 @@
+query MultiHopUpgradePath($clusterUuid: UUID!, $targetVersion: String!) {
+      multiHopUpgradePath(
+        clusterUuid: $clusterUuid
+        targetVersion: $targetVersion
+      ) {
+        versionPath
+      }
+    }

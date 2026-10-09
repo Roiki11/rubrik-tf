@@ -1,0 +1,5 @@
+mutation UpdateDestinationRoleForRcvMigration($input: UpdateDestinationRoleForRcvMigrationInput!) {
+      updateDestinationRoleForRcvMigration(input: $input) {
+        status
+      }
+    }

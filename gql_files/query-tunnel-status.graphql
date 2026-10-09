@@ -1,0 +1,10 @@
+query TunnelStatus($input: GetTunnelStatusInput!) {
+      tunnelStatus(input: $input) {
+        enabledTime
+        errorMessage
+        inactivityTimeoutInSeconds
+        isTunnelEnabled
+        lastActivityTime
+        port
+      }
+    }

@@ -1,0 +1,7 @@
+query GetMissedMongoCollectionSetSnapshots($input: GetMissedMongoCollectionSetSnapshotsInput!) {
+      getMissedMongoCollectionSetSnapshots(input: $input) {
+        hasMore
+        nextCursor
+        total
+      }
+    }

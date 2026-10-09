@@ -1,0 +1,13 @@
+query {
+      groupsInCurrentAndDescendantOrganization(first: 10) {
+        nodes {
+          domainName
+          groupId
+          groupName
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

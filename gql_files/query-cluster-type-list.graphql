@@ -1,0 +1,6 @@
+query {
+      clusterTypeList {
+        count
+        group
+      }
+    }

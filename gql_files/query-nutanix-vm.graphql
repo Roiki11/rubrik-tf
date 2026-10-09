@@ -1,0 +1,30 @@
+query NutanixVm($fid: UUID!) {
+      nutanixVm(fid: $fid) {
+        authorizedOperations
+        blueprintId
+        blueprintName
+        cdmId
+        cdmLink
+        cdmPendingObjectPauseAssignment
+        currentHostId
+        excludedDisks
+        hypervisorType
+        id
+        isAgentRegistered
+        isBlueprintChild
+        isRelic
+        isReplica
+        name
+        numWorkloadDescendants
+        nutanixSnapshotConsistencyMandate
+        nutanixVmMountCount
+        objectType
+        onDemandSnapshotCount
+        osType
+        replicatedObjectCount
+        slaAssignment
+        slaPauseStatus
+        snapshotConsistencyMandate
+        vmUuid
+      }
+    }

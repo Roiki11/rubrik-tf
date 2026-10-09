@@ -1,0 +1,11 @@
+mutation ExportK8sVirtualMachineSnapshot($input: CreateK8sVMExportJobInput!) {
+      exportK8sVirtualMachineSnapshot(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

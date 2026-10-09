@@ -1,0 +1,5 @@
+mutation UpdateK8sCluster($input: UpdateK8sClusterInput!) {
+      updateK8sCluster(input: $input) {
+        success
+      }
+    }

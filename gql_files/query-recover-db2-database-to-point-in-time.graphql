@@ -1,0 +1,11 @@
+query RecoverDb2DatabaseToPointInTime($input: RecoverDb2DatabaseToPointInTimeInput!) {
+      recoverDb2DatabaseToPointInTime(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

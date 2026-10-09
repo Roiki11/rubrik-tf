@@ -1,0 +1,3 @@
+mutation UpdatePureStorageProtectionGroupQuiesceTargets($input: UpdatePureStorageProtectionGroupQuiesceTargetsInput!) {
+      updatePureStorageProtectionGroupQuiesceTargets(input: $input)
+    }

@@ -1,0 +1,10 @@
+mutation CreateGlobalSla($input: CreateGlobalSlaInput!) {
+  createGlobalSla(input: $input) {
+    id
+    name
+    description
+    objectTypes
+    isRetentionLockedSla
+    retentionLockMode
+  }
+}

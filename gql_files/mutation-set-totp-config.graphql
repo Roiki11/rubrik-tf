@@ -1,0 +1,3 @@
+mutation SetTotpConfig($input: SetTotpConfigInput!) {
+      setTotpConfig(input: $input)
+    }

@@ -1,0 +1,6 @@
+mutation StartGitHubAppSetup($input: StartGitHubAppSetupInput!) {
+      startGitHubAppSetup(input: $input) {
+        isOrgPublicalyDiscoverable
+        orgAlreadyAdded
+      }
+    }

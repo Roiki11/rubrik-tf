@@ -1,0 +1,3 @@
+mutation SetupCdmTotp($input: SetupCdmTotpInput!) {
+      setupCdmTotp(input: $input)
+    }

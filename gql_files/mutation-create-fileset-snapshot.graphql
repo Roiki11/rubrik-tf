@@ -1,0 +1,11 @@
+mutation CreateFilesetSnapshot($input: CreateFilesetSnapshotInput!) {
+      createFilesetSnapshot(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

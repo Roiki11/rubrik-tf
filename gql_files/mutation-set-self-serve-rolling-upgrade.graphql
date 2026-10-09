@@ -1,0 +1,5 @@
+mutation SetSelfServeRollingUpgrade($input: SetSelfServeRollingUpgradeInput!) {
+      setSelfServeRollingUpgrade(input: $input) {
+        enabled
+      }
+    }

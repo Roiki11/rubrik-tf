@@ -1,0 +1,11 @@
+mutation DownloadSapHanaSnapshotsForPointInTimeRecovery($input: DownloadSapHanaSnapshotsForPointInTimeRecoveryInput!) {
+      downloadSapHanaSnapshotsForPointInTimeRecovery(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

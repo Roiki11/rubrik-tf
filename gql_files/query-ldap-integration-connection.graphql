@@ -1,0 +1,22 @@
+query {
+      ldapIntegrationConnection(first: 10) {
+        nodes {
+          baseDn
+          bindUserName
+          dynamicDnsName
+          groupMemberAttr
+          groupMembershipAttr
+          groupSearchFilter
+          id
+          isTotpEnforced
+          name
+          trustedCerts
+          userNameAttr
+          userSearchFilter
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

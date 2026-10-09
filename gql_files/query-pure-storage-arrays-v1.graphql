@@ -1,0 +1,26 @@
+query {
+      pureStorageArraysV1(first: 10) {
+        nodes {
+          authorizedOperations
+          cdmId
+          cdmPendingObjectPauseAssignment
+          clusterUuid
+          hostName
+          id
+          isReplica
+          name
+          numWorkloadDescendants
+          objectType
+          primaryClusterUuid
+          pureStorageId
+          replicatedObjectCount
+          slaAssignment
+          slaPauseStatus
+          version
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

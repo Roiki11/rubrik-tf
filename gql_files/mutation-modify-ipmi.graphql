@@ -1,0 +1,5 @@
+mutation ModifyIpmi($input: ModifyIpmiInput!) {
+      modifyIpmi(input: $input) {
+        isAvailable
+      }
+    }

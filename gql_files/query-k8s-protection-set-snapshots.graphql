@@ -1,0 +1,7 @@
+query K8sProtectionSetSnapshots($input: QueryK8sSnapshotInput!) {
+      k8sProtectionSetSnapshots(input: $input) {
+        hasMore
+        nextCursor
+        total
+      }
+    }

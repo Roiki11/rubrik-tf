@@ -1,0 +1,6 @@
+query ExocomputeGetClusterConnectionInfo($input: ExocomputeGetClusterConnectionInput!) {
+      exocomputeGetClusterConnectionInfo(input: $input) {
+        clusterSetupYaml
+        clusterUuid
+      }
+    }

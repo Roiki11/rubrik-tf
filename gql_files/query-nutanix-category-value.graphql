@@ -1,0 +1,18 @@
+query NutanixCategoryValue($fid: UUID!) {
+      nutanixCategoryValue(fid: $fid) {
+        authorizedOperations
+        categoryId
+        cdmId
+        cdmPendingObjectPauseAssignment
+        duplicateObjectsAbsoluteCount
+        id
+        isReplica
+        name
+        numWorkloadDescendants
+        objectType
+        prismCentralId
+        replicatedObjectCount
+        slaAssignment
+        slaPauseStatus
+      }
+    }

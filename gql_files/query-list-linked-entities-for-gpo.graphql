@@ -1,0 +1,16 @@
+query {
+      listLinkedEntitiesForGpo(first: 10) {
+        nodes {
+          displayName
+          enforced
+          entityId
+          entityType
+          linkEnabled
+          linkType
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

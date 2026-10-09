@@ -1,0 +1,10 @@
+mutation StartUpgradeBatchJob($listClusterUuid: [UUID!]!, $mode: String!, $action: ActionType!, $version: String!) {
+      startUpgradeBatchJob(
+        listClusterUuid: $listClusterUuid
+        mode: $mode
+        action: $action
+        version: $version
+      ) {
+        uuid
+      }
+    }

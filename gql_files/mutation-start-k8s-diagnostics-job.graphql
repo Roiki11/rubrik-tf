@@ -1,0 +1,11 @@
+mutation StartK8sDiagnosticsJob($input: StartK8sDiagnosticsJobInput!) {
+      startK8sDiagnosticsJob(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

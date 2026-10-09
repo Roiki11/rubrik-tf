@@ -1,0 +1,3 @@
+mutation BulkUpdateMssqlPropertiesOnWindowsCluster($input: BulkUpdateMssqlPropertiesOnWindowsClusterInput!) {
+      bulkUpdateMssqlPropertiesOnWindowsCluster(input: $input)
+    }

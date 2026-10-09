@@ -1,0 +1,22 @@
+query {
+      allWebhooks {
+        nodes {
+          authType
+          createdAt
+          createdBy
+          description
+          id
+          name
+          providerType
+          serverCertificate
+          serviceAccountId
+          status
+          updatedAt
+          url
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

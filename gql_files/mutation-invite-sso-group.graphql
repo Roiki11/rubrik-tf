@@ -1,0 +1,3 @@
+mutation InviteSsoGroup($input: InviteSsoGroupInput!) {
+      inviteSsoGroup(input: $input)
+    }

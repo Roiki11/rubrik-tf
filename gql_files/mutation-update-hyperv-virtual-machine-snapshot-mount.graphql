@@ -1,0 +1,3 @@
+mutation UpdateHypervVirtualMachineSnapshotMount($input: UpdateHypervVirtualMachineSnapshotMountInput!) {
+      updateHypervVirtualMachineSnapshotMount(input: $input)
+    }

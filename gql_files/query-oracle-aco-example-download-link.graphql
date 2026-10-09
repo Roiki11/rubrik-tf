@@ -1,0 +1,5 @@
+query OracleAcoExampleDownloadLink($input: ClusterUuidWithDbIdInput!) {
+      oracleAcoExampleDownloadLink(input: $input) {
+        downloadLink
+      }
+    }

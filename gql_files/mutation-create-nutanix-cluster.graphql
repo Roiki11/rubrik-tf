@@ -1,0 +1,11 @@
+mutation CreateNutanixCluster($input: CreateNutanixClusterInput!) {
+      createNutanixCluster(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

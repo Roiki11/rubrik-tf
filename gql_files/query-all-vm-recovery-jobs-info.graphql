@@ -1,0 +1,12 @@
+query AllVmRecoveryJobsInfo($fid: UUID!, $input: AllVmRecoveryJobsInfoInput!) {
+      allVmRecoveryJobsInfo(
+        fid: $fid
+        input: $input
+      ) {
+        cdmRecoveryJobId
+        jobStatus
+        vmId
+        vmName
+        vmSizeInKbs
+      }
+    }

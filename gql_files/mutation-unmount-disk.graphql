@@ -1,0 +1,3 @@
+mutation UnmountDisk($input: UnmountDiskInput!) {
+      unmountDisk(input: $input)
+    }

@@ -1,0 +1,5 @@
+mutation SendPdfReport($input: SendPdfReportInput!) {
+      sendPdfReport(input: $input) {
+        taskchainUuid
+      }
+    }

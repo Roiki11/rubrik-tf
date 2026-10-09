@@ -1,0 +1,11 @@
+mutation RestoreK8sProtectionSetSnapshot($input: CreateK8sRestoreJobInput!) {
+      restoreK8sProtectionSetSnapshot(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

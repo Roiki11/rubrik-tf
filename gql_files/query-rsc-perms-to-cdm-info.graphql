@@ -1,0 +1,8 @@
+query RscPermsToCdmInfo($protectableClusters: [String!]!, $permissions: [PermissionInput!]!) {
+      rscPermsToCdmInfo(
+        protectableClusters: $protectableClusters
+        permissions: $permissions
+      ) {
+        totalDisconnectedClusters
+      }
+    }

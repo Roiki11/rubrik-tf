@@ -1,0 +1,6 @@
+mutation RestoreK8sNamespace($input: RestoreK8sNamespaceInput!) {
+      restoreK8sNamespace(input: $input) {
+        jobId
+        taskchainId
+      }
+    }

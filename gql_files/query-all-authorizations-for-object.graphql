@@ -1,0 +1,3 @@
+query AllAuthorizationsForObject($fid: UUID!) {
+      allAuthorizationsForObject(fid: $fid)
+    }

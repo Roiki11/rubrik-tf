@@ -1,0 +1,8 @@
+query UserAlreadyExists($emailOrUsername: String!, $userDomain: UserDomainEnum!) {
+      userAlreadyExists(
+        emailOrUsername: $emailOrUsername
+        userDomain: $userDomain
+      ) {
+        doesExist
+      }
+    }

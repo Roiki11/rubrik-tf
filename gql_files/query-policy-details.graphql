@@ -1,0 +1,23 @@
+query {
+      policyDetails(first: 10) {
+        nodes {
+          analyzers
+          dataTypeIds
+          description
+          id
+          isActive
+          lastUpdatedTime
+          name
+          objectsPercentCoverage
+          pendingAnalysisObjects
+          percentCoverage
+          totalDocumentTypes
+          totalHits
+          totalObjects
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

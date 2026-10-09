@@ -1,0 +1,5 @@
+mutation CreateViolationRemediation($input: CreateViolationRemediationInput!) {
+      createViolationRemediation(input: $input) {
+        remediationId
+      }
+    }

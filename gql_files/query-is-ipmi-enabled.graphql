@@ -1,0 +1,3 @@
+query IsIpmiEnabled($input: IsIpmiEnabledInput!) {
+      isIpmiEnabled(input: $input)
+    }

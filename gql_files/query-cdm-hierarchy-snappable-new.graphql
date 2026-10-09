@@ -1,0 +1,14 @@
+query CdmHierarchySnappableNew($snappableFid: UUID!) {
+      cdmHierarchySnappableNew(snappableFid: $snappableFid) {
+        cdmId
+        cdmLink
+        id
+        isReplica
+        name
+        numWorkloadDescendants
+        objectType
+        onDemandSnapshotCount
+        slaAssignment
+        slaPauseStatus
+      }
+    }

@@ -1,0 +1,13 @@
+query ThreatHuntDetailV2($huntId: String!) {
+      threatHuntDetailV2(huntId: $huntId) {
+        endTime
+        hasFileVersionInfo
+        hashCatalogLimitExceeded
+        startTime
+        status
+        totalMatchedSnapshots
+        totalObjectFids
+        totalScannedSnapshots
+        totalUniqueFileMatches
+      }
+    }

@@ -1,0 +1,5 @@
+mutation DissolveLegalHold($input: DissolveLegalHoldInput!) {
+      dissolveLegalHold(input: $input) {
+        snapshotIds
+      }
+    }

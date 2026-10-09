@@ -1,0 +1,21 @@
+query VSphereDatastore($fid: UUID!) {
+      vSphereDatastore(fid: $fid) {
+        authorizedOperations
+        backingDeviceName
+        capacity
+        cdmPendingObjectPauseAssignment
+        datastoreType
+        freeSpace
+        id
+        isArchived
+        isLocal
+        isReplica
+        isStandaloneDatastore
+        name
+        numWorkloadDescendants
+        objectType
+        replicatedObjectCount
+        slaAssignment
+        slaPauseStatus
+      }
+    }

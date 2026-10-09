@@ -1,0 +1,8 @@
+mutation BulkDeleteCassandraSources($input: BulkDeleteMosaicSourcesInput!) {
+      bulkDeleteCassandraSources(input: $input) {
+        data
+        message
+        returnCode
+        status
+      }
+    }

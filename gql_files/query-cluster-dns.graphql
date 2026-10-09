@@ -1,0 +1,6 @@
+query ClusterDns($clusterUuid: UUID!) {
+      clusterDns(clusterUuid: $clusterUuid) {
+        domains
+        servers
+      }
+    }

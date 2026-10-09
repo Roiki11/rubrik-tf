@@ -1,0 +1,6 @@
+query AllSnapshotsClosestToPointInTime($snappableIds: [String!]!) {
+      allSnapshotsClosestToPointInTime(snappableIds: $snappableIds) {
+        error
+        snappableId
+      }
+    }

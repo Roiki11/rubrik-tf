@@ -1,0 +1,3 @@
+mutation LinuxRbsBulkInstall($input: LinuxRbsBulkInstallInput!) {
+      linuxRbsBulkInstall(input: $input)
+    }

@@ -1,0 +1,5 @@
+mutation UpdateK8sProtectionSet($input: UpdateK8sProtectionSetInput!) {
+      updateK8sProtectionSet(input: $input) {
+        success
+      }
+    }

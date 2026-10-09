@@ -1,0 +1,11 @@
+mutation VsphereExportSnapshotToStandaloneHostV2($input: VsphereExportSnapshotToStandaloneHostV2Input!) {
+      vsphereExportSnapshotToStandaloneHostV2(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

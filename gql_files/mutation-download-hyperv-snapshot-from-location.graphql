@@ -1,0 +1,11 @@
+mutation DownloadHypervSnapshotFromLocation($input: DownloadHypervSnapshotFromLocationInput!) {
+      downloadHypervSnapshotFromLocation(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

@@ -1,0 +1,7 @@
+query AllAuthorizationsForObjects($fids: [UUID!]!) {
+      allAuthorizationsForObjects(fids: $fids) {
+        id
+        operations
+        workloadHierarchy
+      }
+    }

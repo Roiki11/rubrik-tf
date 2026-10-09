@@ -1,0 +1,7 @@
+query OracleRecoverableRanges($input: GetOracleDbRecoverableRangesInput!) {
+      oracleRecoverableRanges(input: $input) {
+        hasMore
+        nextCursor
+        total
+      }
+    }

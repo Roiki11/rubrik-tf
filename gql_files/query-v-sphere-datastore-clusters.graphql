@@ -1,0 +1,25 @@
+query {
+      vSphereDatastoreClusters(first: 10) {
+        nodes {
+          authorizedOperations
+          capacity
+          cdmId
+          cdmPendingObjectPauseAssignment
+          freeSpace
+          id
+          isReplica
+          isSdrsEnabled
+          name
+          numWorkloadDescendants
+          objectType
+          replicatedObjectCount
+          slaAssignment
+          slaPauseStatus
+          vcenterId
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
+      }
+    }

@@ -1,0 +1,3 @@
+mutation UpdateProxmoxEnvironment($input: UpdateProxmoxEnvironmentInput!) {
+      updateProxmoxEnvironment(input: $input)
+    }

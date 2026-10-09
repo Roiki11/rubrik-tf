@@ -1,0 +1,20 @@
+query ExchangeServer($fid: UUID!) {
+      exchangeServer(fid: $fid) {
+        authorizedOperations
+        cdmId
+        cdmPendingObjectPauseAssignment
+        hasVgConflict
+        id
+        isReplica
+        name
+        numWorkloadDescendants
+        objectType
+        primaryClusterUuid
+        replicatedObjectCount
+        slaAssignment
+        slaPauseStatus
+        totalDbs
+        version
+        vgConflictResolvedByUser
+      }
+    }

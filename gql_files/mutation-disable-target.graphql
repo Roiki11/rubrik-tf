@@ -1,0 +1,6 @@
+mutation DisableTarget($input: DisableTargetInput!) {
+      disableTarget(input: $input) {
+        locationId
+        status
+      }
+    }

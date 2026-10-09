@@ -1,0 +1,3 @@
+mutation SetObjectBackupWindows($input: SetObjectBackupWindowsInput!) {
+      setObjectBackupWindows(input: $input)
+    }

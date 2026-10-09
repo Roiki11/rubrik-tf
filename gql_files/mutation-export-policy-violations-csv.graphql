@@ -1,0 +1,5 @@
+mutation ExportPolicyViolationsCsv($input: ExportPolicyViolationsCsvInput!) {
+      exportPolicyViolationsCsv(input: $input) {
+        downloadId
+      }
+    }

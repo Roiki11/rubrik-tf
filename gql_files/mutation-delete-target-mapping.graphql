@@ -1,0 +1,3 @@
+mutation DeleteTargetMapping($input: DeleteTargetMappingInput!) {
+      deleteTargetMapping(input: $input)
+    }

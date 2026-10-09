@@ -1,0 +1,3 @@
+query SensitiveFileDetails($input: SensitiveFileMetadataInput!) {
+      sensitiveFileDetails(input: $input)
+    }

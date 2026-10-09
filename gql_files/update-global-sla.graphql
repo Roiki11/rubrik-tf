@@ -1,0 +1,10 @@
+mutation UpdateGlobalSla($input: UpdateGlobalSlaInput!) {
+  updateGlobalSla(input: $input) {
+    id
+    name
+    description
+    objectTypes
+    isRetentionLockedSla
+    retentionLockMode
+  }
+}

@@ -1,0 +1,5 @@
+mutation BulkAddNasShares($input: BulkAddNasSharesInput!) {
+      bulkAddNasShares(input: $input) {
+        nasSourceId
+      }
+    }

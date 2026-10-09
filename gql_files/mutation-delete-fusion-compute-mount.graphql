@@ -1,0 +1,11 @@
+mutation DeleteFusionComputeMount($input: DeleteFusionComputeMountInput!) {
+      deleteFusionComputeMount(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

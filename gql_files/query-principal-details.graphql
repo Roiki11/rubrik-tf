@@ -1,0 +1,6 @@
+query PrincipalDetails($sid: String!, $timelineDate: String!) {
+      principalDetails(
+        sid: $sid
+        timelineDate: $timelineDate
+      )
+    }

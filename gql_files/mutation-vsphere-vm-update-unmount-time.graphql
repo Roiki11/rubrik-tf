@@ -1,0 +1,3 @@
+mutation VsphereVmUpdateUnmountTime($input: VsphereVmUpdateUnmountTimeInput!) {
+      vsphereVmUpdateUnmountTime(input: $input)
+    }

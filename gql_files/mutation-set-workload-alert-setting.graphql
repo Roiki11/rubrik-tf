@@ -1,0 +1,5 @@
+mutation SetWorkloadAlertSetting($input: SetWorkloadAlertSettingInput!) {
+      setWorkloadAlertSetting(input: $input) {
+        enabled
+      }
+    }

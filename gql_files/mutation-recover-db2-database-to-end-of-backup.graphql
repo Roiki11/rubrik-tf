@@ -1,0 +1,11 @@
+mutation RecoverDb2DatabaseToEndOfBackup($input: RecoverDb2DatabaseToEndOfBackupInput!) {
+      recoverDb2DatabaseToEndOfBackup(input: $input) {
+        endTime
+        id
+        nodeId
+        progress
+        result
+        startTime
+        status
+      }
+    }

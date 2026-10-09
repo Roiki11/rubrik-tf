@@ -1,0 +1,13 @@
+mutation AddK8sProtectionSet($input: AddK8sProtectionSetInput!) {
+      addK8sProtectionSet(input: $input) {
+        definition
+        hookConfigs
+        id
+        kubernetesClusterUuid
+        kubernetesNamespace
+        name
+        namespaceExcludePatterns
+        namespaceIncludePatterns
+        rsType
+      }
+    }
