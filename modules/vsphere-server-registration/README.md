@@ -27,8 +27,11 @@ module "vsphere_servers" {
 ```
 
 Optional per-server fields are `ca_certs`, `should_enable_hot_add_proxy_onprem`,
-`conflict_resolution_authz` (`AllowAutoConflictResolution` or
-`NoConflictResolution`), `org_network_id`, and
+`conflict_resolution_authz`
+(`VCENTER_CONFIG_V2_CONFLICT_RESOLUTION_AUTHZ_ALLOW_AUTO_CONFLICT_RESOLUTION`
+or
+`VCENTER_CONFIG_V2_CONFLICT_RESOLUTION_AUTHZ_NO_CONFLICT_RESOLUTION`),
+`org_network_id`, and
 `is_compute_visibility_filter_disabled` where supported by the target Rubrik
 version.
 

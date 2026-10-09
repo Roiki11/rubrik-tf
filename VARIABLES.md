@@ -607,8 +607,11 @@ Source: `./modules/vsphere-server-registration`
 |---|---|---|---|
 | `servers` | `map(object)` | `{}` | vCenter or standalone ESXi registrations keyed by stable Terraform names. Required fields: `cluster_uuid`, `hostname`, `username`, and `password`. Optional fields: `ca_certs`, `is_standalone_host`, `should_enable_hot_add_proxy_onprem`, `conflict_resolution_authz`, `org_network_id`, and `is_compute_visibility_filter_disabled`. |
 
-`conflict_resolution_authz` supports `AllowAutoConflictResolution` or
-`NoConflictResolution`. Registration credentials are stored in Terraform state.
+`conflict_resolution_authz` supports
+`VCENTER_CONFIG_V2_CONFLICT_RESOLUTION_AUTHZ_ALLOW_AUTO_CONFLICT_RESOLUTION`
+or
+`VCENTER_CONFIG_V2_CONFLICT_RESOLUTION_AUTHZ_NO_CONFLICT_RESOLUTION`.
+Registration credentials are stored in Terraform state.
 Changes replace the registration because the API does not expose a credential
 update operation; destroying an entry unregisters the server. Unregistration
 can affect protection and inventory visibility. See the
