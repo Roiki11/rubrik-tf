@@ -24,9 +24,12 @@ variable "fileset_templates" {
   validation {
     condition = alltrue([
       for template in values(var.fileset_templates) :
-      length(template.includes) > 0
+      length(template.includes) > 0 &&
+      alltrue([for path in template.includes : length(trimspace(path)) > 0]) &&
+      alltrue([for path in template.excludes : length(trimspace(path)) > 0]) &&
+      alltrue([for path in template.exceptions : length(trimspace(path)) > 0])
     ])
-    error_message = "Every Linux fileset template must include at least one path."
+    error_message = "Every Linux fileset template must include at least one non-empty path; exclude and exception paths must also be non-empty."
   }
 
   validation {
@@ -60,7 +63,15 @@ variable "fileset_assignments" {
 }
 
 variable "sla_ids" {
-  description = "SLA Domain IDs keyed as assignment:<Terraform assignment key>."
+  description = "Valid Rubrik SLA Domain UUIDs keyed as assignment:<Terraform assignment key>."
   type        = map(string)
   default     = {}
+
+  validation {
+    condition = alltrue([
+      for id in values(var.sla_ids) :
+      can(regex("^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$", id))
+    ])
+    error_message = "Every SLA ID must be a UUID in 8-4-4-4-12 hexadecimal format."
+  }
 }

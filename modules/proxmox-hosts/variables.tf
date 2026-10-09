@@ -11,8 +11,11 @@ variable "hosts" {
   validation {
     condition = alltrue([
       for host in values(var.hosts) :
-      host.api_token != null || host.ca_certs != null
+      length(trimspace(host.environment_id)) > 0 &&
+      (host.api_token != null || host.ca_certs != null) &&
+      (host.api_token == null || length(trimspace(host.api_token)) > 0) &&
+      (host.ca_certs == null || length(trimspace(host.ca_certs)) > 0)
     ])
-    error_message = "Each Proxmox host must configure at least an api_token or ca_certs value."
+    error_message = "Each Proxmox host requires a non-empty environment_id and at least one non-empty api_token or ca_certs value."
   }
 }

@@ -14,8 +14,6 @@ vault_credential_refs = {
   powerscale_smb_password       = { mount = "secret", path = "rubrik/terraform", key = "powerscale_smb_password" }
   finance_share_username        = { mount = "secret", path = "rubrik/terraform", key = "finance_share_username" }
   finance_share_password        = { mount = "secret", path = "rubrik/terraform", key = "finance_share_password" }
-  netapp_username               = { mount = "secret", path = "rubrik/terraform", key = "netapp_username" }
-  netapp_password               = { mount = "secret", path = "rubrik/terraform", key = "netapp_password" }
   s3_access_key                 = { mount = "secret", path = "rubrik/terraform", key = "s3_access_key" }
   s3_secret_key                 = { mount = "secret", path = "rubrik/terraform", key = "s3_secret_key" }
   vcenter_username              = { mount = "secret", path = "rubrik/terraform", key = "vcenter_username" }
@@ -32,35 +30,19 @@ vault_credential_refs = {
   tape_recovery_password         = { mount = "secret", path = "rubrik/terraform", key = "tape_recovery_password" }
   tape_recovery_username         = { mount = "secret", path = "rubrik/terraform", key = "tape_recovery_username" }
 }
-vsphere_vm_names = [
-  "application-01",
-  "application-02",
-]
-vsphere_vm_sla_domain_keys = {
+vsphere_vms = {
   application-01 = "standard"
   application-02 = "critical"
 }
-vsphere_folder_names = [
-  "Production",
-  "Development",
-]
-vsphere_folder_sla_domain_keys = {
+vsphere_folders = {
   Production  = "standard"
   Development = "critical"
 }
-vsphere_tag_ids = [
-  "66666666-6666-6666-6666-666666666666",
-  "77777777-7777-7777-7777-777777777777",
-]
-vsphere_tag_sla_domain_keys = {
+vsphere_tags = {
   "66666666-6666-6666-6666-666666666666" = "standard"
   "77777777-7777-7777-7777-777777777777" = "critical"
 }
-postgresql_db_cluster_names = [
-  "postgres-production",
-  "postgres-analytics",
-]
-postgresql_sla_domain_keys = {
+postgresql_clusters = {
   postgres-production = "standard"
   postgres-analytics  = "critical"
 }
@@ -84,79 +66,63 @@ linux_fileset_assignments = {
   application_server = {
     host_name                 = "app-server-01.example.invalid"
     template_name             = "application"
+    sla_domain_key            = "standard"
     enable_hardlink_support   = true
     enable_symlink_resolution = false
   }
   batch_server = {
     host_name                 = "batch-server-01.example.invalid"
     template_name             = "application"
+    sla_domain_key            = "critical"
     enable_hardlink_support   = false
     enable_symlink_resolution = true
   }
 }
-linux_fileset_sla_domain_keys = {
-  application_server = "standard"
-  batch_server       = "critical"
-}
-kubernetes_cluster_names = [
-  "production-k8s",
-  "staging-k8s",
-]
-kubernetes_cluster_sla_domain_keys = {
-  production-k8s = "standard"
-  staging-k8s    = "critical"
-}
-kubernetes_protection_set_names = [
-  "production-apps",
-  "staging-apps",
-]
-kubernetes_protection_set_sla_domain_keys = {
-  production-apps = "standard"
-  staging-apps    = "critical"
-}
-kubernetes_namespaces = {
-  production_default = {
-    cluster_name   = "production-k8s"
-    namespace_name = "default"
+kubernetes = {
+  clusters = {
+    production-k8s = "standard"
+    staging-k8s    = "critical"
   }
-  staging_apps = {
-    cluster_name   = "staging-k8s"
-    namespace_name = "apps"
+  protection_sets = {
+    production-apps = "standard"
+    staging-apps    = "critical"
   }
-}
-kubernetes_namespace_sla_domain_keys = {
-  production_default = "standard"
-  staging_apps       = "critical"
+  namespaces = {
+    production_default = {
+      cluster_name   = "production-k8s"
+      namespace_name = "default"
+      sla_domain_key = "standard"
+    }
+    staging_apps = {
+      cluster_name   = "staging-k8s"
+      namespace_name = "apps"
+      sla_domain_key = "critical"
+    }
+  }
 }
 proxmox_objects = {
   environment = {
-    name        = "proxmox-production"
-    object_type = "PROXMOX_ENVIRONMENT"
+    name           = "proxmox-production"
+    object_type    = "PROXMOX_ENVIRONMENT"
+    sla_domain_key = "standard"
   }
   cluster = {
-    name        = "production-cluster"
-    object_type = "PROXMOX_CLUSTER"
+    name           = "production-cluster"
+    object_type    = "PROXMOX_CLUSTER"
+    sla_domain_key = "standard"
   }
   node = {
-    name        = "pve-node-01"
-    object_type = "PROXMOX_NODE"
+    name           = "pve-node-01"
+    object_type    = "PROXMOX_NODE"
+    sla_domain_key = "standard"
   }
   virtual_machine = {
-    name        = "application-01"
-    object_type = "PROXMOX_VIRTUAL_MACHINE"
+    name           = "application-01"
+    object_type    = "PROXMOX_VIRTUAL_MACHINE"
+    sla_domain_key = "critical"
   }
 }
-proxmox_object_sla_domain_keys = {
-  environment     = "standard"
-  cluster         = "standard"
-  node            = "standard"
-  virtual_machine = "critical"
-}
-nas_share_names = [
-  "engineering-nfs",
-  "finance-smb",
-]
-nas_share_sla_domain_keys = {
+nas_existing_shares = {
   engineering-nfs = "standard"
   finance-smb     = "critical"
 }
@@ -197,28 +163,24 @@ nas_shares = {
     export_point   = "/engineering"
     share_type     = "CREATE_NAS_SHARE_INPUT_SHARE_TYPE_NFS"
     nas_server_key = "default"
+    sla_domain_key = "standard"
   }
   finance_smb = {
     export_point   = "finance"
     share_type     = "CREATE_NAS_SHARE_INPUT_SHARE_TYPE_SMB"
     nas_server_key = "powerscale"
+    sla_domain_key = "critical"
     credentials = {
       username_credential = "finance_share_username"
       password_credential = "finance_share_password"
     }
   }
 }
-nas_configured_share_sla_domain_keys = {
-  engineering_nfs = "standard"
-  finance_smb      = "critical"
-}
 nas_cloud_direct_systems = {
-  netapp_production = {
+  generic_nfs_production = {
     cluster_id                    = "00000000-0000-0000-0000-000000000001"
-    host                          = "netapp.example.invalid"
-    system_type                   = "NETAPP_CLUSTER_MODE"
-    username_credential           = "netapp_username"
-    password_credential           = "netapp_password"
+    host                          = "nas-cloud-direct.example.invalid"
+    system_type                   = "GENERIC_NFS"
     skip_service_account_creation = false
     verify_ssl                    = true
     certificate_data_credential         = null
@@ -249,17 +211,15 @@ nas_cloud_direct_systems = {
 }
 nas_cloud_direct_shares = {
   production_exports = {
-    name        = "/production"
-    system_name = "netapp.example.invalid"
+    name           = "/production"
+    system_name    = "nas-cloud-direct.example.invalid"
+    sla_domain_key = "standard"
   }
   analytics_exports = {
-    name        = "/analytics"
-    system_name = "netapp.example.invalid"
+    name           = "/analytics"
+    system_name    = "nas-cloud-direct.example.invalid"
+    sla_domain_key = "critical"
   }
-}
-nas_cloud_direct_share_sla_domain_keys = {
-  production_exports = "standard"
-  analytics_exports  = "critical"
 }
 sla_domains = {
   standard = {

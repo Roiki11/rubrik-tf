@@ -18,8 +18,16 @@ variable "targets" {
     condition = alltrue([
       for target in values(var.targets) :
       can(regex("^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$", target.cluster_uuid))
+      && target.host_port >= 1 && target.host_port <= 65535 && target.host_port == floor(target.host_port)
+      && length(trimspace(target.destination_folder_name)) > 0
+      && length(trimspace(target.host_name)) > 0
+      && length(trimspace(target.integral_volume_name)) > 0
+      && length(trimspace(target.name)) > 0
+      && length(trimspace(target.username)) > 0
+      && length(trimspace(target.password)) > 0
+      && length(trimspace(target.encryption_password)) > 0
     ])
-    error_message = "Every tape target cluster_uuid must be a UUID."
+    error_message = "Every tape target requires a UUID cluster_uuid, host_port from 1 to 65535, and non-empty destination, host, volume, name, and credential values."
   }
 }
 
@@ -57,7 +65,26 @@ variable "reader_targets" {
     condition = alltrue([
       for target in values(var.reader_targets) :
       can(regex("^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$", target.cluster_uuid))
+      && target.host_port >= 1 && target.host_port <= 65535 && target.host_port == floor(target.host_port)
+      && length(trimspace(target.destination_folder_name)) > 0
+      && length(trimspace(target.host_name)) > 0
+      && length(trimspace(target.integral_volume_name)) > 0
+      && length(trimspace(target.name)) > 0
+      && length(trimspace(target.username)) > 0
+      && length(trimspace(target.password)) > 0
+      && length(trimspace(target.encryption_password)) > 0
     ])
-    error_message = "Every tape reader target cluster_uuid must be a UUID."
+    error_message = "Every tape reader target requires a UUID cluster_uuid, host_port from 1 to 65535, and non-empty destination, host, volume, name, and credential values."
+  }
+
+  validation {
+    condition = alltrue([
+      for target in values(var.reader_targets) :
+      alltrue([
+        for id in target.archival_data_source_ids :
+        can(regex("^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$", id))
+      ])
+    ])
+    error_message = "Every archival_data_source_id must be a UUID in 8-4-4-4-12 hexadecimal format."
   }
 }

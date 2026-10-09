@@ -9,7 +9,7 @@ module "nas_share_protection" {
 
   nas_servers = local.resolved_nas_servers
   nas_shares  = local.resolved_nas_shares
-  share_names = var.nas_share_names
+  share_names = toset(keys(var.nas_existing_shares))
   sla_ids     = local.nas_sla_ids
 }
 

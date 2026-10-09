@@ -16,8 +16,11 @@ directory:
 
 ## Example
 
-At the repository root, set the Rubrik API endpoint and token in the
-`graphql` provider configuration, then supply the VM names and an SLA ID for each VM:
+Configure the `graphql` provider in the calling configuration with the Rubrik
+API endpoint and a valid bearer token. The root configuration retrieves its
+token from Vault using `vault_credential_refs`; direct module callers should
+use their own secure credential mechanism. Supply the VM names and an SLA ID
+for each VM:
 
 ```hcl
 module "vsphere_vm_protection" {
@@ -37,7 +40,7 @@ module "vsphere_vm_protection" {
 `terraform.tfvars.example` shows the root configuration's input format. Copy
 it to `terraform.tfvars` and replace the example values, or provide the
 variables through `TF_VAR_*` environment variables. Keep API tokens out of
-version control.
+version control and protect Terraform state.
 
 ## Lifecycle
 

@@ -4,10 +4,10 @@ module "object_inventory_role" {
 
   name                        = each.value.name
   description                 = each.value.description
-  vsphere_vm_names            = var.vsphere_vm_names
-  vsphere_folder_names        = var.vsphere_folder_names
-  postgresql_db_cluster_names = var.postgresql_db_cluster_names
-  nas_share_names             = var.nas_share_names
+  vsphere_vm_names            = toset(keys(var.vsphere_vms))
+  vsphere_folder_names        = toset(keys(var.vsphere_folders))
+  postgresql_db_cluster_names = toset(keys(var.postgresql_clusters))
+  nas_share_names             = toset(keys(var.nas_existing_shares))
 }
 
 module "automation_service_account" {

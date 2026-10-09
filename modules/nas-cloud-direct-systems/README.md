@@ -11,12 +11,10 @@ module "nas_cloud_direct_systems" {
   source = "./modules/nas-cloud-direct-systems"
 
   systems = {
-    netapp_production = {
+    generic_nfs_production = {
       cluster_id                    = "00000000-0000-0000-0000-000000000000"
-      host                          = "netapp.example.com"
-      system_type                   = "NETAPP_CLUSTER_MODE"
-      username                      = var.netapp_username
-      password                      = var.netapp_password
+      host                          = "nas-cloud-direct.example.com"
+      system_type                   = "GENERIC_NFS"
       skip_service_account_creation = false
       verify_ssl                    = true
     }
@@ -24,10 +22,10 @@ module "nas_cloud_direct_systems" {
 }
 ```
 
-`system_type` accepts Rubrik `CloudDirectNasVendorType` values, including
-`AZURE_FILES`, `AZURE_NETAPP`, `FSXN`, `GENERIC_NFS`, `GENERIC_NFS4`,
-`GENERIC_S3`, `GENERIC_SMB`, `ISILON`, `NETAPP_CLUSTER_MODE`, `NUTANIX`,
-`QUMULO`, and `VAST_DATA`. `GENERIC` and `NETAPP` are deprecated by Rubrik.
+`system_type` accepts the Rubrik `CloudDirectNasVendorType` values listed in
+the input validation, including `AZURE_FILES`, `FSXN`, `GENERIC_NFS`,
+`GENERIC_NFS4`, `GENERIC_S3`, `GENERIC_SMB`, `ISILON`, `NUTANIX`, `QUMULO`,
+and `VAST_DATA`. Use only values supported by the target Rubrik schema.
 
 Optional fields are `username`, `password`, `region`, client certificate
 fields (`certificate_data`, `certificate_key_password`, and

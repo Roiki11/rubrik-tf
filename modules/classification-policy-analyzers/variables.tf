@@ -1,5 +1,5 @@
 variable "analyzers" {
-  description = "Custom sensitive-data analyzers keyed by stable Terraform names."
+  description = "Custom sensitive-data analyzers keyed by stable Terraform names. analyzer_type must be a Rubrik AnalyzerTypeEnum value; risk values are HIGH_RISK, MEDIUM_RISK, LOW_RISK, NO_RISK, or UNKNOWN_RISK; rule_types values are STRUCTURED or UNSTRUCTURED."
   type = map(object({
     name                          = string
     analyzer_type                 = string
@@ -28,10 +28,21 @@ variable "analyzers" {
     is_inactive = optional(bool, false)
   }))
   default = {}
+
+  validation {
+    condition = alltrue([
+      for analyzer in values(var.analyzers) :
+      length(trimspace(analyzer.name)) > 0 &&
+      length(trimspace(analyzer.analyzer_type)) > 0 &&
+      contains(["HIGH_RISK", "MEDIUM_RISK", "LOW_RISK", "NO_RISK", "UNKNOWN_RISK"], analyzer.risk) &&
+      alltrue([for rule_type in analyzer.rule_types : contains(["STRUCTURED", "UNSTRUCTURED"], rule_type)])
+    ])
+    error_message = "Analyzers require a non-empty name and analyzer_type; risk must be HIGH_RISK, MEDIUM_RISK, LOW_RISK, NO_RISK, or UNKNOWN_RISK; rule_types may contain STRUCTURED and/or UNSTRUCTURED."
+  }
 }
 
 variable "policies" {
-  description = "Classification policies keyed by stable Terraform names. Use mode DISCOVERY to configure sensitive-data discovery."
+  description = "Classification policies keyed by stable Terraform names. mode must be DISCOVERY or COMPLIANCE; color_enum must be a Rubrik ClassificationPolicyColor value."
   type = map(object({
     name              = string
     description       = optional(string, "")
@@ -52,5 +63,13 @@ variable "policies" {
       contains(["DISCOVERY", "COMPLIANCE"], policy.mode)
     ])
     error_message = "Policy mode must be DISCOVERY or COMPLIANCE."
+  }
+
+  validation {
+    condition = alltrue([
+      for policy in values(var.policies) :
+      length(trimspace(policy.name)) > 0
+    ])
+    error_message = "Every classification policy requires a non-empty name."
   }
 }

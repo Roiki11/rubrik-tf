@@ -18,13 +18,7 @@ module "postgresql_sla" {
 
   name        = "PostgreSQL daily"
   description = "Daily protection for PostgreSQL clusters"
-  object_types = [
-    "POSTGRES_DB_CLUSTER_OBJECT_TYPE",
-    "K8S_OBJECT_TYPE",
-    "KUPR_OBJECT_TYPE",
-    "PROXMOX_OBJECT_TYPE",
-    "NCD_OBJECT_TYPE",
-  ]
+  object_types = ["POSTGRES_DB_CLUSTER_OBJECT_TYPE"]
   snapshot_schedule = {
     daily = {
       basicSchedule = {

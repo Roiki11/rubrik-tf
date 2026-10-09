@@ -13,7 +13,7 @@ module "nas_cloud_direct_protection" {
   shares = {
     production_exports = {
       name        = "/production"
-      system_name = "netapp.example.com"
+      system_name = "nas-cloud-direct.example.com"
     }
   }
   sla_ids = {

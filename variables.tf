@@ -1,6 +1,11 @@
 variable "rubrik_graphql_url" {
   description = "Rubrik Security Cloud GraphQL endpoint URL."
   type        = string
+
+  validation {
+    condition     = can(regex("^https://[^[:space:]]+$", var.rubrik_graphql_url))
+    error_message = "rubrik_graphql_url must be a non-empty HTTPS URL."
+  }
 }
 
 variable "vault_credential_refs" {
@@ -20,6 +25,11 @@ variable "vault_credential_refs" {
     ])
     error_message = "Every Vault credential reference must specify a mount, path, and key."
   }
+
+  validation {
+    condition     = length(var.vault_credential_refs) > 0 && contains(keys(var.vault_credential_refs), "rubrik_api_token")
+    error_message = "vault_credential_refs must include the rubrik_api_token credential alias."
+  }
 }
 
 /*
@@ -30,67 +40,81 @@ variable "rubrik_api_token" {
 }
 */
 
-variable "vsphere_vm_names" {
-  description = "Exact names of the vSphere VMs to protect. Each name must uniquely resolve in Rubrik."
-  type        = set(string)
-}
-
-variable "vsphere_vm_sla_domain_keys" {
-  description = "SLA Domain keys assigned to vSphere VMs, keyed by exact VM name."
+variable "vsphere_vms" {
+  description = "Exact vSphere VM names mapped to the SLA Domain key to assign."
   type        = map(string)
   default     = {}
-}
-
-variable "vsphere_folder_names" {
-  description = "Exact names of vSphere folders to assign to an SLA Domain. Each name must uniquely resolve in Rubrik."
-  type        = set(string)
-}
-
-variable "vsphere_folder_sla_domain_keys" {
-  description = "SLA Domain keys assigned to vSphere folders, keyed by exact folder name."
-  type        = map(string)
-  default     = {}
-}
-
-variable "vsphere_tag_ids" {
-  description = "Rubrik IDs of vSphere tags to assign to an SLA Domain."
-  type        = set(string)
 
   validation {
     condition = alltrue([
-      for id in var.vsphere_tag_ids :
+      for name, sla_key in var.vsphere_vms :
+      length(trimspace(name)) > 0 && length(trimspace(sla_key)) > 0
+    ])
+    error_message = "Every vSphere VM name and sla_domain_key must be non-empty."
+  }
+}
+
+variable "vsphere_folders" {
+  description = "Exact vSphere folder names mapped to the SLA Domain key to assign."
+  type        = map(string)
+  default     = {}
+
+  validation {
+    condition = alltrue([
+      for name, sla_key in var.vsphere_folders :
+      length(trimspace(name)) > 0 && length(trimspace(sla_key)) > 0
+    ])
+    error_message = "Every vSphere folder name and sla_domain_key must be non-empty."
+  }
+}
+
+variable "vsphere_tags" {
+  description = "Rubrik vSphere tag UUIDs mapped to the SLA Domain key to assign."
+  type        = map(string)
+  default     = {}
+
+  validation {
+    condition = alltrue([
+      for id in keys(var.vsphere_tags) :
       can(regex("^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$", id))
     ])
     error_message = "Every vSphere tag ID must be a UUID."
   }
+
+  validation {
+    condition = alltrue([
+      for sla_key in values(var.vsphere_tags) : length(trimspace(sla_key)) > 0
+    ])
+    error_message = "Every vSphere tag must have a non-empty sla_domain_key."
+  }
 }
 
-variable "vsphere_tag_sla_domain_keys" {
-  description = "SLA Domain keys assigned to vSphere tags, keyed by tag UUID."
+variable "postgresql_clusters" {
+  description = "Exact PostgreSQL cluster names mapped to the SLA Domain key to assign."
   type        = map(string)
   default     = {}
+
+  validation {
+    condition = alltrue([
+      for name, sla_key in var.postgresql_clusters :
+      length(trimspace(name)) > 0 && length(trimspace(sla_key)) > 0
+    ])
+    error_message = "Every PostgreSQL cluster name and sla_domain_key must be non-empty."
+  }
 }
 
-variable "postgresql_db_cluster_names" {
-  description = "Exact names of PostgreSQL database clusters to protect. Each name must uniquely resolve in Rubrik."
-  type        = set(string)
-}
-
-variable "postgresql_sla_domain_keys" {
-  description = "SLA Domain keys assigned to PostgreSQL database clusters, keyed by exact cluster name."
+variable "nas_existing_shares" {
+  description = "Exact existing NAS share names mapped to the SLA Domain key to assign."
   type        = map(string)
   default     = {}
-}
 
-variable "nas_share_names" {
-  description = "Exact names of existing NAS shares to protect. Each name must uniquely resolve in Rubrik."
-  type        = set(string)
-}
-
-variable "nas_share_sla_domain_keys" {
-  description = "SLA Domain keys assigned to existing NAS shares, keyed by exact share name."
-  type        = map(string)
-  default     = {}
+  validation {
+    condition = alltrue([
+      for name, sla_key in var.nas_existing_shares :
+      length(trimspace(name)) > 0 && length(trimspace(sla_key)) > 0
+    ])
+    error_message = "Every existing NAS share name and sla_domain_key must be non-empty."
+  }
 }
 
 variable "linux_fileset_cluster_uuid" {
@@ -122,70 +146,71 @@ variable "linux_fileset_assignments" {
   type = map(object({
     host_name                 = string
     template_name             = string
+    sla_domain_key            = string
     enable_hardlink_support   = optional(bool, false)
     enable_symlink_resolution = optional(bool, false)
   }))
   default = {}
+
+  validation {
+    condition = alltrue([
+      for assignment in values(var.linux_fileset_assignments) :
+      length(trimspace(assignment.host_name)) > 0 &&
+      length(trimspace(assignment.template_name)) > 0 &&
+      length(trimspace(assignment.sla_domain_key)) > 0
+    ])
+    error_message = "Each Linux fileset assignment requires non-empty host_name, template_name, and sla_domain_key values."
+  }
 }
 
-variable "linux_fileset_sla_domain_keys" {
-  description = "SLA Domain keys assigned to Linux fileset assignments, keyed by Terraform assignment key."
-  type        = map(string)
-  default     = {}
-}
-
-variable "kubernetes_cluster_names" {
-  description = "Exact Rubrik inventory names of Kubernetes clusters to protect."
-  type        = set(string)
-  default     = []
-}
-
-variable "kubernetes_cluster_sla_domain_keys" {
-  description = "SLA Domain keys assigned to Kubernetes clusters, keyed by exact cluster name."
-  type        = map(string)
-  default     = {}
-}
-
-variable "kubernetes_protection_set_names" {
-  description = "Exact Rubrik inventory names of Kubernetes protection sets to protect."
-  type        = set(string)
-  default     = []
-}
-
-variable "kubernetes_protection_set_sla_domain_keys" {
-  description = "SLA Domain keys assigned to Kubernetes protection sets, keyed by exact protection-set name."
-  type        = map(string)
-  default     = {}
-}
-
-variable "kubernetes_namespaces" {
-  description = "Kubernetes namespaces to protect, keyed by stable Terraform keys and identified by exact cluster and namespace names."
-  type = map(object({
-    cluster_name   = string
-    namespace_name = string
-  }))
+variable "kubernetes" {
+  description = "Kubernetes clusters, protection sets, and namespaces to protect, grouped with their SLA Domain keys."
+  type = object({
+    clusters        = optional(map(string), {})
+    protection_sets = optional(map(string), {})
+    namespaces = optional(map(object({
+      cluster_name   = string
+      namespace_name = string
+      sla_domain_key = string
+    })), {})
+  })
   default = {}
-}
 
-variable "kubernetes_namespace_sla_domain_keys" {
-  description = "SLA Domain keys assigned to Kubernetes namespaces, keyed by Terraform namespace key."
-  type        = map(string)
-  default     = {}
+  validation {
+    condition = alltrue([
+      for name, sla_key in var.kubernetes.clusters :
+      length(trimspace(name)) > 0 && length(trimspace(sla_key)) > 0
+      ]) && alltrue([
+      for name, sla_key in var.kubernetes.protection_sets :
+      length(trimspace(name)) > 0 && length(trimspace(sla_key)) > 0
+      ]) && alltrue([
+      for namespace in values(var.kubernetes.namespaces) :
+      length(trimspace(namespace.cluster_name)) > 0 &&
+      length(trimspace(namespace.namespace_name)) > 0 &&
+      length(trimspace(namespace.sla_domain_key)) > 0
+    ])
+    error_message = "Kubernetes names and sla_domain_key values must be non-empty."
+  }
 }
 
 variable "proxmox_objects" {
   description = "Proxmox objects to protect, keyed by stable Terraform keys with each exact Rubrik inventory name and managed-object type."
   type = map(object({
-    name        = string
-    object_type = string
+    name           = string
+    object_type    = string
+    sla_domain_key = string
   }))
   default = {}
-}
 
-variable "proxmox_object_sla_domain_keys" {
-  description = "SLA Domain keys assigned to Proxmox objects, keyed by Terraform object key."
-  type        = map(string)
-  default     = {}
+  validation {
+    condition = alltrue([
+      for object in values(var.proxmox_objects) :
+      length(trimspace(object.name)) > 0 &&
+      length(trimspace(object.sla_domain_key)) > 0 &&
+      contains(["PROXMOX_ENVIRONMENT", "PROXMOX_CLUSTER", "PROXMOX_NODE", "PROXMOX_VIRTUAL_MACHINE"], object.object_type)
+    ])
+    error_message = "Each Proxmox object requires a non-empty name and sla_domain_key; object_type must be PROXMOX_ENVIRONMENT, PROXMOX_CLUSTER, PROXMOX_NODE, or PROXMOX_VIRTUAL_MACHINE."
+  }
 }
 
 variable "nas_servers" {
@@ -216,6 +241,16 @@ variable "nas_servers" {
     is_isilon_changelist_enabled = optional(bool)
   }))
   default = {}
+
+  validation {
+    condition = alltrue([
+      for server in values(var.nas_servers) :
+      can(regex("^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$", server.cluster_uuid)) &&
+      length(trimspace(server.hostname)) > 0
+    ])
+    error_message = "Every NAS server requires a UUID cluster_uuid and non-empty hostname."
+  }
+
   validation {
     condition = alltrue([
       for server in values(var.nas_servers) : contains([
@@ -235,6 +270,26 @@ variable "nas_servers" {
     ])
     error_message = "Generic NAS requires generic_parameters; PowerScale requires api_credentials."
   }
+
+  validation {
+    condition = alltrue([
+      for server in values(var.nas_servers) :
+      (server.generic_parameters == null || server.generic_parameters.smb_credentials == null || (
+        length(trimspace(server.generic_parameters.smb_credentials.username_credential)) > 0 &&
+        length(trimspace(server.generic_parameters.smb_credentials.password_credential)) > 0
+      )) &&
+      (server.smb_credentials == null || (
+        length(trimspace(server.smb_credentials.username_credential)) > 0 &&
+        length(trimspace(server.smb_credentials.password_credential)) > 0
+      )) &&
+      (server.api_credentials == null || (
+        length(trimspace(server.api_credentials.api_username_credential)) > 0 &&
+        length(trimspace(server.api_credentials.api_password_credential)) > 0 &&
+        (server.api_credentials.api_certificate_credential == null || length(trimspace(server.api_credentials.api_certificate_credential)) > 0)
+      ))
+    ])
+    error_message = "NAS credential aliases, when configured, must be non-empty."
+  }
 }
 
 variable "nas_shares" {
@@ -243,22 +298,33 @@ variable "nas_shares" {
     export_point   = string
     share_type     = string
     nas_server_key = string
+    sla_domain_key = string
     credentials = optional(object({
       username_credential = string
       password_credential = optional(string)
     }))
   }))
   default = {}
-}
 
-variable "nas_configured_share_sla_domain_keys" {
-  description = "SLA Domain keys assigned to manually added NAS shares, keyed by Terraform share key."
-  type        = map(string)
-  default     = {}
+  validation {
+    condition = alltrue([
+      for share in values(var.nas_shares) :
+      length(trimspace(share.export_point)) > 0 &&
+      length(trimspace(share.nas_server_key)) > 0 &&
+      length(trimspace(share.sla_domain_key)) > 0 &&
+      contains([
+        "CREATE_NAS_SHARE_INPUT_SHARE_TYPE_NFS",
+        "CREATE_NAS_SHARE_INPUT_SHARE_TYPE_SMB",
+      ], share.share_type) &&
+      (share.credentials == null || length(trimspace(share.credentials.username_credential)) > 0) &&
+      (share.credentials == null || share.credentials.password_credential == null || length(trimspace(share.credentials.password_credential)) > 0)
+    ])
+    error_message = "Every NAS share requires non-empty export_point, nas_server_key, and sla_domain_key values; share_type must be CREATE_NAS_SHARE_INPUT_SHARE_TYPE_NFS or CREATE_NAS_SHARE_INPUT_SHARE_TYPE_SMB, and credential aliases must be non-empty."
+  }
 }
 
 variable "nas_cloud_direct_systems" {
-  description = "NAS Cloud Direct systems to register, keyed by stable Terraform names."
+  description = "NAS Cloud Direct systems to register, keyed by stable Terraform names. system_type must be a Rubrik CloudDirectNasVendorType value; certificate_type, when set, must be PEM or PKCS12."
   type = map(object({
     cluster_id                          = string
     host                                = string
@@ -282,21 +348,46 @@ variable "nas_cloud_direct_systems" {
     username_credential = optional(string)
   }))
   default = {}
+
+  validation {
+    condition = alltrue([
+      for system in values(var.nas_cloud_direct_systems) :
+      can(regex("^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$", system.cluster_id)) &&
+      length(trimspace(system.host)) > 0 &&
+      (system.certificate_type == null || contains(["PEM", "PKCS12"], system.certificate_type)) &&
+      (system.username_credential == null || length(trimspace(system.username_credential)) > 0) &&
+      (system.password_credential == null || length(trimspace(system.password_credential)) > 0) &&
+      (system.certificate_data_credential == null || length(trimspace(system.certificate_data_credential)) > 0) &&
+      (system.certificate_key_password_credential == null || length(trimspace(system.certificate_key_password_credential)) > 0) &&
+      alltrue([
+        for credential in system.creds :
+        length(trimspace(credential.name)) > 0 &&
+        length(trimspace(credential.username_credential)) > 0 &&
+        length(trimspace(credential.password_credential)) > 0
+      ])
+    ])
+    error_message = "NAS Cloud Direct systems require a UUID cluster_id, non-empty host and named credential fields, and certificate_type null, PEM, or PKCS12."
+  }
 }
 
 variable "nas_cloud_direct_shares" {
   description = "Existing NAS Cloud Direct shares to protect, keyed by stable Terraform names and identified by exact share and system names."
   type = map(object({
-    name        = string
-    system_name = string
+    name           = string
+    system_name    = string
+    sla_domain_key = string
   }))
   default = {}
-}
 
-variable "nas_cloud_direct_share_sla_domain_keys" {
-  description = "SLA Domain keys assigned to NAS Cloud Direct shares, keyed by Terraform share key."
-  type        = map(string)
-  default     = {}
+  validation {
+    condition = alltrue([
+      for share in values(var.nas_cloud_direct_shares) :
+      length(trimspace(share.name)) > 0 &&
+      length(trimspace(share.system_name)) > 0 &&
+      length(trimspace(share.sla_domain_key)) > 0
+    ])
+    error_message = "Every NAS Cloud Direct share requires non-empty name, system_name, and sla_domain_key values."
+  }
 }
 
 variable "sla_domains" {
@@ -319,9 +410,11 @@ variable "sla_domains" {
   validation {
     condition = alltrue([
       for sla in values(var.sla_domains) :
-      length(trimspace(sla.name)) > 0 && length(sla.object_types) > 0
+      length(trimspace(sla.name)) > 0 &&
+      length(sla.object_types) > 0 &&
+      alltrue([for object_type in sla.object_types : length(trimspace(object_type)) > 0])
     ])
-    error_message = "Every SLA Domain must have a non-empty name and at least one object type."
+    error_message = "Every SLA Domain must have a non-empty name and at least one non-empty Rubrik SlaObjectType enum value."
   }
 }
 
@@ -332,6 +425,11 @@ variable "object_inventory_roles" {
     description = optional(string, "Account-wide read-only access to protectable object inventory.")
   }))
   default = {}
+
+  validation {
+    condition     = alltrue([for role in values(var.object_inventory_roles) : length(trimspace(role.name)) > 0])
+    error_message = "Every object inventory role requires a non-empty name."
+  }
 }
 
 variable "service_accounts" {
@@ -343,10 +441,15 @@ variable "service_accounts" {
     inventory_role_keys = optional(set(string), [])
   }))
   default = {}
+
+  validation {
+    condition     = alltrue([for account in values(var.service_accounts) : length(trimspace(account.name)) > 0])
+    error_message = "Every service account requires a non-empty name."
+  }
 }
 
 variable "classification_analyzers" {
-  description = "Custom sensitive-data analyzers keyed by stable Terraform names."
+  description = "Custom sensitive-data analyzers keyed by stable Terraform names. risk must be HIGH_RISK, MEDIUM_RISK, LOW_RISK, NO_RISK, or UNKNOWN_RISK; rule_types accepts STRUCTURED and UNSTRUCTURED."
   type = map(object({
     name                          = string
     analyzer_type                 = string
@@ -375,10 +478,24 @@ variable "classification_analyzers" {
     is_inactive = optional(bool, false)
   }))
   default = {}
+
+  validation {
+    condition = alltrue([
+      for analyzer in values(var.classification_analyzers) :
+      length(trimspace(analyzer.name)) > 0 &&
+      length(trimspace(analyzer.analyzer_type)) > 0 &&
+      contains(["HIGH_RISK", "MEDIUM_RISK", "LOW_RISK", "NO_RISK", "UNKNOWN_RISK"], analyzer.risk) &&
+      alltrue([for rule_type in analyzer.rule_types : contains(["STRUCTURED", "UNSTRUCTURED"], rule_type)]) &&
+      (analyzer.proximity_distance == null || analyzer.proximity_distance >= 0) &&
+      (analyzer.tag_id == null || analyzer.tag_id >= 0) &&
+      (analyzer.analyzer_risk_instance == null || contains(["HIGH_RISK", "MEDIUM_RISK", "LOW_RISK", "NO_RISK", "UNKNOWN_RISK"], analyzer.analyzer_risk_instance.risk))
+    ])
+    error_message = "Analyzers require non-empty name and analyzer_type values; risk values must be HIGH_RISK, MEDIUM_RISK, LOW_RISK, NO_RISK, or UNKNOWN_RISK; rule_types may contain STRUCTURED and/or UNSTRUCTURED; proximity_distance and tag_id must be non-negative."
+  }
 }
 
 variable "classification_policies" {
-  description = "Sensitive-data classification policies keyed by stable Terraform names."
+  description = "Sensitive-data classification policies keyed by stable Terraform names. mode must be DISCOVERY or COMPLIANCE; color_enum must be a Rubrik ClassificationPolicyColor enum value."
   type = map(object({
     name              = string
     description       = optional(string, "")
@@ -392,6 +509,15 @@ variable "classification_policies" {
     cluster_ids       = optional(set(string), [])
   }))
   default = {}
+
+  validation {
+    condition = alltrue([
+      for policy in values(var.classification_policies) :
+      length(trimspace(policy.name)) > 0 &&
+      contains(["DISCOVERY", "COMPLIANCE"], policy.mode)
+    ])
+    error_message = "Every classification policy requires a non-empty name and mode DISCOVERY or COMPLIANCE."
+  }
 }
 
 variable "sensitive_data_discovery_enabled" {
@@ -421,6 +547,21 @@ variable "vsphere_servers" {
     is_compute_visibility_filter_disabled = optional(bool)
   }))
   default = {}
+
+  validation {
+    condition = alltrue([
+      for server in values(var.vsphere_servers) :
+      can(regex("^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$", server.cluster_uuid)) &&
+      length(trimspace(server.hostname)) > 0 &&
+      length(trimspace(server.username_credential)) > 0 &&
+      length(trimspace(server.password_credential)) > 0 &&
+      contains([
+        "VCENTER_CONFIG_V2_CONFLICT_RESOLUTION_AUTHZ_ALLOW_AUTO_CONFLICT_RESOLUTION",
+        "VCENTER_CONFIG_V2_CONFLICT_RESOLUTION_AUTHZ_NO_CONFLICT_RESOLUTION",
+      ], server.conflict_resolution_authz)
+    ])
+    error_message = "Each vSphere registration requires a UUID cluster_uuid, non-empty hostname and credential aliases, and a supported conflict_resolution_authz value."
+  }
 }
 
 variable "proxmox_hosts" {
@@ -435,9 +576,12 @@ variable "proxmox_hosts" {
   validation {
     condition = alltrue([
       for host in values(var.proxmox_hosts) :
-      host.api_token_credential != null || host.ca_certs_credential != null
+      length(trimspace(host.environment_id)) > 0 &&
+      (host.api_token_credential != null || host.ca_certs_credential != null) &&
+      (host.api_token_credential == null || length(trimspace(host.api_token_credential)) > 0) &&
+      (host.ca_certs_credential == null || length(trimspace(host.ca_certs_credential)) > 0)
     ])
-    error_message = "Each Proxmox host must configure at least an api_token or ca_certs value."
+    error_message = "Each Proxmox host requires a non-empty environment_id and at least one non-empty api_token_credential or ca_certs_credential alias."
   }
 }
 
@@ -455,10 +599,26 @@ variable "tape_archival_targets" {
     username_credential            = string
   }))
   default = {}
+
+  validation {
+    condition = alltrue([
+      for target in values(var.tape_archival_targets) :
+      can(regex("^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$", target.cluster_uuid)) &&
+      target.host_port >= 1 && target.host_port <= 65535 && target.host_port == floor(target.host_port) &&
+      length(trimspace(target.destination_folder_name)) > 0 &&
+      length(trimspace(target.host_name)) > 0 &&
+      length(trimspace(target.integral_volume_name)) > 0 &&
+      length(trimspace(target.name)) > 0 &&
+      length(trimspace(target.encryption_password_credential)) > 0 &&
+      length(trimspace(target.password_credential)) > 0 &&
+      length(trimspace(target.username_credential)) > 0
+    ])
+    error_message = "Each tape target requires a UUID cluster_uuid, host_port from 1 to 65535, non-empty names, and non-empty credential aliases."
+  }
 }
 
 variable "tape_reader_targets" {
-  description = "Tape reader archival targets to create, keyed by stable Terraform names."
+  description = "Tape reader archival targets to create, keyed by stable Terraform names. reader_retrieval_method must be OBJECT_LIST_AND_DETAILS, OBJECT_LIST_ONLY, or SPECIFIC_OBJECT_LIST_AND_DETAILS."
   type = map(object({
     archival_data_source_ids       = optional(set(string), [])
     cluster_uuid                   = string
@@ -484,5 +644,33 @@ variable "tape_reader_targets" {
       ], target.reader_retrieval_method)
     ])
     error_message = "reader_retrieval_method must be OBJECT_LIST_AND_DETAILS, OBJECT_LIST_ONLY, or SPECIFIC_OBJECT_LIST_AND_DETAILS."
+  }
+
+  validation {
+    condition = alltrue([
+      for target in values(var.tape_reader_targets) :
+      can(regex("^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$", target.cluster_uuid)) &&
+      target.host_port >= 1 && target.host_port <= 65535 &&
+      target.host_port == floor(target.host_port) &&
+      length(trimspace(target.destination_folder_name)) > 0 &&
+      length(trimspace(target.host_name)) > 0 &&
+      length(trimspace(target.integral_volume_name)) > 0 &&
+      length(trimspace(target.name)) > 0 &&
+      length(trimspace(target.encryption_password_credential)) > 0 &&
+      length(trimspace(target.password_credential)) > 0 &&
+      length(trimspace(target.username_credential)) > 0
+    ])
+    error_message = "Each tape reader target requires a UUID cluster_uuid, host_port from 1 to 65535, non-empty names, and non-empty credential aliases."
+  }
+
+  validation {
+    condition = alltrue([
+      for target in values(var.tape_reader_targets) :
+      alltrue([
+        for id in target.archival_data_source_ids :
+        can(regex("^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$", id))
+      ])
+    ])
+    error_message = "Every archival_data_source_id must be a UUID in 8-4-4-4-12 hexadecimal format."
   }
 }

@@ -18,11 +18,15 @@ variable "servers" {
   validation {
     condition = alltrue([
       for server in values(var.servers) :
+      can(regex("^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$", server.cluster_uuid)) &&
+      length(trimspace(server.hostname)) > 0 &&
+      length(trimspace(server.username)) > 0 &&
+      length(trimspace(server.password)) > 0 &&
       contains([
         "VCENTER_CONFIG_V2_CONFLICT_RESOLUTION_AUTHZ_ALLOW_AUTO_CONFLICT_RESOLUTION",
         "VCENTER_CONFIG_V2_CONFLICT_RESOLUTION_AUTHZ_NO_CONFLICT_RESOLUTION",
       ], server.conflict_resolution_authz)
     ])
-    error_message = "conflict_resolution_authz must be VCENTER_CONFIG_V2_CONFLICT_RESOLUTION_AUTHZ_ALLOW_AUTO_CONFLICT_RESOLUTION or VCENTER_CONFIG_V2_CONFLICT_RESOLUTION_AUTHZ_NO_CONFLICT_RESOLUTION."
+    error_message = "Every server requires a UUID cluster_uuid, non-empty hostname/credentials, and conflict_resolution_authz of VCENTER_CONFIG_V2_CONFLICT_RESOLUTION_AUTHZ_ALLOW_AUTO_CONFLICT_RESOLUTION or VCENTER_CONFIG_V2_CONFLICT_RESOLUTION_AUTHZ_NO_CONFLICT_RESOLUTION."
   }
 }
