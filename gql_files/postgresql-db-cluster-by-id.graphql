@@ -1,0 +1,11 @@
+query PostgreSQLDbClusterById($fid: UUID!) {
+  postgreSQLDbCluster(fid: $fid) {
+    id
+    name
+    clusterMode
+    slaAssignment
+    slaPauseStatus
+    isRelic
+    isReplica
+  }
+}

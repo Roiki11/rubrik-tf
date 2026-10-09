@@ -1,0 +1,20 @@
+mutation CreateManagedGlobalSla(
+  $name: String!
+  $description: String
+  $objectTypes: [SlaObjectType!]!
+  $snapshotSchedule: GlobalSnapshotScheduleInput
+) {
+  createGlobalSla(
+    input: {
+      name: $name
+      description: $description
+      objectTypes: $objectTypes
+      snapshotSchedule: $snapshotSchedule
+    }
+  ) {
+    id
+    name
+    description
+    objectTypes
+  }
+}

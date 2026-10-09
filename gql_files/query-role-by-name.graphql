@@ -1,0 +1,9 @@
+query RoleByName($nameFilter: String!) {
+  getAllRolesInOrgConnection(first: 1, nameFilter: $nameFilter) {
+    nodes {
+      description
+      id
+      name
+    }
+  }
+}

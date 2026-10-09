@@ -1,0 +1,6 @@
+query ObjectIdsWithNames($fids: [UUID!]!) {
+  hierarchyObjects(fids: $fids) {
+    id
+    name
+  }
+}

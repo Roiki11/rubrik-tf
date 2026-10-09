@@ -1,0 +1,22 @@
+mutation UpdateManagedGlobalSla(
+  $id: String!
+  $name: String!
+  $description: String
+  $objectTypes: [SlaObjectType!]!
+  $snapshotSchedule: GlobalSnapshotScheduleInput
+) {
+  updateGlobalSla(
+    input: {
+      id: $id
+      name: $name
+      description: $description
+      objectTypes: $objectTypes
+      snapshotSchedule: $snapshotSchedule
+    }
+  ) {
+    id
+    name
+    description
+    objectTypes
+  }
+}

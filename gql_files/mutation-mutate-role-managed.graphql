@@ -1,0 +1,15 @@
+mutation MutateRole(
+  $id: String
+  $name: String!
+  $description: String!
+  $permissions: [PermissionInput!]!
+  $protectableClusters: [String!]!
+) {
+  mutateRole(
+    roleId: $id
+    name: $name
+    description: $description
+    permissions: $permissions
+    protectableClusters: $protectableClusters
+  )
+}
