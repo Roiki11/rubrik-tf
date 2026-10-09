@@ -1,3 +1,5 @@
+# Replace every example name, ID, endpoint, and credential with values from
+# your Rubrik environment before using this file.
 rubrik_graphql_url = "https://<your-rsc-tenant>/api/graphql"
 rubrik_api_token   = "<your-bearer-token>"
 vsphere_vm_names = [
@@ -12,13 +14,60 @@ vsphere_tag_ids = [
 postgresql_db_cluster_names = [
   "postgres-production",
 ]
-linux_fileset_cluster_uuid = ""
-linux_fileset_templates    = {}
-linux_fileset_assignments  = {}
-kubernetes_cluster_names        = []
-kubernetes_protection_set_names = []
-kubernetes_namespaces           = {}
-proxmox_objects                 = {}
+linux_fileset_cluster_uuid = "00000000-0000-0000-0000-000000000001"
+linux_fileset_templates = {
+  application = {
+    includes                     = ["/opt/application", "/var/lib/application"]
+    excludes                     = ["/var/lib/application/cache"]
+    exceptions                   = ["/var/lib/application/cache/keep"]
+    pre_backup_script            = "#!/bin/sh\necho pre-backup"
+    post_backup_script           = "#!/bin/sh\necho post-backup"
+    backup_script_error_handling = "continue"
+    backup_script_timeout        = 300
+    fileset_options = {
+      allow_backup_hidden_folders_in_network_mounts = false
+      allow_backup_network_mounts                   = true
+    }
+  }
+}
+linux_fileset_assignments = {
+  application_server = {
+    host_name                 = "app-server-01.example.invalid"
+    template_name             = "application"
+    enable_hardlink_support   = true
+    enable_symlink_resolution = false
+  }
+}
+kubernetes_cluster_names = [
+  "production-k8s",
+]
+kubernetes_protection_set_names = [
+  "production-apps",
+]
+kubernetes_namespaces = {
+  production_default = {
+    cluster_name   = "production-k8s"
+    namespace_name = "default"
+  }
+}
+proxmox_objects = {
+  environment = {
+    name        = "proxmox-production"
+    object_type = "PROXMOX_ENVIRONMENT"
+  }
+  cluster = {
+    name        = "production-cluster"
+    object_type = "PROXMOX_CLUSTER"
+  }
+  node = {
+    name        = "pve-node-01"
+    object_type = "PROXMOX_NODE"
+  }
+  virtual_machine = {
+    name        = "application-01"
+    object_type = "PROXMOX_VIRTUAL_MACHINE"
+  }
+}
 nas_share_names = [
   "engineering-nfs",
 ]
@@ -27,14 +76,45 @@ nas_server = {
   hostname     = "nas.example.com"
   vendor_type  = "NAS_VENDOR_TYPE_GENERIC"
   generic_parameters = {
-    has_nfs_support = true
-    has_smb_support = false
+    has_nfs_support      = true
+    has_smb_support      = true
+    nfs_pseudo_fs_prefix = "/exports"
+    smb_credentials = {
+      username = "REPLACE_WITH_NAS_SMB_USER"
+      password = "REPLACE_WITH_NAS_SMB_PASSWORD"
+    }
   }
 }
+# Alternative PowerScale/Isilon server shape; use this instead of the Generic
+# NAS block above, and replace the example credentials and certificate.
+# nas_server = {
+#   cluster_uuid = "00000000-0000-0000-0000-000000000001"
+#   hostname     = "powerscale.example.invalid"
+#   vendor_type  = "NAS_VENDOR_TYPE_ISILON"
+#   api_credentials = {
+#     api_username    = "REPLACE_WITH_POWERSCALE_API_USER"
+#     api_password    = "REPLACE_WITH_POWERSCALE_API_PASSWORD"
+#     api_certificate = "REPLACE_WITH_BASE64_DER_CERTIFICATE"
+#     certificate_id  = "00000000-0000-0000-0000-000000000010"
+#   }
+#   smb_credentials = {
+#     username = "REPLACE_WITH_POWERSCALE_SMB_USER"
+#     password = "REPLACE_WITH_POWERSCALE_SMB_PASSWORD"
+#   }
+#   is_isilon_changelist_enabled = true
+# }
 nas_shares = {
-  research = {
-    export_point = "/research"
+  engineering_nfs = {
+    export_point = "/engineering"
     share_type   = "CREATE_NAS_SHARE_INPUT_SHARE_TYPE_NFS"
+  }
+  finance_smb = {
+    export_point = "finance"
+    share_type   = "CREATE_NAS_SHARE_INPUT_SHARE_TYPE_SMB"
+    credentials = {
+      username = "REPLACE_WITH_SHARE_USER"
+      password = "REPLACE_WITH_SHARE_PASSWORD"
+    }
   }
 }
 sla_domain_name        = "Terraform workload protection"
@@ -57,20 +137,155 @@ sla_domain_snapshot_schedule = {
     }
   }
 }
-sla_domain_archival_specs = []
+sla_domain_archival_specs = [
+  {
+    archivalGroupId = "00000000-0000-0000-0000-000000000002"
+    threshold       = 30
+    thresholdUnit   = "DAYS"
+    frequencies     = ["DAYS"]
+    archivalTieringSpecInput = {
+      isInstantTieringEnabled        = false
+      minAccessibleDurationInSeconds = 2592000
+      coldStorageClass               = "AWS_GLACIER"
+      shouldTierExistingSnapshots    = false
+    }
+    archivalLocationToClusterMapping = [
+      {
+        clusterUuid = "00000000-0000-0000-0000-000000000001"
+        locationId  = "00000000-0000-0000-0000-000000000003"
+      }
+    ]
+    isComplianceImmutabilityEnabled = false
+  }
+]
 service_account_name        = "Terraform automation"
 service_account_description = "Managed by Terraform"
 object_inventory_role_name  = "Terraform object inventory reader"
 service_account_role_ids = [
   "44444444-4444-4444-4444-444444444444",
 ]
-classification_analyzers = {}
-classification_policies  = {}
-sensitive_data_discovery_enabled = false
+classification_analyzers = {
+  internal_reference = {
+    name                          = "Example internal reference"
+    analyzer_type                 = "REGEX"
+    risk                          = "HIGH_RISK"
+    rule_types                    = ["STRUCTURED", "UNSTRUCTURED"]
+    dictionary                    = ["internal", "confidential"]
+    dictionary_csv                = null
+    structured_dictionary         = ["account_number", "customer_id"]
+    regex                         = "REF-[0-9]{8}"
+    key_regex                     = "^(account|customer)_"
+    structured_value_regex        = "[A-Z]{3}-[0-9]{6}"
+    structured_dictionary_csv     = null
+    structured_key_dictionary     = ["account_number", "customer_id"]
+    structured_key_dictionary_csv = null
+    exclude_field_name_pattern    = "^test_"
+    exclude_path_pattern          = "/tmp/.*"
+    exclude_value_regex           = "^EXAMPLE-"
+    proximity_distance            = 20
+    proximity_keywords_regex      = "(internal|confidential)"
+    tag_id                        = 123
+    analyzer_risk_instance = {
+      analyzer_id  = "00000000-0000-0000-0000-000000000004"
+      risk         = "HIGH_RISK"
+      risk_version = 1
+    }
+    is_inactive = false
+  }
+  example_dictionary = {
+    name                  = "Example dictionary"
+    analyzer_type         = "KEYWORD"
+    risk                  = "MEDIUM_RISK"
+    rule_types            = ["UNSTRUCTURED"]
+    dictionary            = ["example-term", "sample-term"]
+    dictionary_csv        = "example-term,sample-term"
+    structured_dictionary = []
+    is_inactive           = false
+  }
+}
+classification_policies = {
+  finance_discovery = {
+    name              = "Example finance discovery"
+    description       = "Example discovery policy; replace the target IDs."
+    mode              = "DISCOVERY"
+    color_enum        = "COLOR_006"
+    analyzer_ids      = []
+    analyzer_keys     = ["internal_reference", "example_dictionary"]
+    document_type_ids = ["00000000-0000-0000-0000-000000000005"]
+    object_ids        = ["00000000-0000-0000-0000-000000000006"]
+    object_root_ids   = ["00000000-0000-0000-0000-000000000007"]
+    cluster_ids       = ["00000000-0000-0000-0000-000000000001"]
+  }
+  compliance_example = {
+    name          = "Example compliance policy"
+    description   = "Example compliance policy."
+    mode          = "COMPLIANCE"
+    color_enum    = "COLOR_007"
+    analyzer_keys = ["internal_reference"]
+  }
+}
+sensitive_data_discovery_enabled = true
 sensitive_data_summary_input = {
   includeBreakdown = true
+  filter = {
+    objectId = "00000000-0000-0000-0000-000000000006"
+  }
 }
-vsphere_servers       = {}
-proxmox_hosts         = {}
-tape_archival_targets = {}
-tape_reader_targets   = {}
+vsphere_servers = {
+  vcenter = {
+    cluster_uuid                          = "00000000-0000-0000-0000-000000000001"
+    hostname                              = "vcenter.example.invalid"
+    username                              = "REPLACE_WITH_VCENTER_USER"
+    password                              = "REPLACE_WITH_VCENTER_PASSWORD"
+    ca_certs                              = "REPLACE_WITH_BASE64_DER_CERTIFICATE"
+    is_standalone_host                    = false
+    should_enable_hot_add_proxy_onprem    = true
+    conflict_resolution_authz             = "VCENTER_CONFIG_V2_CONFLICT_RESOLUTION_AUTHZ_NO_CONFLICT_RESOLUTION"
+    org_network_id                        = "00000000-0000-0000-0000-000000000008"
+    is_compute_visibility_filter_disabled = false
+  }
+  standalone_esxi = {
+    cluster_uuid                       = "00000000-0000-0000-0000-000000000001"
+    hostname                           = "esxi-01.example.invalid"
+    username                           = "root"
+    password                           = "REPLACE_WITH_ESXI_PASSWORD"
+    is_standalone_host                 = true
+    should_enable_hot_add_proxy_onprem = false
+    conflict_resolution_authz          = "VCENTER_CONFIG_V2_CONFLICT_RESOLUTION_AUTHZ_ALLOW_AUTO_CONFLICT_RESOLUTION"
+  }
+}
+proxmox_hosts = {
+  production = {
+    environment_id = "00000000-0000-0000-0000-000000000009"
+    api_token      = "REPLACE_WITH_PROXMOX_API_TOKEN"
+    ca_certs       = "REPLACE_WITH_BASE64_DER_CERTIFICATE"
+  }
+}
+tape_archival_targets = {
+  primary = {
+    cluster_uuid            = "00000000-0000-0000-0000-000000000001"
+    destination_folder_name = "RubrikArchive"
+    encryption_password     = "REPLACE_WITH_TAPE_ENCRYPTION_PASSWORD"
+    host_name               = "qstar.example.invalid"
+    host_port               = 111
+    integral_volume_name    = "TAPE01"
+    name                    = "Example primary tape"
+    password                = "REPLACE_WITH_QSTAR_PASSWORD"
+    username                = "REPLACE_WITH_QSTAR_USER"
+  }
+}
+tape_reader_targets = {
+  recovery = {
+    archival_data_source_ids = ["00000000-0000-0000-0000-000000000006"]
+    cluster_uuid             = "00000000-0000-0000-0000-000000000001"
+    destination_folder_name  = "RubrikRecovery"
+    encryption_password      = "REPLACE_WITH_READER_ENCRYPTION_PASSWORD"
+    host_name                = "qstar-reader.example.invalid"
+    host_port                = 111
+    integral_volume_name     = "TAPE02"
+    name                     = "Example tape reader"
+    password                 = "REPLACE_WITH_READER_PASSWORD"
+    reader_retrieval_method  = "OBJECT_LIST_AND_DETAILS"
+    username                 = "REPLACE_WITH_READER_USER"
+  }
+}

@@ -8,5 +8,7 @@ output "host_states" {
 
 output "environment_ids" {
   description = "Map of configured Terraform keys to their Rubrik Proxmox environment IDs."
-  value       = { for key, host in var.hosts : key => host.environment_id }
+  value = nonsensitive({
+    for key, host in var.hosts : key => host.environment_id
+  })
 }

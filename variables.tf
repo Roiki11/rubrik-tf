@@ -278,7 +278,7 @@ variable "vsphere_servers" {
     ca_certs                              = optional(string)
     is_standalone_host                    = optional(bool, false)
     should_enable_hot_add_proxy_onprem    = optional(bool, false)
-    conflict_resolution_authz             = optional(string, "NoConflictResolution")
+    conflict_resolution_authz             = optional(string, "VCENTER_CONFIG_V2_CONFLICT_RESOLUTION_AUTHZ_NO_CONFLICT_RESOLUTION")
     org_network_id                        = optional(string)
     is_compute_visibility_filter_disabled = optional(bool)
   }))
