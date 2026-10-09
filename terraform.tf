@@ -39,6 +39,15 @@ module "postgresql_protection" {
   sla_id                 = module.rubrik_sla_domain.id
 }
 
+module "linux_fileset_protection" {
+  source = "./modules/linux-fileset-protection"
+
+  cluster_uuid        = var.linux_fileset_cluster_uuid
+  fileset_templates   = var.linux_fileset_templates
+  fileset_assignments = var.linux_fileset_assignments
+  sla_id              = module.rubrik_sla_domain.id
+}
+
 module "nas_share_protection" {
   source = "./modules/nas-share-protection"
 
@@ -73,6 +82,11 @@ module "automation_service_account" {
 output "object_inventory_role_id" {
   description = "Rubrik role ID for account-wide object inventory visibility."
   value       = module.object_inventory_role.role_id
+}
+
+output "linux_fileset_ids" {
+  description = "Map of configured Linux fileset assignment keys to Rubrik fileset IDs."
+  value       = module.linux_fileset_protection.fileset_ids
 }
 
 output "nas_server_id" {

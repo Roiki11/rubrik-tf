@@ -1,0 +1,7 @@
+mutation CreateManagedLinuxFilesetTemplate($createInput: BulkCreateFilesetTemplatesInput!) {
+  bulkCreateFilesetTemplates(input: $createInput) {
+    data {
+      id
+    }
+  }
+}

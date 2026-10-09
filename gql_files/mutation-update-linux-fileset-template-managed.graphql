@@ -1,0 +1,36 @@
+mutation UpdateManagedLinuxFilesetTemplate(
+  $id: String!
+  $name: String!
+  $includes: [String!]!
+  $excludes: [String!]
+  $exceptions: [String!]
+  $preBackupScript: String
+  $postBackupScript: String
+  $backupScriptErrorHandling: String
+  $backupScriptTimeout: Long
+  $filesetOptions: FilesetOptionsInput
+) {
+  bulkUpdateFilesetTemplate(
+    input: {
+      definitions: [{
+        id: $id
+        name: $name
+        includes: $includes
+        excludes: $excludes
+        exceptions: $exceptions
+        preBackupScript: $preBackupScript
+        postBackupScript: $postBackupScript
+        backupScriptErrorHandling: $backupScriptErrorHandling
+        backupScriptTimeout: $backupScriptTimeout
+        operatingSystemType: FILESET_TEMPLATE_PATCH_OPERATING_SYSTEM_TYPE_UNIX_LIKE
+        filesetOptions: $filesetOptions
+      }]
+    }
+  ) {
+    output {
+      data {
+        id
+      }
+    }
+  }
+}

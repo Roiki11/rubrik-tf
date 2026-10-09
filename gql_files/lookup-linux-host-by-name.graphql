@@ -1,0 +1,17 @@
+query LinuxHostsByName($name: String!, $first: Int!, $after: String) {
+  physicalHosts(
+    hostRoot: LINUX_HOST_ROOT
+    first: $first
+    after: $after
+    filter: [{ field: NAME_EXACT_MATCH, texts: [$name] }]
+  ) {
+    nodes {
+      id
+      name
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+  }
+}

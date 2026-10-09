@@ -1,0 +1,12 @@
+query LinuxFilesetsForHost($fid: UUID!, $first: Int!) {
+  physicalHost(fid: $fid) {
+    descendantConnection(first: $first, typeFilter: [LinuxFileset]) {
+      nodes {
+        ... on LinuxFileset {
+          id
+          name
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+mutation CreateManagedLinuxFileset($input: BulkCreateFilesetsInput!) {
+  bulkCreateFilesets(input: $input) {
+    data {
+      filesetSummary {
+        hostName
+        templateName
+      }
+    }
+  }
+}
