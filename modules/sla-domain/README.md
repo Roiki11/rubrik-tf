@@ -6,6 +6,11 @@ description, object types, all snapshot schedule cadences accepted by Rubrik's
 `GlobalSnapshotScheduleInput`, and optional archive targets using
 `ArchivalSpecInput`.
 
+`object_types` accepts Rubrik `SlaObjectType` enum values. Kubernetes and
+Proxmox values include `K8S_OBJECT_TYPE`, `KUPR_OBJECT_TYPE`, and
+`PROXMOX_OBJECT_TYPE`; only include values supported by the target Rubrik
+schema and compatible with workloads assigned to the SLA.
+
 ```hcl
 module "postgresql_sla" {
   source = "./modules/sla-domain"
@@ -14,6 +19,9 @@ module "postgresql_sla" {
   description = "Daily protection for PostgreSQL clusters"
   object_types = [
     "POSTGRES_DB_CLUSTER_OBJECT_TYPE",
+    "K8S_OBJECT_TYPE",
+    "KUPR_OBJECT_TYPE",
+    "PROXMOX_OBJECT_TYPE",
   ]
   snapshot_schedule = {
     daily = {

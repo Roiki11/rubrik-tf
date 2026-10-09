@@ -19,6 +19,13 @@ mechanism rather than committing them to a tfvars file.
 | `vsphere_folder_names` | `set(string)` | Required | Exact Rubrik inventory names of vSphere folders. Each name must resolve to one folder. Use `[]` when unused. |
 | `vsphere_tag_ids` | `set(string)` | Required | Rubrik tag UUIDs; each value must match the UUID format. Use `[]` when unused. Tag names are not resolved. |
 | `postgresql_db_cluster_names` | `set(string)` | Required | Exact Rubrik inventory names of PostgreSQL database clusters. Each name must resolve to one cluster. Use `[]` when unused. |
+| `linux_fileset_cluster_uuid` | `string` | `""` | Rubrik CDM cluster UUID used for Linux fileset template and fileset operations; required when Linux templates are configured. |
+| `linux_fileset_templates` | `map(object)` | `{}` | Linux template definitions keyed by template name, including include paths and optional excludes, exceptions, scripts, and fileset options. |
+| `linux_fileset_assignments` | `map(object)` | `{}` | Linux host/template pairs keyed by stable Terraform identifiers. See the [Linux fileset module README](./modules/linux-fileset-protection/README.md). |
+| `kubernetes_cluster_names` | `set(string)` | `[]` | Exact Rubrik inventory names of Kubernetes clusters to protect. Each name must resolve to exactly one cluster. |
+| `kubernetes_protection_set_names` | `set(string)` | `[]` | Exact Rubrik inventory names of Kubernetes protection sets to protect. Each name must resolve to exactly one protection set. |
+| `kubernetes_namespaces` | `map(object)` | `{}` | Kubernetes namespaces keyed by stable Terraform keys, each specifying exact `cluster_name` and `namespace_name` values. |
+| `proxmox_objects` | `map(object)` | `{}` | Proxmox objects keyed by stable Terraform keys. Each object specifies an exact `name` and `object_type`: `PROXMOX_ENVIRONMENT`, `PROXMOX_CLUSTER`, `PROXMOX_NODE`, or `PROXMOX_VIRTUAL_MACHINE`. |
 | `nas_share_names` | `set(string)` | Required | Exact names of existing/discovered NAS shares. Each name must resolve to one share. Use `[]` when unused. |
 | `nas_server` | Object; see below | `null` | Optional NAS server registration. Vendor-specific fields are described in [NAS server inputs](#nas-server-inputs). |
 | `nas_shares` | `map(object)`; see below | `{}` | Optional manually configured NAS shares, keyed by stable Terraform names. See [NAS share inputs](#nas-share-inputs). |
@@ -42,6 +49,23 @@ vsphere_vm_names            = ["application-01"]
 vsphere_folder_names        = ["Production"]
 vsphere_tag_ids             = ["66666666-6666-6666-6666-666666666666"]
 postgresql_db_cluster_names = ["postgres-production"]
+linux_fileset_cluster_uuid = ""
+linux_fileset_templates    = {}
+linux_fileset_assignments  = {}
+kubernetes_cluster_names        = ["production-k8s"]
+kubernetes_protection_set_names = ["production-apps"]
+kubernetes_namespaces = {
+  production_default = {
+    cluster_name   = "production-k8s"
+    namespace_name = "default"
+  }
+}
+proxmox_objects = {
+  application_vm = {
+    name        = "application-01"
+    object_type = "PROXMOX_VIRTUAL_MACHINE"
+  }
+}
 nas_share_names             = ["engineering-nfs"]
 
 sla_domain_name        = "Terraform protection"
@@ -50,6 +74,10 @@ sla_domain_object_types = [
   "VSPHERE_OBJECT_TYPE",
   "POSTGRES_DB_CLUSTER_OBJECT_TYPE",
   "NAS_OBJECT_TYPE",
+  "FILESET_OBJECT_TYPE",
+  "K8S_OBJECT_TYPE",
+  "KUPR_OBJECT_TYPE",
+  "PROXMOX_OBJECT_TYPE",
 ]
 sla_domain_snapshot_schedule = {
   daily = {
@@ -140,6 +168,70 @@ module "postgresql_protection" {
 }
 ```
 
+### `kubernetes-protection`
+
+Source: `./modules/kubernetes-protection`
+
+| Variable | Type | Required/default | Values and notes |
+|---|---|---|---|
+| `cluster_names` | `set(string)` | `[]` | Exact Kubernetes cluster names; each must resolve to one cluster. |
+| `protection_set_names` | `set(string)` | `[]` | Exact Kubernetes protection-set names; each must resolve to one protection set. |
+| `namespaces` | `map(object)` | `{}` | Namespaces keyed by stable Terraform keys, each with exact `cluster_name` and `namespace_name` values. Namespaces are looked up within the named cluster. |
+| `sla_id` | `string` | Required | UUID of the SLA Domain to assign. |
+
+```hcl
+module "kubernetes_protection" {
+  source = "./modules/kubernetes-protection"
+
+  cluster_names        = ["production-k8s"]
+  protection_set_names = ["production-apps"]
+  namespaces = {
+    production_default = {
+      cluster_name   = "production-k8s"
+      namespace_name = "default"
+    }
+  }
+  sla_id               = "00000000-0000-0000-0000-000000000000"
+}
+```
+
+Removing a configured entry unassigns its SLA; it does not delete the
+Kubernetes cluster, namespace, protection set, or snapshots. A cluster
+referenced only by a namespace entry is used to scope the lookup and is not
+itself assigned an SLA. See the
+[Kubernetes module README](./modules/kubernetes-protection/README.md).
+
+### `proxmox-protection`
+
+Source: `./modules/proxmox-protection`
+
+| Variable | Type | Required/default | Values and notes |
+|---|---|---|---|
+| `objects` | `map(object)` | `{}` | Objects keyed by stable Terraform keys, each with exact `name` and `object_type`. Types: `PROXMOX_ENVIRONMENT`, `PROXMOX_CLUSTER`, `PROXMOX_NODE`, or `PROXMOX_VIRTUAL_MACHINE`. The name must resolve to exactly one object of that type. |
+| `sla_id` | `string` | Required | UUID of the SLA Domain to assign. |
+
+```hcl
+module "proxmox_protection" {
+  source = "./modules/proxmox-protection"
+
+  objects = {
+    application_vm = {
+      name        = "application-01"
+      object_type = "PROXMOX_VIRTUAL_MACHINE"
+    }
+    cluster = {
+      name        = "production"
+      object_type = "PROXMOX_CLUSTER"
+    }
+  }
+  sla_id = "00000000-0000-0000-0000-000000000000"
+}
+```
+
+Removing a configured entry unassigns its SLA without deleting the Proxmox
+object or snapshots. See the
+[Proxmox module README](./modules/proxmox-protection/README.md).
+
 ### `nas-share-protection`
 
 Source: `./modules/nas-share-protection`
@@ -174,6 +266,45 @@ module "nas_share_protection" {
   sla_id      = "00000000-0000-0000-0000-000000000000"
 }
 ```
+
+### `linux-fileset-protection`
+
+Source: `./modules/linux-fileset-protection`
+
+| Variable | Type | Required/default | Values and notes |
+|---|---|---|---|
+| `cluster_uuid` | `string` | `""` | Rubrik CDM cluster UUID; required when templates or assignments are configured. |
+| `fileset_templates` | `map(object)` | `{}` | Template definitions keyed by unique name. Each must include at least one `includes` path. Optional `excludes`, `exceptions`, pre/post scripts, script error handling (`abort` or `continue`), timeout in seconds, and network mount options are supported. |
+| `fileset_assignments` | `map(object)` | `{}` | Assignments keyed by stable Terraform name. Each requires exact `host_name` and `template_name`; optional hardlink support and symlink resolution default to `false`. |
+| `sla_id` | `string` | `""` | UUID of the SLA Domain to assign to filesets. Required when assignments are configured. |
+
+```hcl
+module "linux_fileset_protection" {
+  source = "./modules/linux-fileset-protection"
+
+  cluster_uuid = "88888888-8888-8888-8888-888888888888"
+  sla_id       = "00000000-0000-0000-0000-000000000000"
+
+  fileset_templates = {
+    application = {
+      includes = ["/opt/application", "/var/lib/application"]
+      excludes = ["/var/lib/application/cache"]
+    }
+  }
+
+  fileset_assignments = {
+    app_server_01 = {
+      host_name     = "app-server-01.example.com"
+      template_name = "application"
+    }
+  }
+}
+```
+
+Template/host name lookups must resolve exactly once. Template definitions
+must be keyed by Rubrik template name, and assignment template names must
+reference those keys. See the [module README](./modules/linux-fileset-protection/README.md)
+for configuration details and lifecycle behavior.
 
 #### NAS server inputs
 
@@ -284,6 +415,10 @@ The module passes `object_types` to Rubrik as values of the GraphQL
 | `VSPHERE_OBJECT_TYPE` | vSphere objects |
 | `POSTGRES_DB_CLUSTER_OBJECT_TYPE` | PostgreSQL database clusters |
 | `NAS_OBJECT_TYPE` | NAS objects |
+| `FILESET_OBJECT_TYPE` | Physical host filesets, including Linux filesets |
+| `K8S_OBJECT_TYPE` | CDM-native Kubernetes objects |
+| `KUPR_OBJECT_TYPE` | Kubernetes objects |
+| `PROXMOX_OBJECT_TYPE` | Proxmox objects |
 
 The Rubrik API schema for the target cluster is authoritative. Enum members
 can vary with API version and available features; use only values accepted by
@@ -326,15 +461,30 @@ Source: `./modules/object-inventory-role`
 |---|---|---|---|
 | `name` | `string` | Required | Name of the inventory visibility role. |
 | `description` | `string` | `"Account-wide read-only access to protectable object inventory."` | Role description. |
+| `vsphere_vm_names` | `set(string)` | `[]` | Exact vSphere VM names to resolve to Rubrik inventory IDs. Each name must match exactly one VM. |
+| `vsphere_folder_names` | `set(string)` | `[]` | Exact vSphere folder names to resolve to Rubrik inventory IDs. Each name must match exactly one folder. |
+| `postgresql_db_cluster_names` | `set(string)` | `[]` | Exact PostgreSQL cluster names to resolve to Rubrik inventory IDs. Each name must match exactly one cluster. |
+| `nas_share_names` | `set(string)` | `[]` | Exact existing NAS share names to resolve to Rubrik inventory IDs. Each name must match exactly one share. |
 
 ```hcl
 module "object_inventory_role" {
   source = "./modules/object-inventory-role"
 
-  name        = "Terraform object inventory reader"
-  description = "Read-only visibility of protectable objects"
+  name                        = "Terraform object inventory reader"
+  description                 = "Read-only visibility of protectable objects"
+  vsphere_vm_names            = ["application-01"]
+  vsphere_folder_names        = ["Production"]
+  postgresql_db_cluster_names = ["postgres-production"]
+  nas_share_names             = ["engineering-nfs"]
 }
 ```
+
+The module returns the outputs `vsphere_vm_ids`, `vsphere_folder_ids`,
+`postgresql_db_cluster_ids`, and `nas_share_ids`, each a map from the supplied
+exact name to its Rubrik inventory ID. vSphere tag IDs must be provided
+directly; the current Rubrik API lookup used here does not resolve tag names.
+Lookups use the calling GraphQL provider identity and do not automatically
+switch to the service account created by the root configuration.
 
 ## Root outputs
 
@@ -343,6 +493,15 @@ The root configuration exports:
 | Output | Description |
 |---|---|
 | `object_inventory_role_id` | Rubrik ID of the managed inventory-reader role. |
+| `vsphere_vm_ids` | Map of configured vSphere VM names to Rubrik inventory IDs. |
+| `vsphere_folder_ids` | Map of configured vSphere folder names to Rubrik inventory IDs. |
+| `postgresql_db_cluster_ids` | Map of configured PostgreSQL cluster names to Rubrik inventory IDs. |
+| `nas_share_ids` | Map of configured existing NAS share names to Rubrik inventory IDs. |
+| `linux_fileset_ids` | Map of configured Linux fileset assignment keys to Rubrik fileset IDs. |
+| `kubernetes_cluster_ids` | Map of configured Kubernetes cluster names to Rubrik inventory IDs. |
+| `kubernetes_protection_set_ids` | Map of configured Kubernetes protection-set names to Rubrik inventory IDs. |
+| `kubernetes_namespace_ids` | Map of configured Kubernetes namespace keys to Rubrik inventory IDs. |
+| `proxmox_object_ids` | Map of configured Proxmox object keys to Rubrik inventory IDs. |
 | `nas_server_id` | Registered NAS server ID, or `null` when no server was configured. |
 | `service_account_client_id` | OAuth client ID for the service account. |
 | `service_account_client_secret` | Sensitive OAuth client secret. |

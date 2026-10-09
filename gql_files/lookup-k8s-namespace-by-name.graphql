@@ -1,0 +1,19 @@
+query K8sNamespacesByName($name: String!, $clusterId: UUID!, $first: Int!, $after: String) {
+  k8sNamespaces(
+    first: $first
+    after: $after
+    k8sClusterId: $clusterId
+    filter: [{ field: NAME_EXACT_MATCH, texts: [$name] }]
+  ) {
+    nodes {
+      id
+      name
+      namespaceName
+      k8sClusterId
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+  }
+}

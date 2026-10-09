@@ -1,0 +1,17 @@
+query ProxmoxObjectsByName($name: String!, $first: Int!, $after: String) {
+  hierarchySnappables(
+    first: $first
+    after: $after
+    filter: [{ field: NAME_EXACT_MATCH, texts: [$name] }]
+  ) {
+    nodes {
+      id
+      name
+      objectType
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+  }
+}

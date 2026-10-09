@@ -1,0 +1,16 @@
+query KubernetesProtectionSetsByName($name: String!, $first: Int!, $after: String) {
+  kubernetesProtectionSets(
+    first: $first
+    after: $after
+    filter: [{ field: NAME_EXACT_MATCH, texts: [$name] }]
+  ) {
+    nodes {
+      id
+      name
+    }
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+  }
+}

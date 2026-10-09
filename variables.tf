@@ -77,6 +77,36 @@ variable "linux_fileset_assignments" {
   default = {}
 }
 
+variable "kubernetes_cluster_names" {
+  description = "Exact Rubrik inventory names of Kubernetes clusters to protect."
+  type        = set(string)
+  default     = []
+}
+
+variable "kubernetes_protection_set_names" {
+  description = "Exact Rubrik inventory names of Kubernetes protection sets to protect."
+  type        = set(string)
+  default     = []
+}
+
+variable "kubernetes_namespaces" {
+  description = "Kubernetes namespaces to protect, keyed by stable Terraform keys and identified by exact cluster and namespace names."
+  type = map(object({
+    cluster_name   = string
+    namespace_name = string
+  }))
+  default = {}
+}
+
+variable "proxmox_objects" {
+  description = "Proxmox objects to protect, keyed by stable Terraform keys with each exact Rubrik inventory name and managed-object type."
+  type = map(object({
+    name        = string
+    object_type = string
+  }))
+  default = {}
+}
+
 variable "nas_server" {
   description = "Optional Generic NAS or PowerScale (Isilon) server configuration to register in Rubrik."
   type = object({
@@ -134,7 +164,7 @@ variable "sla_domain_description" {
 }
 
 variable "sla_domain_object_types" {
-  description = "Object types supported by the managed SLA Domain."
+  description = "Rubrik SlaObjectType values supported by the managed SLA Domain, including K8S_OBJECT_TYPE, KUPR_OBJECT_TYPE, and PROXMOX_OBJECT_TYPE when applicable."
   type        = set(string)
 
   validation {

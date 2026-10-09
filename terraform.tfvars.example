@@ -15,6 +15,10 @@ postgresql_db_cluster_names = [
 linux_fileset_cluster_uuid = ""
 linux_fileset_templates    = {}
 linux_fileset_assignments  = {}
+kubernetes_cluster_names        = []
+kubernetes_protection_set_names = []
+kubernetes_namespaces           = {}
+proxmox_objects                 = {}
 nas_share_names = [
   "engineering-nfs",
 ]
@@ -33,13 +37,16 @@ nas_shares = {
     share_type   = "CREATE_NAS_SHARE_INPUT_SHARE_TYPE_NFS"
   }
 }
-sla_domain_name        = "Terraform PostgreSQL, vSphere, and NAS"
+sla_domain_name        = "Terraform workload protection"
 sla_domain_description = "Managed by Terraform"
 sla_domain_object_types = [
   "POSTGRES_DB_CLUSTER_OBJECT_TYPE",
   "VSPHERE_OBJECT_TYPE",
   "NAS_OBJECT_TYPE",
   "FILESET_OBJECT_TYPE",
+  "K8S_OBJECT_TYPE",
+  "KUPR_OBJECT_TYPE",
+  "PROXMOX_OBJECT_TYPE",
 ]
 sla_domain_snapshot_schedule = {
   daily = {

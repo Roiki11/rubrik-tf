@@ -48,6 +48,22 @@ module "linux_fileset_protection" {
   sla_id              = module.rubrik_sla_domain.id
 }
 
+module "kubernetes_protection" {
+  source = "./modules/kubernetes-protection"
+
+  cluster_names        = var.kubernetes_cluster_names
+  protection_set_names = var.kubernetes_protection_set_names
+  namespaces           = var.kubernetes_namespaces
+  sla_id               = module.rubrik_sla_domain.id
+}
+
+module "proxmox_protection" {
+  source = "./modules/proxmox-protection"
+
+  objects = var.proxmox_objects
+  sla_id  = module.rubrik_sla_domain.id
+}
+
 module "nas_share_protection" {
   source = "./modules/nas-share-protection"
 
@@ -68,7 +84,11 @@ module "vsphere_container_sla_assignments" {
 module "object_inventory_role" {
   source = "./modules/object-inventory-role"
 
-  name = var.object_inventory_role_name
+  name                        = var.object_inventory_role_name
+  vsphere_vm_names            = var.vsphere_vm_names
+  vsphere_folder_names        = var.vsphere_folder_names
+  postgresql_db_cluster_names = var.postgresql_db_cluster_names
+  nas_share_names             = var.nas_share_names
 }
 
 module "automation_service_account" {
@@ -84,9 +104,49 @@ output "object_inventory_role_id" {
   value       = module.object_inventory_role.role_id
 }
 
+output "vsphere_vm_ids" {
+  description = "Map of configured vSphere VM names to Rubrik inventory IDs."
+  value       = module.object_inventory_role.vsphere_vm_ids
+}
+
+output "vsphere_folder_ids" {
+  description = "Map of configured vSphere folder names to Rubrik inventory IDs."
+  value       = module.object_inventory_role.vsphere_folder_ids
+}
+
+output "postgresql_db_cluster_ids" {
+  description = "Map of configured PostgreSQL database cluster names to Rubrik inventory IDs."
+  value       = module.object_inventory_role.postgresql_db_cluster_ids
+}
+
+output "nas_share_ids" {
+  description = "Map of configured existing NAS share names to Rubrik inventory IDs."
+  value       = module.object_inventory_role.nas_share_ids
+}
+
 output "linux_fileset_ids" {
   description = "Map of configured Linux fileset assignment keys to Rubrik fileset IDs."
   value       = module.linux_fileset_protection.fileset_ids
+}
+
+output "kubernetes_cluster_ids" {
+  description = "Map of configured Kubernetes cluster names to Rubrik inventory IDs."
+  value       = module.kubernetes_protection.cluster_ids
+}
+
+output "kubernetes_protection_set_ids" {
+  description = "Map of configured Kubernetes protection-set names to Rubrik inventory IDs."
+  value       = module.kubernetes_protection.protection_set_ids
+}
+
+output "kubernetes_namespace_ids" {
+  description = "Map of configured Kubernetes namespace keys to Rubrik inventory IDs."
+  value       = module.kubernetes_protection.namespace_ids
+}
+
+output "proxmox_object_ids" {
+  description = "Map of configured Proxmox object keys to Rubrik inventory IDs."
+  value       = module.proxmox_protection.object_ids
 }
 
 output "nas_server_id" {

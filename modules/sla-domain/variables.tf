@@ -10,7 +10,7 @@ variable "description" {
 }
 
 variable "object_types" {
-  description = "Rubrik object types supported by this SLA Domain, such as VSphereVm or PostgreSQLDbCluster."
+  description = "Rubrik SlaObjectType enum values supported by this SLA Domain, such as VSphereVm, PostgreSQLDbCluster, K8S_OBJECT_TYPE, KUPR_OBJECT_TYPE, or PROXMOX_OBJECT_TYPE."
   type        = set(string)
 
   validation {

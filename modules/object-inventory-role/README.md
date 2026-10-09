@@ -10,13 +10,32 @@ administrative operations.
 module "object_inventory_role" {
   source = "./modules/object-inventory-role"
 
-  name = "Terraform object inventory reader"
+  name                        = "Terraform object inventory reader"
+  vsphere_vm_names            = ["application-01"]
+  vsphere_folder_names        = ["Production"]
+  postgresql_db_cluster_names = ["postgres-production"]
+  nas_share_names             = ["engineering-nfs"]
 }
 ```
 
-The ID-to-name GraphQL operation is
-`gql_files/query-object-ids-with-names.graphql`. Pass the object IDs through its
-`fids` variable to retrieve each object's ID and name.
+The optional name sets resolve exact names to IDs and are returned as maps
+keyed by the supplied names:
+
+- `vsphere_vm_ids`
+- `vsphere_folder_ids`
+- `postgresql_db_cluster_ids`
+- `nas_share_ids`
+
+Each lookup must resolve to exactly one object; missing or duplicate matches
+fail the Terraform evaluation. The module uses the paginated lookup operations
+in `gql_files/`. vSphere tags are not resolved by name; supply Rubrik tag UUIDs
+directly to the SLA-assignment module.
+
+Lookups execute through the caller's configured GraphQL provider credentials.
+Creating this role does not switch the provider identity or automatically use
+the service account to run the queries. To perform lookups as the service
+account, configure the provider with an access token issued for that account
+and assign this role to it.
 
 The role uses Rubrik's supported `mutateRole` API (rather than the deprecated
 `createRole`/`updateRole` operations). Creating or changing the role requires
