@@ -100,6 +100,69 @@ All root credential fields are logical aliases into `vault_credential_refs`,
 not raw credentials. Direct module inputs below retain their documented
 canonical fields and are marked sensitive where they contain credentials.
 
+## Finding Rubrik IDs
+
+Rubrik IDs are opaque identifiers. Copy the exact `id` returned by Rubrik;
+do not construct one from a name or substitute an external system's ID.
+Root inputs use names and stable Terraform keys wherever this configuration
+can resolve an ID. The reusable modules are lower-level interfaces and may
+require the Rubrik ID directly.
+
+### IDs resolved or exported by the root configuration
+
+After applying the relevant root configuration, inspect outputs with
+`tofu output -json <output_name>` (or `tofu output` to list all outputs).
+These maps show the exact resolved IDs and the Terraform keys or names they
+correspond to:
+
+| ID needed | Root configuration guidance | Output |
+|---|---|---|
+| Rubrik CDM cluster UUID | Set `linux_fileset_cluster_name`, or `cluster_name` in NAS, Cloud Direct, vSphere, or tape target inputs. Names must exactly match a cluster. | `rubrik_cluster_ids` |
+| SLA Domain UUID | In root resource maps, use the SLA key from `sla_domains`; the root resolves the key to an ID. For a direct protection-module call, copy an ID from the root output. | `sla_domain_ids` |
+| vSphere VM, folder, PostgreSQL cluster, or existing NAS share ID | The root inventory-role module resolves the configured exact names. Configure at least one `object_inventory_roles` entry to enable these lookups. | `vsphere_vm_ids`, `vsphere_folder_ids`, `postgresql_db_cluster_ids`, `nas_share_ids` |
+| Kubernetes cluster, protection-set, or namespace ID | Configure the relevant names under `kubernetes`; the root resolves them. | `kubernetes_cluster_ids`, `kubernetes_protection_set_ids`, `kubernetes_namespace_ids` |
+| Proxmox object ID | Configure its exact inventory name and `object_type` in `proxmox_objects`. | `proxmox_object_ids` |
+| ID created for a managed object | Use the matching key from the root output after apply; examples include SLA Domains, inventory roles, analyzers, policies, NAS servers, vSphere registrations, and tape targets. | `sla_domain_ids`, `object_inventory_role_ids`, `classification_analyzer_ids`, `classification_policy_ids`, `nas_server_ids`, `vsphere_server_ids`, `tape_archival_target_ids`, `tape_reader_target_ids` |
+
+The GraphQL name lookup operations used by these modules are in
+[`gql_files/`](./gql_files/), including
+[`cluster-connection.graphql`](./gql_files/cluster-connection.graphql),
+[`lookup-vsphere-vm-by-name.graphql`](./gql_files/lookup-vsphere-vm-by-name.graphql),
+[`lookup-vsphere-folder-by-name.graphql`](./gql_files/lookup-vsphere-folder-by-name.graphql),
+[`lookup-postgresql-cluster-by-name.graphql`](./gql_files/lookup-postgresql-cluster-by-name.graphql),
+[`lookup-nas-share-by-name.graphql`](./gql_files/lookup-nas-share-by-name.graphql),
+[`lookup-k8s-cluster-by-name.graphql`](./gql_files/lookup-k8s-cluster-by-name.graphql),
+[`lookup-kubernetes-protection-set-by-name.graphql`](./gql_files/lookup-kubernetes-protection-set-by-name.graphql),
+[`lookup-k8s-namespace-by-name.graphql`](./gql_files/lookup-k8s-namespace-by-name.graphql),
+and [`lookup-proxmox-object-by-name.graphql`](./gql_files/lookup-proxmox-object-by-name.graphql).
+Lookups use exact names and must identify exactly one object. Root protection
+configuration uses SLA keys and names rather than requiring users to copy
+these IDs into `terraform.tfvars`.
+
+### IDs to obtain from Rubrik for direct inputs
+
+Some identifiers cannot be resolved from a name by the current root
+configuration. Find them in the Rubrik Security Cloud UI, or use the
+authenticated GraphQL API Explorer for the same Rubrik tenant and copy the
+object's `id` field:
+
+| Input field | How to find it |
+|---|---|
+| `vsphere_tags` map keys or direct-module `tag_ids` | Open the vSphere tag in the Rubrik inventory and copy its Rubrik tag UUID. A tag name is not accepted. [`query-v-sphere-tag.graphql`](./gql_files/query-v-sphere-tag.graphql) fetches tag details when given the tag UUID; it is not a tag-name search. |
+| Direct module `role_ids` | Open the Rubrik role details in the Security Cloud UI and copy the Rubrik role ID. Do not use a service-account client ID. |
+| Direct module Proxmox `environment_id` | Find the registered Proxmox environment in the Rubrik inventory and copy its Rubrik object ID. The root `proxmox_hosts` map requires this ID to update an existing environment; the root `proxmox_environment_ids` output reports IDs only for hosts managed by this configuration. |
+| SLA `archivalGroupId` in `archival_specs` | Open the relevant archival location/target configuration in Rubrik and copy the archival group's Rubrik ID. This is not the tape target ID. |
+| Classification policy `document_type_ids`, `object_ids`, and `object_root_ids` | Use the matching object's Rubrik `id` in the inventory or GraphQL API Explorer. [`query-document-types-details.graphql`](./gql_files/query-document-types-details.graphql) lists document type details. For supported named inventory types, the root lookup outputs above can supply object IDs. |
+| Classification policy `cluster_ids` | Use `rubrik_cluster_ids` for a cluster configured by name, or copy the cluster's `id` from the Rubrik inventory. |
+| `archival_data_source_ids` for a direct tape-reader module | Find the data source associated with the archive in Rubrik and copy its Rubrik ID; it is distinct from the archival group and tape target IDs. |
+| Optional PowerScale `certificate_id` | Copy the certificate identifier associated with the registered certificate in Rubrik. It is not the certificate contents or the Vault credential alias. |
+
+For root-managed analyzers referenced by policies, use `analyzer_keys`; for
+root-managed inventory roles referenced by service accounts, use
+`inventory_role_keys`. This avoids copying IDs manually. The
+`classification_analyzer_ids`, `classification_policy_ids`, and
+`object_inventory_role_ids` outputs expose the resulting Rubrik IDs.
+
 ## Reusable module inputs
 
 All names used for inventory lookups are exact names, not partial or
