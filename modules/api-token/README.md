@@ -11,6 +11,10 @@ Use the `service-account` module to create and manage the long-lived
 credentials for an access token in your deployment runtime, not in Terraform:
 access tokens expire, and Terraform state is not an appropriate token cache.
 
-Configure the GraphQL provider with a currently valid bearer token using
-`rubrik_api_token`. Supply it through a secret manager or `TF_VAR_rubrik_api_token`;
-do not commit it to `terraform.tfvars`.
+The root configuration in this repository does not accept a raw
+`rubrik_api_token` input. It resolves that credential from HashiCorp Vault
+through the required `vault_credential_refs.rubrik_api_token` entry. For a
+direct reusable-module caller, configure the GraphQL provider with a
+currently valid bearer token from that caller's secret manager or runtime;
+do not put the token in version-controlled Terraform files. The token must
+remain valid for the duration of the Terraform operation.

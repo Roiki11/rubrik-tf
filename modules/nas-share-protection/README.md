@@ -74,10 +74,10 @@ dependent. Manual share registration requires Rubrik v8.1 or later. Exact
 share-name lookup must return exactly one object. Keep credentials out of
 version control and use an encrypted, access-controlled Terraform state
 backend; the GraphQL provider can retain mutation variables in state.
-When a server/share configuration is removed from Terraform, the underlying
-Rubrik object remains registered. Re-adding the same declaration may be
-rejected as a duplicate, so retain the configuration or handle the existing
-object manually.
+Removing a server or manually added share from Terraform preserves the
+underlying Rubrik object. Re-adding the same declaration may be rejected as a
+duplicate, so retain the configuration or reconcile the existing object
+manually.
 
 Remote state verification is disabled for SLA assignments because the
 provider cannot reconcile their nested input against the share query response.

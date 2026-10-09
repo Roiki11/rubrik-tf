@@ -58,7 +58,7 @@ protect them accordingly.
 | `nas_cloud_direct_shares` | `map(object)` | `{}` | Existing Cloud Direct shares keyed by Terraform name; each specifies exact share/system names and `sla_domain_key`. |
 | `sla_domains` | `map(object)` | Required | SLA Domain definitions keyed by stable Terraform names; each contains a name, object types, snapshot schedule, and optional description/archive specs. See [SLA object types](#sla-object-types). |
 | `object_inventory_roles` | `map(object)` | `{}` | Inventory-read roles keyed by stable Terraform names. |
-| `service_accounts` | `map(object)` | `{}` | Service accounts keyed by stable Terraform names; each may reference `role_ids` and/or `inventory_role_keys`. |
+| `service_accounts` | `map(object)` | `{}` | Service accounts keyed by stable Terraform names; each must resolve to at least one role using `role_ids` and/or `inventory_role_keys`. |
 | `classification_analyzers` | `map(object)` | `{}` | Custom analyzers keyed by stable names. Supports analyzer type, risk, structured/unstructured rules, dictionaries, regexes, exclusions, and optional tagging. |
 | `classification_policies` | `map(object)` | `{}` | Classification policies keyed by stable names, including analyzer IDs/keys and target hierarchy/object/root/cluster IDs. `mode` accepts `DISCOVERY` or `COMPLIANCE`. |
 | `sensitive_data_discovery_enabled` | `bool` | `false` | Enable read-only queries for sensitive-data summary and discovery object counts. |
@@ -148,14 +148,17 @@ object's `id` field:
 
 | Input field | How to find it |
 |---|---|
+| Direct-module `cluster_uuid` or `cluster_id` | For Linux fileset, NAS share registration, Cloud Direct system, vSphere registration, or tape-target modules, use the cluster UUID from the Rubrik inventory or GraphQL API Explorer. If the root configuration already references that cluster by name, use its `rubrik_cluster_ids` output. Root inputs for these resources accept `cluster_name` and discover the UUID automatically. |
 | `vsphere_tags` map keys or direct-module `tag_ids` | Open the vSphere tag in the Rubrik inventory and copy its Rubrik tag UUID. A tag name is not accepted. [`query-v-sphere-tag.graphql`](./gql_files/query-v-sphere-tag.graphql) fetches tag details when given the tag UUID; it is not a tag-name search. |
-| Direct module `role_ids` | Open the Rubrik role details in the Security Cloud UI and copy the Rubrik role ID. Do not use a service-account client ID. |
+| `role_ids` and `inventory_role_keys` | For a role managed by this root configuration, prefer `inventory_role_keys`; the root resolves it. For a direct `service-account` module or an existing role, open the role details in the Rubrik Security Cloud UI and copy its Rubrik role ID. Do not use a service-account client ID. |
 | Direct module Proxmox `environment_id` | Find the registered Proxmox environment in the Rubrik inventory and copy its Rubrik object ID. The root `proxmox_hosts` map requires this ID to update an existing environment; the root `proxmox_environment_ids` output reports IDs only for hosts managed by this configuration. |
 | SLA `archivalGroupId` in `archival_specs` | Open the relevant archival location/target configuration in Rubrik and copy the archival group's Rubrik ID. This is not the tape target ID. |
 | Classification policy `document_type_ids`, `object_ids`, and `object_root_ids` | Use the matching object's Rubrik `id` in the inventory or GraphQL API Explorer. [`query-document-types-details.graphql`](./gql_files/query-document-types-details.graphql) lists document type details. For supported named inventory types, the root lookup outputs above can supply object IDs. |
+| Existing classification `analyzer_ids` or `analyzer_risk_instance.analyzer_id` | Use `classification_analyzer_ids` for analyzers managed by this root configuration. For an existing analyzer, find its ID in the Rubrik Security Cloud UI or GraphQL API Explorer. |
 | Classification policy `cluster_ids` | Use `rubrik_cluster_ids` for a cluster configured by name, or copy the cluster's `id` from the Rubrik inventory. |
 | `archival_data_source_ids` for a direct tape-reader module | Find the data source associated with the archive in Rubrik and copy its Rubrik ID; it is distinct from the archival group and tape target IDs. |
 | Optional PowerScale `certificate_id` | Copy the certificate identifier associated with the registered certificate in Rubrik. It is not the certificate contents or the Vault credential alias. |
+| Optional vSphere registration `org_network_id` | Copy the Rubrik organization-network ID from that network's details in Rubrik. This is not the network name or vCenter network identifier. |
 
 For root-managed analyzers referenced by policies, use `analyzer_keys`; for
 root-managed inventory roles referenced by service accounts, use
@@ -352,7 +355,7 @@ Source: `./modules/linux-fileset-protection`
 
 | Variable | Type | Required/default | Values and notes |
 |---|---|---|---|
-| `cluster_uuid` | `string` | `""` | Rubrik CDM cluster UUID; required when templates or assignments are configured. |
+| `cluster_uuid` | `string` | `""` | Rubrik CDM cluster UUID; required when templates or assignments are configured. In the root configuration, set `linux_fileset_cluster_name` instead; the root resolves it to a UUID. |
 | `fileset_templates` | `map(object)` | `{}` | Template definitions keyed by unique name. Each must include at least one `includes` path. Optional `excludes`, `exceptions`, pre/post scripts, script error handling (`abort` or `continue`), timeout in seconds, and network mount options are supported. |
 | `fileset_assignments` | `map(object)` | `{}` | Assignments keyed by stable Terraform name. Each requires exact `host_name` and `template_name`; optional hardlink support and symlink resolution default to `false`. |
 | `sla_ids` | `map(string)` | `{}` | SLA UUIDs keyed as `assignment:<fileset assignment key>`. Required for every configured assignment. |
@@ -642,7 +645,7 @@ Source: `./modules/vsphere-server-registration`
 
 | Variable | Type | Required/default | Values and notes |
 |---|---|---|---|
-| `servers` | `map(object)` | `{}` | vCenter or standalone ESXi registrations keyed by stable Terraform names. Required fields: `cluster_uuid`, `hostname`, `username`, and `password`. Optional fields: `ca_certs`, `is_standalone_host`, `should_enable_hot_add_proxy_onprem`, `conflict_resolution_authz`, `org_network_id`, and `is_compute_visibility_filter_disabled`. |
+| `servers` | `map(object)` | `{}` | vCenter or standalone ESXi registrations keyed by stable Terraform names. Required fields: `cluster_uuid`, `hostname`, `username`, and `password`. Optional fields: `ca_certs`, `is_standalone_host`, `should_enable_hot_add_proxy_onprem`, `conflict_resolution_authz`, `org_network_id`, and `is_compute_visibility_filter_disabled`. Direct callers supply the Rubrik cluster UUID; the root input uses `cluster_name` and resolves it. |
 
 `conflict_resolution_authz` supports
 `VCENTER_CONFIG_V2_CONFLICT_RESOLUTION_AUTHZ_ALLOW_AUTO_CONFLICT_RESOLUTION`
@@ -674,8 +677,8 @@ Source: `./modules/tape-archival-targets`
 
 | Variable | Type | Required/default | Values and notes |
 |---|---|---|---|
-| `targets` | `map(object)` | `{}` | Tape writer targets keyed by stable Terraform names. Each requires a UUID `cluster_uuid`, non-empty `destination_folder_name`, `host_name`, `integral_volume_name`, `name`, integer `host_port` from 1 through 65535, and `encryption_password`, `password`, and `username`. |
-| `reader_targets` | `map(object)` | `{}` | Tape reader targets with the same required fields as `targets`, plus required `reader_retrieval_method` and optional UUID `archival_data_source_ids`. Retrieval methods: `OBJECT_LIST_AND_DETAILS`, `OBJECT_LIST_ONLY`, or `SPECIFIC_OBJECT_LIST_AND_DETAILS`. |
+| `targets` | `map(object)` | `{}` | Tape writer targets keyed by stable Terraform names. Each requires a UUID `cluster_uuid`, non-empty `destination_folder_name`, `host_name`, `integral_volume_name`, `name`, integer `host_port` from 1 through 65535, and `encryption_password`, `password`, and `username`. Direct callers supply the UUID; the root input uses `cluster_name` and resolves it. |
+| `reader_targets` | `map(object)` | `{}` | Tape reader targets with the same required fields as `targets`, plus required `reader_retrieval_method` and optional UUID `archival_data_source_ids`. Retrieval methods: `OBJECT_LIST_AND_DETAILS`, `OBJECT_LIST_ONLY`, or `SPECIFIC_OBJECT_LIST_AND_DETAILS`. Direct callers supply `cluster_uuid`; the root input uses `cluster_name` and resolves it. |
 
 Credentials and encryption passwords are stored in Terraform state. Rubrik
 does not expose a delete mutation for tape targets, so removing an entry
