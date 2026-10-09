@@ -9,6 +9,23 @@ Use [`terraform.tfvars.example`](./terraform.tfvars.example) as a starting
 point for the root configuration. Supply credentials through a secure input
 mechanism rather than committing them to a tfvars file.
 
+## Module index
+
+| Module | Purpose |
+|---|---|
+| [`vsphere-vm-protection`](#vsphere-vm-protection) | Assign an SLA Domain to selected vSphere VMs. |
+| [`vsphere-container-sla-assignment`](#vsphere-container-sla-assignment) | Assign an SLA Domain to vSphere folders and tags. |
+| [`postgresql-protection`](#postgresql-protection) | Protect PostgreSQL database clusters with an SLA Domain. |
+| [`kubernetes-protection`](#kubernetes-protection) | Protect Kubernetes clusters, namespaces, and protection sets. |
+| [`proxmox-protection`](#proxmox-protection) | Protect Proxmox environments, clusters, nodes, and VMs. |
+| [`nas-share-protection`](#nas-share-protection) | Register NAS servers and shares, and assign SLA protection. |
+| [`linux-fileset-protection`](#linux-fileset-protection) | Configure Linux fileset templates and protect filesets. |
+| [`sla-domain`](#sla-domain) | Create and manage SLA Domains, schedules, and archive settings. |
+| [`service-account`](#service-account) | Manage a Rubrik service account and its assigned roles. |
+| [`classification-policy-analyzers`](#classification-policy-analyzers) | Manage custom analyzers, classification policies, and object assignments. |
+| [`sensitive-data-discovery`](#sensitive-data-discovery) | Query sensitive-data summaries and discovery object counts. |
+| [`object-inventory-role`](#object-inventory-role) | Manage inventory-read access and resolve configured object IDs. |
+
 ## Root configuration inputs
 
 | Variable | Type | Required/default | Values and notes |
