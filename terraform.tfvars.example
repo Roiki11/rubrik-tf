@@ -46,6 +46,7 @@ sla_domain_snapshot_schedule = {
     }
   }
 }
+sla_domain_archival_specs = []
 service_account_name        = "Terraform automation"
 service_account_description = "Managed by Terraform"
 object_inventory_role_name  = "Terraform object inventory reader"

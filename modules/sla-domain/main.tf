@@ -4,6 +4,7 @@ resource "graphql_mutation" "sla_domain" {
     description      = jsonencode(var.description)
     objectTypes      = jsonencode(sort(tolist(var.object_types)))
     snapshotSchedule = var.snapshot_schedule == null ? "null" : jsonencode(var.snapshot_schedule)
+    archivalSpecs    = jsonencode(var.archival_specs)
   }
 
   read_query_variables = {}

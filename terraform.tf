@@ -29,6 +29,7 @@ module "rubrik_sla_domain" {
   description       = var.sla_domain_description
   object_types      = var.sla_domain_object_types
   snapshot_schedule = var.sla_domain_snapshot_schedule
+  archival_specs    = var.sla_domain_archival_specs
 }
 
 module "postgresql_protection" {

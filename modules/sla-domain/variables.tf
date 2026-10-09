@@ -20,6 +20,12 @@ variable "object_types" {
 }
 
 variable "snapshot_schedule" {
-  description = "Rubrik GlobalSnapshotScheduleInput object describing the snapshot schedule."
+  description = "Rubrik GlobalSnapshotScheduleInput object with optional minute, hourly, daily, weekly, monthly, quarterly, and yearly schedules."
   type        = any
+}
+
+variable "archival_specs" {
+  description = "Optional list of Rubrik ArchivalSpecInput objects defining archival targets, thresholds, frequencies, and related settings."
+  type        = list(any)
+  default     = []
 }

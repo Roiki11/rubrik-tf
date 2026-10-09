@@ -3,6 +3,7 @@ mutation CreateManagedGlobalSla(
   $description: String
   $objectTypes: [SlaObjectType!]!
   $snapshotSchedule: GlobalSnapshotScheduleInput
+  $archivalSpecs: [ArchivalSpecInput!]
 ) {
   createGlobalSla(
     input: {
@@ -10,6 +11,7 @@ mutation CreateManagedGlobalSla(
       description: $description
       objectTypes: $objectTypes
       snapshotSchedule: $snapshotSchedule
+      archivalSpecs: $archivalSpecs
     }
   ) {
     id

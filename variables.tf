@@ -109,8 +109,14 @@ variable "sla_domain_object_types" {
 }
 
 variable "sla_domain_snapshot_schedule" {
-  description = "Snapshot schedule passed to Rubrik as a GlobalSnapshotScheduleInput value."
+  description = "Snapshot schedule passed to Rubrik as a GlobalSnapshotScheduleInput value, including minute through yearly cadences."
   type        = any
+}
+
+variable "sla_domain_archival_specs" {
+  description = "Optional archival specifications passed to Rubrik as ArchivalSpecInput values."
+  type        = list(any)
+  default     = []
 }
 
 variable "service_account_name" {

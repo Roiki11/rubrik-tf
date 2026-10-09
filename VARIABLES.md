@@ -25,7 +25,8 @@ mechanism rather than committing them to a tfvars file.
 | `sla_domain_name` | `string` | Required | Name for the SLA Domain created by the root configuration. |
 | `sla_domain_description` | `string` | `null` | Optional SLA Domain description. |
 | `sla_domain_object_types` | `set(string)` | Required | At least one Rubrik SLA object-type enum value is required. Values must be supported by the Rubrik API and compatible with the objects assigned to this SLA. See [SLA object types](#sla-object-types). |
-| `sla_domain_snapshot_schedule` | `any` | Required | Object matching Rubrik's `GlobalSnapshotScheduleInput` GraphQL input. See [Snapshot schedule](#snapshot-schedule). |
+| `sla_domain_snapshot_schedule` | `any` | Required | Object matching Rubrik's `GlobalSnapshotScheduleInput`; supports minute, hourly, daily, weekly, monthly, quarterly, and yearly schedules. |
+| `sla_domain_archival_specs` | `list(any)` | `[]` | Optional list of Rubrik archival specifications, including archival group, threshold, frequencies, and tiering options. See the [sla-domain module README](./modules/sla-domain/README.md#archive-configuration). |
 | `service_account_name` | `string` | Required | Name for the automation service account. |
 | `service_account_description` | `string` | `""` | Optional service-account description. |
 | `service_account_role_ids` | `set(string)` | `[]` | Additional Rubrik role IDs to grant. The root configuration also grants the managed object-inventory role. |
@@ -59,6 +60,13 @@ sla_domain_snapshot_schedule = {
     }
   }
 }
+sla_domain_archival_specs = [
+  {
+    archivalGroupId = "00000000-0000-0000-0000-000000000000"
+    threshold       = 30
+    thresholdUnit   = "DAYS"
+  }
+]
 
 service_account_name        = "Terraform automation"
 service_account_description = "Managed by Terraform"
@@ -237,7 +245,8 @@ Source: `./modules/sla-domain`
 | `name` | `string` | Required | SLA Domain name. |
 | `description` | `string` | `null` | Optional description. |
 | `object_types` | `set(string)` | Required; must contain at least one value | Rubrik `SlaObjectType` enum values supported by the API. Use types compatible with the protected workloads. Examples: `VSPHERE_OBJECT_TYPE`, `POSTGRES_DB_CLUSTER_OBJECT_TYPE`, `NAS_OBJECT_TYPE`. This list is illustrative, not exhaustive. |
-| `snapshot_schedule` | `any` | Required | Value matching Rubrik's `GlobalSnapshotScheduleInput`. See [Snapshot schedule](#snapshot-schedule). |
+| `snapshot_schedule` | `any` | Required | Value matching Rubrik's `GlobalSnapshotScheduleInput`, supporting minute, hourly, daily, weekly, monthly, quarterly, and yearly cadences. |
+| `archival_specs` | `list(any)` | `[]` | Optional list of Rubrik `ArchivalSpecInput` values passed on create and update. See [archive configuration](./modules/sla-domain/README.md#archive-configuration). |
 
 ```hcl
 module "rubrik_sla_domain" {
@@ -255,6 +264,13 @@ module "rubrik_sla_domain" {
       }
     }
   }
+  archival_specs = [
+    {
+      archivalGroupId = "00000000-0000-0000-0000-000000000000"
+      threshold       = 30
+      thresholdUnit   = "DAYS"
+    }
+  ]
 }
 ```
 
@@ -273,28 +289,10 @@ The Rubrik API schema for the target cluster is authoritative. Enum members
 can vary with API version and available features; use only values accepted by
 that schema and supported by the SLA and workloads you intend to protect.
 
-#### Snapshot schedule
+#### Snapshot schedule and archive configuration
 
-The `snapshot_schedule` value is passed through as Rubrik's
-`GlobalSnapshotScheduleInput`; its accepted keys, nested structure, and enum
-values are defined by the GraphQL schema for the Rubrik API version in use.
-For example, the root configuration uses a daily schedule with a basic
-frequency of one and retention of 30 days:
-
-```hcl
-snapshot_schedule = {
-  daily = {
-    basicSchedule = {
-      frequency     = 1
-      retention     = 30
-      retentionUnit = "DAYS"
-    }
-  }
-}
-```
-
-The example uses `DAYS` for `retentionUnit`; consult the Rubrik GraphQL schema
-for the complete allowed schedule fields, units, and values.
+The complete schedule cadence fields, time selectors, archive fields, and
+examples are documented in the [`sla-domain` module README](./modules/sla-domain/README.md#snapshot-schedule-fields).
 
 ### `service-account`
 
