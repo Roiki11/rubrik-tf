@@ -1,14 +1,33 @@
+# The API token is consumed only through the GraphQL provider
+# configuration, which Terraform does not persist in state, so it is read
+# with an ephemeral resource to keep the credential material out of state
+# entirely. Other credentials feed managed resource arguments and therefore
+# remain on the regular data source below.
+ephemeral "vault_kv_secret_v2" "api_token" {
+  mount = var.vault_credential_refs["rubrik_api_token"].mount
+  name  = var.vault_credential_refs["rubrik_api_token"].path
+}
+
 data "vault_kv_secret_v2" "credential" {
-  for_each = var.vault_credential_refs
+  for_each = {
+    for name, ref in var.vault_credential_refs :
+    name => ref
+    if name != "rubrik_api_token"
+  }
 
   mount = each.value.mount
   name  = each.value.path
 }
 
 locals {
+  vault_api_token = tostring(
+    ephemeral.vault_kv_secret_v2.api_token.data[var.vault_credential_refs["rubrik_api_token"].key]
+  )
+
   vault_credentials = {
     for name, ref in var.vault_credential_refs :
     name => sensitive(tostring(data.vault_kv_secret_v2.credential[name].data[ref.key]))
+    if name != "rubrik_api_token"
   }
 
   resolved_nas_servers = {

@@ -32,14 +32,6 @@ variable "vault_credential_refs" {
   }
 }
 
-/*
-variable "rubrik_api_token" {
-  description = "Bearer token used to authenticate to the Rubrik GraphQL API."
-  type        = string
-  sensitive   = true
-}
-*/
-
 variable "vsphere_vms" {
   description = "Exact vSphere VM names mapped to the SLA Domain key to assign."
   type        = map(string)

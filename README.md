@@ -10,9 +10,11 @@ point for the root configuration. Configure the Vault provider using its
 standard environment variables or another supported Vault authentication
 method. The root `vault_credential_refs` map maps logical credential names to
 HashiCorp Vault KV v2 mount, path, and field names; resource inputs reference
-those logical names instead of containing secret values. Fetched values are
-marked sensitive, but Terraform state and plans can still contain secrets, so
-protect them accordingly.
+those logical names instead of containing secret values. The `rubrik_api_token`
+credential is read through an ephemeral resource and used only in the GraphQL
+provider configuration, so it is never stored in Terraform state. The remaining
+fetched values are marked sensitive and are stored in state because managed
+resources persist them, so protect state and plans accordingly.
 
 ## Module index
 
